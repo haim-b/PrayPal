@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>RightToLeft</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>he-IL</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>יהדות</value>
+  </data>
+  <data name="MainContent_D" xml:space="preserve">
+    <value>תפילות וברכות</value>
+  </data>
+  <data name="BirkatHamazonTitle" xml:space="preserve">
+    <value>ברכת המזון</value>
+  </data>
+  <data name="AlHanissimHannukahTitle" xml:space="preserve">
+    <value>בחנוכה</value>
+  </data>
+  <data name="AlHanissimPurimTitle" xml:space="preserve">
+    <value>בפורים</value>
+  </data>
+  <data name="ArvitTitle" xml:space="preserve">
+    <value>ערבית</value>
+  </data>
+  <data name="BirkatCohanimTitle" xml:space="preserve">
+    <value>ברכת כהנים (בחזרת הש"ץ)</value>
+  </data>
+  <data name="BirkatCohanimInTeanitTitle" xml:space="preserve">
+    <value>ברכת כהנים בתענית ציבור (בחזרת הש"ץ)</value>
+  </data>
+  <data name="HaziKadishTitle" xml:space="preserve">
+    <value>חצי קדיש</value>
+  </data>
+  <data name="KadishLeelaRegularTitle" xml:space="preserve">
+    <value>בימות השנה</value>
+  </data>
+  <data name="KadisLeelaAYT" xml:space="preserve">
+    <value>בעשרת ימי תשובה</value>
+  </data>
+  <data name="ModimDeRabananTitle" xml:space="preserve">
+    <value>מודים דרבנן</value>
+  </data>
+  <data name="SE_Title" xml:space="preserve">
+    <value>תפילת שמונה עשרה</value>
+  </data>
+  <data name="VeAnenuTitle" xml:space="preserve">
+    <value>בזמן עצירת גשמים</value>
+  </data>
+  <data name="YaalehVeyavoPesachTitle" xml:space="preserve">
+    <value>בחוה"מ פסח</value>
+  </data>
+  <data name="YaalehVeyavoRoshHodeshTitle" xml:space="preserve">
+    <value>בראש חודש</value>
+  </data>
+  <data name="YaalehVeyavoSukkotTitle" xml:space="preserve">
+    <value>בחוה"מ סוכות</value>
+  </data>
+  <data name="ZimmunTitle" xml:space="preserve">
+    <value>זימון</value>
+  </data>
+  <data name="EndTimeOfPrayer" xml:space="preserve">
+    <value>סוף זמן תפילה</value>
+  </data>
+  <data name="MizmorTehillim" xml:space="preserve">
+    <value>מזמור תהילים</value>
+  </data>
+  <data name="PrayingDirectionTitle" xml:space="preserve">
+    <value>כיוון תפילה</value>
+  </data>
+  <data name="ZmaneyHayom" xml:space="preserve">
+    <value>היום</value>
+  </data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>מעדכן האריח החי של מרכז היהדות</value>
+  </data>
+  <data name="AYTTitlt" xml:space="preserve">
+    <value>בעשי"ת</value>
+  </data>
+  <data name="AshreyTitle" xml:space="preserve">
+    <value>אשרי</value>
+  </data>
+  <data name="BirkatHamazon1Title" xml:space="preserve">
+    <value>ברכת הזן</value>
+  </data>
+  <data name="AleinuLeshabeachTitle" xml:space="preserve">
+    <value>עלינו לשבח</value>
+  </data>
+  <data name="InHazarahTitle" xml:space="preserve">
+    <value>בחזרת הש"ץ</value>
+  </data>
+  <data name="InTfilatYachidTitle" xml:space="preserve">
+    <value>בתפילת הלחש אומר</value>
+  </data>
+  <data name="AvinuMalkenuTitle" xml:space="preserve">
+    <value>אבינו מלכנו</value>
+  </data>
+  <data name="KadishShalemTitle" xml:space="preserve">
+    <value>קדיש שלם</value>
+  </data>
+  <data name="KadishYatomTitle" xml:space="preserve">
+    <value>קדיש יתום</value>
+  </data>
+  <data name="PsalmTitle" xml:space="preserve">
+    <value>תהילים {0}</value>
+  </data>
+  <data name="TachanunTitle" xml:space="preserve">
+    <value>סדר תחנון</value>
+  </data>
+  <data name="KriatShmaAndBlessingTitle" xml:space="preserve">
+    <value>קריאת שמע וברכותיה</value>
+  </data>
+  <data name="Psalm121Title" xml:space="preserve">
+    <value>שיר למעלות</value>
+  </data>
+  <data name="VersesBeforeArvitTitle" xml:space="preserve">
+    <value>לפני תפילת ערבית</value>
+  </data>
+  <data name="ForMotzashTitle" xml:space="preserve">
+    <value>למוצאי שבת</value>
+  </data>
+  <data name="LocationPermissionRequest" xml:space="preserve">
+    <value>האם ברצונך שהאפליקציה תשתמש במיקום שלך לחישוב הזמנים?</value>
+  </data>
+  <data name="LocationPermissionRequestTitle" xml:space="preserve">
+    <value>מיקום</value>
+  </data>
+  <data name="TeanitReading" xml:space="preserve">
+    <value>כהן: וַיְחַ֣ל מֹשֶׁ֔ה אֶת־פְּנֵ֖י יְהוָ֣ה אֱלֹהָ֑יו וַיֹּ֗אמֶר לָמָ֤ה יְהוָה֙ יֶחֱרֶ֤ה אַפְּךָ֙ בְּעַמֶּ֔ךָ אֲשֶׁ֤ר הוֹצֵ֙אתָ֙ מֵאֶ֣רֶץ מִצְרַ֔יִם בְּכֹ֥חַ גָּד֖וֹל וּבְיָ֥ד חֲזָקָֽה׃ לָמָּה֩ יֹאמְר֨וּ מִצְרַ֜יִם לֵאמֹ֗ר בְּרָעָ֤ה הֽוֹצִיאָם֙ לַהֲרֹ֤ג אֹתָם֙ בֶּֽהָרִ֔ים וּ֨לְכַלֹּתָ֔ם מֵעַ֖ל פְּנֵ֣י הָֽאֲדָמָ֑ה שׁ֚וּב מֵחֲר֣וֹן אַפֶּ֔ךָ וְהִנָּחֵ֥ם עַל־הָרָעָ֖ה לְעַמֶּֽךָ׃ זְכֹ֡ר לְאַבְרָהָם֩ לְיִצְחָ֨ק וּלְיִשְׂרָאֵ֜ל עֲבָדֶ֗יךָ אֲשֶׁ֨ר נִשְׁבַּ֣עְתָּ לָהֶם֮ בָּךְ֒ וַתְּדַבֵּ֣ר אֲלֵהֶ֔ם אַרְבֶּה֙ אֶֽת־זַרְעֲכֶ֔ם כְּכוֹכְבֵ֖י הַשָּׁמָ֑יִם וְכָל־הָאָ֨רֶץ הַזֹּ֜את אֲשֶׁ֣ר אָמַ֗רְתִּי אֶתֵּן֙ לְזַרְעֲכֶ֔ם וְנָחֲל֖וּ לְעֹלָֽם׃ וַיִּנָּ֖חֶם יְהוָ֑ה עַל־הָ֣רָעָ֔ה אֲשֶׁ֥ר דִּבֶּ֖ר לַעֲשׂ֥וֹת לְעַמּֽוֹ׃
+לוי: וַיֹּ֤אמֶר יְהוָה֙ אֶל־מֹשֶׁ֔ה פְּסָל־לְךָ֛ שְׁנֵֽי־לֻחֹ֥ת אֲבָנִ֖ים כָּרִאשֹׁנִ֑ים וְכָתַבְתִּי֙ עַל־הַלֻּחֹ֔ת אֶת־הַדְּבָרִ֔ים אֲשֶׁ֥ר הָי֛וּ עַל־הַלֻּחֹ֥ת הָרִאשֹׁנִ֖ים אֲשֶׁ֥ר שִׁבַּֽרְתָּ׃ וֶהְיֵ֥ה נָכ֖וֹן לַבֹּ֑קֶר וְעָלִ֤יתָ בַבֹּ֙קֶר֙ אֶל־הַ֣ר סִינַ֔י וְנִצַּבְתָּ֥ לִ֛י שָׁ֖ם עַל־רֹ֥אשׁ הָהָֽר׃ וְאִישׁ֙ לֹֽא־יַעֲלֶ֣ה עִמָּ֔ךְ וְגַם־אִ֥ישׁ אַל־יֵרָ֖א בְּכָל־הָהָ֑ר גַּם־הַצֹּ֤אן וְהַבָּקָר֙ אַל־יִרְע֔וּ אֶל־מ֖וּל הָהָ֥ר הַהֽוּא׃
+ישראל: וַיִּפְסֹ֡ל שְׁנֵֽי־לֻחֹ֨ת אֲבָנִ֜ים כָּרִאשֹׁנִ֗ים וַיַּשְׁכֵּ֨ם מֹשֶׁ֤ה בַבֹּ֙קֶר֙ וַיַּ֙עַל֙ אֶל־הַ֣ר סִינַ֔י כַּאֲשֶׁ֛ר צִוָּ֥ה יְהוָ֖ה אֹת֑וֹ וַיִּקַּ֣ח בְּיָד֔וֹ שְׁנֵ֖י לֻחֹ֥ת אֲבָנִֽים׃ וַיֵּ֤רֶד יְהוָה֙ בֶּֽעָנָ֔ן וַיִּתְיַצֵּ֥ב עִמּ֖וֹ שָׁ֑ם וַיִּקְרָ֥א בְשֵׁ֖ם יְהוָֽה׃ וַיַּעֲבֹ֨ר יְהוָ֥ה׀ עַל־פָּנָיו֮ וַיִּקְרָא֒ יְהוָ֣ה׀ יְהוָ֔ה אֵ֥ל רַח֖וּם וְחַנּ֑וּן אֶ֥רֶךְ אַפַּ֖יִם וְרַב־חֶ֥סֶד וֶאֱמֶֽת׃ נֹצֵ֥ר חֶ֙סֶד֙ לָאֲלָפִ֔ים נֹשֵׂ֥א עָו‍ֹ֛ן וָפֶ֖שַׁע וְחַטָּאָ֑ה וְנַקֵּה֙ לֹ֣א יְנַקֶּ֔ה פֹּקֵ֣ד׀ עֲו‍ֹ֣ן אָב֗וֹת עַל־בָּנִים֙ וְעַל־בְּנֵ֣י בָנִ֔ים עַל־שִׁלֵּשִׁ֖ים וְעַל־רִבֵּעִֽים׃ וַיְמַהֵ֖ר מֹשֶׁ֑ה וַיִּקֹּ֥ד אַ֖רְצָה וַיִּשְׁתָּֽחוּ׃ וַיֹּ֡אמֶר אִם־נָא֩ מָצָ֨אתִי חֵ֤ן בְּעֵינֶ֙יךָ֙ אֲדֹנָ֔י יֵֽלֶךְ־נָ֥א אֲדֹנָ֖י בְּקִרְבֵּ֑נוּ כִּ֤י עַם־קְשֵׁה־עֹ֙רֶף֙ ה֔וּא וְסָלַחְתָּ֛ לַעֲו‍ֹנֵ֥נוּ וּלְחַטָּאתֵ֖נוּ וּנְחַלְתָּֽנוּ׃ וַיֹּ֗אמֶר הִנֵּ֣ה אָנֹכִי֮ כֹּרֵ֣ת בְּרִית֒ נֶ֤גֶד כָּֽל־עַמְּךָ֙ אֶעֱשֶׂ֣ה נִפְלָאֹ֔ת אֲשֶׁ֛ר לֹֽא־נִבְרְא֥וּ בְכָל־הָאָ֖רֶץ וּבְכָל־הַגּוֹיִ֑ם וְרָאָ֣ה כָל־הָ֠עָם אֲשֶׁר־אַתָּ֨ה בְקִרְבּ֜וֹ אֶת־מַעֲשֵׂ֤ה יְהוָה֙ כִּֽי־נוֹרָ֣א ה֔וּא אֲשֶׁ֥ר אֲנִ֖י עֹשֶׂ֥ה עִמָּֽךְ׃</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="UseLightBackgroundSettingTitle" xml:space="preserve">
+    <value>השתמש ברקע בהיר עבור יהדות</value>
+  </data>
+  <data name="UseLocationPrivacyPolicy" xml:space="preserve">
+    <value>בעזרת המיקום יחושבו רק זמני היום, זמני התפילות, כיוון התפילה וצאת הכוכבים. המיקומים שלך לא ישמרו.</value>
+  </data>
+  <data name="UseLocationSettingTitle" xml:space="preserve">
+    <value>השתמש במיקום</value>
+  </data>
+  <data name="Gra" xml:space="preserve">
+    <value>גר"א (למקלים)</value>
+  </data>
+  <data name="Mga" xml:space="preserve">
+    <value>מגן אברהם (למחמירים)</value>
+  </data>
+  <data name="TimeCalcMethodLabel" xml:space="preserve">
+    <value>שיטת חישוב זמנים:</value>
+  </data>
+  <data name="MeeinShalosh7KindsTitle" xml:space="preserve">
+    <value>על שבעת המינים</value>
+  </data>
+  <data name="MeeinShaloshDaganTitle" xml:space="preserve">
+    <value>על חמשת מיני דגן</value>
+  </data>
+  <data name="MeeinShaloshTitle" xml:space="preserve">
+    <value>מעין שלוש</value>
+  </data>
+  <data name="MeeinShaloshWineTitle" xml:space="preserve">
+    <value>על יין</value>
+  </data>
+  <data name="AppUrl" xml:space="preserve">
+    <value>https://skydrive.live.com/?lc=1037#!/edit.aspx?cid=0009ECAB68FB43D3&amp;group=1&amp;resid=9ECAB68FB43D3%21106&amp;app=OneNote&amp;nd=1</value>
+  </data>
+  <data name="TishaBeavMessage" xml:space="preserve">
+    <value>שים לב שהיום תשעה באב, והתפילה המופיעה כאן אינה מלאה.</value>
+  </data>
+  <data name="NusachAshkenazTitle" xml:space="preserve">
+    <value>אשכנז</value>
+  </data>
+  <data name="NusachBaladiTitle" xml:space="preserve">
+    <value>בלדי</value>
+  </data>
+  <data name="NusachEdotMizrachTitle" xml:space="preserve">
+    <value>עדות המזרח</value>
+  </data>
+  <data name="NusachSettingLabel" xml:space="preserve">
+    <value>נוסח:</value>
+  </data>
+  <data name="NusachSfardTitle" xml:space="preserve">
+    <value>ספרד</value>
+  </data>
+  <data name="PatachEliyahuTitle" xml:space="preserve">
+    <value>פתח אליהו</value>
+  </data>
+  <data name="KtoretHasamimTitle" xml:space="preserve">
+    <value>קטורת הסמים</value>
+  </data>
+  <data name="VersesBeforeMinchaTitle" xml:space="preserve">
+    <value>לפני תפילת מנחה</value>
+  </data>
+  <data name="FontSizeSettingLabel" xml:space="preserve">
+    <value>גודל טקסט:</value>
+  </data>
+  <data name="FontSizeSettingLabelLarge" xml:space="preserve">
+    <value>גדול</value>
+  </data>
+  <data name="FontSizeSettingLabelRegular" xml:space="preserve">
+    <value>רגיל</value>
+  </data>
+  <data name="CompassNotSupported" xml:space="preserve">
+    <value>למכשיר זה אין תמיכה במצפן</value>
+  </data>
+  <data name="LocationServicesAreNeeded" xml:space="preserve">
+    <value>יש להפעיל שימוש במיקום</value>
+  </data>
+  <data name="BarchiNafshiTitle" xml:space="preserve">
+    <value>ברכי נפשי</value>
+  </data>
+  <data name="BirkatHaoreach" xml:space="preserve">
+    <value>ברכת האורח</value>
+  </data>
+  <data name="BlessingPreparation" xml:space="preserve">
+    <value>הכנה לברכה</value>
+  </data>
+  <data name="CalibrateCompassCommandTitle" xml:space="preserve">
+    <value>כייל מצפן</value>
+  </data>
+  <data name="CompassCalibrationNeeded" xml:space="preserve">
+    <value>יש לכייל את המצפן. לחץ למטה על "כייל מצפן".</value>
+  </data>
+  <data name="AfterHazarahTitle" xml:space="preserve">
+    <value>אחרי חזרת הש"ץ</value>
+  </data>
+  <data name="ClickHereLabel" xml:space="preserve">
+    <value>לחץ כאן</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>haim_burla@hotmail.com</value>
+  </data>
+  <data name="ReportingLabel" xml:space="preserve">
+    <value>לדיווח על טעויות, באגים, הצעות או סתם מילה טובה, </value>
+  </data>
+  <data name="AsherYatzarTitle" xml:space="preserve">
+    <value>ברכת אשר יצר</value>
+  </data>
+  <data name="AtifatTalitTitle" xml:space="preserve">
+    <value>עטיפת טלית</value>
+  </data>
+  <data name="BirkatNeshamaTitle" xml:space="preserve">
+    <value>ברכת נשמה</value>
+  </data>
+  <data name="BirkotHashacharTitle" xml:space="preserve">
+    <value>ברכות השחר</value>
+  </data>
+  <data name="BirkotHatorahTitle" xml:space="preserve">
+    <value>ברכות התורה</value>
+  </data>
+  <data name="BrayitaDerabiYishmaelTitle" xml:space="preserve">
+    <value>ברייתא דרבי ישמעאל</value>
+  </data>
+  <data name="HadlakatNerotHannukahTitle" xml:space="preserve">
+    <value>הדלקת נרות חנוכה</value>
+  </data>
+  <data name="HanachatTfillinTitle" xml:space="preserve">
+    <value>הנחת תפילין</value>
+  </data>
+  <data name="HanerotHalaluTitle" xml:space="preserve">
+    <value>הנרות הללו</value>
+  </data>
+  <data name="HannukaCandle1" xml:space="preserve">
+    <value>נר ראשון</value>
+  </data>
+  <data name="HannukaCandle2" xml:space="preserve">
+    <value>נר שני</value>
+  </data>
+  <data name="HannukaCandle3" xml:space="preserve">
+    <value>נר שלישי</value>
+  </data>
+  <data name="HannukaCandle4" xml:space="preserve">
+    <value>נר רביעי</value>
+  </data>
+  <data name="HannukaCandle5" xml:space="preserve">
+    <value>נר חמישי</value>
+  </data>
+  <data name="HannukaCandle6" xml:space="preserve">
+    <value>נר שישי</value>
+  </data>
+  <data name="HannukaCandle7" xml:space="preserve">
+    <value>נר שביעי</value>
+  </data>
+  <data name="HannukaCandle8" xml:space="preserve">
+    <value>נר שמיני</value>
+  </data>
+  <data name="HannukahCandleBlessingTitle" xml:space="preserve">
+    <value>ברכות על {0}</value>
+  </data>
+  <data name="HannukahCandlesOrderInstruction" xml:space="preserve">
+    <value>מניחים את הנרות מימין לשמאל ומדליקים משמאל לימין.</value>
+  </data>
+  <data name="HannukahCandlesOrderTitle" xml:space="preserve">
+    <value>סדר הדלקת הנרות</value>
+  </data>
+  <data name="KadishDerabananTitle" xml:space="preserve">
+    <value>קדיש דרבנן</value>
+  </data>
+  <data name="MaozTzurTitle" xml:space="preserve">
+    <value>מעוז צור</value>
+  </data>
+  <data name="MizmorLifneyHaAronTitle" xml:space="preserve">
+    <value>המזמור לפני ארון ה'</value>
+  </data>
+  <data name="MorningNetilatYadayimInstruction" xml:space="preserve">
+    <value>לאחר נטילת ידיים אומר</value>
+  </data>
+  <data name="ParashatBirkatCohanimTitle" xml:space="preserve">
+    <value>פרשת ברכת כהנים</value>
+  </data>
+  <data name="PsukeyDezimraTitle" xml:space="preserve">
+    <value>פסוקי דזמרה</value>
+  </data>
+  <data name="SederHashkamaTitle" xml:space="preserve">
+    <value>סדר השכמה</value>
+  </data>
+  <data name="ShehecheyanuTitle" xml:space="preserve">
+    <value>ברכת הזמן</value>
+  </data>
+  <data name="ShiratHayamTitle" xml:space="preserve">
+    <value>שירת הים</value>
+  </data>
+  <data name="TalitAndTfillinTitle" xml:space="preserve">
+    <value>טלית ותפילין</value>
+  </data>
+  <data name="TfilotHashacharTitle" xml:space="preserve">
+    <value>תפילות השחר</value>
+  </data>
+  <data name="YishtabachTitle" xml:space="preserve">
+    <value>ישתבח</value>
+  </data>
+  <data name="ZizitWearingTitle" xml:space="preserve">
+    <value>לבישת ציצית</value>
+  </data>
+  <data name="BrachotKriatShmaTitle" xml:space="preserve">
+    <value>ברכות קריאת שמע</value>
+  </data>
+  <data name="KriatShmaTitle" xml:space="preserve">
+    <value>קריאת שמע</value>
+  </data>
+  <data name="DayVerseTitle" xml:space="preserve">
+    <value>שיר של יום</value>
+  </data>
+  <data name="DayVerseTitle_F0" xml:space="preserve">
+    <value>שיר של יום - {0}</value>
+  </data>
+  <data name="KdushaDesidraTitle" xml:space="preserve">
+    <value>קדושה דסידרא</value>
+  </data>
+  <data name="PrayerEndingTitle" xml:space="preserve">
+    <value>סיום התפילה</value>
+  </data>
+  <data name="AqcuiringCurrentLocation" xml:space="preserve">
+    <value>מאתר מיקום נוכחי...</value>
+  </data>
+  <data name="AqcuiringCurrentLocationFailed" xml:space="preserve">
+    <value>לא ניתן לאתר מיקום נוכחי</value>
+  </data>
+  <data name="TorahBookHotzaaTitle" xml:space="preserve">
+    <value>הוצאת ספר תורה</value>
+  </data>
+  <data name="HagbahaVeglilahTitle" xml:space="preserve">
+    <value>הגבהה וגלילה</value>
+  </data>
+  <data name="GoToLockScreenSettingsCommandTitle" xml:space="preserve">
+    <value>הגדרות מסך נעילה</value>
+  </data>
+  <data name="InMoarningHouseTitle" xml:space="preserve">
+    <value>בבית האבל</value>
+  </data>
+  <data name="LockScreenSupportInfo" xml:space="preserve">
+    <value>מרכז היהדות יכול להציג במסך הנעילה שלך תאריך עברי ומועדים.</value>
+  </data>
+  <data name="TorahBookReplacingTitle" xml:space="preserve">
+    <value>הכנסת ספר תורה</value>
+  </data>
+  <data name="ShowVeanenu" xml:space="preserve">
+    <value>הצג תפילות לעצירת גשמים</value>
+  </data>
+  <data name="HallelTitle" xml:space="preserve">
+    <value>הלל</value>
+  </data>
+  <data name="MussafTitle" xml:space="preserve">
+    <value>תפילת מוסף</value>
+  </data>
+  <data name="BooksTitle" xml:space="preserve">
+    <value>ספרות</value>
+  </data>
+  <data name="OfIsraelTitle" xml:space="preserve">
+    <value>של ישראל</value>
+  </data>
+  <data name="TehillimTitle" xml:space="preserve">
+    <value>תהילים</value>
+  </data>
+  <data name="TehillimTodayTitle" xml:space="preserve">
+    <value>היום</value>
+  </data>
+  <data name="GoToButtonTitle" xml:space="preserve">
+    <value>עבור</value>
+  </data>
+  <data name="GoToPsalmVerseInstruction" xml:space="preserve">
+    <value>ניתן להזין אותיות או ספרות</value>
+  </data>
+  <data name="GoToPsalmVerseTitle" xml:space="preserve">
+    <value>פרק:</value>
+  </data>
+  <data name="NefilatAppayimTitle" xml:space="preserve">
+    <value>נפילת אפיים</value>
+  </data>
+  <data name="PsalmForTitleFormat" xml:space="preserve">
+    <value>תהילים ל{0}</value>
+  </data>
+  <data name="PsalmVerseTitleFormat" xml:space="preserve">
+    <value>פרק {0}</value>
+  </data>
+  <data name="CannotLoadContentError" xml:space="preserve">
+    <value>&lt;לא ניתן לטעון תוכן&gt;</value>
+  </data>
+  <data name="IgerretHarambanTitle" xml:space="preserve">
+    <value>איגרת הרמב"ן</value>
+  </data>
+  <data name="KuzariTitle" xml:space="preserve">
+    <value>ספר הכוזרי</value>
+  </data>
+  <data name="LeshemYichudTitle" xml:space="preserve">
+    <value>לשם ייחוד</value>
+  </data>
+  <data name="OmerCountTitle" xml:space="preserve">
+    <value>ספירת העומר</value>
+  </data>
+  <data name="ParashatHaakedahTitle" xml:space="preserve">
+    <value>פרשת העקדה</value>
+  </data>
+  <data name="TfilatHaderechTitle" xml:space="preserve">
+    <value>תפילת הדרך</value>
+  </data>
+  <data name="VatitpallelChannahTitle" xml:space="preserve">
+    <value>ותתפלל חנה</value>
+  </data>
+  <data name="BedtimeShmaTitle" xml:space="preserve">
+    <value>קריאת שמע על המיטה</value>
+  </data>
+  <data name="ThreeTimesInst_F0" xml:space="preserve">
+    <value>שלוש פעמים: {0}</value>
+  </data>
+  <data name="CalibrateCompassInstruction" xml:space="preserve">
+    <value>כדי לכייל את המצפן, הזז את הטלפון בצורת הספרה 8 מספר פעמים.</value>
+  </data>
+  <data name="CalibrateCompassPageTitle" xml:space="preserve">
+    <value>כיול מצפן</value>
+  </data>
+  <data name="CalibrateCompassStatusCalibrated" xml:space="preserve">
+    <value>מכוייל</value>
+  </data>
+  <data name="CalibrateCompassStatusNotCalibrated" xml:space="preserve">
+    <value>לא מכוייל</value>
+  </data>
+  <data name="CalibrateCompassStatusTitle" xml:space="preserve">
+    <value>רמת דיוק:</value>
+  </data>
+  <data name="ToolsTitle" xml:space="preserve">
+    <value>כלים</value>
+  </data>
+  <data name="CalendarTitle" xml:space="preserve">
+    <value>לוח שנה</value>
+  </data>
+  <data name="KdushaTitle" xml:space="preserve">
+    <value>קדושה (בחזרת הש"ץ)</value>
+  </data>
+  <data name="YomHaazmautARvitHodaaTitle" xml:space="preserve">
+    <value>הודאה</value>
+  </data>
+  <data name="PsalmForMonthDayTitleFormat" xml:space="preserve">
+    <value>תהילים ליום {0} בחודש</value>
+  </data>
+  <data name="AfterPsalmTitle" xml:space="preserve">
+    <value>אחרי אמירת תהילים</value>
+  </data>
+  <data name="BeforePsalmTitle" xml:space="preserve">
+    <value>לפני אמירת תהילים</value>
+  </data>
+  <data name="PsalmForMonthDayTitleShortFormat" xml:space="preserve">
+    <value>{0} בחודש</value>
+  </data>
+  <data name="LoadingBookProgressText" xml:space="preserve">
+    <value>טוען ספר...</value>
+  </data>
+  <data name="AfterHaftarahTitle" xml:space="preserve">
+    <value>לאחר ההפטרה</value>
+  </data>
+  <data name="CohenTitle" xml:space="preserve">
+    <value>כהן</value>
+  </data>
+  <data name="HaftarahBlessingTitle" xml:space="preserve">
+    <value>ברכות ההפטרה</value>
+  </data>
+  <data name="HaftarahTitle" xml:space="preserve">
+    <value>הפטרה</value>
+  </data>
+  <data name="HagbahaTitle" xml:space="preserve">
+    <value>הגבהה</value>
+  </data>
+  <data name="IsraelTitle" xml:space="preserve">
+    <value>ישראל</value>
+  </data>
+  <data name="LeviTitle" xml:space="preserve">
+    <value>לוי</value>
+  </data>
+  <data name="TeanitHaftarah" xml:space="preserve">
+    <value>דִּרְשׁ֥וּ יְהוָ֖ה בְּהִמָּצְא֑וֹ קְרָאֻ֖הוּ בִּֽהְיוֹת֥וֹ קָרֽוֹב ׃ יַעֲזֹ֤ב רָשָׁע֙ דַּרְכּ֔וֹ וְאִ֥ישׁ אָ֖וֶן מַחְשְׁבֹתָ֑יו וְיָשֹׁ֤ב אֶל־יְהוָה֙ וִֽירַחֲמֵ֔הוּ וְאֶל־אֱלֹהֵ֖ינוּ כִּֽי־יַרְבֶּ֥ה לִסְלֽוֹחַ ׃  כִּ֣י לֹ֤א מַחְשְׁבוֹתַי֙ מַחְשְׁב֣וֹתֵיכֶ֔ם וְלֹ֥א דַרְכֵיכֶ֖ם דְּרָכָ֑י נְאֻ֖ם יְהוָֽה ׃  כִּֽי־גָבְה֥וּ שָׁמַ֖יִם מֵאָ֑רֶץ כֵּ֣ן גָּבְה֤וּ דְרָכַי֙ מִדַּרְכֵיכֶ֔ם וּמַחְשְׁבֹתַ֖י מִמַּחְשְׁבֹתֵיכֶֽם ׃  כִּ֡י כַּאֲשֶׁ֣ר יֵרֵד֩ הַגֶּ֨שֶׁם וְהַשֶּׁ֜לֶג מִן־הַשָּׁמַ֗יִם וְשָׁ֨מָּה֙ לֹ֣א יָשׁ֔וּב כִּי אִם־הִרְוָ֣ה אֶת־הָאָ֔רֶץ וְהוֹלִידָ֖הּ וְהִצְמִיחָ֑הּ וְנָ֤תַן זֶ֨רַע֙ לַזֹּרֵ֔עַ וְלֶ֖חֶם לָאֹכֵֽל ׃  כֵּ֣ן יִֽהְיֶ֤ה דְבָרִי֙ אֲשֶׁ֣ר יֵצֵ֣א מִפִּ֔י לֹֽא־יָשׁ֥וּב אֵלַ֖י רֵיקָ֑ם כִּ֤י אִם־עָשָׂה֙ אֶת־אֲשֶׁ֣ר חָפַ֔צְתִּי וְהִצְלִ֖יחַ אֲשֶׁ֥ר שְׁלַחְתִּֽיו ׃  כִּֽי־בְשִׂמְחָ֣ה תֵצֵ֔אוּ וּבְשָׁל֖וֹם תּֽוּבָל֑וּן הֶהָרִ֣ים וְהַגְּבָע֗וֹת יִפְצְח֤וּ לִפְנֵיכֶם֙ רִנָּ֔ה וְכָל־עֲצֵ֥י הַשָּׂדֶ֖ה יִמְחֲאוּ־כָֽף ׃  תַּ֤חַת הַֽנַּעֲצוּץ֙ יַעֲלֶ֣ה בְר֔וֹשׁ וְתַ֥חַת הַסִּרְפַּ֖ד יַעֲלֶ֣ה הֲדַ֑ס וְהָיָ֤ה לַֽיהוָה֙ לְשֵׁ֔ם לְא֥וֹת עוֹלָ֖ם לֹ֥א יִכָּרֵֽת ׃ כֹּה אָמַ֣ר יְהוָ֔ה שִׁמְר֥וּ מִשְׁפָּ֖ט וַעֲשׂ֣וּ צְדָקָ֑ה כִּֽי־קְרוֹבָ֤ה יְשֽׁוּעָתִי֙ לָב֔וֹא וְצִדְקָתִ֖י לְהִגָּלֽוֹת ׃  אַשְׁרֵ֤י אֱנוֹשׁ֙ יַעֲשֶׂה־זֹּ֔את וּבֶן־אָדָ֖ם יַחֲזִ֣יק בָּ֑הּ שֹׁמֵ֤ר שַׁבָּת֙ מֵֽחַלְּל֔וֹ וְשֹׁמֵ֥ר יָד֖וֹ מֵעֲשׂ֥וֹת כָּל־רָֽע ׃  וְאַל־יֹאמַ֣ר בֶּן־הַנֵּכָ֗ר הַנִּלְוָ֤ה אֶל־יְהוָה֙ לֵאמֹ֔ר הַבְדֵּ֧ל יַבְדִּילַ֛נִי יְהוָ֖ה מֵעַ֣ל עַמּ֑וֹ וְאַל־יֹאמַר֙ הַסָּרִ֔יס הֵ֥ן אֲנִ֖י עֵ֥ץ יָבֵֽשׁ ׃  כִּי־כֹ֣ה׀ אָמַ֣ר יְהוָ֗ה לַסָּֽרִיסִים֙ אֲשֶׁ֤ר יִשְׁמְרוּ֙ אֶת־שַׁבְּתוֹתַ֔י וּבָֽחֲר֖וּ בַּאֲשֶׁ֣ר חָפָ֑צְתִּי וּמַחֲזִיקִ֖ים בִּבְרִיתִֽי ׃  וְנָתַתִּ֨י לָהֶ֜ם בְּבֵיתִ֤י וּבְחֽוֹמֹתַי֙ יָ֣ד וָשֵׁ֔ם ט֖וֹב מִבָּנִ֣ים וּמִבָּנ֑וֹת שֵׁ֤ם עוֹלָם֙ אֶתֶּן־ל֔וֹ אֲשֶׁ֖ר לֹ֥א יִכָּרֵֽת ׃  וּבְנֵ֣י הַנֵּכָ֗ר הַנִּלְוִ֤ים עַל־יְהוָה֙ לְשָׁ֣רְת֔וֹ וּֽלְאַהֲבָה֙ אֶת־שֵׁ֣ם יְהוָ֔ה לִהְי֥וֹת ל֖וֹ לַעֲבָדִ֑ים כָּל־שֹׁמֵ֤ר שַׁבָּת֙ מֵֽחַלְּל֔וֹ וּמַחֲזִיקִ֖ים בִּבְרִיתִֽי ׃  וַהֲבִיאוֹתִ֞ים אֶל־הַ֣ר קָדְשִׁ֗י וְשִׂמַּחְתִּים֙ בְּבֵ֣ית תְּפִלָּתִ֔י עוֹלֹתֵיהֶ֧ם וְזִבְחֵיהֶ֛ם לְרָצ֖וֹן עַֽל־מִזְבְּחִ֑י כִּ֣י בֵיתִ֔י בֵּית־תְּפִלָּ֥ה יִקָּרֵ֖א לְכָל־הָעַמִּֽים ׃  נְאֻם֙ אֲדֹנָ֣י יְהוִ֔ה מְקַבֵּ֖ץ נִדְחֵ֣י יִשְׂרָאֵ֑ל ע֛וֹד אֲקַבֵּ֥ץ עָלָ֖יו לְנִקְבָּצָֽיו ׃</value>
+  </data>
+  <data name="TeanitReadingCohen" xml:space="preserve">
+    <value>וַיְחַ֣ל מֹשֶׁ֔ה אֶת־פְּנֵ֖י יְהוָ֣ה אֱלֹהָ֑יו וַיֹּ֗אמֶר לָמָ֤ה יְהוָה֙ יֶחֱרֶ֤ה אַפְּךָ֙ בְּעַמֶּ֔ךָ אֲשֶׁ֤ר הוֹצֵ֨אתָ֙ מֵאֶ֣רֶץ מִצְרַ֔יִם בְּכֹ֥חַ גָּד֖וֹל וּבְיָ֥ד חֲזָקָֽה ׃  לָמָּה֩ יֹאמְר֨וּ מִצְרַ֜יִם לֵאמֹ֗ר בְּרָעָ֤ה הֽוֹצִיאָם֙ לַהֲרֹ֤ג אֹתָם֙ בֶּֽהָרִ֔ים וּ֨לְכַלֹּתָ֔ם מֵעַ֖ל פְּנֵ֣י הָֽאֲדָמָ֑ה שׁוּב מֵחֲר֣וֹן אַפֶּ֔ךָ וְהִנָּחֵ֥ם עַל־הָרָעָ֖ה לְעַמֶּֽךָ ׃  זְכֹ֡ר לְאַבְרָהָם֩ לְיִצְחָ֨ק וּלְיִשְׂרָאֵ֜ל עֲבָדֶ֗יךָ אֲשֶׁ֨ר נִשְׁבַּ֣עְתָּ לָהֶם֮ בָּךְ֒ וַתְּדַבֵּ֣ר אֲלֵהֶ֔ם אַרְבֶּה֙ אֶֽת־זַרְעֲכֶ֔ם כְּכוֹכְבֵ֖י הַשָּׁמָ֑יִם וְכָל־הָאָ֨רֶץ הַזֹּ֜את אֲשֶׁ֣ר אָמַ֗רְתִּי אֶתֵּן֙ לְזַרְעֲכֶ֔ם וְנָחֲל֖וּ לְעֹלָֽם ׃  וַיִּנָּ֖חֶם יְהוָ֑ה עַל־הָ֣רָעָ֔ה אֲשֶׁ֥ר דִּבֶּ֖ר לַעֲשׂ֥וֹת לְעַמּֽוֹ ׃</value>
+  </data>
+  <data name="TeanitReadingIsrael" xml:space="preserve">
+    <value>וַיִּפְסֹ֡ל שְׁנֵֽי־לֻחֹ֨ת אֲבָנִ֜ים כָּרִאשֹׁנִ֗ים וַיַּשְׁכֵּ֨ם מֹשֶׁ֤ה בַבֹּ֨קֶר֙ וַיַּ֨עַל֙ אֶל־הַ֣ר סִינַ֔י כַּאֲשֶׁ֛ר צִוָּ֥ה יְהוָ֖ה אֹת֑וֹ וַיִּקַּ֣ח בְּיָד֔וֹ שְׁנֵ֖י לֻחֹ֥ת אֲבָנִֽים ׃  וַיֵּ֤רֶד יְהוָה֙ בֶּֽעָנָ֔ן וַיִּתְיַצֵּ֥ב עִמּ֖וֹ שָׁ֑ם וַיִּקְרָ֥א בְשֵׁ֖ם יְהוָֽה ׃  וַיַּעֲבֹ֨ר יְהוָ֥ה׀ עַל־פָּנָיו֮ וַיִּקְרָא֒ יְהוָ֣ה׀ יְהוָ֔ה אֵ֥ל רַח֖וּם וְחַנּ֑וּן אֶ֥רֶךְ אַפַּ֖יִם וְרַב־חֶ֥סֶד וֶאֱמֶֽת ׃  נֹצֵ֥ר חֶ֨סֶד֙ לָאֲלָפִ֔ים נֹשֵׂ֥א עָוֹ֛ן וָפֶ֖שַׁע וְחַטָּאָ֑ה וְנַקֵּה֙ לֹ֣א יְנַקֶּ֔ה פֹּקֵ֣ד׀ עֲוֹ֣ן אָב֗וֹת עַל־בָּנִים֙ וְעַל־בְּנֵ֣י בָנִ֔ים עַל־שִׁלֵּשִׁ֖ים וְעַל־רִבֵּעִֽים ׃  וַיְמַהֵ֖ר מֹשֶׁ֑ה וַיִּקֹּ֥ד אַ֖רְצָה וַיִּשְׁתָּֽחוּ ׃  וַיֹּ֡אמֶר אִם־נָא֩ מָצָ֨אתִי חֵ֤ן בְּעֵינֶ֨יךָ֙ אֲדֹנָ֔י יֵֽלֶךְ־נָ֥א אֲדֹנָ֖י בְּקִרְבֵּ֑נוּ כִּ֤י עַם־קְשֵׁה־עֹ֨רֶף֙ ה֔וּא וְסָלַחְתָּ֛ לַעֲוֹנֵ֥נוּ וּלְחַטָּאתֵ֖נוּ וּנְחַלְתָּֽנוּ ׃  וַיֹּ֗אמֶר הִנֵּ֣ה אָנֹכִי֮ כֹּרֵ֣ת בְּרִית֒ נֶ֤גֶד כָּֽל־עַמְּךָ֙ אֶעֱשֶׂ֣ה נִפְלָאֹ֔ת אֲשֶׁ֛ר לֹֽא־נִבְרְא֥וּ בְכָל־הָאָ֖רֶץ וּבְכָל־הַגּוֹיִ֑ם וְרָאָ֣ה כָל־הָעָם אֲשֶׁר־אַתָּ֨ה בְקִרְבּ֜וֹ אֶת־מַעֲשֵׂ֤ה יְהוָה֙ כִּֽי־נוֹרָ֣א ה֔וּא אֲשֶׁ֥ר אֲנִ֖י עֹשֶׂ֥ה עִמָּֽךְ ׃</value>
+  </data>
+  <data name="TeanitReadingLevi" xml:space="preserve">
+    <value>וַיֹּ֤אמֶר יְהוָה֙ אֶל־מֹשֶׁ֔ה פְּסָל־לְךָ֛ שְׁנֵֽי־לֻחֹ֥ת אֲבָנִ֖ים כָּרִאשֹׁנִ֑ים וְכָתַבְתִּי֙ עַל־הַלֻּחֹ֔ת אֶת־הַדְּבָרִ֔ים אֲשֶׁ֥ר הָי֛וּ עַל־הַלֻּחֹ֥ת הָרִאשֹׁנִ֖ים אֲשֶׁ֥ר שִׁבַּֽרְתָּ ׃  וֶהְיֵ֥ה נָכ֖וֹן לַבֹּ֑קֶר וְעָלִ֤יתָ בַבֹּ֨קֶר֙ אֶל־הַ֣ר סִינַ֔י וְנִצַּבְתָּ֥ לִ֛י שָׁ֖ם עַל־רֹ֥אשׁ הָהָֽר ׃  וְאִישׁ֙ לֹֽא־יַעֲלֶ֣ה עִמָּ֔ךְ וְגַם־אִ֥ישׁ אַל־יֵרָ֖א בְּכָל־הָהָ֑ר גַּם־הַצֹּ֤אן וְהַבָּקָר֙ אַל־יִרְע֔וּ אֶל־מ֖וּל הָהָ֥ר הַהֽוּא ׃</value>
+  </data>
+  <data name="TorahReadingAndHaftarahTitle" xml:space="preserve">
+    <value>קריאת התורה וההפטרה</value>
+  </data>
+  <data name="TorahReadingTitle" xml:space="preserve">
+    <value>קריאת התורה</value>
+  </data>
+  <data name="UnitConversionFromLabel" xml:space="preserve">
+    <value>מ-</value>
+  </data>
+  <data name="UnitConversionTitle" xml:space="preserve">
+    <value>המרת מידות</value>
+  </data>
+  <data name="UnitConversionToLabel" xml:space="preserve">
+    <value>ל-</value>
+  </data>
+  <data name="UnitConverterTitle" xml:space="preserve">
+    <value>ממיר מידות</value>
+  </data>
+  <data name="EnablingSysLocationInstruction1" xml:space="preserve">
+    <value>יש לוודא ששירותי המיקום פועלים במסך</value>
+  </data>
+  <data name="EnablingSysLocationInstruction2" xml:space="preserve">
+    <value>הגדרות המיקום</value>
+  </data>
+  <data name="EnablingSysLocationInstruction3" xml:space="preserve">
+    <value>של מערכת ההפעלה.</value>
+  </data>
+  <data name="LocationNotSupported" xml:space="preserve">
+    <value>למכשיר זה אין תמיכה בשירותי מיקום</value>
+  </data>
+  <data name="NeedToEnableAppLocationMessage" xml:space="preserve">
+    <value>יש לאפשר את השימוש במיקום במסך ההגדרות של האפליקציה.</value>
+  </data>
+  <data name="NeedToEnableSysLocationMessage" xml:space="preserve">
+    <value>יש לאפשר את שירותי המיקום במסך ההגדרות של מערכת ההפעלה.</value>
+  </data>
+  <data name="UseChulSettingDescription" xml:space="preserve">
+    <value>סמן תיבה זו אם ברצונך שחישובי הזמנים יתבצעו לפי הדינים של מי שגר בחו"ל</value>
+  </data>
+  <data name="UseChulSettingTitle" xml:space="preserve">
+    <value>השתמש בדיני הדרים בחו"ל</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>וְ</value>
+  </data>
+  <data name="Sunset" xml:space="preserve">
+    <value>שקיעה</value>
+  </data>
+  <data name="CompassCannotBeReadError" xml:space="preserve">
+    <value>לא ניתן לקרוא נתונים מהמצפן.</value>
+  </data>
+  <data name="ContactUsCommandTitle" xml:space="preserve">
+    <value>צור קשר</value>
+  </data>
+  <data name="RateUsCommandTitle" xml:space="preserve">
+    <value>דרג</value>
+  </data>
+  <data name="CompassAccuracyApproximate" xml:space="preserve">
+    <value>משוערת</value>
+  </data>
+  <data name="CompassAccuracyHigh" xml:space="preserve">
+    <value>גבוהה</value>
+  </data>
+  <data name="CompassAccuracyUnknown" xml:space="preserve">
+    <value>לא ידועה</value>
+  </data>
+  <data name="CompassAccuracyUnreliable" xml:space="preserve">
+    <value>לא אמינה</value>
+  </data>
+  <data name="OmerCountNoLocationWarning" xml:space="preserve">
+    <value>האפליקציה לא הצליחה לאתר את המיקום. ספירת העומר תתעדכן רק ב-12 בלילה.</value>
+  </data>
+  <data name="OmerCountUnusedLocationWarning" xml:space="preserve">
+    <value>האפליקציה לא מורשית להשתמש במיקום. ספירת העומר תתעדכן רק ב-12 בלילה.</value>
+  </data>
+  <data name="GoToTodayCommandTitle" xml:space="preserve">
+    <value>היום</value>
+  </data>
+  <data name="ReportIssueCalendar" xml:space="preserve">
+    <value>טעות בלוח השנה</value>
+  </data>
+  <data name="ReportIssueCommandTitle" xml:space="preserve">
+    <value>דווח</value>
+  </data>
+  <data name="LengthTitle" xml:space="preserve">
+    <value>אורך</value>
+  </data>
+  <data name="VolumeTitle" xml:space="preserve">
+    <value>נפח</value>
+  </data>
+  <data name="WeightTitle" xml:space="preserve">
+    <value>משקל</value>
+  </data>
+  <data name="AboutCommandTitle" xml:space="preserve">
+    <value>אודות</value>
+  </data>
+  <data name="AboutText1" xml:space="preserve">
+    <value>פותח על-ידי חיים בורלא.
+נעשה שימוש בספריית הזמנים Zmanim.</value>
+  </data>
+  <data name="AboutViewTitle" xml:space="preserve">
+    <value>מרכז היהדות</value>
+  </data>
+  <data name="MessageBoxCancel" xml:space="preserve">
+    <value>בטל</value>
+  </data>
+  <data name="MessageBoxNo" xml:space="preserve">
+    <value>לא</value>
+  </data>
+  <data name="MessageBoxOK" xml:space="preserve">
+    <value>אשר</value>
+  </data>
+  <data name="MessageBoxYes" xml:space="preserve">
+    <value>כן</value>
+  </data>
+  <data name="PsalmVerseInfoFormat" xml:space="preserve">
+    <value>לפי שבוע: {0} לפי חודש: {1}</value>
+  </data>
+  <data name="PsalmVerseRangeFormat" xml:space="preserve">
+    <value>פרקים {0}-{1}</value>
+  </data>
+  <data name="ReportMistakeQuestion" xml:space="preserve">
+    <value>האם ברצונך לדווח על טעות או לבקש בקשה?</value>
+  </data>
+  <data name="TableOfContentsTitle" xml:space="preserve">
+    <value>תוכן</value>
+  </data>
+</root>

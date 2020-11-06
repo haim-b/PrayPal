@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LengthAmmahC" xml:space="preserve">
+    <value>אמה (חזון אי"ש)</value>
+  </data>
+  <data name="LengthAmmahG" xml:space="preserve">
+    <value>אמה (גר"ח נאה)</value>
+  </data>
+  <data name="LengthAmmahR" xml:space="preserve">
+    <value>אמה (רמב"ם)</value>
+  </data>
+  <data name="LengthCm" xml:space="preserve">
+    <value>סנטימטר</value>
+  </data>
+  <data name="LengthFingerC" xml:space="preserve">
+    <value>אצבע (חזון אי"ש)</value>
+  </data>
+  <data name="LengthFingerG" xml:space="preserve">
+    <value>אצבע (גר"ח נאה)</value>
+  </data>
+  <data name="LengthFingerR" xml:space="preserve">
+    <value>אצבע (רמב"ם)</value>
+  </data>
+  <data name="LengthKm" xml:space="preserve">
+    <value>קילומטר</value>
+  </data>
+  <data name="LengthMeter" xml:space="preserve">
+    <value>מטר</value>
+  </data>
+  <data name="LengthMilC" xml:space="preserve">
+    <value>מיל (חזון אי"ש)</value>
+  </data>
+  <data name="LengthMilG" xml:space="preserve">
+    <value>מיל (גר"ח נאה)</value>
+  </data>
+  <data name="LengthMilR" xml:space="preserve">
+    <value>מיל (רמב"ם)</value>
+  </data>
+  <data name="LengthParsahC" xml:space="preserve">
+    <value>פרסה (חזון אי"ש)</value>
+  </data>
+  <data name="LengthParsahG" xml:space="preserve">
+    <value>פרסה (גר"ח נאה)</value>
+  </data>
+  <data name="LengthParsahR" xml:space="preserve">
+    <value>פרסה (רמב"ם)</value>
+  </data>
+  <data name="LengthRisC" xml:space="preserve">
+    <value>ריס (חזון אי"ש)</value>
+  </data>
+  <data name="LengthRisG" xml:space="preserve">
+    <value>ריס (גר"ח נאה)</value>
+  </data>
+  <data name="LengthRisR" xml:space="preserve">
+    <value>ריס (רמב"ם)</value>
+  </data>
+  <data name="LengthSitC" xml:space="preserve">
+    <value>סיט (חזון אי"ש)</value>
+  </data>
+  <data name="LengthSitG" xml:space="preserve">
+    <value>סיט (גר"ח נאה)</value>
+  </data>
+  <data name="LengthSitR" xml:space="preserve">
+    <value>סיט (רמב"ם)</value>
+  </data>
+  <data name="LengthTefachC" xml:space="preserve">
+    <value>טפח (חזון אי"ש)</value>
+  </data>
+  <data name="LengthTefachG" xml:space="preserve">
+    <value>טפח (גר"ח נאה)</value>
+  </data>
+  <data name="LengthTefachR" xml:space="preserve">
+    <value>טפח (רמב"ם)</value>
+  </data>
+  <data name="LengthZerretC" xml:space="preserve">
+    <value>זרת (חזון אי"ש)</value>
+  </data>
+  <data name="LengthZerretG" xml:space="preserve">
+    <value>זרת (גר"ח נאה)</value>
+  </data>
+  <data name="LengthZerretR" xml:space="preserve">
+    <value>זרת (רמב"ם)</value>
+  </data>
+  <data name="VolumeBeitzaC" xml:space="preserve">
+    <value>ביצה (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeBeitzaG" xml:space="preserve">
+    <value>ביצה (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeBeitzaR" xml:space="preserve">
+    <value>ביצה (רמב"ם)</value>
+  </data>
+  <data name="VolumeEifaC" xml:space="preserve">
+    <value>איפה (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeEifaG" xml:space="preserve">
+    <value>איפה (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeEifaR" xml:space="preserve">
+    <value>איפה (רמב"ם)</value>
+  </data>
+  <data name="VolumeGrogeretC" xml:space="preserve">
+    <value>גרוגרת (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeGrogeretG" xml:space="preserve">
+    <value>גרוגרת (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeGrogeretR" xml:space="preserve">
+    <value>גרוגרת (רמב"ם)</value>
+  </data>
+  <data name="VolumeHinC" xml:space="preserve">
+    <value>הין (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeHinG" xml:space="preserve">
+    <value>הין (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeHinR" xml:space="preserve">
+    <value>הין (רמב"ם)</value>
+  </data>
+  <data name="VolumeKavC" xml:space="preserve">
+    <value>קב (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeKavG" xml:space="preserve">
+    <value>קב (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeKavR" xml:space="preserve">
+    <value>קב (רמב"ם)</value>
+  </data>
+  <data name="VolumeKorC" xml:space="preserve">
+    <value>כור (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeKorG" xml:space="preserve">
+    <value>כור (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeKorR" xml:space="preserve">
+    <value>כור (רמב"ם)</value>
+  </data>
+  <data name="VolumeKortovC" xml:space="preserve">
+    <value>קורטוב (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeKortovG" xml:space="preserve">
+    <value>קורטוב (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeKortovR" xml:space="preserve">
+    <value>קורטוב (רמב"ם)</value>
+  </data>
+  <data name="VolumeLettechC" xml:space="preserve">
+    <value>לתך (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeLettechG" xml:space="preserve">
+    <value>לתך (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeLettechR" xml:space="preserve">
+    <value>לתך (רמב"ם)</value>
+  </data>
+  <data name="VolumeLitraC" xml:space="preserve">
+    <value>ליטרא (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeLitraG" xml:space="preserve">
+    <value>ליטרא (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeLitter" xml:space="preserve">
+    <value>ליטר</value>
+  </data>
+  <data name="VolumeLogC" xml:space="preserve">
+    <value>לוג (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeLogG" xml:space="preserve">
+    <value>לוג (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeLogR" xml:space="preserve">
+    <value>לוג (רמב"ם)</value>
+  </data>
+  <data name="VolumeMl" xml:space="preserve">
+    <value>מיליליטר</value>
+  </data>
+  <data name="VolumeOmerC" xml:space="preserve">
+    <value>עומר (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeOmerG" xml:space="preserve">
+    <value>עומר (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeOmerR" xml:space="preserve">
+    <value>עומר (רמב"ם)</value>
+  </data>
+  <data name="VolumeReviitC" xml:space="preserve">
+    <value>רביעית (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeReviitG" xml:space="preserve">
+    <value>רביעית (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeReviitR" xml:space="preserve">
+    <value>רביעית (רמב"ם)</value>
+  </data>
+  <data name="VolumeRovaC" xml:space="preserve">
+    <value>רובע (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeRovaG" xml:space="preserve">
+    <value>רובע (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeRovaR" xml:space="preserve">
+    <value>רובע (רמב"ם)</value>
+  </data>
+  <data name="VolumeSeaaC" xml:space="preserve">
+    <value>סאה (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeSeaaG" xml:space="preserve">
+    <value>סאה (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeSeaaR" xml:space="preserve">
+    <value>סאה (רמב"ם)</value>
+  </data>
+  <data name="VolumeShminitC" xml:space="preserve">
+    <value>שמינית (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeShminitG" xml:space="preserve">
+    <value>שמינית (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeUkalahC" xml:space="preserve">
+    <value>עוכלה (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeUkalahG" xml:space="preserve">
+    <value>עוכלה (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeZaytC" xml:space="preserve">
+    <value>זית (חזון אי"ש)</value>
+  </data>
+  <data name="VolumeZaytG" xml:space="preserve">
+    <value>זית (גר"ח נאה)</value>
+  </data>
+  <data name="VolumeZaytR" xml:space="preserve">
+    <value>זית (רמב"ם)</value>
+  </data>
+  <data name="WeightDarkon" xml:space="preserve">
+    <value>דרכון</value>
+  </data>
+  <data name="WeightDinar" xml:space="preserve">
+    <value>דינר</value>
+  </data>
+  <data name="WeightGram" xml:space="preserve">
+    <value>גרם</value>
+  </data>
+  <data name="WeightIssar" xml:space="preserve">
+    <value>איסר</value>
+  </data>
+  <data name="WeightKilogram" xml:space="preserve">
+    <value>קילוגרם</value>
+  </data>
+  <data name="WeightMaah" xml:space="preserve">
+    <value>מעה</value>
+  </data>
+  <data name="WeightManeh" xml:space="preserve">
+    <value>מנה</value>
+  </data>
+  <data name="WeightPondion" xml:space="preserve">
+    <value>פונדיון</value>
+  </data>
+  <data name="WeightPrutah" xml:space="preserve">
+    <value>פרוטה</value>
+  </data>
+  <data name="WeightSela" xml:space="preserve">
+    <value>סלע</value>
+  </data>
+  <data name="WeightSeorim" xml:space="preserve">
+    <value>שעורים</value>
+  </data>
+  <data name="WeightShekel" xml:space="preserve">
+    <value>שקל</value>
+  </data>
+  <data name="WeightTarafik" xml:space="preserve">
+    <value>טרעפיק</value>
+  </data>
+</root>

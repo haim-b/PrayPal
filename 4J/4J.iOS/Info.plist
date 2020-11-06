@@ -34,5 +34,12 @@
     <string>_4J</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>he</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>he</string>
+      <string>en</string>
+    </array>
 </dict>
 </plist>

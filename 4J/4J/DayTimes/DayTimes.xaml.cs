@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using _4J.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace _4J.Views
+namespace Yahadut.DayTimes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class DayTimes : ContentPage
     {
-        public LoginPage()
+        public DayTimes()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }
