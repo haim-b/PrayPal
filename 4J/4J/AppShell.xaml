@@ -2,10 +2,10 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:_4J.Views"
-       xmlns:app="clr-namespace:Yahadut"
+       xmlns:app="clr-namespace:PrayPal"
        xmlns:dt="clr-namespace:Yahadut.DayTimes"
        Title="_4J"
-       x:Class="_4J.AppShell"
+       x:Class="PrayPal.AppShell"
        FlowDirection="RightToLeft">
 
     <!--
@@ -29,17 +29,16 @@
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-            
-            <DataTemplateSelector 
+
+            <app:ViewModelTemplateSelector x:Key="dts"/>
         </ResourceDictionary>
     </Shell.Resources>
 
     <TabBar>
         <Tab>
-            <ShellContent Title="{app:CustomResource ZmaneyHayom}" Icon="tab_about.png" Route="TimesPage" ContentTemplate="{DataTemplate dt:DayTimes}"/>
-            <ShellContent Title="{app:CustomResource MainContent_D}" Icon="tab_about.png" Route="PrayersPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
-            <ShellContent Title="{app:CustomResource BooksTitle}" Icon="tab_about.png" Route="BooksPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
-            <ShellContent Title="{app:CustomResource ToolsTitle}" Icon="tab_about.png" Route="ToolsPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
+            <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" Route="TimesPage">
+                <ContentPage Title="test"/>
+            </ShellContent>
         </Tab>
     </TabBar>
 

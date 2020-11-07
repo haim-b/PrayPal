@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4J.Android", "4J\4J.Android\4J.Android.csproj", "{63459557-CC5A-4F8D-977D-1CE7D5D8E8A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrayPal.Android", "4J\4J.Android\PrayPal.Android.csproj", "{63459557-CC5A-4F8D-977D-1CE7D5D8E8A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4J.iOS", "4J\4J.iOS\4J.iOS.csproj", "{CECFF92E-EEAB-4A64-B643-C135F08D298D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrayPal.App", "4J\4J\PrayPal.App.csproj", "{2C8A3180-C3AA-4ACB-A4F6-E816FB461FFE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App4J.Common", "App4J.Common\App4J.Common.csproj", "{906D509E-2B32-4D06-807A-700ED2B93822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrayPal.Common", "App4J.Common\PrayPal.Common.csproj", "{906D509E-2B32-4D06-807A-700ED2B93822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zmanim", "Zmanim\Zmanim.csproj", "{AFF774EF-45AE-4204-B12B-91099E27B8DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,18 @@ Global
 		{906D509E-2B32-4D06-807A-700ED2B93822}.Release|iPhone.Build.0 = Release|Any CPU
 		{906D509E-2B32-4D06-807A-700ED2B93822}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{906D509E-2B32-4D06-807A-700ED2B93822}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhone.Build.0 = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,10 @@
-﻿using App4J.Common;
+﻿using PrayPal.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Yahadut.Resources;
+using PrayPal.Resources;
 
 namespace Yahadut
 {

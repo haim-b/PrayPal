@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Yahadut.DayTimes
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DayTimes : ContentPage
+    public partial class DayTimesView : ContentPage
     {
-        public DayTimes()
+        public DayTimesView()
         {
             InitializeComponent();
         }

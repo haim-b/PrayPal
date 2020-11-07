@@ -3,7 +3,7 @@ using Plugin.Settings.Abstractions;
 using System;
 using System.Globalization;
 
-namespace App4J.Common
+namespace PrayPal.Common
 {
     public class Settings
     {
@@ -32,6 +32,10 @@ namespace App4J.Common
         #region Setting Constants
 
         private const string LanguageKey = "Language";
+        private const string NusachKey = "Nusach";
+        private const string IsInIsraelKey = "IsInIsrael";
+        private const string TimeCalcMethodKey = "TimeCalcMethod";
+        private const string UseLocationKey = "UseLocation";
 
         #endregion
 
@@ -58,6 +62,54 @@ namespace App4J.Common
             set
             {
                 AppSettings.AddOrUpdateValue(LanguageKey, value ?? "he");
+            }
+        }
+
+        public static Nusach Nusach
+        {
+            get
+            {
+                return (Nusach)AppSettings.GetValueOrDefault(NusachKey, (int)Nusach.Sfard);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(NusachKey, (int)value);
+            }
+        }
+
+        public static bool IsInIsrael
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsInIsraelKey, true);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsInIsraelKey, value);
+            }
+        }
+
+        public static bool UseLocation
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UseLocationKey, false);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UseLocationKey, value);
+            }
+        }
+
+        public static string TimeCalcMethod
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(TimeCalcMethodKey, "Gra");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(TimeCalcMethodKey, value);
             }
         }
     }

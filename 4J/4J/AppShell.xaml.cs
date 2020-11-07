@@ -4,7 +4,7 @@ using _4J.ViewModels;
 using _4J.Views;
 using Xamarin.Forms;
 
-namespace _4J
+namespace PrayPal
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {

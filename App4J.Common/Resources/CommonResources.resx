@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Arvit" xml:space="preserve">
+    <value>ערבית</value>
+  </data>
+  <data name="Av15thTitle" xml:space="preserve">
+    <value>ט"ו באב</value>
+  </data>
+  <data name="Av9thTitle" xml:space="preserve">
+    <value>תשעה באב</value>
+  </data>
+  <data name="BarechAleinuTitle" xml:space="preserve">
+    <value>ברך עלינו</value>
+  </data>
+  <data name="Chanuka1" xml:space="preserve">
+    <value>נר ראשון של חנוכה</value>
+  </data>
+  <data name="Chanuka2" xml:space="preserve">
+    <value>נר שני של חנוכה</value>
+  </data>
+  <data name="Chanuka3" xml:space="preserve">
+    <value>נר שלישי של חנוכה</value>
+  </data>
+  <data name="Chanuka4" xml:space="preserve">
+    <value>נר רביעי של חנוכה</value>
+  </data>
+  <data name="Chanuka5" xml:space="preserve">
+    <value>נר חמישי של חנוכה</value>
+  </data>
+  <data name="Chanuka6" xml:space="preserve">
+    <value>נר שישי של חנוכה</value>
+  </data>
+  <data name="Chanuka7" xml:space="preserve">
+    <value>נר שביעי של חנוכה</value>
+  </data>
+  <data name="Chanuka8" xml:space="preserve">
+    <value>נר שמיני של חנוכה</value>
+  </data>
+  <data name="DafYomiTitle" xml:space="preserve">
+    <value>דף יומי</value>
+  </data>
+  <data name="EndTimeOfShma" xml:space="preserve">
+    <value>סוף זמן קריאת שמע</value>
+  </data>
+  <data name="GdaliahFastTitle" xml:space="preserve">
+    <value>צום גדליה</value>
+  </data>
+  <data name="HoshaanaRabaTitle" xml:space="preserve">
+    <value>הושענא רבה</value>
+  </data>
+  <data name="KnissatShabbat" xml:space="preserve">
+    <value>שבת</value>
+  </data>
+  <data name="KriatShmaReminderText" xml:space="preserve">
+    <value>זמן קריאת שמע יסתיים ב-{0}.</value>
+  </data>
+  <data name="LagBaomerTitle" xml:space="preserve">
+    <value>ל"ג בעומר</value>
+  </data>
+  <data name="MaarivTitle" xml:space="preserve">
+    <value>מעריב</value>
+  </data>
+  <data name="Mincha" xml:space="preserve">
+    <value>מנחה</value>
+  </data>
+  <data name="MinchaReminderText" xml:space="preserve">
+    <value>זמן תפילת מנחה יסתיים ב-{0}.</value>
+  </data>
+  <data name="MinchaTitle" xml:space="preserve">
+    <value>מנחה</value>
+  </data>
+  <data name="NusachAshkenazTitle" xml:space="preserve">
+    <value>אשכנז</value>
+  </data>
+  <data name="NusachBaladiTitle" xml:space="preserve">
+    <value>בלדי</value>
+  </data>
+  <data name="NusachEdotMizrachTitle" xml:space="preserve">
+    <value>עדות המזרח</value>
+  </data>
+  <data name="NusachSfardTitle" xml:space="preserve">
+    <value>ספרד</value>
+  </data>
+  <data name="Omer1" xml:space="preserve">
+    <value>יום 1 לעומר</value>
+  </data>
+  <data name="OmerShort" xml:space="preserve">
+    <value>‏{0} ימים לעומר</value>
+  </data>
+  <data name="OrLe" xml:space="preserve">
+    <value>אור ל{0}</value>
+  </data>
+  <data name="ParashaNameTitleFormat" xml:space="preserve">
+    <value>פרשת {0}</value>
+  </data>
+  <data name="Pesach2Title" xml:space="preserve">
+    <value>פסח שני</value>
+  </data>
+  <data name="PesachDTitle" xml:space="preserve">
+    <value>אסרו חג פסח</value>
+  </data>
+  <data name="PesachHmTitle" xml:space="preserve">
+    <value>חול המועד פסח</value>
+  </data>
+  <data name="PesachTitle" xml:space="preserve">
+    <value>פסח</value>
+  </data>
+  <data name="PurimKatanTitle" xml:space="preserve">
+    <value>פורים קטן</value>
+  </data>
+  <data name="PurimTitle" xml:space="preserve">
+    <value>פורים</value>
+  </data>
+  <data name="RoshChodeshTitle_F0" xml:space="preserve">
+    <value>ראש חודש {0}</value>
+  </data>
+  <data name="RoshHashanaTitle" xml:space="preserve">
+    <value>ראש השנה</value>
+  </data>
+  <data name="Shacharit" xml:space="preserve">
+    <value>שחרית</value>
+  </data>
+  <data name="ShacharitReminderText" xml:space="preserve">
+    <value>זמן תפילת שחרית יסתיים ב-{0}.</value>
+  </data>
+  <data name="ShacharitTitle" xml:space="preserve">
+    <value>שחרית</value>
+  </data>
+  <data name="ShavuotDTitle" xml:space="preserve">
+    <value>אסרו חג שבועות</value>
+  </data>
+  <data name="ShavuotTitle" xml:space="preserve">
+    <value>שבועות</value>
+  </data>
+  <data name="ShminiAtzeretTitle" xml:space="preserve">
+    <value>שמיני עצרת</value>
+  </data>
+  <data name="ShushanPurimTitle" xml:space="preserve">
+    <value>שושן פורים</value>
+  </data>
+  <data name="Shvat15thTitle" xml:space="preserve">
+    <value>ט"ו בשבט</value>
+  </data>
+  <data name="StartSaying" xml:space="preserve">
+    <value>מתחילים לומר "{0}".</value>
+  </data>
+  <data name="SukkotDTitle" xml:space="preserve">
+    <value>אסרו חג סוכות</value>
+  </data>
+  <data name="SukkotHmTitle" xml:space="preserve">
+    <value>חול המועד סוכות</value>
+  </data>
+  <data name="SukkotTitle" xml:space="preserve">
+    <value>סוכות</value>
+  </data>
+  <data name="Tamuz17thTitle" xml:space="preserve">
+    <value>צום י"ז בתמוז</value>
+  </data>
+  <data name="TeanitBechorotTitle" xml:space="preserve">
+    <value>תענית בכורות</value>
+  </data>
+  <data name="TeanitEstherTitle" xml:space="preserve">
+    <value>תענית אסתר</value>
+  </data>
+  <data name="Tevet10thTitle" xml:space="preserve">
+    <value>צום עשרה בטבת</value>
+  </data>
+  <data name="TextWithComment_F1" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="UnknownNusach" xml:space="preserve">
+    <value>לא ידוע</value>
+  </data>
+  <data name="VetenTalUmatarTitle" xml:space="preserve">
+    <value>ותן טל ומטר</value>
+  </data>
+  <data name="YomHaazmautTitle" xml:space="preserve">
+    <value>יום העצמאות</value>
+  </data>
+  <data name="YomHashoahTitle" xml:space="preserve">
+    <value>יום השואה</value>
+  </data>
+  <data name="YomHazikaronTitle" xml:space="preserve">
+    <value>יום הזיכרון</value>
+  </data>
+  <data name="YomKippurTitle" xml:space="preserve">
+    <value>יום כיפור</value>
+  </data>
+  <data name="YomYerushalaiymTitle" xml:space="preserve">
+    <value>יום ירושלים</value>
+  </data>
+</root>
