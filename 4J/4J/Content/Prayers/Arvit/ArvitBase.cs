@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PrayPal.Common;
+using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
 using PrayPal.Models;
 using PrayPal.Resources;
@@ -28,7 +29,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected override string GetTitle()
         {
-            return AppResources.ArvitTitle;
+            return CommonResources.ArvitTitle;
         }
 
         public override bool IsDayCritical

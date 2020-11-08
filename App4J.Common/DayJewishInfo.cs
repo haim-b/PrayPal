@@ -46,17 +46,17 @@ namespace PrayPal.Common
             get { return _jc.Taanis; }
         }
 
-        private JewishCalendar JewishCalendar
+        public JewishCalendar JewishCalendar
         {
             get { return _jc; }
         }
 
         public bool IsCholHamoed
         {
-            get { return YomTovIndex == JewishCalendar.SUCCOS || YomTovIndex == JewishCalendar.CHOL_HAMOED_SUCCOS || YomTovIndex == JewishCalendar.HOSHANA_RABBA || YomTovIndex == JewishCalendar.PESACH || YomTovIndex == JewishCalendar.CHOL_HAMOED_PESACH; }
+            get { return YomTov == JewishCalendar.SUCCOS || YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || YomTov == JewishCalendar.HOSHANA_RABBA || YomTov == JewishCalendar.PESACH || YomTov == JewishCalendar.CHOL_HAMOED_PESACH; }
         }
 
-        private int YomTovIndex
+        public int YomTov
         {
             get
             {
@@ -68,8 +68,6 @@ namespace PrayPal.Common
                 return _yomTov.Value;
             }
         }
-
-        public
 
         public bool IsIbburTime
         {
@@ -99,7 +97,7 @@ namespace PrayPal.Common
 
                     DayJewishInfo nextDay = new DayJewishInfo(clone);
 
-                    if (nextDay.YomTovIndex != JewishCalendar.PESACH_SHENI && !nextDay.IsTachanunDayPrivate(nusach, true))
+                    if (nextDay.YomTov != JewishCalendar.PESACH_SHENI && !nextDay.IsTachanunDayPrivate(nusach, true))
                     {
                         _tachanunDay = false;
                         goto Result;

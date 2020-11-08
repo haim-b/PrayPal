@@ -1088,15 +1088,6 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to תפילות וברכות.
-        /// </summary>
-        public static string MainContent_D {
-            get {
-                return ResourceManager.GetString("MainContent_D", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to מעוז צור.
         /// </summary>
         public static string MaozTzurTitle {
@@ -1381,6 +1372,15 @@ namespace PrayPal.Resources {
         public static string PrayerEndingTitle {
             get {
                 return ResourceManager.GetString("PrayerEndingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to תפילות וברכות.
+        /// </summary>
+        public static string PrayersAndGracesTitle {
+            get {
+                return ResourceManager.GetString("PrayersAndGracesTitle", resourceCulture);
             }
         }
         

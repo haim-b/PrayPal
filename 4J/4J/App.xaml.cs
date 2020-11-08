@@ -12,11 +12,14 @@ using Autofac.Extensions.DependencyInjection;
 using System.IO;
 using System.Reflection;
 using PrayPal.Common;
+using PrayPal.Content;
 
 namespace PrayPal
 {
     public partial class App : Application
     {
+        private readonly MainViewModel _mainViewModel;
+
 
         public App()
         {
@@ -40,21 +43,22 @@ namespace PrayPal
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t=>t.Namespace.StartsWith("PrayPal"))
+                .Where(t => t.Namespace.StartsWith("PrayPal") && !t.Name.EndsWith("TextProvider"))
                 .AsImplementedInterfaces()
                 .AsSelf();
-                
+
             //builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.Populate(services);
             var container = builder.Build();
 
             DependencyService.Register<MockDataStore>();
-            var mainViewModel = container.Resolve<MainViewModel>();
-            MainPage = new AppShell() { BindingContext = mainViewModel };
+            _mainViewModel = container.Resolve<MainViewModel>();
+            MainPage = new AppShell() { BindingContext = _mainViewModel };
         }
 
         protected override void OnStart()
         {
+            _mainViewModel.GenerateContentAsync();
         }
 
         protected override void OnSleep()
