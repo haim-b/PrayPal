@@ -36,6 +36,7 @@ namespace PrayPal.Common
         private const string IsInIsraelKey = "IsInIsrael";
         private const string TimeCalcMethodKey = "TimeCalcMethod";
         private const string UseLocationKey = "UseLocation";
+        private const string ShowVeanenuKey = "ShowVeanenu";
 
         #endregion
 
@@ -98,6 +99,18 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(UseLocationKey, value);
+            }
+        }
+
+        public static bool ShowVeanenu
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ShowVeanenuKey, false);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ShowVeanenuKey, value);
             }
         }
 

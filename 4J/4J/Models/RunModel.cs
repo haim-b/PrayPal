@@ -4,24 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yahadut.Models
+namespace PrayPal.Models
 {
     public class RunModel
     {
+        private static readonly string _defaultFont;
         //private static FontFamily _defaultFont = new FontFamily(@"ms-appx:/Assets/Fonts/segoeuisl.ttf#Segoe UI Semilight");
         // static FontFamily _defaultFont;// new FontFamily(@"Segoe WP SemiLight");
         //private static FontFamily _defaultFont = new FontFamily(@"\Assets\Fonts\segoeuil.ttf#Segoe UI light");
         //private static FontFamily _defaultFont = new FontFamily(@"ms-appx:/Assets/Fonts/david.ttf#David");
         //private static FontFamily _defaultFont = new FontFamily(@"Segoe UI Semilight");
 
-        // FontFamily _font = _defaultFont;
+        string _font = _defaultFont;
         private double _fontSize;
 
         static RunModel()
         {
             try
             {
-                //_defaultFont = new FontFamily(@"Segoe WP SemiLight");
+                _defaultFont = null;// new FontFamily(@"Segoe WP SemiLight");
             }
             catch
             { }
@@ -46,11 +47,11 @@ namespace Yahadut.Models
 
         public bool IsBold { get; private set; }
 
-        //public FontFamily Font
-        //{
-        //    get { return _font; }
-        //    set { _font = value; }
-        //}
+        public string Font
+        {
+            get { return _font; }
+            set { _font = value; }
+        }
 
         public double FontSize
         {

@@ -11,6 +11,9 @@ namespace PrayPal
         public MainViewModel(DayTimesViewModel dayTimes)
         {
             DayTimes = dayTimes ?? throw new ArgumentNullException(nameof(dayTimes));
+            DayTimes.ShowPrayersTime = true;
+            DayTimes.ShowRelativePrayers = true;
+            DayTimes.GenerateContentAsync();
         }
 
         public DayTimesViewModel DayTimes { get; }

@@ -188,15 +188,6 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ערבית.
-        /// </summary>
-        public static string ArvitTitle {
-            get {
-                return ResourceManager.GetString("ArvitTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ברכת אשר יצר.
         /// </summary>
         public static string AsherYatzarTitle {

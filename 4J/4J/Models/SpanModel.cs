@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yahadut.Models
+namespace PrayPal.Models
 {
     public class SpanModel : List<ParagraphModel>
     {

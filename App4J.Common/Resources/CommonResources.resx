@@ -120,6 +120,9 @@
   <data name="Arvit" xml:space="preserve">
     <value>ערבית</value>
   </data>
+  <data name="ArvitTitle" xml:space="preserve">
+    <value>ערבית</value>
+  </data>
   <data name="Av15thTitle" xml:space="preserve">
     <value>ט"ו באב</value>
   </data>

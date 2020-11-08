@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yahadut.Models
+namespace PrayPal.Models
 {
     public class DocumentModel : BindableBase
     {
@@ -47,7 +47,7 @@ namespace Yahadut.Models
             }
         }
 
-        public void SetTexts(Func<IEnumerable<SpanModel>> textsFactory)
+        public void SetTextsFactory(Func<IEnumerable<SpanModel>> textsFactory)
         {
             _textsFactory = textsFactory;
         }

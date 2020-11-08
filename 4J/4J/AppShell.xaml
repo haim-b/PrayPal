@@ -36,9 +36,8 @@
 
     <TabBar>
         <Tab>
-            <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" Route="TimesPage">
-                <ContentPage Title="test"/>
-            </ShellContent>
+            <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate dt:DayTimesView}" Route="TimesPage"/>
+            <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate dt:DayTimesView}" Route="qq"/>
         </Tab>
     </TabBar>
 

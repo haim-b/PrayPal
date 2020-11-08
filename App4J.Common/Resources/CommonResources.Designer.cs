@@ -70,6 +70,15 @@ namespace PrayPal.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ערבית.
+        /// </summary>
+        public static string ArvitTitle {
+            get {
+                return ResourceManager.GetString("ArvitTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ט&quot;ו באב.
         /// </summary>
         public static string Av15thTitle {

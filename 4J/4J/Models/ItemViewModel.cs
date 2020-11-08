@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Yahadut.Models
+namespace PrayPal.Models
 {
     public class ItemViewModel : BindableBase
     {
@@ -14,15 +14,15 @@ namespace Yahadut.Models
         private readonly string _pageName;
         private readonly object _pageParameter;
 
-        public ItemViewModel(string title, string pageName, object pageParameter = null)
-            : this(pageName, pageParameter)
+        public ItemViewModel(string pageName, string title, object pageParameter = null)
         {
-            _title = title;
-        }
+            if (string.IsNullOrWhiteSpace(pageName))
+            {
+                throw new ArgumentException($"'{nameof(pageName)}' cannot be null or whitespace", nameof(pageName));
+            }
 
-        public ItemViewModel(string pageName, object pageParameter = null)
-        {
             _pageName = pageName;
+            _title = title ?? throw new ArgumentNullException(nameof(title));
             _pageParameter = pageParameter;
         }
 

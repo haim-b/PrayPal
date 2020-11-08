@@ -15,11 +15,11 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.DayTimes
 {
-    public class DayTimesViewModel : BindableBase
+    public class DayTimesViewModel : BindableBase, IContentPage
     {
         protected readonly ILocationService _locationService;
         protected readonly ITimeService _timeService;
-        protected readonly ObservableCollection<TimeOfDay> _zmanim = new ObservableCollection<TimeOfDay>();
+        protected readonly ObservableCollection<TimeOfDay> _times = new ObservableCollection<TimeOfDay>();
 
         private string _title;
 
@@ -33,9 +33,9 @@ namespace PrayPal.DayTimes
             Title = AppResources.ZmaneyHayom;
         }
 
-        public ObservableCollection<TimeOfDay> Zmanim
+        public ObservableCollection<TimeOfDay> Times
         {
-            get { return _zmanim; }
+            get { return _times; }
         }
 
         public string Title
@@ -80,8 +80,28 @@ namespace PrayPal.DayTimes
 
         public bool ShowGregorianDate { get; set; }
 
+        public async Task GenerateContentAsync()
+        {
+            await GenerateZmanim(null, null, null);
+        }
+
         protected async Task GenerateZmanim(Geoposition position, JewishCalendar jc, JewishCalendar dafYomiDate)
         {
+            if (position == null)
+            {
+                position = await _locationService.GetCurrentPositionAsync();
+            }
+
+            if (jc == null)
+            {
+                jc = (await _timeService.GetDayInfoAsync()).JewishCalendar;
+            }
+
+            if (dafYomiDate == null)
+            {
+                dafYomiDate = jc;
+            }
+
             CultureInfo ci = new CultureInfo("he-IL");
             //ci.DateTimeFormat.Calendar = new HebrewCalendar();
             //ci.DateTimeFormat.LongDatePattern = "dddd, dd MMMM yyyy";
@@ -99,7 +119,7 @@ namespace PrayPal.DayTimes
             //DateTime time = HebDateHelper.GetCurrentDateTime();
             //ComplexZmanimCalendar zc = new ComplexZmanimCalendar(time, location);
 
-            _zmanim.Clear();
+            _times.Clear();
 
             if (jc == null)
             {
@@ -112,24 +132,24 @@ namespace PrayPal.DayTimes
 
             if (ShowGregorianDate)
             {
-                _zmanim.Add(new TimeOfDay(jc.Time.ToString("d")));
+                _times.Add(new TimeOfDay(jc.Time.ToString("d")));
             }
 
             string yomTov = HebDateHelper.GetMoedTitle(jc, IncludeIsruChag);
 
             if (!string.IsNullOrEmpty(yomTov))
             {
-                _zmanim.Add(new TimeOfDay(yomTov));
+                _times.Add(new TimeOfDay(yomTov));
             }
 
             string parasha = HebDateHelper.GetParasha(jc);
 
             if (!string.IsNullOrEmpty(parasha))
             {
-                _zmanim.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                _times.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
             }
 
-            _zmanim.Add(new TimeOfDay(CommonResources.DafYomiTitle + ": " + GetDafYomiText(jc, dafYomiDate, formatter)));
+            _times.Add(new TimeOfDay(CommonResources.DafYomiTitle + ": " + GetDafYomiText(jc, dafYomiDate, formatter)));
 
             //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, GetValue(zc.GetSofZmanShmaGRA()).ToString("t"))));
             //_zmanim.Add(new ZmanHayom(AppResources.EndTimeOfPrayer, GetValue(zc.GetSofZmanTfilaGRA())));
@@ -148,25 +168,25 @@ namespace PrayPal.DayTimes
 
             if (sunset != null)
             {
-                _zmanim.Add(new TimeOfDay(AppResources.Sunset + ": " + sunset.Value.ToString("t")));
+                _times.Add(new TimeOfDay(AppResources.Sunset + ": " + sunset.Value.ToString("t")));
             }
 
             DateTime? knissatShabbat = await _timeService.GetKnissatShabbatAsync(position, jc.Time);
 
             if (knissatShabbat != null)
             {
-                _zmanim.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}", CommonResources.KnissatShabbat, knissatShabbat.Value)));
+                _times.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}", CommonResources.KnissatShabbat, knissatShabbat.Value)));
             }
 
             int omer = jc.DayOfOmer;
 
             if (omer == 1)
             {
-                _zmanim.Add(new TimeOfDay(CommonResources.Omer1));
+                _times.Add(new TimeOfDay(CommonResources.Omer1));
             }
             else if (omer > 1)
             {
-                _zmanim.Add(new TimeOfDay(string.Format(CommonResources.OmerShort, omer)));
+                _times.Add(new TimeOfDay(string.Format(CommonResources.OmerShort, omer)));
             }
 
             Title = jc.Time.ToString("dddd", ci) + ", " + formatter.format(jc);//now.ToString("D", ci.DateTimeFormat);
@@ -174,11 +194,11 @@ namespace PrayPal.DayTimes
 
         private void AddPrayerInfo(PrayerInfo prayer)
         {
-            _zmanim.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}-{2:t}", prayer.PrayerName, prayer.Start, prayer.End)));
+            _times.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}-{2:t}", prayer.PrayerName, prayer.Start, prayer.End)));
 
             if (!string.IsNullOrEmpty(prayer.ExtraInfo))
             {
-                _zmanim.Add(new TimeOfDay(prayer.ExtraInfo));
+                _times.Add(new TimeOfDay(prayer.ExtraInfo));
             }
         }
 
