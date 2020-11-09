@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -153,8 +154,10 @@ namespace PrayPal.Content
 
     public class PrayerMetadata
     {
+        [DefaultValue((string)null)]
         public string Name { get; set; }
 
-        public IList<Nusach> Nusachim { get; set; }
+        [DefaultValue((Nusach[])null)]
+        public Nusach[] Nusachim { get; set; }
     }
 }

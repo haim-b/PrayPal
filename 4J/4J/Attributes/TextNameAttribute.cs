@@ -9,7 +9,7 @@ namespace PrayPal
 {
     [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-    public class TextNameAttribute : Attribute
+    public sealed class TextNameAttribute : Attribute
     {
         public TextNameAttribute(string name)
         {
@@ -22,13 +22,5 @@ namespace PrayPal
         }
 
         public string Name { get; set; }
-
-        public override object TypeId
-        {
-            get
-            {
-                return this;
-            }
-        }
     }
 }

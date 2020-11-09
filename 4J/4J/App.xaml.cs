@@ -44,6 +44,7 @@ namespace PrayPal
             };
 
             var builder = new ContainerBuilder();
+
             builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => t.Namespace.StartsWith("PrayPal") && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider"))
                 .AsImplementedInterfaces()
@@ -52,8 +53,8 @@ namespace PrayPal
             builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => t.GetCustomAttribute<TextNameAttribute>() != null)
                 .AsImplementedInterfaces()
-                .WithMetadataFrom<TextNameAttribute>()
-                .WithMetadataFrom<NusachAttribute>();
+                .WithCorrectMetadataFrom<TextNameAttribute>()
+                .WithCorrectMetadataFrom<NusachAttribute>();
 
             //builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.Populate(services);
@@ -71,6 +72,8 @@ namespace PrayPal
                     Routing.RegisterRoute(vfa.ViewModelType.Name, new LocalRouteFactory(() => (Element)container.Resolve(viewType), () => container.Resolve(vfa.ViewModelType)));
                 }
             }
+
+            PrayersHelper.SetPrayerTextProvider(Settings.Nusach);
 
             MainPage = new AppShell() { BindingContext = _mainViewModel };
         }

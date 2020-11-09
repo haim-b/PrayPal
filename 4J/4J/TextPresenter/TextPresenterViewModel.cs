@@ -31,7 +31,16 @@ namespace PrayPal.TextPresenter
         public string TextName
         {
             get { return _textName; }
-            set { _textName = Uri.UnescapeDataString(value); }
+            set
+            {
+                _textName = Uri.UnescapeDataString(value);
+                OnTextNameChanged();
+            }
+        }
+
+        private async void OnTextNameChanged()
+        {
+            await GenerateContentAsync();
         }
 
         public ITextDocument TextDocument
@@ -53,9 +62,9 @@ namespace PrayPal.TextPresenter
                 return;
             }
 
-            TextDocument = text.Value;
+            await Task.Run(async () => text.Value.CreateAsync(await _timeService.GetDayInfoAsync(null, null, true), _logger));
 
-            await _textDocument.CreateAsync(await _timeService.GetDayInfoAsync(null, null, true), _logger);
+            TextDocument = text.Value;
         }
     }
 }

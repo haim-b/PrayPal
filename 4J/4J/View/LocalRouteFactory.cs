@@ -20,7 +20,7 @@ namespace PrayPal.View
         {
             Element result = _viewFactory();
             result.BindingContext = _viewModelFactory();
-            (result.BindingContext as IContentPage)?.GenerateContentAsync();
+            //(result.BindingContext as IContentPage)?.GenerateContentAsync();
             return result;
         }
     }

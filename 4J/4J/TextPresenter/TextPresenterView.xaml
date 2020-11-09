@@ -4,12 +4,22 @@
              xmlns:local="clr-namespace:PrayPal.TextPresenter"
              x:Class="PrayPal.TextPresenter.TextPresenterView">
  
-  <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding TextDocument.Items}">
+  <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
+            IsGroupingEnabled="{Binding TextDocument.HasGroups}" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}"
+            HasUnevenRows="True" SeparatorVisibility="None">
     <!--Built in Cells-->
     <ListView.ItemTemplate>
         <DataTemplate>
-            <TextCell Text="{Binding}" />
-        </DataTemplate>
+            <!--<TextCell Text="{Binding Content[0].Text}"/>-->
+            <ViewCell>
+                <StackLayout>
+                    <Label Text="{Binding Title}" 
+                Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    <Label Text="{Binding Content[0].Text}"
+                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                </StackLayout>
+            </ViewCell>
+            </DataTemplate>
     </ListView.ItemTemplate>
     
     <!--Custom View Cells-->
