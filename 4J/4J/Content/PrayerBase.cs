@@ -13,7 +13,6 @@ namespace PrayPal.Content
     {
         protected DayJewishInfo _dayInfo;
         protected readonly ICollection<T> _items = new LinkedList<T>();
-        private ILogger _logger;
         private Nusach? _nusach;
 
         private IList<T> _itemsList;
@@ -23,10 +22,7 @@ namespace PrayPal.Content
             Title = GetTitle();
         }
 
-        protected ILogger Logger
-        {
-            get { return _logger; }
-        }
+        protected ILogger Logger { get; private set; }
 
         public async Task CreateAsync(DayJewishInfo dayInfo, ILogger logger)
         {
@@ -37,11 +33,11 @@ namespace PrayPal.Content
 
             ValidateDayInfo(dayInfo);
 
-            _logger = logger;
+            Logger = logger;
             _dayInfo = dayInfo;
             _items.Clear();
 
-            await CreateOverrideAsync();
+            await CreateOverride();
 
             _itemsList = null;
         }
@@ -54,7 +50,7 @@ namespace PrayPal.Content
             }
         }
 
-        protected abstract Task CreateOverrideAsync();
+        protected abstract Task CreateOverride();
 
         protected abstract string GetTitle();
 
@@ -103,11 +99,11 @@ namespace PrayPal.Content
 
                 if (nusachAtt == null)
                 {
-                    _logger.LogError(this.GetType().Name + "/GetNusach: Cannot find NusachAttribute.");
+                    Logger.LogError(this.GetType().Name + "/GetNusach: Cannot find NusachAttribute.");
                     return Nusach.Sfard;
                 }
 
-                _nusach = nusachAtt.Nusach;
+                _nusach = nusachAtt.Nusach.FirstOrDefault();
             }
 
             return (Nusach)_nusach;
@@ -139,13 +135,16 @@ namespace PrayPal.Content
         }
     }
 
-    public interface IPrayer
+    public interface IPrayer : ITextDocument
     {
-        Task CreateAsync(DayJewishInfo dayInfo, ILogger logger);
-
         bool IsDayCritical { get; }
 
         object GetItemAtIndex(int index);
+    }
+
+    public interface ITextDocument
+    {
+        Task CreateAsync(DayJewishInfo dayInfo, ILogger logger);
 
         bool UseCompactZoomedOutItems { get; }
 

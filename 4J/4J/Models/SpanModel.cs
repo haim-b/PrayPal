@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrayPal.Models
 {
-    public class SpanModel : List<ParagraphModel>
+    public class SpanModel : List<ParagraphModel>, ITextContainer
     {
         public SpanModel(string title)
         {

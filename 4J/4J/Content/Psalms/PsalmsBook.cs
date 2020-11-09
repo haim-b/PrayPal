@@ -10,7 +10,7 @@ using PrayPal.Models;
 
 namespace PrayPal.Content
 {
-    [PrayerName(BookNames.Psalms)]
+    [TextName(BookNames.Psalms)]
     public class PsalmsBook : SpansPrayerBase, ICustomizedPrayer
     {
         public const string TodayInWeekVersesSentinel = "PsalmsTodayInWeekVerses";
@@ -20,7 +20,7 @@ namespace PrayPal.Content
         private readonly ITimeService _timeService;
         private readonly ILogger _logger;
 
-        private DocumentModel _model;
+        private DocumentModel<SpanModel> _model;
         private int _dayOrVerse;
         private string _sentinel;
         private object _contentGenerationParameter;
@@ -50,7 +50,7 @@ namespace PrayPal.Content
             Title = _model.Title;
         }
 
-        protected override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             return Task.Run(new Action(CreateContent));
         }
@@ -63,7 +63,7 @@ namespace PrayPal.Content
             }
         }
 
-        private async Task<(DocumentModel document, string sentinel, int dayOrVerse)> ParseParameterAsync(string parameter)
+        private async Task<(DocumentModel<SpanModel> document, string sentinel, int dayOrVerse)> ParseParameterAsync(string parameter)
         {
             string sentinel;
             int dayOrVerse;

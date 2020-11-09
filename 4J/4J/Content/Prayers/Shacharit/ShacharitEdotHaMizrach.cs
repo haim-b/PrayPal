@@ -12,7 +12,7 @@ namespace PrayPal.Content.Prayers.Shacharit
 {
     public class ShacharitEdotHaMizrach : ShacharitBase
     {
-        protected override async Task CreateOverrideAsync()
+        protected override async Task CreateOverride()
         {
             // Sedder Hashkama
             SpanModel hashkama = new SpanModel(AppResources.SederHashkamaTitle, EdotHaMizrachPrayerTextProvider.Instance.GiluyDaat, CommonPrayerTextProvider.Current.ModeAni);

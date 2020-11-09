@@ -1,14 +1,17 @@
-﻿using PrayPal.Common;
+﻿using Autofac.Features.AttributeFilters;
+using PrayPal.Common;
 using System;
 using System.Collections.Generic;
+using System.Composition;
 using System.Text;
 
 namespace PrayPal
 {
+    [MetadataAttribute]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-    public class PrayerNameAttribute : Attribute
+    public class TextNameAttribute : Attribute
     {
-        public PrayerNameAttribute(string name)
+        public TextNameAttribute(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -19,5 +22,13 @@ namespace PrayPal
         }
 
         public string Name { get; set; }
+
+        public override object TypeId
+        {
+            get
+            {
+                return this;
+            }
+        }
     }
 }

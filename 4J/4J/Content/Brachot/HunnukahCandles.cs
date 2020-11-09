@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace PrayPal.Content.Brachot
 {
-    [PrayerName(PrayerNames.HannukahCandles)]
-    [Nusach(Nusach.Ashkenaz)]
-    [Nusach(Nusach.Baladi)]
-    [Nusach(Nusach.Sfard)]
+    [TextName(PrayerNames.HannukahCandles)]
+    [Nusach(Nusach.Ashkenaz, Nusach.Baladi, Nusach.Sfard)]
     public class HunnukahCandles : SpansPrayerBase
     {
         protected override string GetTitle()
@@ -25,7 +23,7 @@ namespace PrayPal.Content.Brachot
             get { return true; }
         }
 
-        protected override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             int candleIndex = _dayInfo.JewishCalendar.DayOfChanukah;
 

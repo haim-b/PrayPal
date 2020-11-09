@@ -10,10 +10,10 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content
 {
-    [PrayerName(PrayerNames.BirkatHamazon)]
+    [TextName(PrayerNames.BirkatHamazon)]
     public abstract class BirkatHamazonBase : ParagraphsPrayerBase
     {
-        protected async override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             AddOpening();
             AddPart1();
@@ -21,6 +21,8 @@ namespace PrayPal.Content
             AddPart3();
             AddPart4();
             AddEnding();
+
+            return Task.CompletedTask;
         }
 
         protected override string GetTitle()

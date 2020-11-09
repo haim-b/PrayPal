@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace PrayPal.Content.Brachot
 {
-    [PrayerName(PrayerNames.TfilatHaDerech)]
-    [Nusach(Nusach.Ashkenaz)]
-    [Nusach(Nusach.Baladi)]
-    [Nusach(Nusach.EdotMizrach)]
-    [Nusach(Nusach.Sfard)]
+    [TextName(PrayerNames.TfilatHaDerech)]
+    [Nusach(Nusach.Ashkenaz, Nusach.Baladi, Nusach.EdotMizrach, Nusach.Sfard)]
     public class TfilatHaderech : ParagraphsPrayerBase
     {
         protected override string GetTitle()
@@ -20,7 +17,7 @@ namespace PrayPal.Content.Brachot
             return AppResources.TfilatHaderechTitle;
         }
 
-        protected override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             Add(CommonPrayerTextProvider.Current.TfilatHaderech);
 

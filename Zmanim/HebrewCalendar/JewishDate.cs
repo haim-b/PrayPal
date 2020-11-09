@@ -1170,7 +1170,7 @@ namespace Zmanim.HebrewCalendar
         /// </summary>
         /// <returns> the Jewish date in the form "day Month, year" e.g. "21 Shevat, 5729" </returns>
         /// <seealso cref= HebrewDateFormatter#format(JewishDate) </seealso>
-        public virtual string ToString()
+        public override string ToString()
         {
             return (new HebrewDateFormatter()).format(this);
         }
@@ -1339,6 +1339,11 @@ namespace Zmanim.HebrewCalendar
             }
             JewishDate jewishDate = (JewishDate)@object;
             return gregorianAbsDate == jewishDate.AbsDate;
+        }
+
+        public override int GetHashCode()
+        {
+            return AbsDate.GetHashCode();
         }
 
         public object Clone()

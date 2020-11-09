@@ -12,7 +12,7 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content.Prayers.Arvit
 {
-    [PrayerName(PrayerNames.Arvit)]
+    [TextName(PrayerNames.Arvit)]
     public abstract class ArvitBase : SpansPrayerBase
     {
         private readonly ILocationService _locationService;
@@ -37,7 +37,7 @@ namespace PrayPal.Content.Prayers.Arvit
             get { return true; }
         }
 
-        protected async override Task CreateOverrideAsync()
+        protected async override Task CreateOverride()
         {
             if (IsYomHaazmaut())
             {

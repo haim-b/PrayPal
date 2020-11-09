@@ -8,8 +8,7 @@ using PrayPal.Resources;
 
 namespace PrayPal.Content
 {
-    [Nusach(Nusach.Sfard)]
-    [Nusach(Nusach.Ashkenaz)]
+    [Nusach(Nusach.Sfard, Nusach.Ashkenaz)]
     public class BirkatHamazonSfard : BirkatHamazonBase
     {
         protected override void AddOpening()

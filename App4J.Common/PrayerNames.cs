@@ -13,5 +13,8 @@ namespace PrayPal.Common
         public const string BedTimeShma = "BedTimeShma";
         public const string TfilatHaDerech = "TfilatHaDerech";
         public const string HannukahCandles = "HannukahCandles";
+        public const string MeeinShalosh = "MeeinShalosh";
+        public const string TfilatHaderech = "TfilatHaderech";
+        public const string BedtimeShma = "BedtimeShma";
     }
 }

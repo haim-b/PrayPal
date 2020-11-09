@@ -13,7 +13,7 @@ namespace PrayPal.Content
     [Nusach(Nusach.Sfard)]
     public class ShacharitSfard : ShacharitBase
     {
-        protected override async Task CreateOverrideAsync()
+        protected override async Task CreateOverride()
         {
             // Sedder Hashkama
             SpanModel hashkama = new SpanModel(AppResources.SederHashkamaTitle);

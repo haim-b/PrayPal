@@ -2,14 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PrayPal.Prayers.PrayersView">
-  <ListView ItemsSource="{Binding Items}"
+  <ListView x:Name="lst" ItemsSource="{Binding Items}"
             SelectionMode="None"
-            ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
     
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}"/>
+                <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

@@ -53,13 +53,13 @@ namespace Zmanim.Extensions
             return ((underlyingSystemType != null) && IsSpecialSerializableType(underlyingSystemType));
         }
 
-        
+
         private static bool IsSpecialSerializableType(Type type)
         {
             Type baseType = type;
             do
             {
-                if ((baseType is Delegate) || (baseType.IsEnum))
+                if ((typeof(Delegate).IsAssignableFrom(baseType)) || (baseType.IsEnum))
                 {
                     return true;
                 }

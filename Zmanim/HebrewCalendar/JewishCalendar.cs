@@ -880,10 +880,10 @@ namespace Zmanim.HebrewCalendar
             return result;
         }
 
-        public object Clone()
-        {
-            return ObjectCopierExtensions.Clone(this);
-        }
+        //public object Clone()
+        //{
+        //    return ObjectCopierExtensions.Clone(this);
+        //}
     }
 
 }

@@ -13,6 +13,8 @@ using System.IO;
 using System.Reflection;
 using PrayPal.Common;
 using PrayPal.Content;
+using System.Linq;
+using PrayPal.View;
 
 namespace PrayPal
 {
@@ -43,9 +45,15 @@ namespace PrayPal
 
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => t.Namespace.StartsWith("PrayPal") && !t.Name.EndsWith("TextProvider"))
+                .Where(t => t.Namespace.StartsWith("PrayPal") && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider"))
                 .AsImplementedInterfaces()
                 .AsSelf();
+
+            builder.RegisterAssemblyTypes(assemblies)
+                .Where(t => t.GetCustomAttribute<TextNameAttribute>() != null)
+                .AsImplementedInterfaces()
+                .WithMetadataFrom<TextNameAttribute>()
+                .WithMetadataFrom<NusachAttribute>();
 
             //builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.Populate(services);
@@ -53,12 +61,23 @@ namespace PrayPal
 
             DependencyService.Register<MockDataStore>();
             _mainViewModel = container.Resolve<MainViewModel>();
+
+            var viewsWithViewModels = container.ComponentRegistry.Registrations.Select(r => r.Activator.LimitType).Where(t => t.GetCustomAttributes<ViewForAttribute>().Any());
+
+            foreach (var viewType in viewsWithViewModels)
+            {
+                foreach (var vfa in viewType.GetCustomAttributes<ViewForAttribute>())
+                {
+                    Routing.RegisterRoute(vfa.ViewModelType.Name, new LocalRouteFactory(() => (Element)container.Resolve(viewType), () => container.Resolve(vfa.ViewModelType)));
+                }
+            }
+
             MainPage = new AppShell() { BindingContext = _mainViewModel };
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            _mainViewModel.GenerateContentAsync();
+            await _mainViewModel.GenerateContentAsync();
         }
 
         protected override void OnSleep()

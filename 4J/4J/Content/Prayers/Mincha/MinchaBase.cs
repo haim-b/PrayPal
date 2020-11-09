@@ -11,7 +11,7 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content
 {
-    [PrayerName(PrayerNames.Mincha)]
+    [TextName(PrayerNames.Mincha)]
     public abstract class MinchaBase : SpansPrayerBase
     {
         protected override string GetTitle()
@@ -19,7 +19,7 @@ namespace PrayPal.Content
             return CommonResources.MinchaTitle;
         }
 
-        protected async override Task CreateOverrideAsync()
+        protected async override Task CreateOverride()
         {
             AddOpening();
             AddAshrey();

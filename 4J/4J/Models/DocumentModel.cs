@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace PrayPal.Models
 {
-    public class DocumentModel : BindableBase
+    public class DocumentModel<T> : BindableBase where T : ITextContainer
     {
         private string _title;
-        private Func<IEnumerable<SpanModel>> _textsFactory;
+        private Func<IEnumerable<T>> _textsFactory;
         private DateTime? _contentGenerationTime;
 
 
@@ -34,7 +34,7 @@ namespace PrayPal.Models
 
         public bool IsGrouping { get; set; }
 
-        public IEnumerable<SpanModel> Texts
+        public IEnumerable<T> Texts
         {
             get
             {
@@ -47,7 +47,7 @@ namespace PrayPal.Models
             }
         }
 
-        public void SetTextsFactory(Func<IEnumerable<SpanModel>> textsFactory)
+        public void SetTextsFactory(Func<IEnumerable<T>> textsFactory)
         {
             _textsFactory = textsFactory;
         }

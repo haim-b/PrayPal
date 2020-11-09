@@ -20,7 +20,7 @@ namespace PrayPal.Content
             _prayer = prayer;
         }
 
-        protected async override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             AddOpening();
 
@@ -59,6 +59,8 @@ namespace PrayPal.Content
             AddOseShalom();
 
             AddEnding2();
+
+            return Task.CompletedTask;
         }
 
         protected virtual void AddOpening()

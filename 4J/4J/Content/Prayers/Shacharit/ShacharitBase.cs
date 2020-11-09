@@ -11,10 +11,10 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content
 {
-    [PrayerName(PrayerNames.Shacharit)]
+    [TextName(PrayerNames.Shacharit)]
     public abstract class ShacharitBase : SpansPrayerBase
     {
-        protected async override Task CreateOverrideAsync()
+        protected async override Task CreateOverride()
         {
             // Sedder Hashkama
             SpanModel hashkama = new SpanModel(AppResources.SederHashkamaTitle);

@@ -21,7 +21,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
         }
 
-        protected async override Task CreateOverrideAsync()
+        protected async override Task CreateOverride()
         {
             ComplexZmanimCalendar zc = await _timeService.GetCurrentZmanimCalendarAsync();
 

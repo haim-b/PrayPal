@@ -121,9 +121,9 @@ namespace PrayPal
         //    throw new ArgumentOutOfRangeException(nameof(dayOfMonth));
         //}
 
-        public static DocumentModel GetVersesTodayForWeek(int dayOfWeek)
+        public static DocumentModel<SpanModel> GetVersesTodayForWeek(int dayOfWeek)
         {
-            DocumentModel result = new DocumentModel("PsalmToday");
+            DocumentModel<SpanModel> result = new DocumentModel<SpanModel>("PsalmToday");
             DateTimeFormatInfo fi = new CultureInfo("he-IL").DateTimeFormat;
 
             result.TrackContentGenerationTime = false;
@@ -211,7 +211,7 @@ namespace PrayPal
             return result;
         }
 
-        public static async Task<DocumentModel> GetVersesTodayForMonthAsync(ITimeService timeService, int? dayOfMonth = null)
+        public static async Task<DocumentModel<SpanModel>> GetVersesTodayForMonthAsync(ITimeService timeService, int? dayOfMonth = null)
         {
             if (timeService is null)
             {
@@ -227,7 +227,7 @@ namespace PrayPal
 
             Tuple<int, int> fromTo;
 
-            DocumentModel result = new DocumentModel("PsalmTodayForMonth");
+            DocumentModel<SpanModel> result = new DocumentModel<SpanModel>("PsalmTodayForMonth");
 
             result.TrackContentGenerationTime = false;
 
@@ -288,9 +288,9 @@ namespace PrayPal
 
 
 
-        public static DocumentModel GetAllVerses()
+        public static DocumentModel<SpanModel> GetAllVerses()
         {
-            DocumentModel result = new DocumentModel("PsalmToday");
+            DocumentModel<SpanModel> result = new DocumentModel<SpanModel>("PsalmToday");
 
             result.Title = AppResources.TehillimTitle;
             result.TrackContentGenerationTime = false;

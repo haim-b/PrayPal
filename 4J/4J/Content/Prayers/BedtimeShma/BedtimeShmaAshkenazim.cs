@@ -8,11 +8,10 @@ using PrayPal.Resources;
 
 namespace PrayPal.Content.Prayers.BedtimeShma
 {
-    [Nusach(Nusach.Sfard)]
-    [Nusach(Nusach.Ashkenaz)]
+    [Nusach(Nusach.Sfard, Nusach.Ashkenaz)]
     public class BedtimeShmaAshkenazim : BedtimeShmaBase
     {
-        protected override Task CreateOverrideAsync()
+        protected override Task CreateOverride()
         {
             Add(CommonPrayerTextProvider.Current.BedtimeShma1);
             Add(CommonPrayerTextProvider.Current.KriatShma1);

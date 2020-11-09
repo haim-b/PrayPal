@@ -3,12 +3,14 @@ using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
 using PrayPal.Models;
 using PrayPal.Resources;
+using PrayPal.TextPresenter;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Prayers
@@ -16,30 +18,42 @@ namespace PrayPal.Prayers
     public class PrayersViewModel : BindableBase, IContentPage
     {
         private readonly ITimeService _timeService;
+        private readonly INavigationService _navigationService;
 
-        public PrayersViewModel(ITimeService timeService)
+        public PrayersViewModel(ITimeService timeService, INavigationService navigationService)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+
             Items = new ObservableCollection<ItemViewModel>();
             Title = AppResources.PrayersAndGracesTitle;
-        }
 
+            ItemTappedCommand = new Command<ItemViewModel>(OnItemTappedExecuted);
+        }
         public string Title { get; }
 
         public ObservableCollection<ItemViewModel> Items { get; }
 
+        public Command<ItemViewModel> ItemTappedCommand { get; }
+
         public async Task GenerateContentAsync()
         {
 
-            Items.Add(new ItemViewModel("Shacharit", CommonResources.ShacharitTitle));
-            Items.Add(new ItemViewModel("BirkatHamazon", AppResources.BirkatHamazonTitle));
-            Items.Add(new ItemViewModel("MeeinShalosh", AppResources.MeeinShaloshTitle));
-            Items.Add(new ItemViewModel("Mincha", CommonResources.MinchaTitle));
-            Items.Add(new ItemViewModel("Arvit", GetArvitTitle()));
-            Items.Add(new ItemViewModel("TfilatHaderech", AppResources.TfilatHaderechTitle));
-            Items.Add(new ItemViewModel("BedtimeShma", AppResources.BedtimeShmaTitle));
+            Items.Add(new ItemViewModel(PrayerNames.Shacharit, CommonResources.ShacharitTitle));
+            Items.Add(new ItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
+            Items.Add(new ItemViewModel(PrayerNames.MeeinShalosh, AppResources.MeeinShaloshTitle));
+            Items.Add(new ItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle));
+            Items.Add(new ItemViewModel(PrayerNames.Arvit, GetArvitTitle()));
+            Items.Add(new ItemViewModel(PrayerNames.TfilatHaderech, AppResources.TfilatHaderechTitle));
+            Items.Add(new ItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
 
             await HandleHannukahAsync();
+        }
+
+
+        private async void OnItemTappedExecuted(ItemViewModel item)
+        {
+            await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), "textName", item.PageName);
         }
 
         private static string GetArvitTitle()
@@ -60,7 +74,7 @@ namespace PrayPal.Prayers
 
             if (jc.Chanukah)
             {
-                ItemViewModel item = new ItemViewModel("HannukahCandles", AppResources.HadlakatNerotHannukahTitle); ;
+                ItemViewModel item = new ItemViewModel(PrayerNames.HannukahCandles, AppResources.HadlakatNerotHannukahTitle); ;
 
                 Items.Add(item);
             }
