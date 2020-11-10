@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PrayPal.TextPresenter"
-             x:Class="PrayPal.TextPresenter.TextPresenterView">
+             x:Class="PrayPal.TextPresenter.TextPresenterView"
+             Style="{DynamicResource BodyStyle}">
  
   <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
             IsGroupingEnabled="{Binding TextDocument.HasGroups}" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}"
@@ -13,14 +14,21 @@
             <!--<TextCell Text="{Binding Content[0].Text}"/>-->
             <ViewCell>
                 <StackLayout>
-                    <Label Text="{Binding Title}" 
+                    <Label Text="{Binding Title}" TextColor="Black"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    <Label Text="{Binding Content[0].Text}"
+                    <Label Text="{Binding Content[0].Text}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                 </StackLayout>
             </ViewCell>
-            </DataTemplate>
+        </DataTemplate>
     </ListView.ItemTemplate>
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Label Text="{Binding Title}" TextColor="{DynamicResource Primary}" FontSize="Large"/>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
     
     <!--Custom View Cells-->
     <!--

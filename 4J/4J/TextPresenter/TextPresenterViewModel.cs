@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Logging;
 using PrayPal.Common.Services;
 using PrayPal.Content;
+using PrayPal.Models;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +64,13 @@ namespace PrayPal.TextPresenter
                 return;
             }
 
-            await Task.Run(async () => text.Value.CreateAsync(await _timeService.GetDayInfoAsync(null, null, true), _logger));
+            var dayInfo = await _timeService.GetDayInfoAsync(null, null, true);
+
+            Trace.WriteLine($"Day info: {dayInfo?.JewishCalendar?.JewishMonth.ToString() ?? "null"}.");
+
+            await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
+
+            Trace.WriteLine($"Number of spans: {(text.Value as PrayerBase<SpanModel>)?.Items?.Count.ToString() ?? "N/A"}.");
 
             TextDocument = text.Value;
         }

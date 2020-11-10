@@ -26,38 +26,41 @@ namespace PrayPal.Common.Services
 
         public async Task<DayJewishInfo> GetDayInfoAsync(Geoposition location = null, DateTime? relativeToDate = null, bool dayCritical = false)
         {
-            DateTime date = relativeToDate ?? DateTime.Now;
-
-            Geoposition position = location ?? await _locationService.GetCurrentPositionAsync();
-
-            if (position != null)
+            return await Task.Run(async () =>
             {
-                ComplexZmanimCalendar zc = await GetCurrentZmanimCalendarAsync(date, position);
+                DateTime date = relativeToDate ?? DateTime.Now;
 
-                if (zc == null)
+                Geoposition position = location ?? await _locationService.GetCurrentPositionAsync();
+
+                if (position != null)
                 {
-                    return null;
-                }
+                    ComplexZmanimCalendar zc = await GetCurrentZmanimCalendarAsync(date, position);
 
-                DateTime? sunset = zc.GetSunset();
-
-                if (sunset != null)
-                {
-                    TimeSpan sunsetTimeOfDay = sunset.Value.TimeOfDay;
-
-                    if (dayCritical)
+                    if (zc == null)
                     {
-                        sunsetTimeOfDay = sunsetTimeOfDay - TimeSpan.FromMinutes(10);
+                        return null;
                     }
 
-                    if (sunsetTimeOfDay < date.TimeOfDay)
+                    DateTime? sunset = zc.GetSunset();
+
+                    if (sunset != null)
                     {
-                        date = date + TimeSpan.FromDays(1);
+                        TimeSpan sunsetTimeOfDay = sunset.Value.TimeOfDay;
+
+                        if (dayCritical)
+                        {
+                            sunsetTimeOfDay = sunsetTimeOfDay - TimeSpan.FromMinutes(10);
+                        }
+
+                        if (sunsetTimeOfDay < date.TimeOfDay)
+                        {
+                            date = date + TimeSpan.FromDays(1);
+                        }
                     }
                 }
-            }
 
-            return new DayJewishInfo(new JewishCalendar(date));
+                return new DayJewishInfo(new JewishCalendar(date));
+            });
         }
 
         public async Task<ComplexZmanimCalendar> GetCurrentZmanimCalendarAsync(DateTime? date = null, Geoposition position = null)

@@ -194,6 +194,11 @@ namespace PrayPal.DayTimes
 
         private void AddPrayerInfo(PrayerInfo prayer)
         {
+            if (prayer == null)
+            {
+                return;
+            }
+
             _times.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}-{2:t}", prayer.PrayerName, prayer.Start, prayer.End)));
 
             if (!string.IsNullOrEmpty(prayer.ExtraInfo))

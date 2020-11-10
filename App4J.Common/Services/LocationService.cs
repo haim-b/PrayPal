@@ -26,10 +26,10 @@ namespace PrayPal.Common.Services
 
         public async Task<Geoposition> GetCurrentPositionAsync(CancellationToken cancellationToken = default)
         {
-            if (!Settings.UseLocation)
-            {
-                return null;
-            }
+            //if (!Settings.UseLocation)
+            //{
+            //    return null;
+            //}
 
             try
             {
