@@ -4,24 +4,61 @@
              xmlns:local="clr-namespace:PrayPal.TextPresenter"
              x:Class="PrayPal.TextPresenter.TextPresenterView"
              Style="{DynamicResource BodyStyle}">
- 
-  <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
-            IsGroupingEnabled="{Binding TextDocument.HasGroups}" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}"
-            HasUnevenRows="True" SeparatorVisibility="None">
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <!--<TextCell Text="{Binding Content[0].Text}"/>-->
+    <ContentPage.Resources>
+        <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
+        <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="Black" HighlightColor="{StaticResource Primary}"/>
+
+        <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
-                <StackLayout>
-                    <Label Text="{Binding Title}" TextColor="Black"
+                <StackLayout Margin="{StaticResource ParagraphThickness}">
+                    <Label Text="{Binding Title}" TextColor="{StaticResource Primary}"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    <Label Text="{Binding Content[0].Text}" TextColor="Black"
-                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}"
+                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                 </StackLayout>
             </ViewCell>
         </DataTemplate>
-    </ListView.ItemTemplate>
+        <DataTemplate x:Key="CollapsibleTextTemplate">
+            <ViewCell>
+                <Frame x:Name="frame" BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" Padding="4" Margin="{StaticResource ParagraphThickness}">
+                    <Expander x:Name="expander" IsExpanded="{Binding IsExpanded, Mode=OneTime}">
+                        <Expander.Header>
+                            <Label Text="{Binding Title}" TextColor="White" HorizontalTextAlignment="Center"
+                    Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}" Value="True">
+                                        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Expander.Header>
+                        <Expander.Triggers>
+                            <DataTrigger TargetType="Expander" Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}" Value="True">
+                                <Setter Property="BackgroundColor" Value="White"/>
+                            </DataTrigger>
+                        </Expander.Triggers>
+
+                        <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}"
+                    Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    </Expander>
+
+
+                </Frame>
+            </ViewCell>
+        </DataTemplate>
+        <local:CollapsibleTemplateSelector x:Key="CollapsibleTemplate" RegularTemplate="{StaticResource RegularTextTemplate}" CollapsibleTemplate="{StaticResource CollapsibleTextTemplate}"/>
+    </ContentPage.Resources>
+
+    <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
+            IsGroupingEnabled="{Binding TextDocument.HasGroups}" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}"
+            HasUnevenRows="True" SeparatorVisibility="None" ItemTemplate="{StaticResource CollapsibleTemplate}">
+        <!--Built in Cells-->
+        <!--<ListView.ItemTemplate>
+            <DataTemplate>
+                --><!--<TextCell Text="{Binding Content[0].Text}"/>--><!--
+                
+            </DataTemplate>
+        </ListView.ItemTemplate>-->
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -29,9 +66,9 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.GroupHeaderTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
+
+        <!--Custom View Cells-->
+        <!--
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
@@ -45,5 +82,5 @@
       </DataTemplate>
     </ListView.ItemTemplate>
     -->
-  </ListView>
+    </ListView>
 </ContentPage>

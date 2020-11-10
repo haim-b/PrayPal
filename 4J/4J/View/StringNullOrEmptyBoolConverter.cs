@@ -9,6 +9,11 @@ namespace PrayPal
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is FormattedString fs)
+            {
+                return !string.IsNullOrEmpty((string)fs);
+            }
+
             var s = value as string;
             return !string.IsNullOrWhiteSpace(s);
         }
