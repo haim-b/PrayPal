@@ -93,9 +93,9 @@ namespace PrayPal.Common.Services
             DateTime? hanetz = zc.GetSunrise();
             DateTime? sofZmanTfila = null;
 
-            string timeCalcMethod = Settings.TimeCalcMethod;
+            TimeCalcMethod timeCalcMethod = Settings.TimeCalcMethod;
 
-            if (timeCalcMethod == "Gra")
+            if (timeCalcMethod == TimeCalcMethod.Gra)
             {
                 sofZmanTfila = zc.GetSofZmanTfilaGRA();
             }
@@ -109,7 +109,7 @@ namespace PrayPal.Common.Services
                 string extraInfo = null;
                 DateTime? sofZmanShma = null;
 
-                if (timeCalcMethod == "Gra")
+                if (timeCalcMethod == TimeCalcMethod.Gra)
                 {
                     sofZmanShma = zc.GetSofZmanShmaGRA();
                 }

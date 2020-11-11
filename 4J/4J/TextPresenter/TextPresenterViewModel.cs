@@ -1,5 +1,6 @@
 ﻿using CodeMill.VMFirstNav;
 using Microsoft.Extensions.Logging;
+using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
@@ -56,17 +57,24 @@ namespace PrayPal.TextPresenter
 
         public async Task GenerateContentAsync()
         {
-            var text = _texts.FirstOrDefault(t => t.Metadata.Name == _textName);
+            var texts = _texts.Where(t => t.Metadata.Name == _textName && t.Metadata.Nusach?.Contains(Settings.Nusach) != false).ToList();
 
-            if (text == null)
+            if (texts.Count == 0)
             {
                 _logger.LogError("No text with name '{0}'.", _textName);
+                return;
+            }
+            else if (texts.Count > 1)
+            {
+                _logger.LogError("Found multiple texts for name '{0}' and nusach '{1}': {2}.", _textName, Settings.Nusach, string.Join(", ", texts.Select(t => t.Value.GetType().Name)));
                 return;
             }
 
             var dayInfo = await _timeService.GetDayInfoAsync(null, null, true);
 
             Trace.WriteLine($"Day info: {dayInfo?.JewishCalendar?.JewishMonth.ToString() ?? "null"}.");
+
+            var text = texts[0];
 
             await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
 

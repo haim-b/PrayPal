@@ -6,6 +6,7 @@ using PrayPal.DayTimes;
 using PrayPal.Prayers;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using PrayPal.AppSettings;
 
 namespace PrayPal
 {
@@ -13,10 +14,11 @@ namespace PrayPal
     {
         private readonly ILogger _logger;
 
-        public MainViewModel(DayTimesViewModel dayTimes, PrayersViewModel prayers, ILogger<MainViewModel> logger)
+        public MainViewModel(DayTimesViewModel dayTimes, PrayersViewModel prayers, SettingsViewModel settings, ILogger<MainViewModel> logger)
         {
             DayTimes = dayTimes ?? throw new ArgumentNullException(nameof(dayTimes));
             Prayers = prayers ?? throw new ArgumentNullException(nameof(prayers));
+            Settings = settings;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             DayTimes.ShowPrayersTime = true;
             DayTimes.ShowRelativePrayers = true;
@@ -25,6 +27,8 @@ namespace PrayPal
         public DayTimesViewModel DayTimes { get; }
 
         public PrayersViewModel Prayers { get; }
+
+        public SettingsViewModel Settings { get; }
 
         public async Task GenerateContentAsync()
         {

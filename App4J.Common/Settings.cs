@@ -1,12 +1,16 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace PrayPal.Common
 {
-    public class Settings
+    public static class Settings
     {
+        private static readonly List<WeakReference<ISettingsListener>> _listeners = new List<WeakReference<ISettingsListener>>();
         // static CultureInfo _language;
 
         static Settings()
@@ -37,6 +41,8 @@ namespace PrayPal.Common
         private const string TimeCalcMethodKey = "TimeCalcMethod";
         private const string UseLocationKey = "UseLocation";
         private const string ShowVeanenuKey = "ShowVeanenu";
+        private const string UseLightBackgroundKey = "UseLightBackground";
+        private const string UseLargeFontKey = "UseLargeFont";
 
         #endregion
 
@@ -63,6 +69,7 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(LanguageKey, value ?? "he");
+                OnSettingChanged();
             }
         }
 
@@ -75,6 +82,7 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(NusachKey, (int)value);
+                OnSettingChanged();
             }
         }
 
@@ -87,6 +95,7 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(IsInIsraelKey, value);
+                OnSettingChanged();
             }
         }
 
@@ -99,6 +108,33 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(UseLocationKey, value);
+                OnSettingChanged();
+            }
+        }
+
+        public static bool UseLightBackground
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UseLightBackgroundKey, false);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UseLightBackgroundKey, value);
+                OnSettingChanged();
+            }
+        }
+
+        public static bool UseLargeFont
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UseLargeFontKey, false);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UseLargeFontKey, value);
+                OnSettingChanged();
             }
         }
 
@@ -111,19 +147,61 @@ namespace PrayPal.Common
             set
             {
                 AppSettings.AddOrUpdateValue(ShowVeanenuKey, value);
+                OnSettingChanged();
             }
         }
 
-        public static string TimeCalcMethod
+        public static TimeCalcMethod TimeCalcMethod
         {
             get
             {
-                return AppSettings.GetValueOrDefault(TimeCalcMethodKey, "Gra");
+                return (TimeCalcMethod)AppSettings.GetValueOrDefault(TimeCalcMethodKey, (int)TimeCalcMethod.Gra);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(TimeCalcMethodKey, value);
+                AppSettings.AddOrUpdateValue(TimeCalcMethodKey, (int)value);
+                OnSettingChanged();
             }
         }
+
+        public static void RegisterListener(ISettingsListener listener)
+        {
+            if (listener is null)
+            {
+                throw new ArgumentNullException(nameof(listener));
+            }
+
+            _listeners.Add(new WeakReference<ISettingsListener>(listener));
+        }
+
+        public static void UnregisterListener(ISettingsListener listener)
+        {
+            if (listener is null)
+            {
+                throw new ArgumentNullException(nameof(listener));
+            }
+
+            _listeners.RemoveAll(w => w.TryGetTarget(out var x) && object.ReferenceEquals(x, listener));
+        }
+
+        private static void OnSettingChanged([CallerMemberName] string settingName = null)
+        {
+            foreach (var listener in _listeners)
+            {
+                try
+                {
+                    if (listener.TryGetTarget(out var l))
+                    {
+                        l.OnSettingsChanged(settingName);
+                    }
+                }
+                catch { }
+            }
+        }
+    }
+
+    public interface ISettingsListener
+    {
+        void OnSettingsChanged(string settingName);
     }
 }

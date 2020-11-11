@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrayPal.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,14 @@ namespace PrayPal.Models
 {
     public class ParagraphModel : List<RunModel>, ITextContainer
     {
-        //private readonly ICollection<RunModel> _runs;
-        private string _title;
-        //private double _titleFontSize;
+        private static double _fontSize;
+        private static double _titleFontSize;
         private bool _isCollapsible;
 
+        static ParagraphModel()
+        {
+            SetFontSize();
+        }
         public ParagraphModel(string content)
             : this(null, content)
         { }
@@ -25,11 +29,18 @@ namespace PrayPal.Models
         {
             //_runs = new List<RunModel>(runs);
             this.AddRange(runs);
-            _title = title;
+            Title = title;
             IsExpanded = true;
             //_titleFontSize = GetTitleSize();
 
         }
+
+        internal static void SetFontSize()
+        {
+            _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
+            _titleFontSize = Utils.GetTitleFontSize(Settings.UseLargeFont);
+        }
+
 
         //public static double GetTitleSize()
         //{
@@ -41,24 +52,19 @@ namespace PrayPal.Models
             get { return this; }//_runs; }
         }
 
-        public string Title
+        public string Title { get; set; }
+
+        public string SubTitle { get; set; }
+
+        public double FontSize
         {
-            get { return _title; }
-            set { _title = value; }
+            get { return _titleFontSize; }
         }
 
-        private string _subTitle;
-
-        public string SubTitle
+        public double TitleFontSize
         {
-            get { return _subTitle; }
-            set { _subTitle = value; }
+            get { return _titleFontSize; }
         }
-
-        //public double TitleFontSize
-        //{
-        //    get { return _titleFontSize; }
-        //}
 
         public bool IsExpanded { get; set; }
 

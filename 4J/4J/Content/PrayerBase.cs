@@ -158,6 +158,6 @@ namespace PrayPal.Content
         public string Name { get; set; }
 
         [DefaultValue((Nusach[])null)]
-        public Nusach[] Nusachim { get; set; }
+        public Nusach[] Nusach { get; set; }
     }
 }

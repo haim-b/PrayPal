@@ -106,6 +106,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Psalms.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="AppSettings\SettingsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="TextPresenter\TextPresenterView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

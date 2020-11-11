@@ -72,11 +72,11 @@ namespace PrayPal.Common
 
             DateTime? hanetz = zc.GetSunrise();
 
-            string timeCalcMethod = Settings.TimeCalcMethod;
+            TimeCalcMethod timeCalcMethod = Settings.TimeCalcMethod;
 
             DateTime? sofZmanTfila;
 
-            if (timeCalcMethod == "Gra")
+            if (timeCalcMethod == TimeCalcMethod.Gra)
             {
                 sofZmanTfila = zc.GetSofZmanTfilaGRA();
             }
@@ -90,7 +90,7 @@ namespace PrayPal.Common
                 string extraInfo = null;
                 DateTime? sofZmanShma = null;
 
-                if (timeCalcMethod == "Gra")
+                if (timeCalcMethod == TimeCalcMethod.Gra)
                 {
                     sofZmanShma = zc.GetSofZmanShmaGRA();
                 }
@@ -144,11 +144,11 @@ namespace PrayPal.Common
 
             DateTime? hanetz = zc.GetSunrise();
 
-            string timeCalcMethod = Settings.TimeCalcMethod;
+            TimeCalcMethod timeCalcMethod = Settings.TimeCalcMethod;
 
             DateTime? sofZmanTfila;
 
-            if (timeCalcMethod == "Gra")
+            if (timeCalcMethod == TimeCalcMethod.Gra)
             {
                 sofZmanTfila = zc.GetSofZmanTfilaGRA();
             }
@@ -162,7 +162,7 @@ namespace PrayPal.Common
                 string extraInfo = null;
                 DateTime? sofZmanShma;
 
-                if (timeCalcMethod == "Gra")
+                if (timeCalcMethod == TimeCalcMethod.Gra)
                 {
                     sofZmanShma = zc.GetSofZmanShmaGRA();
                 }

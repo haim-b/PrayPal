@@ -8,7 +8,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Text="{Binding Title}" Margin="3" FontAttributes="Bold"/><!--Style="{StaticResource TitleTextBlockStyle}"-->
+        <Label Text="{Binding DateTitle}" Margin="3" FontAttributes="Bold"/><!--Style="{StaticResource TitleTextBlockStyle}"-->
         <ListView Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

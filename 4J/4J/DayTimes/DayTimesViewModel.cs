@@ -12,25 +12,27 @@ using System.Threading.Tasks;
 using Yahadut.DayTimes;
 using PrayPal.Resources;
 using Zmanim.HebrewCalendar;
+using Microsoft.Extensions.Logging;
 
 namespace PrayPal.DayTimes
 {
-    public class DayTimesViewModel : BindableBase, IContentPage
+    public class DayTimesViewModel : PageViewModelBase, IContentPage
     {
         protected readonly ILocationService _locationService;
         protected readonly ITimeService _timeService;
         protected readonly ObservableCollection<TimeOfDay> _times = new ObservableCollection<TimeOfDay>();
 
-        private string _title;
+        private string _dateTitle;
 
-        public DayTimesViewModel(ILocationService locationService, ITimeService timeService)
+        public DayTimesViewModel(ILocationService locationService, ITimeService timeService, ILogger<DayTimesViewModel> logger)
+            : base(AppResources.ZmaneyHayom, logger)
         {
             _locationService = locationService ?? throw new ArgumentNullException(nameof(locationService));
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
 
             ShowRelativePrayers = true;
             IncludeIsruChag = true;
-            Title = AppResources.ZmaneyHayom;
+            DateTitle = Title;
         }
 
         public ObservableCollection<TimeOfDay> Times
@@ -38,14 +40,14 @@ namespace PrayPal.DayTimes
             get { return _times; }
         }
 
-        public string Title
+        public string DateTitle
         {
-            get { return _title; }
+            get { return _dateTitle; }
             set
             {
-                if (_title != value)
+                if (_dateTitle != value)
                 {
-                    SetProperty(ref _title, value);
+                    SetProperty(ref _dateTitle, value);
                 }
             }
         }
@@ -123,7 +125,7 @@ namespace PrayPal.DayTimes
 
             if (jc == null)
             {
-                Title = null;
+                DateTitle = null;
                 return;
             }
 
@@ -189,7 +191,7 @@ namespace PrayPal.DayTimes
                 _times.Add(new TimeOfDay(string.Format(CommonResources.OmerShort, omer)));
             }
 
-            Title = jc.Time.ToString("dddd", ci) + ", " + formatter.format(jc);//now.ToString("D", ci.DateTimeFormat);
+            DateTitle = jc.Time.ToString("dddd", ci) + ", " + formatter.format(jc);//now.ToString("D", ci.DateTimeFormat);
         }
 
         private void AddPrayerInfo(PrayerInfo prayer)
@@ -215,6 +217,16 @@ namespace PrayPal.DayTimes
             }
 
             return HebDateHelper.GetDafYomi(dafYomiDate) + " (" + formatter.format(dafYomiDate) + ")";
+        }
+
+        protected override async Task OnSettingsChangedAsync(string settingsName)
+        {
+            if (settingsName != nameof(Settings.UseLocation))
+            {
+                return;
+            }
+
+            await GenerateContentAsync();
         }
     }
 }

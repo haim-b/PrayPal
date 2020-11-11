@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PrayPal"
+             x:Class="PrayPal.AppSettings.SettingsView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  x:Name="LayoutRoot" Margin="0,0,0,50">
+                <!--<StackPanel Orientation="Horizontal" Margin="0,15" CacheMode="BitmapCache">
+                <TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>-->
+                <!--<HyperlinkButton Click="HyperlinkButton_Click_1" Margin="0,15">
+                <TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="Blue" TextWrapping="Wrap"/>
+            </HyperlinkButton>-->
+                <!--</StackPanel>-->
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{app:CustomResource ReportingLabel}"/>
+                            <app:HyperlinkSpan Text="{app:CustomResource ClickHereLabel}" Url="{Binding MailTo}"/>
+                            <Span Text="."/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Picker Title="{app:CustomResource NusachSettingLabel}"
+				        ItemsSource="{Binding Nusachim, Mode=OneTime}"
+				        SelectedIndex="{Binding Nusach, Mode=TwoWay}"/>
+
+                <Picker Title="{app:CustomResource TimeCalcMethodLabel}"
+				        ItemsSource="{Binding TimeCalcMethods, Mode=OneTime}"
+				        SelectedIndex="{Binding TimeCalcMethodIndex, Mode=TwoWay}"/>
+
+                <Picker Title="{app:CustomResource FontSizeSettingLabel}"
+				        ItemsSource="{Binding FontSizes, Mode=OneTime}"
+				        SelectedIndex="{Binding UseLargeFont, Mode=TwoWay}"/>
+
+
+                <!--<Label Text="{app:CustomResource LockScreenSupportInfo}" LineBreakMode="WordWrap"/>
+                <Button Content="{app:CustomResource GoToLockScreenSettingsCommandTitle}" toolkit:TiltEffect.IsTiltEnabled="True" Command="{Binding GoToLockScreenSettingsCommand, Mode=OneTime}" HorizontalAlignment="Center"/>-->
+
+                <!--<CheckBox ="{app:CustomResource UseLightBackgroundSettingTitle}" IsChecked="{Binding UseLightBackground, Mode=TwoWay}"
+				Visibility="{StaticResource PhoneDarkThemeVisibility}" toolkit:TiltEffect.IsTiltEnabled="True"/>-->
+
+                <StackLayout Orientation="Horizontal" IsVisible="{Binding ShowVeanenuSetting}">
+                    <Switch IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"/>
+                    <Label Text="{app:CustomResource ShowVeanenu}"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Switch IsToggled="{Binding IsInChul, Mode=TwoWay}"/>
+                    <Label Text="{app:CustomResource UseChulSettingTitle}"/>
+                </StackLayout>
+
+                <Label Text="{app:CustomResource UseChulSettingDescription}" LineBreakMode="WordWrap" FontSize="Small" Margin="55,0,10,0"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Switch IsToggled="{Binding UseLocation, Mode=TwoWay}"/>
+                    <Label Text="{app:CustomResource UseLocationSettingTitle}"/>
+                </StackLayout>
+
+                <!--<Label Margin="55,0,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{app:CustomResource EnablingSysLocationInstruction1}"/>
+                            <HyperlinkSpan Command="{Binding GoToLocationSettingsCommand, Mode=OneTime}">
+                                <Run Text="{app:CustomResource EnablingSysLocationInstruction2}"/>
+                            </HyperlinkSpan>
+                            <Run Text="{app:CustomResource EnablingSysLocationInstruction3}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </L>-->
+
+                <Label Text="{app:CustomResource UseLocationPrivacyPolicy}" LineBreakMode="WordWrap" FontSize="Small" Margin="55,10,10,0"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

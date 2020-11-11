@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PrayPal.Resources;
 
-namespace Yahadut
+namespace PrayPal
 {
     [ContentProperty(nameof(ResourceKey))]
     public class CustomResource : IMarkupExtension<string>
@@ -15,7 +15,7 @@ namespace Yahadut
 
         public string ProvideValue(IServiceProvider serviceProvider)
         {
-            return AppResources.ResourceManager.GetString(ResourceKey, new System.Globalization.CultureInfo(Settings.Language));
+            return AppResources.ResourceManager.GetString(ResourceKey, new System.Globalization.CultureInfo(PrayPal.Common.Settings.Language));
         }
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)

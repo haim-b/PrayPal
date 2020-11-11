@@ -1,4 +1,5 @@
-﻿using PrayPal.Common;
+﻿using Microsoft.Extensions.Logging;
+using PrayPal.Common;
 using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
 using PrayPal.Models;
@@ -15,22 +16,21 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Prayers
 {
-    public class PrayersViewModel : BindableBase, IContentPage
+    public class PrayersViewModel : PageViewModelBase, IContentPage
     {
         private readonly ITimeService _timeService;
         private readonly INavigationService _navigationService;
 
-        public PrayersViewModel(ITimeService timeService, INavigationService navigationService)
+        public PrayersViewModel(ITimeService timeService, INavigationService navigationService, ILogger<PrayersViewModel> logger)
+            : base(AppResources.PrayersAndGracesTitle, logger)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
             Items = new ObservableCollection<ItemViewModel>();
-            Title = AppResources.PrayersAndGracesTitle;
 
             ItemTappedCommand = new Command<ItemViewModel>(OnItemTappedExecuted);
         }
-        public string Title { get; }
 
         public ObservableCollection<ItemViewModel> Items { get; }
 

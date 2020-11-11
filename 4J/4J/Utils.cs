@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Linq;
 using Autofac;
+using Xamarin.Forms;
 
 namespace PrayPal
 {
@@ -33,8 +34,34 @@ namespace PrayPal
                 }
 
                 TAttribute attr = list[0];
-                return metadataProperties.Select(p => new KeyValuePair<string, object>(p.Name, p.GetValue(attr, null)));
+                return metadataProperties.Select(p => GenerateMetadata(p, attr));
             });
+        }
+
+        private static KeyValuePair<string, object> GenerateMetadata<TAttribute>(PropertyInfo p, TAttribute attr)
+        {
+            object value = p.GetValue(attr, null);
+            return new KeyValuePair<string, object>(p.Name, value);
+        }
+
+        public static double GetFontSize(bool largeFont)
+        {
+            if (largeFont)
+            {
+                return Device.GetNamedSize(NamedSize.Large, typeof(Label));
+            }
+
+            return Device.GetNamedSize(NamedSize.Default, typeof(Label));
+        }
+
+        public static double GetTitleFontSize(bool largeFont)
+        {
+            if (largeFont)
+            {
+                return Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+            }
+
+            return Device.GetNamedSize(NamedSize.Caption, typeof(Label));
         }
     }
 }
