@@ -14,7 +14,6 @@ using System.Reflection;
 using PrayPal.Common;
 using PrayPal.Content;
 using System.Linq;
-using PrayPal.View;
 
 namespace PrayPal
 {
