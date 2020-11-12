@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -17,19 +21,34 @@ namespace PrayPal.TextPresenter
             InitializeComponent();
         }
 
-        private void OnGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public async void OnGroupClicked(object sender, EventArgs e)
         {
-            if (e.PropertyName != nameof(Label.Text) || Device.RuntimePlatform != Device.Android)
+            ListView jumpList = new ListView(ListViewCachingStrategy.RecycleElement);
+            jumpList.BindingContext = this.BindingContext;
+            jumpList.Style = (Style)Resources["JumpListStyle"];
+
+            PopupPage page = new PopupPage { Content = jumpList };
+            page.CloseWhenBackgroundIsClicked = true;
+
+            await PopupNavigation.Instance.PushAsync(page);
+        }
+
+        public async void OnJumpListItemClicked(object sender, EventArgs e)
+        {
+            IEnumerable<object> group = ((Element)sender).BindingContext as IEnumerable<object>;
+
+            if (group == null)
             {
                 return;
             }
 
-            Label label = (Label)sender;
-
-            if (label.BindingContext == lst.ItemsSource?.Cast<object>()?.FirstOrDefault())
+            try
             {
-                label.IsVisible = false;
+                await PopupNavigation.Instance.PopAllAsync();
+
+                lst.ScrollTo(group.FirstOrDefault(), group, ScrollToPosition.Start, true);
             }
+            catch { }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace PrayPal
 
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
         {
-            throw new NotImplementedException();
+            return this.ProvideValue(serviceProvider);
         }
     }
 }
