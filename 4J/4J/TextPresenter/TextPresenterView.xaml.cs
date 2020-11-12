@@ -17,9 +17,19 @@ namespace PrayPal.TextPresenter
             InitializeComponent();
         }
 
-        private void OnScrolled(object sender, ScrolledEventArgs e)
+        private void OnGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            object activeGroup = GroupingHelper.GetActiveGroup((ListView)sender);
+            if (e.PropertyName != nameof(Label.Text) || Device.RuntimePlatform != Device.Android)
+            {
+                return;
+            }
+
+            Label label = (Label)sender;
+
+            if (label.BindingContext == lst.ItemsSource?.Cast<object>()?.FirstOrDefault())
+            {
+                label.IsVisible = false;
+            }
         }
     }
 }

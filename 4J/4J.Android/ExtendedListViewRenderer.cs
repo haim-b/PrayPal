@@ -43,28 +43,9 @@ namespace PrayPal.Droid
                 return;
             }
 
-            ListView lv = (ListView)sender;
-            //e.View.FirstVisiblePosition;
+            object group = xlv.GetItemGroup((int)e.View.PointToRowId(0, 0));// e.FirstVisibleItem);
 
-            //var firstItem = lv.GetChildAt(e.FirstVisibleItem);
-
-            //if (firstItem != null)
-            //{
-            //    var x = firstItem.GetX();
-            //    var listX = lv.GetX();
-            //}
-
-            //var firstItem = xlv.ItemsSource?.OfType<object>()?.ElementAtOrDefault(e.FirstVisibleItem);
-            object group = xlv.GetItemGroup(lv.FirstVisiblePosition);//e.FirstVisibleItem);
-
-            //if (firstItem == null)
-            {
-                //GroupingHelper.SetActiveGroup(xlv, firstItem);
-                xlv.ActiveGroup = group;
-                return;
-            }
-
-
+            xlv.ActiveGroup = group;
         }
     }
 }

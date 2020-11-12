@@ -46,33 +46,42 @@
                 </Frame>
             </ViewCell>
         </DataTemplate>
+
+        <Style x:Key="GroupLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource Primary}"/>
+            <Setter Property="FontSize" Value="Large"/>
+        </Style>
+
         <local:CollapsibleTemplateSelector x:Key="CollapsibleTemplate" RegularTemplate="{StaticResource RegularTextTemplate}" CollapsibleTemplate="{StaticResource CollapsibleTextTemplate}"/>
     </ContentPage.Resources>
 
     <StackLayout>
-        <Label Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}"/>
-        <local:ExtendedListView x:Name="lst" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
+        <StackLayout IsVisible="{OnPlatform Default=False, Android=True}">
+            <Label x:Name="groupHeader" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+        </StackLayout>
+
+                <local:ExtendedListView x:Name="lst" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
             IsGroupingEnabled="{Binding TextDocument.HasGroups}" GroupDisplayBinding="{Binding Title}" GroupShortNameBinding="{Binding ShortTitle}"
             HasUnevenRows="True" SeparatorVisibility="None" ItemTemplate="{StaticResource CollapsibleTemplate}">
-            <!--Built in Cells-->
-            <!--<ListView.ItemTemplate>
+                    <!--Built in Cells-->
+                    <!--<ListView.ItemTemplate>
             <DataTemplate>
                 -->
-            <!--<TextCell Text="{Binding Content[0].Text}"/>-->
-            <!--
+                    <!--<TextCell Text="{Binding Content[0].Text}"/>-->
+                    <!--
                 
             </DataTemplate>
         </ListView.ItemTemplate>-->
-            <ListView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Label Text="{Binding Title}" TextColor="{DynamicResource Primary}" FontSize="Large"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.GroupHeaderTemplate>
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}" PropertyChanged="OnGroupPropertyChanged" />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
 
-            <!--Custom View Cells-->
-            <!--
+                    <!--Custom View Cells-->
+                    <!--
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
@@ -86,6 +95,6 @@
       </DataTemplate>
     </ListView.ItemTemplate>
     -->
-        </local:ExtendedListView>
-    </StackLayout>
+                </local:ExtendedListView>
+        </StackLayout>
 </ContentPage>

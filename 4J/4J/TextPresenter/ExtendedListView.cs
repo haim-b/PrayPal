@@ -24,9 +24,9 @@ namespace PrayPal.TextPresenter
             set { SetValue(ActiveGroupProperty, value); }
         }
 
-        public object GetItemGroup(int itemIndex)
+        public object GetItemGroup(int itemIndexIncludingGroups)
         {
-            if (itemIndex < 0 || !IsGroupingEnabled || ItemsSource == null)
+            if (itemIndexIncludingGroups < 0 || !IsGroupingEnabled || ItemsSource == null)
             {
                 return null;
             }
@@ -35,9 +35,14 @@ namespace PrayPal.TextPresenter
 
             foreach (IEnumerable<object> group in ItemsSource)
             {
+                if (itemIndexIncludingGroups == index++)
+                {
+                    return group;
+                }
+
                 foreach (object item in group)
                 {
-                    if (itemIndex == index++)
+                    if (itemIndexIncludingGroups == index++)
                     {
                         return group;
                     }
@@ -46,5 +51,7 @@ namespace PrayPal.TextPresenter
 
             return null;
         }
+
+        public int VerticalScrollPosition { get; set; }
     }
 }
