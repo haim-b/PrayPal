@@ -9,6 +9,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="DetailsColor">#777777</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

@@ -166,6 +166,11 @@ namespace PrayPal.Common.Services
 
             zc = await GetCurrentZmanimCalendarAsync(now + TimeSpan.FromDays(1));
 
+            if (zc == null)
+            {
+                return null;
+            }
+
             DateTime? hanetz = zc.GetSunrise();
 
             if (tzaisHakokhavim != null && hanetz != null)
@@ -223,6 +228,11 @@ namespace PrayPal.Common.Services
             }
 
             ComplexZmanimCalendar zc = await GetCurrentZmanimCalendarAsync(now, location);
+
+            if (zc == null)
+            {
+                return null;
+            }
 
             DateTime? knissatShabbat = zc.GetCandelLighting();
 

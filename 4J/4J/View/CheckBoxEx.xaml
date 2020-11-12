@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrayPal.CheckBoxEx"
+             x:Name="Root">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TextLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid InputTransparent="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="{Binding Source={x:Reference Root}, Path=Text}" Style="{DynamicResource TextLabelStyle}" Grid.Column="1"/>
+
+            <CheckBox IsChecked="{Binding Source={x:Reference Root}, Path=IsChecked}"
+                VerticalOptions="Center"/>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

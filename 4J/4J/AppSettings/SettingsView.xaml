@@ -13,7 +13,7 @@
             </HyperlinkButton>-->
                 <!--</StackPanel>-->
 
-                <Label>
+                <Label Margin="0,15">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{app:CustomResource ReportingLabel}"/>
@@ -42,22 +42,19 @@
                 <!--<CheckBox ="{app:CustomResource UseLightBackgroundSettingTitle}" IsChecked="{Binding UseLightBackground, Mode=TwoWay}"
 				Visibility="{StaticResource PhoneDarkThemeVisibility}" toolkit:TiltEffect.IsTiltEnabled="True"/>-->
 
-                <StackLayout Orientation="Horizontal" IsVisible="{Binding ShowVeanenuSetting}">
-                    <Switch IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"/>
-                    <Label Text="{app:CustomResource ShowVeanenu}"/>
-                </StackLayout>
+                <app:SwitchEx IsVisible="{Binding ShowVeanenuSetting}"
+                    IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"
+                              Title="{app:CustomResource ShowVeanenu}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Switch IsToggled="{Binding IsInChul, Mode=TwoWay}"/>
-                    <Label Text="{app:CustomResource UseChulSettingTitle}"/>
-                </StackLayout>
+                <app:SwitchEx IsToggled="{Binding IsInChul, Mode=TwoWay}"
+                              Title="{app:CustomResource UseChulSettingTitle}"
+                              Details="{app:CustomResource UseChulSettingDescription}"/>
 
-                <Label Text="{app:CustomResource UseChulSettingDescription}" LineBreakMode="WordWrap" FontSize="Small" Margin="55,0,10,0"/>
+                <Label Text="" LineBreakMode="WordWrap" FontSize="Small" Margin="55,0,10,0"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Switch IsToggled="{Binding UseLocation, Mode=TwoWay}"/>
-                    <Label Text="{app:CustomResource UseLocationSettingTitle}"/>
-                </StackLayout>
+                <app:SwitchEx IsToggled="{Binding UseLocation, Mode=TwoWay}"
+                              Title="{app:CustomResource UseLocationSettingTitle}"
+                              Details="{app:CustomResource UseLocationPrivacyPolicy}"/>
 
                 <!--<Label Margin="55,0,10,0">
                     <Label.FormattedText>
@@ -71,7 +68,6 @@
                     </Label.FormattedText>
                 </L>-->
 
-                <Label Text="{app:CustomResource UseLocationPrivacyPolicy}" LineBreakMode="WordWrap" FontSize="Small" Margin="55,10,10,0"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

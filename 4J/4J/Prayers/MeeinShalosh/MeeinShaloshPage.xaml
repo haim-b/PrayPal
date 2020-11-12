@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrayPal.Prayers.MeeinShalosh.MeeinShaloshPage"
+             xmlns:app="clr-namespace:PrayPal"
+             xmlns:tp="clr-namespace:PrayPal.TextPresenter"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <tp:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{StaticResource TextColor}" HighlightColor="{StaticResource Primary}"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <app:CheckBoxEx x:Name="chkMezonot" Text="{app:CustomResource MeeinShaloshDaganTitle}"
+                  IsChecked="{Binding Mezonot, Mode=TwoWay}"/>
+            <app:CheckBoxEx Text="{app:CustomResource OfIsraelTitle}" Grid.Column="1"
+                  IsChecked="{Binding MezonotIsrael, Mode=TwoWay}"
+                  IsVisible="{Binding ShowMezonotOfIsrael}"/>
+            <app:CheckBoxEx x:Name="chkGeffen" Text="{app:CustomResource MeeinShaloshWineTitle}" Grid.Row="1"
+                  IsChecked="{Binding Geffen, Mode=TwoWay}"/>
+            <app:CheckBoxEx Text="{app:CustomResource OfIsraelTitle}" Grid.Row="1" Grid.Column="1"
+                  IsChecked="{Binding GeffenIsrael, Mode=TwoWay}"
+                  IsVisible="{Binding Source={x:Reference chkGeffen}, Path=IsChecked}"/>
+            <app:CheckBoxEx x:Name="chkFruit" Text="{app:CustomResource MeeinShalosh7KindsTitle}" Grid.Row="2"
+                  IsChecked="{Binding Fruit, Mode=TwoWay}"/>
+            <app:CheckBoxEx Text="{app:CustomResource OfIsraelTitle}" Grid.Row="2" Grid.Column="1"
+                  IsChecked="{Binding FruitIsrael, Mode=TwoWay}"
+                  IsVisible="{Binding Source={x:Reference chkFruit}, Path=IsChecked}"/>
+
+            <ScrollView Grid.Row="4" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Never">
+                <Label FormattedText="{Binding Text1.Content, Converter={StaticResource FormattedStringConverter}}" LineBreakMode="WordWrap"/>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

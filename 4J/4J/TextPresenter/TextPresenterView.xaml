@@ -8,7 +8,7 @@
              Title="{Binding TextDocument.Title}">
     <ContentPage.Resources>
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
-        <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="Black" HighlightColor="{StaticResource Primary}"/>
+        <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{StaticResource TextColor}" HighlightColor="{StaticResource Primary}"/>
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
@@ -65,6 +65,7 @@
         <Style x:Key="JumpListStyle" TargetType="ListView">
             <Setter Property="ItemsSource" Value="{Binding TextDocument.Items}"/>
             <Setter Property="SelectionMode" Value="None"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="ItemTemplate" Value="{StaticResource JumpListItemTemplate}"/>
         </Style>
 

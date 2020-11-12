@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using Xamarin.Forms;
 
@@ -19,8 +20,16 @@ namespace PrayPal
         public override Element GetOrCreate()
         {
             Element result = _viewFactory();
-            result.BindingContext = _viewModelFactory();
-            //(result.BindingContext as IContentPage)?.GenerateContentAsync();
+            object viewModel = _viewModelFactory();
+
+            if (result.GetType().GetCustomAttribute<QueryPropertyAttribute>() == null)
+            {
+                // If the page has no query parameters, we can generate its content immediately:
+                (viewModel as IContentPage)?.GenerateContentAsync();
+            }
+
+            result.BindingContext = viewModel;
+
             return result;
         }
     }

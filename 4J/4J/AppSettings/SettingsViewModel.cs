@@ -13,7 +13,7 @@ using Xamarin.Essentials;
 
 namespace PrayPal.AppSettings
 {
-    public class SettingsViewModel : PageViewModelBase
+    public class SettingsViewModel : ScreenPageViewModelBase
     {
         private readonly Command _goToLockScreenSettingsCommand;
         private readonly Command _goToLocationSettingsCommand;
@@ -91,29 +91,6 @@ namespace PrayPal.AppSettings
             set
             {
                 Settings.UseLightBackground = value;
-                //App.Current.UserAppTheme = value == true? .SetTheme();
-                //IsolatedStorageSettings.ApplicationSettings["UseLightBackground"] = value;
-                //RaisePropertyChanged("UseLightBackground");
-                //Save();
-
-                ////System.Windows.Application.Current.Resources.Remove("PhoneBackgroundColor");
-                ////System.Windows.Application.Current.Resources.Remove("PhoneForegroundColor");
-
-                //if (value)
-                //{
-                //    ((Microsoft.Phone.Controls.TransitionFrame)System.Windows.Application.Current.RootVisual).Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
-                //    ((Microsoft.Phone.Controls.TransitionFrame)System.Windows.Application.Current.RootVisual).Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Black);
-                //    //System.Windows.Application.Current.Resources.Add("PhoneBackgroundColor", new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White));
-                //    //System.Windows.Application.Current.Resources.Add("PhoneForegroundColor", new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Black));
-                //}
-                //else
-                //{
-                //    ((Microsoft.Phone.Controls.TransitionFrame)System.Windows.Application.Current.RootVisual).ClearValue(System.Windows.Controls.Page.BackgroundProperty);//.Background = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Application.Current.Resources["PhoneBackgroundColor"]);
-                //    ((Microsoft.Phone.Controls.TransitionFrame)System.Windows.Application.Current.RootVisual).ClearValue(System.Windows.Controls.Page.ForegroundProperty);//.Foreground = new System.Windows.Media.SolidColorBrush((System.Windows.Media.Color)System.Windows.Application.Current.Resources["PhoneForegroundColor"]);
-                //    //System.Windows.Application.Current.Resources.Add("PhoneBackgroundColor", new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Black));
-                //    //System.Windows.Application.Current.Resources.Add("PhoneForegroundColor", new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White));
-                //}
-
             }
         }
 

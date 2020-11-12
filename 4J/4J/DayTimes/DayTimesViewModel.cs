@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace PrayPal.DayTimes
 {
-    public class DayTimesViewModel : PageViewModelBase, IContentPage
+    public class DayTimesViewModel : ScreenPageViewModelBase, IContentPage
     {
         protected readonly ILocationService _locationService;
         protected readonly ITimeService _timeService;

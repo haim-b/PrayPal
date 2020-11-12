@@ -11,19 +11,11 @@ namespace PrayPal.Models
     {
         private string _title;
         private string _subtitle;
-        private readonly string _pageName;
-        private readonly object _pageParameter;
 
-        public ItemViewModel(string pageName, string title, object pageParameter = null)
+        public ItemViewModel(string title, string subtitle)
         {
-            if (string.IsNullOrWhiteSpace(pageName))
-            {
-                throw new ArgumentException($"'{nameof(pageName)}' cannot be null or whitespace", nameof(pageName));
-            }
-
-            _pageName = pageName;
             _title = title ?? throw new ArgumentNullException(nameof(title));
-            _pageParameter = pageParameter;
+            _subtitle = subtitle;
         }
 
         public string Title
@@ -42,16 +34,6 @@ namespace PrayPal.Models
             {
                 SetProperty(ref _subtitle, value);
             }
-        }
-
-        public string PageName
-        {
-            get { return _pageName; }
-        }
-
-        public object PageParameter
-        {
-            get { return _pageParameter; }
         }
     }
 }

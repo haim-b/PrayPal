@@ -1,42 +1,40 @@
-﻿using Microsoft.Extensions.Logging;
-using PrayPal.Common;
+﻿using PrayPal.Services;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace PrayPal
 {
-    public class PageViewModelBase : BindableBase, ISettingsListener
+    public class PageViewModelBase : BindableBase
     {
-        public PageViewModelBase(string title, ILogger logger)
-        {
-            Title = title ?? throw new ArgumentNullException(nameof(title));
-            Logger = logger;
+        protected readonly IErrorReportingService _errorReportingService;
 
-            Settings.RegisterListener(this);
+        public PageViewModelBase(string title, IErrorReportingService errorReportingService)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentException($"'{nameof(title)}' cannot be null or whitespace", nameof(title));
+            }
+
+            if (errorReportingService == null)
+            {
+                throw new ArgumentNullException(nameof(errorReportingService));
+            }
+
+            Title = title;
+            _errorReportingService = errorReportingService;
+            ReportErrorCommand = new Command(ExecuteReportErrorCommand);
         }
 
         public string Title { get; }
 
-        protected ILogger Logger { get; }
+        public Command ReportErrorCommand { get; }
 
-        async void ISettingsListener.OnSettingsChanged(string settingName)
+        protected virtual void ExecuteReportErrorCommand()
         {
-            try
-            {
-                await OnSettingsChangedAsync(settingName);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, "Failed when refreshing after settings changed.");
-            }
-        }
-
-        protected virtual Task OnSettingsChangedAsync(string settingsName)
-        {
-            return Task.CompletedTask;
+            _errorReportingService.ReportIssueAsync(Title);
         }
     }
 }

@@ -3,6 +3,7 @@ using PrayPal.Common;
 using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
 using PrayPal.Models;
+using PrayPal.Prayers.MeeinShalosh;
 using PrayPal.Resources;
 using PrayPal.TextPresenter;
 using Prism.Mvvm;
@@ -16,7 +17,7 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Prayers
 {
-    public class PrayersViewModel : PageViewModelBase, IContentPage
+    public class PrayersViewModel : ScreenPageViewModelBase, IContentPage
     {
         private readonly ITimeService _timeService;
         private readonly INavigationService _navigationService;
@@ -27,32 +28,38 @@ namespace PrayPal.Prayers
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
-            Items = new ObservableCollection<ItemViewModel>();
+            Items = new ObservableCollection<PrayerItemViewModel>();
 
-            ItemTappedCommand = new Command<ItemViewModel>(OnItemTappedExecuted);
+            ItemTappedCommand = new Command<PrayerItemViewModel>(OnItemTappedExecuted);
         }
 
-        public ObservableCollection<ItemViewModel> Items { get; }
+        public ObservableCollection<PrayerItemViewModel> Items { get; }
 
-        public Command<ItemViewModel> ItemTappedCommand { get; }
+        public Command<PrayerItemViewModel> ItemTappedCommand { get; }
 
         public async Task GenerateContentAsync()
         {
-
-            Items.Add(new ItemViewModel(PrayerNames.Shacharit, CommonResources.ShacharitTitle));
-            Items.Add(new ItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
-            Items.Add(new ItemViewModel(PrayerNames.MeeinShalosh, AppResources.MeeinShaloshTitle));
-            Items.Add(new ItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle));
-            Items.Add(new ItemViewModel(PrayerNames.Arvit, GetArvitTitle()));
-            Items.Add(new ItemViewModel(PrayerNames.TfilatHaderech, AppResources.TfilatHaderechTitle));
-            Items.Add(new ItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
+            Items.Clear();
+            Items.Add(new PrayerItemViewModel(PrayerNames.Shacharit, CommonResources.ShacharitTitle));
+            Items.Add(new PrayerItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
+            Items.Add(new PrayerItemViewModel(PrayerNames.MeeinShalosh, AppResources.MeeinShaloshTitle, typeof(MeeinShaloshPageViewModel)));
+            Items.Add(new PrayerItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle));
+            Items.Add(new PrayerItemViewModel(PrayerNames.Arvit, GetArvitTitle()));
+            Items.Add(new PrayerItemViewModel(PrayerNames.TfilatHaderech, AppResources.TfilatHaderechTitle));
+            Items.Add(new PrayerItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
 
             await HandleHannukahAsync();
         }
 
 
-        private async void OnItemTappedExecuted(ItemViewModel item)
+        private async void OnItemTappedExecuted(PrayerItemViewModel item)
         {
+            if (item.ViewModelType != null)
+            {
+                await _navigationService.NavigateToAsync(item.ViewModelType.Name);
+                return;
+            }
+
             await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), "textName", item.PageName);
         }
 
@@ -74,10 +81,20 @@ namespace PrayPal.Prayers
 
             if (jc.Chanukah)
             {
-                ItemViewModel item = new ItemViewModel(PrayerNames.HannukahCandles, AppResources.HadlakatNerotHannukahTitle); ;
+                PrayerItemViewModel item = new PrayerItemViewModel(PrayerNames.HannukahCandles, AppResources.HadlakatNerotHannukahTitle); ;
 
                 Items.Add(item);
             }
+        }
+
+        protected override async Task OnSettingsChangedAsync(string settingsName)
+        {
+            if (settingsName != nameof(Settings.UseLocation))
+            {
+                return;
+            }
+
+            await GenerateContentAsync();
         }
 
     }
