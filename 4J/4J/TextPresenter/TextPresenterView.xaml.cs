@@ -17,5 +17,9 @@ namespace PrayPal.TextPresenter
             InitializeComponent();
         }
 
+        private void OnScrolled(object sender, ScrolledEventArgs e)
+        {
+            object activeGroup = GroupingHelper.GetActiveGroup((ListView)sender);
+        }
     }
 }
