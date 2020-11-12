@@ -17,5 +17,19 @@ namespace PrayPal.TextPresenter
             InitializeComponent();
         }
 
+        private void OnGroupPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(Label.Text) || Device.RuntimePlatform != Device.Android)
+            {
+                return;
+            }
+
+            Label label = (Label)sender;
+
+            if (label.BindingContext == lst.ItemsSource?.Cast<object>()?.FirstOrDefault())
+            {
+                label.IsVisible = false;
+            }
+        }
     }
 }
