@@ -15,6 +15,19 @@ namespace PrayPal.Content
             : base(prayer)
         { }
 
+        protected override void AddBirkatHaShanim()
+        {
+            if (_dayInfo.IsVetenBracha())
+            {
+                Add(CommonPrayerTextProvider.Current.SE09Summer);
+                Settings.ShowVeanenu = false;
+            }
+            else
+            {
+                Add(CommonPrayerTextProvider.Current.SE09Winter);
+            }
+        }
+
         protected override void AddPart16()
         {
             if (IsMinchaInTeanit)
@@ -33,7 +46,7 @@ namespace PrayPal.Content
 
         protected override void AddEnding2()
         {
-            Add(CommonPrayerTextProvider.Current.SE_End, EdotHaMizrachPrayerTextProvider.Instance.AfterHazarahTitle);
+            Add(CommonPrayerTextProvider.Current.SE_End, AppResources.AfterHazarahTitle);
         }
 
         public override bool IsPart9Bold

@@ -43,11 +43,6 @@ namespace PrayPal.Content
             get { return _texts["MeeinShaloshMichya3"]; }
         }
 
-        public string AfterHazarahTitle
-        {
-            get { return _texts["AfterHazarahTitle"]; }
-        }
-
         public string BeforeBirkatHamazon
         {
             get { return _texts["BeforeBirkatHamazon"]; }

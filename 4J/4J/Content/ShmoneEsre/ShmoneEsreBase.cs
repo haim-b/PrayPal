@@ -146,6 +146,23 @@ namespace PrayPal.Content
 
             Add(CommonPrayerTextProvider.Current.SE08);
 
+            AddBirkatHaShanim();
+
+            Add(CommonPrayerTextProvider.Current.SE10);
+
+            AddStringFormat(CommonPrayerTextProvider.Current.SE11, aseretYameyTshuva ? CommonPrayerTextProvider.Current.SE11Aseret : CommonPrayerTextProvider.Current.SE11Regular, false, aseretYameyTshuva);
+
+            Add(CommonPrayerTextProvider.Current.SE12);
+            Add(CommonPrayerTextProvider.Current.SE13);
+
+            bool isAv9th = _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
+            AddStringFormat(CommonPrayerTextProvider.Current.SE14, isAv9th ? CommonPrayerTextProvider.Current.Nachem : CommonPrayerTextProvider.Current.SE14B, false, isAv9th);
+
+            Add(CommonPrayerTextProvider.Current.SE15);
+        }
+
+        protected virtual void AddBirkatHaShanim()
+        {
             string[] texts = string.Format(CommonPrayerTextProvider.Current.SE09, "|").Split('|');
 
             if (texts.Length >= 2)
@@ -166,18 +183,6 @@ namespace PrayPal.Content
 
                 _items.Add(p);
             }
-
-            Add(CommonPrayerTextProvider.Current.SE10);
-
-            AddStringFormat(CommonPrayerTextProvider.Current.SE11, aseretYameyTshuva ? CommonPrayerTextProvider.Current.SE11Aseret : CommonPrayerTextProvider.Current.SE11Regular, false, aseretYameyTshuva);
-
-            Add(CommonPrayerTextProvider.Current.SE12);
-            Add(CommonPrayerTextProvider.Current.SE13);
-
-            bool isAv9th = _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
-            AddStringFormat(CommonPrayerTextProvider.Current.SE14, isAv9th ? CommonPrayerTextProvider.Current.Nachem : CommonPrayerTextProvider.Current.SE14B, false, isAv9th);
-
-            Add(CommonPrayerTextProvider.Current.SE15);
         }
 
         protected abstract void AddPart16();
