@@ -9,13 +9,14 @@
     <ContentPage.Resources>
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
         <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{StaticResource TextColor}" HighlightColor="{StaticResource Primary}"/>
+        <local:FlowDirectionIsLtrConverter x:Key="LtrConverter"/>
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
                 <StackLayout Margin="{StaticResource ParagraphThickness}">
                     <Label Text="{Binding Title}" TextColor="{StaticResource Primary}"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}"
+                    <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                 Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                 </StackLayout>
             </ViewCell>
@@ -40,7 +41,7 @@
                             </DataTrigger>
                         </Expander.Triggers>
 
-                        <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}"
+                        <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                     Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     </Expander>
 

@@ -58,7 +58,5 @@ namespace PrayPal.Models
             get { return _fontSize; }
             set { _fontSize = value; }
         }
-
-        public bool IsLtr { get; set; }
     }
 }

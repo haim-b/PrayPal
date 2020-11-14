@@ -42,27 +42,28 @@ namespace PrayPal.Content.Brachot
         {
             char[] lightingOrder = new char[8];
 
-            int i = 1;
-
-            // Insert empty candles:
-            for (; i <= 8 - candleIndex; i++)
+            for (int i = 0; i < 8; i++)
             {
-                lightingOrder[i - 1] = (char)0x25cb;
-            }
-
-            // Insert real candles:
-            for (; i <= 8; i++)
-            {
-                lightingOrder[i - 1] = (char)(0x2775 + i - (8 - candleIndex));
+                lightingOrder[i] = GetCandleChar(candleIndex - i);
             }
 
             ParagraphModel[] instruction = new ParagraphModel[2];
 
             instruction[0] = new ParagraphModel(AppResources.HannukahCandlesOrderInstruction);
 
-            instruction[1] = new ParagraphModel(null, new RunModel(new string(lightingOrder)) { IsLtr = true });
+            instruction[1] = new ParagraphModel(null, new RunModel(new string(lightingOrder)));// { IsLtr = true };
 
             Add(AppResources.HannukahCandlesOrderTitle, instruction);
+        }
+
+        private char GetCandleChar(int candle)
+        {
+            if (candle <= 0)
+            {
+                return (char)0x25cb;
+            }
+
+            return (char)(0x2775 + candle);
         }
 
         private void AddBlessing(int candleIndex)

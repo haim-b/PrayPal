@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using Xamarin.Forms;
+
+namespace PrayPal.TextPresenter
+{
+    public class FlowDirectionIsLtrConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool b)
+            {
+                if (b)
+                {
+                    return FlowDirection.LeftToRight;
+                }
+
+                return FlowDirection.RightToLeft;
+            }
+
+            return FlowDirection.MatchParent;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

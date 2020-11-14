@@ -22,7 +22,7 @@ namespace PrayPal
             Element result = _viewFactory();
             object viewModel = _viewModelFactory();
 
-            if (result.GetType().GetCustomAttribute<QueryPropertyAttribute>() == null)
+            if (viewModel != null && viewModel.GetType().GetCustomAttribute<QueryPropertyAttribute>() == null)
             {
                 // If the page has no query parameters, we can generate its content immediately:
                 (viewModel as IContentPage)?.GenerateContentAsync();

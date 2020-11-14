@@ -78,6 +78,8 @@ namespace PrayPal.Models
             }
         }
 
+        public bool IsLtr { get; set; }
+
         //public void Add(RunModel run)
         //{
         //    if (run == null)
