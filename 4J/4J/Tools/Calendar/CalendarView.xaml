@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrayPal.Tools.Calendar.CalendarView"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <Style x:Key="calCellStyle" TargetType="ContentView">
+            <Setter Property="Content" Value="{Binding}"/>
+        </Style>
+
+        <Style x:Key="MonthButtonStyle" TargetType="Button">
+            <Setter Property="CornerRadius" Value="100"/>
+            <Setter Property="WidthRequest" Value="40"/>
+            <Setter Property="HeightRequest" Value="40"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,3">
+                <Button Text="&#x25C0;" Command="{Binding DecreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding Source={RelativeSource FindAncestor, AncestorType={x:Type Shell}}, Path=FlowDirection}" Value="RightToLeft">
+                            <Setter Property="Text" Value="&#x25B6;"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                
+                <Label Text="{Binding CalendarPageTitle}" FontSize="Title" VerticalTextAlignment="Center"/>
+                
+                <Button Text="&#x25B6;" Command="{Binding IncreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding Source={RelativeSource FindAncestor, AncestorType={x:Type Shell}}, Path=FlowDirection}" Value="RightToLeft">
+                            <Setter Property="Text" Value="&#x25C0;"/>
+                        </DataTrigger>
+                    </Button.Triggers></Button>
+            </StackLayout>
+            <Grid x:Name="calendarHeaders" VerticalOptions="Start">
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontAttributes" Value="Bold"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="א'"/>
+                <Label Text="ב'" Grid.Column="1"/>
+                <Label Text="ג'" Grid.Column="2"/>
+                <Label Text="ד'" Grid.Column="3"/>
+                <Label Text="ה'" Grid.Column="4"/>
+                <Label Text="ו'" Grid.Column="5"/>
+                <Label Text="שבת" Grid.Column="6"/>
+            </Grid>
+            <Grid x:Name="calendar" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding Days}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}">
+                            <Label Text="{Binding DayTitle}"/>
+                            <Label Text="X" IsVisible="{Binding HasEvent}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
