@@ -205,6 +205,15 @@ namespace PrayPal.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to תשרי|חשוון|כסלו|טבת|שבט|אדר|אדר א&apos;|אדר ב&apos;|ניסן|אייר|סיוון|תמוז|אב|אלול.
+        /// </summary>
+        public static string HebMonths {
+            get {
+                return ResourceManager.GetString("HebMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to הושענא רבה.
         /// </summary>
         public static string HoshaanaRabaTitle {

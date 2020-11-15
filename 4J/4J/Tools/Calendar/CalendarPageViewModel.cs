@@ -1,4 +1,5 @@
 ﻿using PrayPal.Common;
+using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
 using PrayPal.Resources;
 using PrayPal.Services;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -19,18 +21,61 @@ namespace PrayPal.Tools.Calendar
         private readonly ITimeService _timeService;
         private ObservableCollection<HebrewCalendarDayViewModel> _days;
         private HebrewCalendarDayViewModel _selectedDay;
-        private int _month;
+        private int _monthFromNissan;
         private int _year;
-        private string _DateString;
+        //private string _monthString;
+        //private string _yearString;
         private bool _isInitialized;
+
+        private static readonly ReadOnlyCollection<string> _years;
+        private static readonly string[] _monthNames;
+        private const int StartYear = 5700;
+
+        static CalendarPageViewModel()
+        {
+            //CultureInfo ci = new CultureInfo("he");
+            //ci.DateTimeFormat.Calendar = new HebrewCalendar();
+            HebrewDateFormatter formatter = new HebrewDateFormatter { UseGershGershayim = true, HebrewFormat = true, UseEndLetters = true };
+
+            List<string> years = new List<string>(6000);
+
+            years.AddRange(Enumerable.Range(StartYear, 5800 - StartYear).Select(i => formatter.formatHebrewNumber(i)));
+
+            _years = new ReadOnlyCollection<string>(years);
+
+            _monthNames = CommonResources.HebMonths.Split('|');
+
+            if (_monthNames.Length != 14)
+            {
+                throw new InvalidOperationException("There must be 14 registered months, including Regular Adar, Adar 1 and Adar 2.");
+            }
+        }
 
         public CalendarPageViewModel(ITimeService timeService, IErrorReportingService errorReportingService)
             : base(AppResources.CalendarTitle, errorReportingService)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
 
-            IncreaseMonthCommand = new Command(IncreaseMonth);
-            DecreaseMonthCommand = new Command(DecreaseMonth);
+            IncreaseMonthCommand = new Command(IncreaseMonth, CanIncreaseMonth);
+            DecreaseMonthCommand = new Command(DecreaseMonth, CanDecreaseMonth);
+            Months = new ObservableCollection<string>();
+
+            // Add Tishrei to Adar:
+            for (int i = 0; i <= 5; i++)
+            {
+                Months.Add(_monthNames[i]);
+            }
+
+            // Add Nissan to Ellul:
+            for (int i = 8; i <= 13; i++)
+            {
+                Months.Add(_monthNames[i]);
+            }
+
+            // Supply initial values before the location is resolved:
+            JewishCalendar jc = new JewishCalendar(DateTime.Now);
+            MonthFromNissan = jc.JewishMonth;
+            Year = jc.JewishYear;
         }
 
         public ObservableCollection<HebrewCalendarDayViewModel> Days
@@ -39,13 +84,37 @@ namespace PrayPal.Tools.Calendar
             private set { SetProperty(ref _days, value); }
         }
 
-        public int Month
+        public int MonthFromNissan
         {
-            get { return _month; }
+            get { return _monthFromNissan; }
             set
             {
-                SetProperty(ref _month, value);
+                SetProperty(ref _monthFromNissan, value);
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(MonthIndex)));
                 BuildItems();
+                RefreshCommands();
+            }
+        }
+
+        public int MonthIndex
+        {
+            // The getter's formula is this: Shift 6 months forward (for example, Nissan is 1 but is actually the 7th or 8th). Then we mod by 12/13, then we subtract 1 to make it zero-based.
+            // Setter is the opposite.
+            get
+            {
+                int leapYear = JewishCalendar.IsJewishLeapYear(_year) ? 1 : 0;
+                return Mod(MonthFromNissan + 6 + leapYear, 12 + leapYear) - 1;
+            }
+            set
+            {
+                if (value == -1)
+                {
+                    return;
+                }
+
+                int leapYear = JewishCalendar.IsJewishLeapYear(_year) ? 1 : 0;
+                MonthFromNissan = Mod(value - 6 - leapYear, 12 + leapYear) + 1;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(MonthIndex)));
             }
         }
 
@@ -54,15 +123,24 @@ namespace PrayPal.Tools.Calendar
             get { return _year; }
             set
             {
+                int oldValue = _year;
                 SetProperty(ref _year, value);
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(YearIndex)));
+
+                UpdateMonthsList(oldValue);
                 BuildItems();
+                RefreshCommands();
             }
         }
 
-        public string CalendarPageTitle
+        public int YearIndex
         {
-            get { return _DateString; }
-            set { SetProperty(ref _DateString, value); }
+            get { return Year - StartYear; }
+            set
+            {
+                Year = value + StartYear;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(YearIndex)));
+            }
         }
 
         public HebrewCalendarDayViewModel SelectedDay
@@ -71,15 +149,66 @@ namespace PrayPal.Tools.Calendar
             set { SetProperty(ref _selectedDay, value); }
         }
 
+        public ObservableCollection<string> Months { get; }
+
+        public ReadOnlyCollection<string> Years
+        {
+            get { return _years; }
+        }
+
         public Command IncreaseMonthCommand { get; }
 
         public Command DecreaseMonthCommand { get; }
+
+        private void UpdateMonthsList(int oldYear)
+        {
+            bool isOldYearLeap = oldYear != 0 && JewishCalendar.IsJewishLeapYear(oldYear);
+            bool isNewYearLeap = JewishCalendar.IsJewishLeapYear(_year);
+
+            if (isOldYearLeap == isNewYearLeap)
+            {
+                return;
+            }
+
+            if (isNewYearLeap)
+            {
+                Months.RemoveAt(5);
+                Months.Insert(5, _monthNames[6]);
+                Months.Insert(6, _monthNames[7]);
+
+                if (MonthIndex > 5)
+                {
+                    MonthIndex++;
+                }
+            }
+            else
+            {
+                Months.RemoveAt(6); // We remove Adar 2 first and then Adar 1 to keep the list stable. We could have also remove at (5) twice.
+                Months.RemoveAt(5);
+                Months.Insert(5, _monthNames[5]);
+
+                if (MonthIndex > 5)
+                {
+                    MonthIndex--;
+                }
+            }
+
+            if (Months.Count < _monthFromNissan)
+            {
+                MonthFromNissan = Months.Count - 1;
+            }
+        }
+
+        private static int Mod(int a, int b)
+        {
+            return (int)(a - b * Math.Floor((double)a / b));
+        }
 
         public async Task GenerateContentAsync()
         {
             var today = await _timeService.GetDayInfoAsync();
 
-            Month = today.JewishCalendar.JewishMonth;
+            MonthFromNissan = today.JewishCalendar.JewishMonth;
             Year = today.JewishCalendar.JewishYear;
 
             _isInitialized = true;
@@ -87,27 +216,47 @@ namespace PrayPal.Tools.Calendar
             BuildItems();
         }
 
-        public void IncreaseMonth()
+        private bool CanDecreaseMonth()
         {
-            JewishCalendar jc = new JewishCalendar(Year, Month, 1);
+            return MonthIndex != 0 && YearIndex != 0;
+        }
+
+        private void IncreaseMonth()
+        {
+            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1);
+
+            // Go to the last day of the month:
             jc.JewishDayOfMonth = jc.DaysInJewishMonth;
             jc.forward();
 
             BeginInit();
-            Month = jc.JewishMonth;
+            MonthFromNissan = jc.JewishMonth;
             Year = jc.JewishYear;
             EndInit();
         }
 
+
+        private bool CanIncreaseMonth()
+        {
+            return MonthIndex != Months.Count - 1 && YearIndex != _years.Count - 1;
+        }
+
+
         public void DecreaseMonth()
         {
-            JewishCalendar jc = new JewishCalendar(Year, Month, 1);
+            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1);
             jc.back();
 
             BeginInit();
-            Month = jc.JewishMonth;
+            MonthFromNissan = jc.JewishMonth;
             Year = jc.JewishYear;
-            EndInit();
+            EndInit(); ;
+        }
+
+        private void RefreshCommands()
+        {
+            IncreaseMonthCommand.ChangeCanExecute();
+            DecreaseMonthCommand.ChangeCanExecute();
         }
 
         private void BeginInit()
@@ -130,8 +279,8 @@ namespace PrayPal.Tools.Calendar
 
             JewishCalendar selectedValue = _selectedDay?.JewishCalendar;
 
-            int month = Month;
-            HebrewDateFormatter formatter = new HebrewDateFormatter { UseGershGershayim = false, HebrewFormat = true, UseEndLetters = false };
+            int month = MonthFromNissan;
+
             JewishCalendar jc = new JewishCalendar(Year, month, 1) { InIsrael = Settings.IsInIsrael, UseModernHolidays = true };
 
             int row = 1;
@@ -166,8 +315,6 @@ namespace PrayPal.Tools.Calendar
 
             Days = days;
 
-            formatter.UseGershGershayim = true;
-            CalendarPageTitle = formatter.formatMonth(jc) + " " + formatter.formatHebrewNumber(jc.JewishYear);
 
             if (selectedValueFound)
             {

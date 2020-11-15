@@ -12,12 +12,21 @@
             <Setter Property="CornerRadius" Value="100"/>
             <Setter Property="WidthRequest" Value="40"/>
             <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,3">
-                <Button Text="&#x25C0;" Command="{Binding DecreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}">
+            
+            <!-- Title: -->
+            <Grid Margin="0,3" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Text="&#x25C0;" Command="{Binding DecreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}" HorizontalOptions="Start">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding Source={RelativeSource FindAncestor, AncestorType={x:Type Shell}}, Path=FlowDirection}" Value="RightToLeft">
                             <Setter Property="Text" Value="&#x25B6;"/>
@@ -25,15 +34,18 @@
                     </Button.Triggers>
                 </Button>
                 
-                <Label Text="{Binding CalendarPageTitle}" FontSize="Title" VerticalTextAlignment="Center"/>
+                <Picker SelectedIndex="{Binding MonthIndex}" ItemsSource="{Binding Months}" FontSize="Title" HorizontalOptions="Fill" Grid.Column="1"/>
+                <Picker SelectedIndex="{Binding YearIndex}" ItemsSource="{Binding Years}" FontSize="Title" Margin="5,0,0,0" HorizontalOptions="Fill" Grid.Column="2"/>
                 
-                <Button Text="&#x25B6;" Command="{Binding IncreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}">
+                <Button Text="&#x25B6;" Command="{Binding IncreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}" HorizontalOptions="End" Grid.Column="3">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding Source={RelativeSource FindAncestor, AncestorType={x:Type Shell}}, Path=FlowDirection}" Value="RightToLeft">
                             <Setter Property="Text" Value="&#x25C0;"/>
                         </DataTrigger>
                     </Button.Triggers></Button>
-            </StackLayout>
+            </Grid>
+            
+            <!-- Headers: -->
             <Grid x:Name="calendarHeaders" VerticalOptions="Start">
                 <Grid.Resources>
                     <Style TargetType="Label">
@@ -58,7 +70,9 @@
                 <Label Text="ו'" Grid.Column="5"/>
                 <Label Text="שבת" Grid.Column="6"/>
             </Grid>
-            <Grid x:Name="calendar" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding Days}">
+            
+            <!-- Calendar: -->
+            <Grid x:Name="calendar" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding Days}" ColumnSpacing="0" RowSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -78,10 +92,18 @@
                 </Grid.RowDefinitions>
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}">
-                            <Label Text="{Binding DayTitle}"/>
-                            <Label Text="X" IsVisible="{Binding HasEvent}"/>
-                        </StackLayout>
+                        <Frame BorderColor="Black" CornerRadius="0" Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}" Padding="5,0">
+                            <StackLayout>
+                                <Label Text="{Binding DayTitle}"/>
+                                <Label Text="&#x2B24;" TextColor="Transparent" HorizontalTextAlignment="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding HasEvent}" Value="True">
+                                            <Setter Property="TextColor" Value="{DynamicResource Primary}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </Grid>
