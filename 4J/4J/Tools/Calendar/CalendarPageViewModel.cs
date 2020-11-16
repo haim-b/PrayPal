@@ -33,8 +33,6 @@ namespace PrayPal.Tools.Calendar
 
         static CalendarPageViewModel()
         {
-            //CultureInfo ci = new CultureInfo("he");
-            //ci.DateTimeFormat.Calendar = new HebrewCalendar();
             HebrewDateFormatter formatter = new HebrewDateFormatter { UseGershGershayim = true, HebrewFormat = true, UseEndLetters = true };
 
             List<string> years = new List<string>(6000);
@@ -98,12 +96,13 @@ namespace PrayPal.Tools.Calendar
 
         public int MonthIndex
         {
-            // The getter's formula is this: Shift 6 months forward (for example, Nissan is 1 but is actually the 7th or 8th). Then we mod by 12/13, then we subtract 1 to make it zero-based.
+            // The getter's formula is this: Shift 6 (or 7 if leap) months forward (for example, Nissan is 1 but is actually the 7th or 8th).
+            // Then we subtract 1 to make is zero-based. Then we mod by 12/13 to make the negative value cyclic. Mod is last because it provides zero-based values.
             // Setter is the opposite.
             get
             {
                 int leapYear = JewishCalendar.IsJewishLeapYear(_year) ? 1 : 0;
-                return Mod(MonthFromNissan + 6 + leapYear, 12 + leapYear) - 1;
+                return Mod(MonthFromNissan + 6 + leapYear - 1, 12 + leapYear);
             }
             set
             {
@@ -216,11 +215,6 @@ namespace PrayPal.Tools.Calendar
             BuildItems();
         }
 
-        private bool CanDecreaseMonth()
-        {
-            return MonthIndex != 0 && YearIndex != 0;
-        }
-
         private void IncreaseMonth()
         {
             JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1);
@@ -230,15 +224,16 @@ namespace PrayPal.Tools.Calendar
             jc.forward();
 
             BeginInit();
-            MonthFromNissan = jc.JewishMonth;
+            // Set the year first so that the months list will update before we set the month index:
             Year = jc.JewishYear;
+            MonthFromNissan = jc.JewishMonth;
             EndInit();
         }
 
 
         private bool CanIncreaseMonth()
         {
-            return MonthIndex != Months.Count - 1 && YearIndex != _years.Count - 1;
+            return !(MonthIndex == Months.Count - 1 && YearIndex == _years.Count - 1);
         }
 
 
@@ -248,9 +243,15 @@ namespace PrayPal.Tools.Calendar
             jc.back();
 
             BeginInit();
-            MonthFromNissan = jc.JewishMonth;
+            // Set the year first so that the months list will update before we set the month index:
             Year = jc.JewishYear;
+            MonthFromNissan = jc.JewishMonth;
             EndInit(); ;
+        }
+
+        private bool CanDecreaseMonth()
+        {
+            return !(MonthIndex == 0 && YearIndex == 0);
         }
 
         private void RefreshCommands()
@@ -291,7 +292,7 @@ namespace PrayPal.Tools.Calendar
             while (jc.JewishMonth == month)
             {
                 HebrewCalendarDayViewModel item = new HebrewCalendarDayViewModel(jc, row);
-                //item.Content = formatter.formatHebrewNumber(jc.JewishDayOfMonth);
+
                 days.Add(item);
 
 
