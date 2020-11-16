@@ -5,6 +5,7 @@
              x:Class="PrayPal.Prayers.PrayersView" Title="{app:CustomResource ApplicationTitle}">
   <ListView x:Name="lst" ItemsSource="{Binding Items}"
             SelectionMode="None"
+            SeparatorVisibility="None"
             CachingStrategy="RecycleElement">
     
         <ListView.ItemTemplate>

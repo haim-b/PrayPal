@@ -19,6 +19,12 @@ namespace PrayPal.TextPresenter
         public TextPresenterView()
         {
             InitializeComponent();
+
+            if (Device.RuntimePlatform != Device.Android)
+            {
+                GroupHeaderView.RemoveBinding(ContentView.IsVisibleProperty);
+                GroupHeaderView.IsVisible = false;
+            }
         }
 
         public async void OnGroupClicked(object sender, EventArgs e)

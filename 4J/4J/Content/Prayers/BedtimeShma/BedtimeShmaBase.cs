@@ -8,7 +8,7 @@ using PrayPal.Resources;
 
 namespace PrayPal.Content.Prayers.BedtimeShma
 {
-    [TextName(PrayerNames.BedTimeShma)]
+    [TextName(PrayerNames.BedtimeShma)]
     public abstract class BedtimeShmaBase : ParagraphsPrayerBase
     {
         protected override string GetTitle()

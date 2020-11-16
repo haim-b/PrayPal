@@ -10,6 +10,7 @@
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
         <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" HighlightColor="{DynamicResource AccentColor}"/>
         <local:FlowDirectionIsLtrConverter x:Key="LtrConverter"/>
+        <x:Boolean x:Key="BoolFalse">False</x:Boolean>
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
@@ -50,11 +51,13 @@
             </ViewCell>
         </DataTemplate>
 
-        <Style x:Key="GroupLabelStyle" TargetType="Button">
+        <Style x:Key="GroupButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        </Style>
+
+        <Style x:Key="GroupLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
             <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
 
         <DataTemplate x:Key="JumpListItemTemplate">
@@ -89,7 +92,11 @@
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Button Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}" Background="{DynamicResource BackgroundBrush}" Clicked="OnGroupClicked"/>
+                        <Grid x:Name="GroupHeaderView" Background="{DynamicResource BackgroundBrush}" IsVisible="{Binding Source={x:Reference groupHeader}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" VerticalOptions="Start">
+                            <Button Style="{DynamicResource GroupButtonStyle}"
+                    Clicked="OnGroupClicked"/>
+                            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
@@ -111,9 +118,10 @@
     -->
         </local:ExtendedListView>
 
-        <ContentView IsVisible="{OnPlatform Default=False, Android=True}" Background="{DynamicResource BackgroundBrush}" VerticalOptions="Start">
-            <Button x:Name="groupHeader" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                   BackgroundColor="White" Clicked="OnGroupClicked"/>
-        </ContentView>
+        <Grid x:Name="GroupHeaderView" Background="{DynamicResource BackgroundBrush}" IsVisible="{Binding Source={x:Reference groupHeader}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" VerticalOptions="Start">
+            <Button Style="{DynamicResource GroupButtonStyle}"
+                    Clicked="OnGroupClicked"/>
+            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}"/>
+        </Grid>
     </Grid>
 </ContentPage>

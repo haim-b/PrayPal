@@ -18,6 +18,7 @@ namespace PrayPal.Content
         public ShmoneEsreBase(Prayer prayer)
         {
             _prayer = prayer;
+            Title = GetTitle();
         }
 
         protected override Task CreateOverride()

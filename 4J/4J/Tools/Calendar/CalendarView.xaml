@@ -52,6 +52,7 @@
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="FontAttributes" Value="Bold"/>
+                        <Setter Property="HorizontalTextAlignment" Value="Center"/>
                     </Style>
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>

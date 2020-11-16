@@ -45,7 +45,7 @@ namespace PrayPal.Prayers
             Items.Add(new PrayerItemViewModel(PrayerNames.MeeinShalosh, AppResources.MeeinShaloshTitle, typeof(MeeinShaloshPageViewModel)));
             Items.Add(new PrayerItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle));
             Items.Add(new PrayerItemViewModel(PrayerNames.Arvit, GetArvitTitle()));
-            Items.Add(new PrayerItemViewModel(PrayerNames.TfilatHaderech, AppResources.TfilatHaderechTitle));
+            Items.Add(new PrayerItemViewModel(PrayerNames.TfilatHaDerech, AppResources.TfilatHaderechTitle));
             Items.Add(new PrayerItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
 
             await HandleHannukahAsync();

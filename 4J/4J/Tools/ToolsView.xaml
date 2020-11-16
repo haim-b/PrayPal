@@ -6,8 +6,9 @@
              Title="{app:CustomResource ApplicationTitle}">
     <ContentPage.Content>
         <ListView x:Name="lst" ItemsSource="{Binding Items}"
-            SelectionMode="None"
-            CachingStrategy="RecycleElement">
+                  SelectionMode="None"
+                  SeparatorVisibility="None"
+                  CachingStrategy="RecycleElement">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

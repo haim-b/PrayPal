@@ -10,6 +10,7 @@ using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content.Prayers.Shacharit
 {
+    [Nusach(Nusach.EdotMizrach)]
     public class ShacharitEdotHaMizrach : ShacharitBase
     {
         protected override async Task CreateOverride()
@@ -135,7 +136,7 @@ namespace PrayPal.Content.Prayers.Shacharit
             }
             else
             {
-                AddFullKadhish();
+                AddFullKadish();
             }
 
             ///קריאת התורה
@@ -175,7 +176,7 @@ namespace PrayPal.Content.Prayers.Shacharit
             ///קדיש שלם
             if (!hasMussaf)
             {
-                AddFullKadhish();
+                AddFullKadish();
             }
 
             if (torahReadingAdded)
@@ -188,7 +189,7 @@ namespace PrayPal.Content.Prayers.Shacharit
 
                     await AddShmoneEsre(Prayer.Mussaf);
 
-                    AddFullKadhish();
+                    AddFullKadish();
 
                     Add(AppResources.BarchiNafshiTitle, Psalms.Psalm104);
                 }

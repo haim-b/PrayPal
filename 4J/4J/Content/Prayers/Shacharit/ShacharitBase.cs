@@ -129,7 +129,7 @@ namespace PrayPal.Content
             }
             else
             {
-                AddFullKadhish();
+                AddFullKadish();
             }
 
             bool isTachanunDay = _dayInfo.IsTachanunDay(GetNusach());
@@ -155,7 +155,7 @@ namespace PrayPal.Content
             ///קדיש שלם
             if (!hasMusaf)
             {
-                AddFullKadhish();
+                AddFullKadish();
             }
 
             if (torahReadingAdded)
@@ -168,7 +168,7 @@ namespace PrayPal.Content
 
                     await AddShmoneEsre(Prayer.Mussaf);
 
-                    AddFullKadhish();
+                    AddFullKadish();
                 }
             }
 
@@ -414,7 +414,7 @@ namespace PrayPal.Content
             _items.Add(aleinu);
         }
 
-        protected void AddFullKadhish()
+        protected void AddFullKadish()
         {
             SpanModel fullKadish = new SpanModel(AppResources.KadishShalemTitle);
             fullKadish.AddRange(PrayersHelper.GetFullKadish(_dayInfo));
