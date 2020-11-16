@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PrayPal.Tools.ToolsView">
+             xmlns:app="clr-namespace:PrayPal"
+             x:Class="PrayPal.Tools.ToolsView"
+             Title="{app:CustomResource ApplicationTitle}">
     <ContentPage.Content>
         <ListView x:Name="lst" ItemsSource="{Binding Items}"
             SelectionMode="None"
@@ -9,7 +11,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <Style x:Key="TextLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Default" />
-                <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -23,7 +23,7 @@
 
             <Label Text="{Binding Source={x:Reference Root}, Path=Text}" Style="{DynamicResource TextLabelStyle}" Grid.Column="1"/>
 
-            <CheckBox IsChecked="{Binding Source={x:Reference Root}, Path=IsChecked}"
+            <CheckBox IsChecked="{Binding Source={x:Reference Root}, Path=IsChecked}" Color="{DynamicResource AccentColor}"
                 VerticalOptions="Center"/>
 
         </Grid>

@@ -9,11 +9,22 @@ using Xamarin.Forms.Internals;
 
 namespace PrayPal.TextPresenter
 {
-    public class FormattedStringConverter : IValueConverter
+    public class FormattedStringConverter : BindableObject, IValueConverter
     {
-        public Color TextColor { get; set; }
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(FormattedStringConverter));
+        public static readonly BindableProperty HighlightColorProperty = BindableProperty.Create(nameof(HighlightColor), typeof(Color), typeof(FormattedStringConverter));
 
-        public Color HighlightColor { get; set; }
+        public Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        public Color HighlightColor
+        {
+            get { return (Color)GetValue(HighlightColorProperty); }
+            set { SetValue(HighlightColorProperty, value); }
+        }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -36,7 +47,16 @@ namespace PrayPal.TextPresenter
 
         private Span CreateUISpan(RunModel run)
         {
-            Span span = new Span { Text = run.Text, TextColor = run.IsHighlighted ? HighlightColor : TextColor };
+            Span span = new Span { Text = run.Text };
+
+            if (run.IsHighlighted)
+            {
+                span.SetBinding(Span.TextColorProperty, new Binding(nameof(HighlightColor), source: this));
+            }
+            else
+            {
+                span.SetBinding(Span.TextColorProperty, new Binding(nameof(TextColor), source: this));
+            }
 
             if (run.Font != null)
             {

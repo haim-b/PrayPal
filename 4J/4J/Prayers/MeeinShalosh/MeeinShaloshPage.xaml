@@ -6,7 +6,7 @@
              xmlns:tp="clr-namespace:PrayPal.TextPresenter"
              Title="{Binding Title}">
     <ContentPage.Resources>
-        <tp:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{StaticResource TextColor}" HighlightColor="{StaticResource Primary}"/>
+        <tp:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" HighlightColor="{DynamicResource AccentColor}"/>
     </ContentPage.Resources>
     <ContentPage.Content>
 

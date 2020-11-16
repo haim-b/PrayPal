@@ -8,13 +8,13 @@
              Title="{Binding TextDocument.Title}">
     <ContentPage.Resources>
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
-        <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{StaticResource TextColor}" HighlightColor="{StaticResource Primary}"/>
+        <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" HighlightColor="{DynamicResource AccentColor}"/>
         <local:FlowDirectionIsLtrConverter x:Key="LtrConverter"/>
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
                 <StackLayout Margin="{StaticResource ParagraphThickness}">
-                    <Label Text="{Binding Title}" TextColor="{StaticResource Primary}"
+                    <Label Text="{Binding Title}" TextColor="{StaticResource AccentColor}"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                 Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
@@ -23,21 +23,21 @@
         </DataTemplate>
         <DataTemplate x:Key="CollapsibleTextTemplate">
             <ViewCell>
-                <Frame x:Name="frame" BorderColor="{StaticResource Primary}" BackgroundColor="{StaticResource Primary}" Padding="4" Margin="{StaticResource ParagraphThickness}">
+                <Frame x:Name="frame" BorderColor="{StaticResource AccentColor}" BackgroundColor="{StaticResource AccentColor}" Padding="4" Margin="{StaticResource ParagraphThickness}">
                     <Expander x:Name="expander" IsExpanded="{Binding IsExpanded, Mode=OneTime}">
                         <Expander.Header>
                             <Label Text="{Binding Title}" TextColor="White" HorizontalTextAlignment="Center"
                     Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}" Value="True">
-                                        <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                                        <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
                         </Expander.Header>
                         <Expander.Triggers>
                             <DataTrigger TargetType="Expander" Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}" Value="True">
-                                <Setter Property="BackgroundColor" Value="White"/>
+                                <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
                             </DataTrigger>
                         </Expander.Triggers>
 
@@ -51,8 +51,8 @@
         </DataTemplate>
 
         <Style x:Key="GroupLabelStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="{Binding Source={x:Reference lst}, Path=BackgroundColor}"/>
-            <Setter Property="TextColor" Value="{DynamicResource Primary}"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
             <Setter Property="FontSize" Value="Large"/>
             <Setter Property="HorizontalOptions" Value="Start"/>
         </Style>
@@ -89,7 +89,7 @@
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Button Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}" BackgroundColor="White" Clicked="OnGroupClicked"/>
+                        <Button Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}" Background="{DynamicResource BackgroundBrush}" Clicked="OnGroupClicked"/>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
@@ -111,7 +111,7 @@
     -->
         </local:ExtendedListView>
 
-        <ContentView IsVisible="{OnPlatform Default=False, Android=True}" BackgroundColor="White" VerticalOptions="Start">
+        <ContentView IsVisible="{OnPlatform Default=False, Android=True}" Background="{DynamicResource BackgroundBrush}" VerticalOptions="Start">
             <Button x:Name="groupHeader" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                    BackgroundColor="White" Clicked="OnGroupClicked"/>
         </ContentView>

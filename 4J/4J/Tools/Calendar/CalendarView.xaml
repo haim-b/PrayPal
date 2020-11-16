@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PrayPal"
              x:Class="PrayPal.Tools.Calendar.CalendarView"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -23,7 +24,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Button Text="&#x25C0;" Command="{Binding DecreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}" HorizontalOptions="Start">
@@ -33,11 +33,13 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                
-                <Picker SelectedIndex="{Binding MonthIndex}" ItemsSource="{Binding Months}" FontSize="Title" HorizontalOptions="Fill" Grid.Column="1"/>
-                <Picker SelectedIndex="{Binding YearIndex}" ItemsSource="{Binding Years}" FontSize="Title" Margin="5,0,0,0" HorizontalOptions="Fill" Grid.Column="2"/>
-                
-                <Button Text="&#x25B6;" Command="{Binding IncreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}" HorizontalOptions="End" Grid.Column="3">
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Grid.Column="1">
+                    <app:PickerEx SelectedIndex="{Binding MonthIndex}" ItemsSource="{Binding Months}" FontSize="Title"/>
+                    <app:PickerEx SelectedIndex="{Binding YearIndex}" ItemsSource="{Binding Years}" FontSize="Title" Margin="5,0,0,0"/>
+                </StackLayout>
+
+                <Button Text="&#x25B6;" Command="{Binding IncreaseMonthCommand}" Style="{StaticResource MonthButtonStyle}" HorizontalOptions="End" Grid.Column="2">
                     <Button.Triggers>
                         <DataTrigger TargetType="Button" Binding="{Binding Source={RelativeSource FindAncestor, AncestorType={x:Type Shell}}, Path=FlowDirection}" Value="RightToLeft">
                             <Setter Property="Text" Value="&#x25C0;"/>
@@ -92,13 +94,13 @@
                 </Grid.RowDefinitions>
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Black" CornerRadius="0" Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}" Padding="5,0">
+                        <Frame BorderColor="{Binding Source={StaticResource TextBrush}, Path=Color}" CornerRadius="0" Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}" Padding="5,0" Background="{DynamicResource BackgroundBrush}">
                             <StackLayout>
                                 <Label Text="{Binding DayTitle}"/>
                                 <Label Text="&#x2B24;" TextColor="Transparent" HorizontalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding HasEvent}" Value="True">
-                                            <Setter Property="TextColor" Value="{DynamicResource Primary}"/>
+                                            <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>

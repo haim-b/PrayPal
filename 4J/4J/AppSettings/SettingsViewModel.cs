@@ -15,8 +15,8 @@ namespace PrayPal.AppSettings
 {
     public class SettingsViewModel : ScreenPageViewModelBase
     {
-        private readonly Command _goToLockScreenSettingsCommand;
-        private readonly Command _goToLocationSettingsCommand;
+        //private readonly Command _goToLockScreenSettingsCommand;
+        //private readonly Command _goToLocationSettingsCommand;
 
         private readonly ITimeService _timeService;
         private bool _showVeanenuSetting;
@@ -24,9 +24,11 @@ namespace PrayPal.AppSettings
         public SettingsViewModel(ITimeService timeService, ILogger<SettingsViewModel> logger)
             : base(AppResources.Settings, logger)
         {
-            _goToLockScreenSettingsCommand = new Command(ExecuteGoToLockScreenSettings);
-            _goToLocationSettingsCommand = new Command(ExecuteGoToLocationSettings);
+            //_goToLockScreenSettingsCommand = new Command(ExecuteGoToLockScreenSettings);
+            //_goToLocationSettingsCommand = new Command(ExecuteGoToLocationSettings);
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
+
+            ShowUseLightBackgroundSetting = App.Current.RequestedTheme != OSAppTheme.Light;
 
             Initialize();
         }
@@ -162,6 +164,8 @@ namespace PrayPal.AppSettings
             }
         }
 
+        public bool ShowUseLightBackgroundSetting { get; }
+
         public bool ShowVeanenuSetting
         {
             get
@@ -175,29 +179,24 @@ namespace PrayPal.AppSettings
             }
         }
 
-        public Command GoToLockScreenSettingsCommand
-        {
-            get { return _goToLockScreenSettingsCommand; }
-        }
-
-        public Command GoToLocationSettingsCommand
-        {
-            get { return _goToLocationSettingsCommand; }
-        }
-
-        private async void ExecuteGoToLockScreenSettings()
-        {
-            //await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-lock:"));
-        }
-
-        private async void ExecuteGoToLocationSettings()
-        {
-            //await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-location:"));
-        }
-
-        //private void Save()
+        //public Command GoToLockScreenSettingsCommand
         //{
-        //    IsolatedStorageSettings.ApplicationSettings.Save();
+        //    get { return _goToLockScreenSettingsCommand; }
+        //}
+
+        //public Command GoToLocationSettingsCommand
+        //{
+        //    get { return _goToLocationSettingsCommand; }
+        //}
+
+        //private async void ExecuteGoToLockScreenSettings()
+        //{
+        //    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-lock:"));
+        //}
+
+        //private async void ExecuteGoToLocationSettings()
+        //{
+        //    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-location:"));
         //}
     }
 }

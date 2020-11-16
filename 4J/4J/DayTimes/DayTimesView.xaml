@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Text="{Binding DateTitle}" Margin="3" FontAttributes="Bold"/><!--Style="{StaticResource TitleTextBlockStyle}"-->
+        <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}"/>
         <ListView Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -22,7 +22,7 @@
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>-->
-                    <TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{DynamicResource Primary}"/>
+                    <TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>
                 </DataTemplate>
                 </ListView.ItemTemplate>
         </ListView>

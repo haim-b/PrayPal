@@ -9,7 +9,7 @@
     
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
+                <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

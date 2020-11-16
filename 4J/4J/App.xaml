@@ -8,9 +8,14 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="AccentColor">#2196F3</Color>
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{AppThemeBinding Light=White, Dark=Black}"/>
+            <SolidColorBrush x:Key="TextBrush" Color="{AppThemeBinding Light=Black, Dark=White}"/>
+            <SolidColorBrush x:Key="DetailsBrush" Color="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
+            <Color x:Key="TextColorLight">Black</Color>
+            <Color x:Key="TextColorDark">White</Color>
             <Color x:Key="DetailsColor">#777777</Color>
+            
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -18,7 +23,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -30,6 +35,30 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            
+            <Style TargetType="Page" ApplyToDerivedTypes="True">
+                <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            </Style>
+            
+            <Style TargetType="Label" ApplyToDerivedTypes="True">
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+            </Style>
+
+            <Style TargetType="local:HyperlinkSpan">
+                <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
+            </Style>
+
+            <!--<Style x:Key="ListItemDetailTextStyle" TargetType="Label" BasedOn="{x:Static Device+Styles.ListItemDetailTextStyle}">
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>                
+            </Style>
+
+            <Style x:Key="ListItemTextStyle" TargetType="Label" BasedOn="{x:Static Device+Styles.ListItemTextStyle}">
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>                
+            </Style>-->
             
             <local:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"/>
         </ResourceDictionary>        

@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:PrayPal"
-             x:Class="PrayPal.AppSettings.SettingsView" Title="{app:CustomResource ApplicationTitle}">
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:app="clr-namespace:PrayPal"
+			 x:Class="PrayPal.AppSettings.SettingsView" Title="{app:CustomResource ApplicationTitle}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout  x:Name="LayoutRoot" Margin="0,0,0,50">
                 <!--<StackPanel Orientation="Horizontal" Margin="0,15" CacheMode="BitmapCache">
-                <TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>-->
+				<TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}"/>-->
                 <!--<HyperlinkButton Click="HyperlinkButton_Click_1" Margin="0,15">
-                <TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="Blue" TextWrapping="Wrap"/>
-            </HyperlinkButton>-->
+				<TextBlock Text="{Binding Path=LocalizedResources.ReportingLabel, Source={StaticResource LocalizedStrings}, Mode=OneTime}" Foreground="Blue" TextWrapping="Wrap"/>
+			</HyperlinkButton>-->
                 <!--</StackPanel>-->
 
                 <Label Margin="0,15">
@@ -23,50 +23,63 @@
                     </Label.FormattedText>
                 </Label>
 
-                <Picker Title="{app:CustomResource NusachSettingLabel}"
-				        ItemsSource="{Binding Nusachim, Mode=OneTime}"
-				        SelectedIndex="{Binding Nusach, Mode=TwoWay}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{app:CustomResource NusachSettingLabel}" VerticalTextAlignment="Center"/>
+                    <app:PickerEx Title="{app:CustomResource NusachSettingLabel}"
+							ItemsSource="{Binding Nusachim, Mode=OneTime}"
+							SelectedIndex="{Binding Nusach, Mode=TwoWay}"/>
+                </StackLayout>
 
-                <Picker Title="{app:CustomResource TimeCalcMethodLabel}"
-				        ItemsSource="{Binding TimeCalcMethods, Mode=OneTime}"
-				        SelectedIndex="{Binding TimeCalcMethodIndex, Mode=TwoWay}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{app:CustomResource TimeCalcMethodLabel}" VerticalTextAlignment="Center"/>
+                    <app:PickerEx Title="{app:CustomResource TimeCalcMethodLabel}"
+							ItemsSource="{Binding TimeCalcMethods, Mode=OneTime}"
+							SelectedIndex="{Binding TimeCalcMethodIndex, Mode=TwoWay}"/>
+                </StackLayout>
 
-                <Picker Title="{app:CustomResource FontSizeSettingLabel}"
-				        ItemsSource="{Binding FontSizes, Mode=OneTime}"
-				        SelectedIndex="{Binding UseLargeFont, Mode=TwoWay}"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{app:CustomResource FontSizeSettingLabel}" VerticalTextAlignment="Center"/>
+                    <app:PickerEx Title="{app:CustomResource FontSizeSettingLabel}"
+							ItemsSource="{Binding FontSizes, Mode=OneTime}"
+							SelectedIndex="{Binding UseLargeFont, Mode=TwoWay}"/>
+                </StackLayout>
 
 
                 <!--<Label Text="{app:CustomResource LockScreenSupportInfo}" LineBreakMode="WordWrap"/>
-                <Button Content="{app:CustomResource GoToLockScreenSettingsCommandTitle}" toolkit:TiltEffect.IsTiltEnabled="True" Command="{Binding GoToLockScreenSettingsCommand, Mode=OneTime}" HorizontalAlignment="Center"/>-->
+				<Button Content="{app:CustomResource GoToLockScreenSettingsCommandTitle}" toolkit:TiltEffect.IsTiltEnabled="True" Command="{Binding GoToLockScreenSettingsCommand, Mode=OneTime}" HorizontalAlignment="Center"/>-->
 
                 <!--<CheckBox ="{app:CustomResource UseLightBackgroundSettingTitle}" IsChecked="{Binding UseLightBackground, Mode=TwoWay}"
 				Visibility="{StaticResource PhoneDarkThemeVisibility}" toolkit:TiltEffect.IsTiltEnabled="True"/>-->
 
+                <app:SwitchEx IsVisible="{Binding ShowUseLightBackgroundSetting}"
+							  IsToggled="{Binding UseLightBackground, Mode=TwoWay}"
+							  Title="{app:CustomResource UseLightBackgroundSettingTitle}"/>
+
                 <app:SwitchEx IsVisible="{Binding ShowVeanenuSetting}"
-                    IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"
-                              Title="{app:CustomResource ShowVeanenu}"/>
+					IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"
+							  Title="{app:CustomResource ShowVeanenu}"/>
 
                 <app:SwitchEx IsToggled="{Binding IsInChul, Mode=TwoWay}"
-                              Title="{app:CustomResource UseChulSettingTitle}"
-                              Details="{app:CustomResource UseChulSettingDescription}"/>
+							  Title="{app:CustomResource UseChulSettingTitle}"
+							  Details="{app:CustomResource UseChulSettingDescription}"/>
 
                 <Label Text="" LineBreakMode="WordWrap" FontSize="Small" Margin="55,0,10,0"/>
 
                 <app:SwitchEx IsToggled="{Binding UseLocation, Mode=TwoWay}"
-                              Title="{app:CustomResource UseLocationSettingTitle}"
-                              Details="{app:CustomResource UseLocationPrivacyPolicy}"/>
+							  Title="{app:CustomResource UseLocationSettingTitle}"
+							  Details="{app:CustomResource UseLocationPrivacyPolicy}"/>
 
                 <!--<Label Margin="55,0,10,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{app:CustomResource EnablingSysLocationInstruction1}"/>
-                            <HyperlinkSpan Command="{Binding GoToLocationSettingsCommand, Mode=OneTime}">
-                                <Run Text="{app:CustomResource EnablingSysLocationInstruction2}"/>
-                            </HyperlinkSpan>
-                            <Run Text="{app:CustomResource EnablingSysLocationInstruction3}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </L>-->
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Text="{app:CustomResource EnablingSysLocationInstruction1}"/>
+							<HyperlinkSpan Command="{Binding GoToLocationSettingsCommand, Mode=OneTime}">
+								<Run Text="{app:CustomResource EnablingSysLocationInstruction2}"/>
+							</HyperlinkSpan>
+							<Run Text="{app:CustomResource EnablingSysLocationInstruction3}"/>
+						</FormattedString>
+					</Label.FormattedText>
+				</L>-->
 
             </StackLayout>
         </ScrollView>

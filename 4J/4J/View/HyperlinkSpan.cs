@@ -19,8 +19,7 @@ namespace PrayPal
 
         public HyperlinkSpan()
         {
-            TextDecorations = TextDecorations.Underline;
-            TextColor = Color.Blue;
+            TextDecorations = TextDecorations.Underline; ;
             GestureRecognizers.Add(new TapGestureRecognizer
             {
                 // Launcher.OpenAsync is provided by Xamarin.Essentials.

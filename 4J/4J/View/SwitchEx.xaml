@@ -10,12 +10,12 @@
         <ResourceDictionary>
             <Style x:Key="TitleLabelStyle" TargetType="Label">
                 <!--<Setter Property="FontSize" Value="Default" />-->
-                <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}" />
             </Style>
 
             <Style x:Key="DetailsLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{DynamicResource DetailsColor}" />
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource DetailsBrush}, Path=Color}" />
                 <Setter Property="LineBreakMode" Value="WordWrap"/>
             </Style>
         </ResourceDictionary>
@@ -33,7 +33,7 @@
                 <Label Text="{Binding Source={x:Reference Root}, Path=Details}" Style="{DynamicResource DetailsLabelStyle}"/>
             </StackLayout>
 
-            <Switch IsToggled="{Binding Source={x:Reference Root}, Path= IsToggled, Mode=TwoWay}"
+            <Switch IsToggled="{Binding Source={x:Reference Root}, Path= IsToggled, Mode=TwoWay}" OnColor="{DynamicResource AccentColor}" ThumbColor="{DynamicResource AccentColor}"
                     VerticalOptions="Start" Grid.Column="1" />
 
         </Grid>

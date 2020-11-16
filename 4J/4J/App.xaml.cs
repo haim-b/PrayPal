@@ -17,7 +17,7 @@ using System.Linq;
 
 namespace PrayPal
 {
-    public partial class App : Application
+    public partial class App : Application, ISettingsListener
     {
         private readonly MainViewModel _mainViewModel;
 
@@ -73,6 +73,7 @@ namespace PrayPal
             }
 
             PrayersHelper.SetPrayerTextProvider(Settings.Nusach);
+            Settings.RegisterListener(this);
 
             MainPage = new AppShell() { BindingContext = _mainViewModel };
         }
@@ -88,6 +89,16 @@ namespace PrayPal
 
         protected override void OnResume()
         {
+        }
+
+        public void OnSettingsChanged(string settingName)
+        {
+            if (settingName != nameof(Settings.UseLightBackground))
+            {
+                return;
+            }
+
+            UserAppTheme = Settings.UseLightBackground ? OSAppTheme.Light : OSAppTheme.Unspecified;
         }
     }
 }
