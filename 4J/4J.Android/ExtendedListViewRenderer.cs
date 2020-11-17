@@ -43,7 +43,7 @@ namespace PrayPal.Droid
                 return;
             }
 
-            object group = xlv.GetItemGroup((int)e.View.PointToRowId(0, 0));// e.FirstVisibleItem);
+            object group = xlv.GetItemGroup((int)e.View.PointToRowId(0, xlv.ActiveGroupStartYPosition));
 
             xlv.ActiveGroup = group;
         }

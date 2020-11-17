@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrayPal.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace PrayPal.Models
             }
 
             Text = text;
-            //_fontSize = Settings.Instance.UseLargeFont ? (double)Windows.UI.Xaml.Application.Current.Resources["TextStyleExtraLargeFontSize"] : (double)Windows.UI.Xaml.Application.Current.Resources["ContentControlFontSize"];
+            _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
             IsHighlighted = ishighlighted;
             IsBold = isBold;
         }

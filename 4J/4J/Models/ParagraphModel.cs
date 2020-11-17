@@ -58,7 +58,7 @@ namespace PrayPal.Models
 
         public double FontSize
         {
-            get { return _titleFontSize; }
+            get { return _fontSize; }
         }
 
         public double TitleFontSize

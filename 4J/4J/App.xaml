@@ -23,7 +23,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -59,7 +59,9 @@
             <Style x:Key="ListItemTextStyle" TargetType="Label" BasedOn="{x:Static Device+Styles.ListItemTextStyle}">
                 <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>                
             </Style>-->
-            
+
+            <x:Double x:Key="TextNormalFontSize">18</x:Double>
+            <x:Double x:Key="TextLargeFontSize">22</x:Double>
             <local:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"/>
         </ResourceDictionary>        
     </Application.Resources>

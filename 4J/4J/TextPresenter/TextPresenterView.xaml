@@ -10,7 +10,7 @@
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
         <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" HighlightColor="{DynamicResource AccentColor}"/>
         <local:FlowDirectionIsLtrConverter x:Key="LtrConverter"/>
-        <x:Boolean x:Key="BoolFalse">False</x:Boolean>
+        <local:IntAdditionConverter x:Key="IntAdditionConverter" AdditionAmount="30"/>
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
@@ -19,6 +19,10 @@
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                 Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    <StackLayout.GestureRecognizers>
+                        <!-- We add this to disable the tap animation on list items on Android: -->
+                        <TapGestureRecognizer/>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
             </ViewCell>
         </DataTemplate>
@@ -45,8 +49,11 @@
                         <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                     Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     </Expander>
-
-
+                    
+                    <Frame.GestureRecognizers>
+                        <!-- We add this to disable the tap animation on list items on Android: -->
+                        <TapGestureRecognizer/>
+                    </Frame.GestureRecognizers>
                 </Frame>
             </ViewCell>
         </DataTemplate>
@@ -58,6 +65,7 @@
         <Style x:Key="GroupLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
             <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
         </Style>
 
         <DataTemplate x:Key="JumpListItemTemplate">
@@ -78,7 +86,7 @@
 
     <Grid>
         <local:ExtendedListView x:Name="lst" ItemsSource="{Binding TextDocument.Items}" SelectionMode="None"
-            IsGroupingEnabled="{Binding TextDocument.HasGroups}"
+            IsGroupingEnabled="{Binding TextDocument.HasGroups}" ActiveGroupStartYPosition="{Binding Source={x:Reference GroupHeaderView}, Path=Height, Converter={StaticResource IntAdditionConverter}}"
             HasUnevenRows="True" SeparatorVisibility="None" ItemTemplate="{StaticResource CollapsibleTemplate}">
             <!--Built in Cells-->
             <!--<ListView.ItemTemplate>

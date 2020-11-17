@@ -12,6 +12,9 @@ namespace PrayPal.TextPresenter
         public static readonly BindableProperty ActiveGroupProperty =
                      BindableProperty.Create("ActiveGroup", typeof(object), typeof(ExtendedListView), null);
 
+        public static readonly BindableProperty ActiveGroupStartYPositionProperty =
+                     BindableProperty.Create("ActiveGroupStartYPosition", typeof(int), typeof(ExtendedListView), 0);
+
         public ExtendedListView()
             : base(ListViewCachingStrategy.RecycleElement)
         {
@@ -22,6 +25,12 @@ namespace PrayPal.TextPresenter
         {
             get { return GetValue(ActiveGroupProperty); }
             set { SetValue(ActiveGroupProperty, value); }
+        }
+
+        public int ActiveGroupStartYPosition
+        {
+            get { return (int)GetValue(ActiveGroupStartYPositionProperty); }
+            set { SetValue(ActiveGroupStartYPositionProperty, value); }
         }
 
         public object GetItemGroup(int itemIndexIncludingGroups)
