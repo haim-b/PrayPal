@@ -42,6 +42,7 @@
         <Tab>
             <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate dt:DayTimesView}" Route="TimesPage"/>
             <ShellContent BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate p:PrayersView}" Route="PrayersPage"/>
+            <ShellContent BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate p:PrayersView}" Route="BooksPage"/>
             <ShellContent BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate t:ToolsView}" Route="PrayersPage"/>
             <ShellContent BindingContext="{Binding Settings, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate s:SettingsView}" Route="SettingsPage"/>
         </Tab>

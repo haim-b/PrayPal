@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:PrayPal"
-             x:Class="PrayPal.Prayers.PrayersView"
+             x:Class="PrayPal.Books.BooksView"
              Title="{app:CustomResource ApplicationTitle}">
-  <ListView x:Name="lst" ItemsSource="{Binding Items}"
+    <ListView x:Name="lst" ItemsSource="{Binding Items}"
             SelectionMode="None"
             SeparatorVisibility="None"
             CachingStrategy="RecycleElement">
-    
+
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>
