@@ -79,7 +79,7 @@ namespace PrayPal.Content.Prayers.Arvit
             {
                 if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 23)
                 {
-                    if (!Settings.UseLocation)
+                    if (!_locationService.IsActive)
                     {
                         throw new NotificationException(AppResources.OmerCountUnusedLocationWarning);
                     }

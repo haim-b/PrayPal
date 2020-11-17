@@ -24,9 +24,11 @@ namespace PrayPal.Common.Services
 
         }
 
+        public bool IsActive { get { return Settings.UseLocation; } }
+
         public async Task<Geoposition> GetCurrentPositionAsync(CancellationToken cancellationToken = default)
         {
-            if (!Settings.UseLocation)
+            if (!IsActive)
             {
                 return null;
             }

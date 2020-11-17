@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrayPal.App", "4J\4J\PrayPa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrayPal.Common", "App4J.Common\PrayPal.Common.csproj", "{906D509E-2B32-4D06-807A-700ED2B93822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zmanim", "Zmanim\Zmanim.csproj", "{AFF774EF-45AE-4204-B12B-91099E27B8DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zmanim", "Zmanim\Zmanim.csproj", "{AFF774EF-45AE-4204-B12B-91099E27B8DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E158DD27-2928-46CA-BF7E-45632B236084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.PrayPal.Content", "Tests\PrayPal.ContentTests\Tests.PrayPal.Content.csproj", "{E7A4E481-1840-4216-AB3D-150D4B5895D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,9 +105,24 @@ Global
 		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhone.Build.0 = Release|Any CPU
 		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{AFF774EF-45AE-4204-B12B-91099E27B8DE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|iPhone.Build.0 = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E7A4E481-1840-4216-AB3D-150D4B5895D9} = {E158DD27-2928-46CA-BF7E-45632B236084}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FCD1EBD-11AD-410D-8FE4-ACB4E26AABDE}

@@ -73,6 +73,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Books\BooksView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="DayTimes\DayTimesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -134,5 +137,9 @@
     <None Update="DayTimes\DayTimes.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Books\Psalms\" />
   </ItemGroup>
 </Project>

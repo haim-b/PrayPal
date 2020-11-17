@@ -9,5 +9,7 @@ namespace PrayPal.Common.Services
     public interface ILocationService
     {
         Task<Geoposition> GetCurrentPositionAsync(CancellationToken cancellationToken = default);
+
+        bool IsActive { get; }
     }
 }

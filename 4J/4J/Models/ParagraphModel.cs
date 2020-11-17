@@ -17,6 +17,7 @@ namespace PrayPal.Models
         {
             SetFontSize();
         }
+
         public ParagraphModel(string content)
             : this(null, content)
         { }
@@ -37,8 +38,16 @@ namespace PrayPal.Models
 
         internal static void SetFontSize()
         {
-            _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
-            _titleFontSize = Utils.GetTitleFontSize(Settings.UseLargeFont);
+            try
+            {
+                _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
+                _titleFontSize = Utils.GetTitleFontSize(Settings.UseLargeFont);
+            }
+            catch
+            {
+                _fontSize = 18;
+                _titleFontSize = 18;
+            }
         }
 
 

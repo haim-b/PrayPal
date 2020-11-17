@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using PrayPal.Common;
+using PrayPal.Models;
 
 namespace PrayPal.Content
 {
@@ -110,7 +111,7 @@ namespace PrayPal.Content
             return (Nusach)_nusach;
         }
 
-        public object GetItemAtIndex(int index)
+        public ParagraphModel GetItemAtIndex(int index)
         {
             if (index < 0)
             {
@@ -120,7 +121,9 @@ namespace PrayPal.Content
             return GetItemAtIndexImpl(index);
         }
 
-        protected abstract object GetItemAtIndexImpl(int index);
+        protected abstract ParagraphModel GetItemAtIndexImpl(int index);
+
+        public abstract int GetItemsCount();
 
         public virtual bool IsDayCritical
         {
@@ -140,7 +143,9 @@ namespace PrayPal.Content
     {
         bool IsDayCritical { get; }
 
-        object GetItemAtIndex(int index);
+        ParagraphModel GetItemAtIndex(int index);
+
+        int GetItemsCount();
     }
 
     public interface ITextDocument

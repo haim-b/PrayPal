@@ -37,9 +37,17 @@ namespace PrayPal.Models
             }
 
             Text = text;
-            _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
             IsHighlighted = ishighlighted;
             IsBold = isBold;
+
+            try
+            {
+                _fontSize = Utils.GetFontSize(Settings.UseLargeFont);
+            }
+            catch
+            {
+                _fontSize = 18;
+            }
         }
 
         public string Text { get; private set; }

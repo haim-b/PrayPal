@@ -13,7 +13,7 @@ namespace PrayPal.Content
     {
         protected override void AddOpening()
         {
-            if (_dayInfo.IsTachanunDay(Settings.Nusach))
+            if (_dayInfo.IsTachanunDay(Nusach.Sfard))
             {
                 Add(Psalms.Psalm137);
             }

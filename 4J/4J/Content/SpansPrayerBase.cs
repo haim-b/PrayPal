@@ -66,9 +66,14 @@ namespace PrayPal.Content
             _items.Add(span);
         }
 
-        protected override object GetItemAtIndexImpl(int index)
+        protected override ParagraphModel GetItemAtIndexImpl(int index)
         {
             return _items.SelectMany(s => s).ElementAt(index);
+        }
+
+        public override int GetItemsCount()
+        {
+            return _items.SelectMany(s => s).Count();
         }
     }
 }
