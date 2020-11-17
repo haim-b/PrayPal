@@ -95,7 +95,7 @@
                         <Grid x:Name="GroupHeaderView" Background="{DynamicResource BackgroundBrush}" IsVisible="{Binding Source={x:Reference groupHeader}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" VerticalOptions="Start">
                             <Button Style="{DynamicResource GroupButtonStyle}"
                     Clicked="OnGroupClicked"/>
-                            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}"/>
+                            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
