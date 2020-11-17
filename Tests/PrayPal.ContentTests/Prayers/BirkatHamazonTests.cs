@@ -23,28 +23,24 @@ namespace Tests.PrayPal.Content
         [TestMethod]
         public async Task TestBirkatHamazonSfart()
         {
-            TestExecutor.SetPraysResources(Nusach.Sfard);
-            PrayersHelper.SetPrayerTextProvider(Nusach.Sfard);
-
-            await TestExecutor.TestPrayerAsync(jc => CreateFromLegacyDebuggedCode(Nusach.Sfard, jc), () => new BirkatHamazonSfard());
+            TestExecutor.PrepareNusach(Nusach.Sfard);
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Sfard, jc), (l, t) => new BirkatHamazonSfard());
         }
 
         [TestMethod]
         public async Task TestBirkatHamazonEdotHaMizrach()
         {
-            TestExecutor.SetPraysResources(Nusach.EdotMizrach);
-            PrayersHelper.SetPrayerTextProvider(Nusach.EdotMizrach);
+            TestExecutor.PrepareNusach(Nusach.EdotMizrach);
 
-            await TestExecutor.TestPrayerAsync(jc => CreateFromLegacyDebuggedCode(Nusach.EdotMizrach, jc), () => new BirkatHamazonEdotHaMizrach());
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.EdotMizrach, jc), (l, t) => new BirkatHamazonEdotHaMizrach());
         }
 
         [TestMethod]
         public async Task TestBirkatHamazonAshkenaz()
         {
-            TestExecutor.SetPraysResources(Nusach.Ashkenaz);
-            PrayersHelper.SetPrayerTextProvider(Nusach.Ashkenaz);
+            TestExecutor.PrepareNusach(Nusach.Ashkenaz);
 
-            await TestExecutor.TestPrayerAsync(jc => CreateFromLegacyDebuggedCode(Nusach.Ashkenaz, jc), () => new BirkatHamazonSfard());
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Ashkenaz, jc), (l, t) => new BirkatHamazonSfard());
         }
 
         private static IEnumerable<string> CreateFromLegacyDebuggedCode(Nusach nusach, JewishCalendar jc)

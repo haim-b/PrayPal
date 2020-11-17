@@ -61,6 +61,35 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, צוּר כָּל הָעוֹלָמִים, צַדִּיק בְּכָל הַדּוֹרוֹת, הָאֵל הַנֶּאֱמָן, הָאוֹמֵר וְעוֹשֶׂה, הַמְּדַבֵּר וּמְקַיֵּם, שֶׁכָּל דְּבָרָיו אֱמֶת וָצֶדֶק. נֶאֱמָן אַתָּה הוּא יְיָ אֱלֹהֵינוּ וְנֶאֱמָנִים דְּבָרֶיךָ, וְדָבָר אֶחָד מִדְּבָרֶיךָ אָחוֹר לֹא יָשׁוּב רֵיקָם, כִּי אֵל מֶלֶךְ נֶאֱמָן וְרַחֲמָן אָתָּה. בָּרוּךְ אַתָּה יְיָ, הָאֵל הַנֶּאֱמָן בְּכָל דְּבָרָיו.
+        ///
+        ///רַחֵם עַל צִיּוֹן, כִּי הִיא בֵּית חַיֵּינוּ, וְלַעֲלוּבַת נֶפֶשׁ תּוֹשִׁיעַ בִּמְהֵרָה בְיָמֵינוּ. ב [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AfterHaftarahBlessing {
+            get {
+                return ResourceManager.GetString("AfterHaftarahBlessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הָרַחֲמָן הוּא יַחֲזִיר לָנוּ עֲבוֹדַת בֵּית הַמִּקְדָּשׁ לִמְקוֹמָהּ, בִּמְהֵרָה בְיָמֵינוּ אָמֵן סֶלָה..
+        /// </summary>
+        internal static string AfterSfiratHaOmer1 {
+            get {
+                return ResourceManager.GetString("AfterSfiratHaOmer1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to רִבּוֹנוֹ שֶׁל עוֹלָם, אַתָּה צִוִּיתָנִי עַל יְדֵי מֹשֶׁה עַבְדֶּךָ לִסְפֹּר סְפִירַת הָעֹמֶר כְּדֵי לְטַהֲרֵנוּ מִקְּלִפּוֹתֵינוּ וּמִטֻּמְאוֹתֵינוּ, כְּמוֹ שֶּׁכָּתַבְתָּ בְּתוֹרָתֶךָ: וּסְפַרְתֶּם לָכֶם מִמָּחֳרָת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימוֹת תִּהְיֶינָה. עַד מִמָּחֳרָת הַשַּׁבָּת הַשְּׁבִיעִית תִּסְפְּרוּ חֲמִשִּׁים יוֹם, כְּדֵי שֶׁיִּטָּהֲרוּ נַפְשׁוֹת עַמְּךָ יִשְׂרָאֵל מִזֻּהֲמָתָם. וּבְכֵן יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AfterSfiratHaOmer2_F0 {
+            get {
+                return ResourceManager.GetString("AfterSfiratHaOmer2_F0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to עָלֵינוּ לְשַׁבֵּחַ לַאֲדוֹן הַכֹּל, לָתֵת גְּדֻלָּה לְיוֹצֵר בְּרֵאשִׁית, שֶׁלֹּא עָשָׂנוּ כְּגוֹיֵי הָאֲרָצוֹת, וְלֹא שָׂמָנוּ כְּמִשְׁפְּחוֹת הָאֲדָמָה, שֶׁלֹּא שָׂם חֶלְקֵנוּ כָּהֶם וְגוֹרָלֵנוּ כְּכָל הֲמוֹנָם. שֶׁהֵם מִשְׁתַּחֲוִים לְהֶבֶל וָרִיק וּמִתְפַּלְּלִים אֶל אֵל לֹא יוֹשִׁיעַ. וַאֲנַחְנוּ כּוֹרְעִים וּמִשְׁתַּחֲוִים וּמוֹדִים לִפְנֵי מֶלֶךְ מַלְכֵי הַמְּלָכִים הַקָּדוֹשׁ בָּרוּךְ הוּא, שֶׁהוּא נוֹטֶה שָׁמַיִם וְיֹסֵד אָרֶץ, וּמוֹשַׁב יְקָרוֹ בַּשָּׁמַיִם מִמַּעַל, וּשְׁכִינַת עֻזּוֹ בְּגָבְהֵ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AleinuLeshabeach {
@@ -107,6 +136,22 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to אָנָּא בְּכֹחַ גְּדֻלַּת יְמִינְךָ תַּתִּיר צְרוּרָה.
+        ///קַבֵּל רִנַּת עַמְּךָ שַׂגְּבֵנוּ טַהֲרֵנוּ נוֹרָא.
+        ///נָא גִבּוֹר דּוֹרְשֵׁי יִחוּדְךָ כְּבָבַת שָׁמְרֵם.
+        ///בָּרְכֵם טַהֲרֵם רַחֲמֵי צִדְקָתְךָ תָּמִיד גָּמְלֵם.
+        ///חֲסִין קָדוֹשׁ בְּרוֹב טוּבְךָ נַהֵל עֲדָתֶךָ.
+        ///יָחִיד גֵּאֶה לְעַמְּךָ פְּנֵה זוֹכְרֵי קְדֻשָּׁתֶךָ.
+        ///שַׁוְעָתֵנוּ קַבֵּל וּשְׁמַע צַעֲקָתֵנוּ יוֹדֵעַ תַּעֲלוּמוֹת.
+        ///בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד..
+        /// </summary>
+        internal static string AnnaBechoach {
+            get {
+                return ResourceManager.GetString("AnnaBechoach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר יָצַר אֶת הָאָדָם בְּחָכְמָה, וּבָרָא בוֹ נְקָבִים נְקָבִים חֲלוּלִים חֲלוּלִים. גָּלוּי וְיָדוּעַ לִפְנֵי כִסֵּא כְבוֹדֶךָ, שֶׁאִם יִפָּתֵחַ אֶחָד מֵהֶם אוֹ יִסָּתֵם אֶחָד מֵהֶם, אִי אֶפְשַׁר לְהִתְקַיֵּם וְלַעֲמוֹד לְפָנֶיךָ אֲפִלּוּ שָׁעָה אֶחָת. בָּרוּךְ אַתָּה יְיָ, רוֹפֵא כָל בָּשָׂר וּמַפְלִיא לַעֲשׂוֹת..
         /// </summary>
         internal static string AsherYatzar {
@@ -128,10 +173,10 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         ///   Looks up a localized string similar to בָּרְכִי נַפְשִׁי אֶת יְיָ, יְיָ אֱלֹהַי גָּדַלְתָּ מְּאֹד, הוֹד וְהָדָר לָבָשְׁתָּ. עֹטֶה אוֹר כַּשַּׂלְמָה, נוֹטֶה שָׁמַיִם כַּיְרִיעָה.
         ///
         ///יברך בעמידה:
-        ///בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהִתְעַטֵּף בְּצִּיצִית.
+        ///בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהִתְעַטֵּף בְּצִיצִית.
         ///
         ///יתעטף ויאמר:
-        ///מַה יָּקָר חַסְדְּךָ אֱלֹהִים, וּבְנֵי אָדָם בְּצֵל כְּנָפֶיךָ יֶחֱסָיוּן. יִרְוְיֻן מִדֶּשֶׁן בֵּיתֶךָ וְנַחַל עֲדָנֶיךָ תַשְׁקֵם. כִּי עִמְּךָ מְקוֹר חַיִּים, בְּאוֹרְךָ נִרְאֶה אוֹר. מְשֹׁךְ חַסְדְּךָ לְיֹדְעֶיךָ, וְצ [rest of string was truncated]&quot;;.
+        ///מַה יָּקָר חַסְדְּךָ אֱלֹהִים, וּבְנֵי אָדָם בְּצֵל כְּנָפֶיךָ יֶחֱסָיוּן. יִרְוְיֻן מִדֶּשֶׁן בֵּיתֶךָ וְנַחַל עֲדָנֶיךָ תַשְׁקֵם. כִּי עִמְּךָ מְקוֹר חַיִּים, בְּאוֹרְךָ נִרְאֶה אוֹר. מְשֹׁךְ חַסְדְּךָ לְיֹדְעֶיךָ, וְצִ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AtifatTalit {
             get {
@@ -151,27 +196,43 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         ///אָבִינוּ מַלְכֵּנוּ, סְתֹם פִּיּוֹת מַשְׂטִינֵנוּ וּמְקַטְרְגֵנוּ.
         ///אָבִינו [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string AvinuMalkenu1AYT {
+        internal static string AvinuMalkenu1 {
             get {
-                return ResourceManager.GetString("AvinuMalkenu1AYT", resourceCulture);
+                return ResourceManager.GetString("AvinuMalkenu1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to אָבִינוּ מַלְכֵּנוּ, חָטָאנוּ לְפָנֶיךָ.
-        ///אָבִינוּ מַלְכֵּנוּ, אֵין לָנוּ מֶלֶךְ אֶלָּא אָתָּה.
-        ///אָבִינוּ מַלְכֵּנוּ, עֲשֵׂה עִמָּנוּ לְמַעַן שְׁמֶךָ.
-        ///אָבִינוּ מַלְכֵּנוּ, בָּרֵךְ עָלֵינוּ שָׁנָה טוֹבָה.
-        ///אָבִינוּ מַלְכֵּנוּ, בַּטֵּל מֵעָלֵינוּ כָּל גְּזֵרוֹת קָשׁוֹת.
-        ///אָבִינוּ מַלְכֵּנוּ, בַּטֵּל מַחְשְׁבוֹת שׂוֹנְאֵינוּ.
-        ///אָבִינוּ מַלְכֵּנוּ, הָפֵר עֲצַת אוֹיְבֵינוּ.
-        ///אָבִינוּ מַלְכֵּנוּ, כַּלֵּה כָּל צַר וּמַשְׂטִין מֵעָלֵינוּ.
-        ///אָבִינוּ מַלְכֵּנוּ, סְתֹם פִּיּוֹת מַשְׂטִינֵנוּ וּמְקַטְרְגֵנוּ.
-        ///אָבִינו [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to אָבִינוּ מַלְכֵּנוּ, הַחֲזִירֵנוּ בִּתְשׁוּבָה שְׁלֵמָה לְפָנֶיךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, שְׁלַח רְפוּאָה שְׁלֵמָה לְחוֹלֵי עַמֶּךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, קְרַע רֹעַ גְּזַר דִּינֵנוּ.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ בְּזִכְרוֹן טוֹב לְפָנֶיךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, כָּתְבֵנוּ בְּסֵפֶר חַיִּים טוֹבִים.
+        ///אָבִינוּ מַלְכֵּנוּ, כָּתְבֵנוּ בְּסֵפֶר גְּאֻלָּה וִישׁוּעָה.
+        ///אָבִינוּ מַלְכֵּנוּ, כָּתְבֵנוּ בְּסֵפֶר פַּרְנָסָה וְכַלְכָּלָה.
+        ///אָבִינוּ מַלְכֵּנוּ, כָּתְבֵנוּ בְּסֵפֶר זְכֻיּוֹת.
+        ///אָבִינוּ מַלְכֵּנוּ, כָּת [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string AvinuMalkenu1Teanit {
+        internal static string AvinuMalkenu2AYT {
             get {
-                return ResourceManager.GetString("AvinuMalkenu1Teanit", resourceCulture);
+                return ResourceManager.GetString("AvinuMalkenu2AYT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אָבִינוּ מַלְכֵּנוּ, הַחֲזִירֵנוּ בִּתְשׁוּבָה שְׁלֵמָה לְפָנֶיךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, שְׁלַח רְפוּאָה שְׁלֵמָה לְחוֹלֵי עַמֶּךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, קְרַע רֹעַ גְּזַר דִּינֵנוּ.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ בְּזִכְרוֹן טוֹב לְפָנֶיךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ לְחַיִּים טוֹבִים.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ לִגְאֻלָּה וִישׁוּעָה.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ לְפַרְנָסָה וְכַלְכָּלָה.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ לִזְכֻיּוֹת.
+        ///אָבִינוּ מַלְכֵּנוּ, זָכְרֵנוּ לִסְלִיחָה וּמְחִילָה..
+        /// </summary>
+        internal static string AvinuMalkenu2Teanit {
+            get {
+                return ResourceManager.GetString("AvinuMalkenu2Teanit", resourceCulture);
             }
         }
         
@@ -187,9 +248,25 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         ///אָבִינוּ מַלְכֵּנוּ, זָכוּר כִּי עָפָר אֲנָחְנוּ.
         ///אָבִינ [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string AvinuMalkenu2 {
+        internal static string AvinuMalkenu3 {
             get {
-                return ResourceManager.GetString("AvinuMalkenu2", resourceCulture);
+                return ResourceManager.GetString("AvinuMalkenu3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אָבִינוּ מַלְכֵּנוּ, תְּהֵא הַשָּׁעָה הַזֹּאת שְׁעַת רַחֲמִים וְעֵת רָצוֹן מִלְּפָנֶיךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, חֲמוֹל עָלֵינוּ וְעַל עוֹלָלֵינוּ וְטַפֵּנוּ.
+        ///אָבִינוּ מַלְכֵּנוּ, עֲשֵׂה לְמַעַן הֲרוּגִים עַל שֵׁם קָדְשֶׁךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, עֲשֵׂה לְמַעַן טְבוּחִים עַל יִחוּדֶךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, עֲשֵׂה לְמַעַן בָּאֵי בָאֵשׁ וּבַמַּיִם עַל קִדּוּשׁ שְׁמֶךָ.
+        ///אָבִינוּ מַלְכֵּנוּ, נְקֹם נִקְמַת דַּם עֲבָדֶיךָ הַשָּׁפוּךְ.
+        ///אָבִינוּ מַלְכֵּנוּ, עֲשֵׂה לְמַעַנְךָ אִם לֹא לְמַעֲנֵנוּ.
+        ///אָבִינוּ מַלְכֵּ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AvinuMalkenu4 {
+            get {
+                return ResourceManager.GetString("AvinuMalkenu4", resourceCulture);
             }
         }
         
@@ -205,6 +282,18 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to כל עולה אומר ומברך:
+        ///העולה אומר: בָּרְכוּ אֶת יְיָ הַמְּבֹרַךְ.
+        ///ועונים: בָּרוּךְ יְיָ הַמְּבֹרַךְ לְעוֹלָם וָעֵד.
+        ///העולה חוזר: בָּרוּךְ יְיָ הַמְּבֹרַךְ לְעוֹלָם וָעֵד..
+        /// </summary>
+        internal static string BarchuTorah {
+            get {
+                return ResourceManager.GetString("BarchuTorah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to הֲרֵינִי מְזַמֵּן אֶת פִּי לְהוֹדוֹת וּלְהַלֵּל וּלְשַׁבֵּחַ אֶת בּוֹרְאִי, לְשֵׁם יִחוּד קוּדְשָׁא בְּרִיךְ הוּא וּשְׁכִינְתֵּיהּ עַל יְדֵי הַהוּא טָמִיר וְנֶעְלָם בְּשֵׁם כָּל יִשְׂרָאֵל.
         ///
         ///בָּרוּךְ שֶׁאָמַר וְהָיָה הָעוֹלָם, בָּרוּךְ הוּא, בָּרוּךְ אוֹמֵר וְעֹשֶׂה, בָּרוּךְ גּוֹזֵר וּמְקַיֵּם, בָּרוּךְ עֹשֶׂה בְרֵאשִׁית, בָּרוּךְ מְרַחֵם עַל הָאָרֶץ, בָּרוּךְ מְרַחֵם עַל הַבְּרִיּוֹת, בָּרוּךְ מְשַׁלֵּם שָׂכָר טוֹב לִירֵאָיו, בָּרוּךְ חַי לָעַד וְקַיָּם לָנֶצַח, בָּרוּךְ פּוֹדֶה וּמַצִּיל, בָּרוּךְ שְׁמ [rest of string was truncated]&quot;;.
@@ -212,6 +301,111 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string BaruchSheamar {
             get {
                 return ResourceManager.GetString("BaruchSheamar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הֲרֵינִי מוֹחֵל לְכָל מִי שֶׁהִכְעִיס וְהִקְנִיט אוֹתִי, אוֹ שֶׁחָטָא כְּנֶגְדִּי בֵּין בְּגוּפִי בֵּין בְּמָמוֹנִי בֵּין בִּכְבוֹדִי בֵּין בְּכָל אֲשֶׁר לִי, בֵּין בְּאֹנֶס, בֵּין בְּרָצוֹן, בֵּין בְּשׁוֹגֵג, בֵּין בְּמֵזִיד, בֵּין בְּדִבּוּר בֵּין בְּמַעֲשֶׂה, וְלֹא יֵעָנֵשׁ שׁוּם אָדָם בְּסִבָּתִי..
+        /// </summary>
+        internal static string BedtimeShma1 {
+            get {
+                return ResourceManager.GetString("BedtimeShma1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, הַמַּפִּיל חֶבְלֵי שֵׁנָה עַל עֵינָי וּתְנוּמָה עַל עַפְעַפָּי, וּמֵאִיר לְאִישׁוֹן בַּת עַיִן. וִיהִי רָצוֹן מִלְפָנֶיךָ יְיָ אֱלֹהַי וֵאלֹהֵי אֲבוֹתַי, שֶׁתַּשְׁכִּיבֵנִי לְשָׁלוֹם וְתַעֲמִידֵנִי לְחַיִּים טוֹבִים וּלְשָׁלוֹם וְאַל יְבַהֲלוּנִי רַעֲיוֹנַי וַחֲלוֹמוֹת רָעִים וְהִרְהוּרִים רָעִים, וּתְהֵא מִטָּתִי שְׁלֵמָה לְפָנֶיךָ, וְהָאֵר עֵינַי פֶּן אִישַׁן הַמָּוֶת. בָּרוּךְ אַתָּה יְיָ, הַמֵּאִיר לָעוֹלָם כֻּלוֹ בִּכְבוֹדוֹ..
+        /// </summary>
+        internal static string BedtimeShma10 {
+            get {
+                return ResourceManager.GetString("BedtimeShma10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to יְיָ, מָה רַבּוּ צָרָי, רַבִּים קָמִים עָלָי. רַבִּים אֹמְרִים לְנַפְשִׁי, אֵין יְשׁוּעָתָה לּוֹ בֵאלֹהִים סֶלָה. וְאַתָּה יְיָ מָגֵן בַּעֲדִי, כְּבוֹדִי וּמֵרִים רֹאשִׁי. קוֹלִי אֶל יְיָ אֶקְרָא, וַיַּעֲנֵנִי מֵהַר קָדְשׁוֹ סֶלָה. אֲנִי שָׁכַבְתִּי וָאִישָׁנָה, הֱקִיצוֹתִי, כִּי יְיָ יִסְמְכֵנִי. לֹא אִירָא מֵרִבְבוֹת עָם, אֲשֶׁר סָבִיב שָׁתוּ עָלָי. קוּמָה יְיָ, הוֹשִׁיעֵנִי אֱלֹהַי, כִּי הִכִּיתָ אֶת כָּל אֹיְבַי לֶחִי, שִׁנֵּי רְשָׁעִים שִׁבַּרְתָּ. לַיְיָ הַיְשׁוּעָה, עַל עַמְּךָ בִרְכָתֶךָ סֶּלָה..
+        /// </summary>
+        internal static string BedtimeShma2 {
+            get {
+                return ResourceManager.GetString("BedtimeShma2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הַשְׁכִּיבֵנוּ יְיָ אֱלֹהֵינוּ לְשָׁלוֹם, וְהַעֲמִידֵנוּ מַלְכֵּנוּ לְחַיִּים טוֹבִים וּלְשָׁלוֹם, וּפְרוֹשׂ עָלֵינוּ סֻכַּת שְׁלוֹמֶךָ, וְתַקְּנֵנוּ בְּעֵצָה טוֹבָה מִלְּפָנֶיךָ, וְהוֹשִׁיעֵנוּ מְהֵרָה לְמַעַן שְׁמֶךָ. וְהָגֵן בַּעֲדֵנוּ, וְהָסֵר מֵעָלֵינוּ אוֹיֵב דֶּבֶר וְחֶרֶב וְרָעָב וְיָגוֹן, וְהָסֵר שָׂטָן מִלְּפָנֵינוּ וּמֵאַחֲרֵינוּ, וּבְצֵל כְּנָפֶיךָ תַּסְתִּירֵנוּ. כִּי אֵל שׁוֹמְרֵנוּ וּמַצִּילֵנוּ אָתָּה, כִּי אֵל מֶלֶךְ חַנּוּן וְרַחוּם אָתָּה. וּשְׁמוֹר צֵאתֵנוּ וּבוֹאֵנוּ לְחַיִּים וּלְשָׁלו [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BedtimeShma3 {
+            get {
+                return ResourceManager.GetString("BedtimeShma3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ יְיָ בַּיּוֹם, בָּרוּךְ יְיָ בַּלָּיְלָה, בָּרוּךְ יְיָ בְּשָׁכְבֵנוּ, בָּרוּךְ יְיָ בְּקוּמֵנוּ. כִּי בְיָדְךָ נַפְשׁוֹת הַחַיִּים וְהַמֵּתִים. אֲשֶׁר בְּיָדוֹ נֶפֶשׁ כָּל חָי וְרוּחַ כָּל בְּשָׂר אִישׁ. בְּיָדְךָ אַפְקִיד רוּחִי, פָּדִיתָה אוֹתִי יְיָ אֵל אֱמֶת. אֱלֹהֵינוּ שֶׁבַּשָּׁמַיִם, יַחֵד שִׁמְךָ וְקַיֵּם מַלְכוּתְךָ תָּמִיד, וּמְלֹךְ עָלֵינוּ לְעוֹלָם וָעֶד..
+        /// </summary>
+        internal static string BedtimeShma4 {
+            get {
+                return ResourceManager.GetString("BedtimeShma4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to יִרְאוּ עֵינֵינוּ וְיִשְׂמַח לִבֵּנוּ וְתָגֵל נַפְשֵׁנוּ בִּישׁוּעָתְךָ בֶּאֱמֶת, בֶּאֱמֹר לְצִיּוֹן מָלַךְ אֱלֹהָיִךְ. יְיָ מֶלֶךְ, יְיָ מָלָךְ, יְיָ יִמְלֹךְ לְעוֹלָם וָעֶד. כִּי הַמַּלְכוּת שֶׁלְּךָ הִיא וּלְעוֹלְמֵי עַד תִּמְלךְ בְּכָבוֹד, כִּי אֵין לָנוּ מֶלֶךְ אֶלָּא אָתָּה..
+        /// </summary>
+        internal static string BedtimeShma5 {
+            get {
+                return ResourceManager.GetString("BedtimeShma5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הַמַּלְאָךְ הַגֹּאֵל אֹתִי מִכָּל רָע יְבָרֵךְ אֶת הַנְּעָרִים, וְיִקָּרֵא בָהֶם שְׁמִי וְשֵׁם אֲבוֹתַי אַבְרָהָם וְיִצְחָק, וְיִדְגּוּ לָרֹב בְּקֶרֶב הָאָרֶץ..
+        /// </summary>
+        internal static string BedtimeShma6 {
+            get {
+                return ResourceManager.GetString("BedtimeShma6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וַיֹּאמֶר: אִם שָׁמוֹעַ תִּשְׁמַע לְקוֹל יְיָ אֱלֹהֶיךָ, וְהַיָּשָׁר בְּעֵינָיו תַּעֲשֶׂה, וְהַאֲזַנְתָּ לְמִצְוֹתָיו וְשָׁמַרְתָּ כָּל חֻקָּיו, כָּל הַמַּחֲלָה אֲשֶׁר שַׂמְתִּי בְמִצְרַיִם לֹא אָשִׂים עָלֶיךָ, כִּי אֲנִי יְיָ רֹפְאֶךָ. וַיֹּאמֶר יְיָ אֶל הַשָּׂטָן, יִגְעַר יְיָ בְּךָ הַשָּׂטָן, וְיִגְעַר יְיָ בְּךָ הַבֹּחֵר בִּירוּשָׁלַיִם, הֲלוֹא זֶה אוּד מֻצָּל מֵאֵשׁ. הִנֵּה מִטָּתוֹ שֶׁלִּשְׁלֹמֹה, שִׁשִּׁים גִּבֹּרִים סָבִיב לָהּ מִגִּבֹּרֵי יִשְׂרָאֵל. כֻּלָּם אֲחֻזֵי חֶרֶב, מְלֻמְּדֵי מִלְחָמָה, אִי [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BedtimeShma7 {
+            get {
+                return ResourceManager.GetString("BedtimeShma7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שלוש פעמים: יְבָרֶכְךָ יְיָ וְיִשְׁמְרֶךָ. יָאֵר יְיָ פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ. יִשָּׂא יְיָ פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם.
+        ///
+        ///שלוש פעמים: הִנֵּה לֹא יָנוּם וְלֹא יִישָׁן שׁוֹמֵר יִשְׂרָאֵל.
+        ///
+        ///שלוש פעמים: לִישׁוּעָתְךָ קִוִּיתִי יְיָ. קִוִּיתִי יְיָ לִישׁוּעָתְךָ. יְיָ לִישׁוּעָתְךָ קִוִּיתִי.
+        ///
+        ///שלוש פעמים: בְּשֵׁם יְיָ אֱלֹהֵי יִשְׂרָאֵל, מִימִינִי מִיכָאֵל, וּמִשְּׂמֹאלִי גַּבְרִיאֵל, וּמִלְּפָנַי אוֹרִיאֵל, וּמֵאֲחוֹרַי רְפָאֵל, וְעַל רֹאשִׁי שְׁכִינַת אֵל..
+        /// </summary>
+        internal static string BedtimeShma8 {
+            get {
+                return ResourceManager.GetString("BedtimeShma8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שלוש פעמים: רִגְזוּ וְאַל תֶּחֱטָאוּ, אִמְרוּ בִלְבַבְכֶם עַל מִשְׁכַּבְכֶם וְדֹמּוּ סֶלָה..
+        /// </summary>
+        internal static string BedtimeShma9 {
+            get {
+                return ResourceManager.GetString("BedtimeShma9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר בָּחַר בִּנְבִיאִים טוֹבִים וְרָצָה בְּדִבְרֵיהֶם הַנֶּאֱמָרִים בֶּאֱמֶת. בָּרוּךְ אַתָּה יְיָ, הַבּוֹחֵר בַּתוֹרָה וּבְמֹשֶׁה עַבְדּוֹ וּבְיִשְׂרָאֵל עַמּוֹ וּבִנְבִיאֵי הָאֱמֶת וְהַצֶּדֶק..
+        /// </summary>
+        internal static string BeforeHaftarahBlessing {
+            get {
+                return ResourceManager.GetString("BeforeHaftarahBlessing", resourceCulture);
             }
         }
         
@@ -419,6 +613,25 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to אחרי הקריאה מברך:
+        ///בָּרוּךְ אַתָּה יְיָ, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר נָתַן־לָנוּ תּוֹרַת־אֱמֶת, וְחַיֵּי עוֹלָם נָטַע בְּתוֹכֵנוּ. בָּרוּךְ אַתָּה יְיָ, נוֹתֵן הַתּוֹרָה..
+        /// </summary>
+        internal static string BrachaAfterTorah {
+            get {
+                return ResourceManager.GetString("BrachaAfterTorah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר בָּחַר בָּנוּ מִכָּל הָעַמִּים, וְנָתַן לָנוּ אֶת תּוֹרָתוֹ. בָּרוּךְ אַתָּה יְיָ נוֹתֵן הַתּוֹרָה..
+        /// </summary>
+        internal static string BrachaBeforeTorah {
+            get {
+                return ResourceManager.GetString("BrachaBeforeTorah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to אֱמֶת וֶאֱמוּנָה כָּל זֹאת וְקַיָּם עָלֵינוּ, כִּי הוּא יְיָ אֱלֹהֵינוּ וְאֵין זוּלָתוֹ. וַאֲנַחְנוּ יִשְׂרָאֵל עַמּוֹ. הַפּוֹדֵנוּ מִיַּד מְלָכִים, מַלְכֵּנוּ הַגּוֹאֲלֵנוּ מִכַּף כָּל הֶעָרִיצִים, הָאֵל הַנִּפְרָע לָנוּ מִצָּרֵינוּ, וְהַמְשַׁלֵּם גְּמוּל לְכָל אוֹיְבֵי נַפְשֵׁנוּ. הָעוֹשֶׂה גְדוֹלוֹת עַד אֵין חֵקֶר, נִסִּים וְנִפְלָאוֹת עַד אֵין מִסְפָּר. הַשָּׂם נַפְשֵׁנוּ בַּחַיִּים, וְלֹא נָתַן לַמּוֹט רַגְלֵנוּ. הַמַּדְרִיכֵנוּ עַל בָּמוֹת אוֹיְבֵינוּ, וַיָּרֶם קַרְנֵנוּ עַל כָּל שׂוֹנְאֵינוּ. הָעוֹשֶ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string BrachotAfterShmaArvit1 {
@@ -513,6 +726,15 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to בְּרִיךְ שְׁמֵהּ דְּמָרֵא עָלְמָא, בְּרִיךְ כִּתְרָךְ וְאַתְרָךְ, יְהֵא רְעוּתָךְ עִם עַמָּךְ יִשְֹרָאֵל לְעָלַם, וּפֻרְקַן יְמִינָךְ אַחֲזֵי לְעַמָּךְ בְּבֵית מַקְדְּשָׁךְ, וּלְאַמְטוּיֵי לָנָא מִטּוּב נְהוֹרָךְ וּלְקַבֵּל צְלוֹתָנָא בְּרַחֲמִין. יְהֵא רַעֲוָא קֳדָמָךְ דְּתוֹרִיךְ לָן חַיִּין בְּטִיבוּ, וְלֶהֱוֵי אֲנָא פְקִידָא בְּגוֹ צַדִּיקַיָּא, לְמִרְחַם עָלַי וּלְמִנְטַר יָתִי וְיַת כָּל דִּי לִי, וְדִי לְעַמָּךְ יִשְֹרָאֵל. אַנְתְּ הוּא זָן לְכֹלָּא וּמְפַרְנֵס לְכֹלָּא, אַנְתְּ הוּא שַׁלִּיט עַל כֹּ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BrichShmeh {
+            get {
+                return ResourceManager.GetString("BrichShmeh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to רִאשׁוֹן.
         /// </summary>
         internal static string DayVerseDay1 {
@@ -603,6 +825,77 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to גַּדְּלוּ לַײָ אִתִּי וּנְרוֹמְמָה שְׁמוֹ יַחְדָּו..
+        /// </summary>
+        internal static string Gadlu {
+            get {
+                return ResourceManager.GetString("Gadlu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו, וְצִוָּנוּ לִקְרוֹא אֶת הַהַלֵּל..
+        /// </summary>
+        internal static string HallelBlessing {
+            get {
+                return ResourceManager.GetString("HallelBlessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אוֹדְךָ כִּי עֲנִיתָנִי, וַתְּהִי לִי לִישׁוּעָה.
+        ///אוֹדְךָ כִּי עֲנִיתָנִי, וַתְּהִי לִי לִישׁוּעָה.
+        ///אֶבֶן מָאֲסוּ הַבּוֹנִים, הָיְתָה לְרֹאשׁ פִּנָּה.
+        ///אֶבֶן מָאֲסוּ הַבּוֹנִים, הָיְתָה לְרֹאשׁ פִּנָּה.
+        ///מֵאֵת יְיָ הָיְתָה זֹּאת, הִיא נִפְלָאת בְּעֵינֵינוּ.
+        ///מֵאֵת יְיָ הָיְתָה זֹּאת, הִיא נִפְלָאת בְּעֵינֵינוּ.
+        ///זֶה הַיּוֹם עָשָׂה יְיָ, נָגִילָה וְנִשְׂמְחָה בוֹ.
+        ///זֶה הַיּוֹם עָשָׂה יְיָ, נָגִילָה וְנִשְׂמְחָה בוֹ..
+        /// </summary>
+        internal static string HallelEnding1 {
+            get {
+                return ResourceManager.GetString("HallelEnding1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אָנָּא יְיָ הוֹשִׁיעָה נָּא
+        ///אָנָּא יְיָ הוֹשִׁיעָה נָּא,
+        ///אָנָּא יְיָ הַצְלִיחָה נָּא
+        ///אָנָּא יְיָ הַצְלִיחָה נָּא..
+        /// </summary>
+        internal static string HallelEnding2 {
+            get {
+                return ResourceManager.GetString("HallelEnding2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ הַבָּא בְּשֵׁם יְיָ, בֵּרַכְנוּכֶם מִבֵּית יְיָ.
+        ///בָּרוּךְ הַבָּא בְּשֵׁם יְיָ, בֵּרַכְנוּכֶם מִבֵּית יְיָ.
+        ///אֵל יְיָ וַיָּאֶר לָנוּ, אִסְרוּ חַג בַּעֲבֹתִים, עַד קַרְנוֹת הַמִּזְבֵּחַ.
+        ///אֵל יְיָ וַיָּאֶר לָנוּ, אִסְרוּ חַג בַּעֲבֹתִים, עַד קַרְנוֹת הַמִּזְבֵּחַ.
+        ///אֵלִי אַתָּה וְאוֹדֶךָּ, אֱלֹהַי אֲרוֹמְמֶךָּ.
+        ///אֵלִי אַתָּה וְאוֹדֶךָּ, אֱלֹהַי אֲרוֹמְמֶךָּ.
+        ///הוֹדוּ לַיְיָ כִּי טוֹב, כִּי לְעוֹלָם חַסְדּוֹ.
+        ///הוֹדוּ לַיְיָ כִּי טוֹב, כִּי לְעוֹלָם חַסְדּוֹ..
+        /// </summary>
+        internal static string HallelEnding3 {
+            get {
+                return ResourceManager.GetString("HallelEnding3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to יְהַלְלוּךָ יְיָ אֱלֹהֵינוּ כָּל מַעֲשֶׂיךָ, וַחֲסִידֶיךָ צַדִּיקִים עוֹשֵׂי רְצוֹנֶךָ, וְכָל עַמְּךָ בֵּית יִשְׂרָאֵל בְּרִנָּה יוֹדוּ וִיבָרְכוּ וִישַׁבְּחוּ וִיפָאֲרוּ וִירוֹמְמוּ וְיַעֲרִיצוּ וְיַקְדִּישׁוּ וְיַמְלִיכוּ אֶת שִׁמְךָ מַלְכֵּנוּ. כִּי לְךָ טוֹב לְהוֹדוֹת וּלְשִׁמְךָ נָּאֶה לְזַמֵּר, כִּי מֵעוֹלָם וְעַד עוֹלָם אַתָּה אֵל. בָּרוּךְ אַתָּה יְיָ, מֶלֶךְ מְהֻלָּל בַּתִּשְׁבָּחוֹת..
+        /// </summary>
+        internal static string HallelEnding4 {
+            get {
+                return ResourceManager.GetString("HallelEnding4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to לפני הנחת תפילין של יד אומר:
         ///בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהָנִיחַ תְּפִלִּין.
         ///
@@ -651,6 +944,15 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string HaziKadish {
             get {
                 return ResourceManager.GetString("HaziKadish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ יְיָ לְעוֹלָם אָמֵן וְאָמֵן. בָּרוּךְ יְיָ מִצִּיּוֹן שׁכֵן יְרוּשָׁלָיִם הַלְלוּיָהּ. בָּרוּךְ יְיָ אֱלֹהִים אֱלֹהֵי יִשְׂרָאֵל עֹשֵׂה נִפְלָאוֹת לְבַדּוֹ, וּבָרוּךְ שֵׁם כְּבוֹדוֹ לְעוֹלָם, וְיִמָּלֵא כְבוֹדוֹ אֶת כָּל הָאָרֶץ אָמֵן וְאָמֵן. יְהִי כְבוֹד יְיָ לְעוֹלָם, יִשְׂמַח יְיָ בְּמַעֲשָׂיו. יְהִי שֵׁם יְיָ מְבֹרָךְ מֵעַתָּה וְעַד עוֹלָם, כִּי לֹא יִטּשׁ יְיָ אֶת עַמּו בַּעֲבוּר שְׁמוֹ הַגָּדוֹל, כִּי הוֹאִיל יְיָ לַעֲשׂוֹת אֶתְכֶם לוֹ לְעָם. וַיַּרְא כָּל הָעָם וַיִּפְּלוּ עַל פְּנֵיהֶם וַי [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string InArvitInChul {
+            get {
+                return ResourceManager.GetString("InArvitInChul", resourceCulture);
             }
         }
         
@@ -713,7 +1015,7 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         
         /// <summary>
         ///   Looks up a localized string similar to קָדוֹשׁ, קָדוֹשׁ, קָדוֹשׁ יְיָ צְבָאוֹת, מְלֹא כָל הָאָרֶץ כְּבוֹדוֹ.
-        ///וְהָאוֹפַנִּים וְחַיּוֹת הַקֹּדֶשׁ בְּרַעַשׁ גָּדוֹל מִתְנַשְּׂאִים לְעֻמַּת שְּׂרָפִים, לְעֻמָּתָם מְשַׁבְּחִים וְאוֹמְרִים:
+        ///וְהָאוֹפַנִּים וְחַיּוֹת הַקֹּדֶשׁ בְּרַעַשׁ גָּדוֹל מִתְנַשְּׂאִים לְעֻמַּת שְׂרָפִים, לְעֻמָּתָם מְשַׁבְּחִים וְאוֹמְרִים:
         ///בָּרוּךְ כְּבוֹד יְיָ מִמְּקוֹמוֹ..
         /// </summary>
         internal static string KadoshKadosh {
@@ -753,6 +1055,20 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string Kdusha {
             get {
                 return ResourceManager.GetString("Kdusha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to כֶּתֶר יִתְּנוּ לְךָ, יְיָ אֱלֹהֵינוּ, מַלְאָכִים הֲמוֹנֵי מַעְלָה, עִם עַמְּךָ יִשרָאֵל קְבוּצֵי מַטָּה,
+        ///יַחַד כֻּלָּם קְדֻשָּׁה לְךָ יְשַׁלֵּשׁוּ, כַּדָּבָר הָאָמוּר עַל יַד נְבִיאֶךָ: וְקָרָא זֶה אֶל זֶה וְאָמַר:
+        ///קָדוֹשׁ, קָדוֹשׁ, קָדוֹשׁ יְיָ צְבָאוֹת, מְלֹא כָל הָאָרֶץ כְּבוֹדוֹ. לְעֻמָּתָם מְשַׁבְּחִים וְאוֹמְרִים:
+        ///בָּרוּךְ כְּבוֹד יְיָ מִמְּקוֹמוֹ. וּבְדִבְרֵי קָדְשְׁךָ כָּתוּב לֵאמֹר:
+        ///יִמְלֹךְ יְיָ לְעוֹלָם, אֱלֹהַיִךְ צִיּוֹן לְדֹר וָדֹר, הַלְלוּיָה.
+        ///לְדוֹר וָדוֹר נַגִיד גָּדְלֶךָ וּלְנֵצַח נְ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string KdushatKeter {
+            get {
+                return ResourceManager.GetString("KdushatKeter", resourceCulture);
             }
         }
         
@@ -826,11 +1142,122 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יי אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, עַל {0} וְעַל תְּנוּבַת הַשָּׂדֶה וְעַל אֶרֶץ חֶמְדָּה טוֹבָה וּרְחָבָה שֶׁרָצִיתָ וְהִנְחַלְתָּ לַאֲבוֹתֵינוּ לֶאֱכוֹל מִפִּרְיָהּ וְלִשְׂבּוֹעַ מִטּוּבָהּ. רַחֵם־נָא יי אֱלֹהֵינוּ עַל יִשְׂרָאֵל עַמֶּךָ וְעַל יְרוּשָׁלַיִם עִירֶךָ וְעַל צִיּוֹן מִשְׁכַּן כְּבוֹדֶךָ וְעַל מִזְבְּחֶךָ וְעַל הֵיכָלֶךָ. וּבְנֵה יְרוּשָׁלַיִם עִיר הַקּדֶשׁ בִּמְהֵרָה בְיָמֵינוּ, וְהַעֲלֵנוּ לְתוֹכָהּ וְשַׂמְּחֵנוּ בְּבִנְיָנָהּ וְנֹאכַל מִפִּרְיָּהּ וְנִשְׂבַּע מִטּוּבָהּ, וּנְבָר [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, {0} וְעַל תְּנוּבַת הַשָּׂדֶה וְעַל אֶרֶץ חֶמְדָּה טוֹבָה וּרְחָבָה, שֶׁרָצִיתָ וְהִנְחַלְתָּ לַאֲבוֹתֵינוּ לֶאֱכֹל מִפִּרְיָהּ וְלִשְׂבֹּעַ מִטּוּבָהּ. רַחֵם־נָא יְיָ אֱלֹהֵינוּ עַל יִשְׂרָאֵל עַמֶּךָ וְעַל יְרוּשָׁלַיִם עִירֶךָ וְעַל צִיּוֹן מִשְׁכַּן כְּבוֹדֶךָ וְעַל מִזְבַּחֲךָ וְעַל הֵיכָלֶךָ. וּבְנֵה יְרוּשָׁלַיִם עִיר הַקֹּדֶשׁ בִּמְהֵרָה בְיָמֵינוּ, וְהַעֲלֵנוּ לְתוֹכָהּ וְשַׂמְּחֵנוּ בְּבִנְיָנָהּ וְנֹאכַל מִפִּרְיָהּ וְנִשְׂבַּע מִטּוּבָהּ, וּנְבָרֶ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MeeinShalosh {
             get {
                 return ResourceManager.GetString("MeeinShalosh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to עַל הָעֵץ וְעַל פְּרִי הָעֵץ.
+        /// </summary>
+        internal static string MeeinShaloshFruit1 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshFruit1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל הַפֵּירוֹת.
+        /// </summary>
+        internal static string MeeinShaloshFruit2 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshFruit2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל פֵּירוֹתֶיהָ.
+        /// </summary>
+        internal static string MeeinShaloshFruit2Israel {
+            get {
+                return ResourceManager.GetString("MeeinShaloshFruit2Israel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to עַל הַגֶּפֶן וְעַל פְּרִי הַגֶּפֶן.
+        /// </summary>
+        internal static string MeeinShaloshGeffen1 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshGeffen1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל פְּרִי הַגֶּפֶן.
+        /// </summary>
+        internal static string MeeinShaloshGeffen2 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshGeffen2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל פְּרִי גַפְנָהּ.
+        /// </summary>
+        internal static string MeeinShaloshGeffen2Israel {
+            get {
+                return ResourceManager.GetString("MeeinShaloshGeffen2Israel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to עַל הַמִּחְיָה וְעַל הַכַּלְכָּלָה.
+        /// </summary>
+        internal static string MeeinShaloshMichya1 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshMichya1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל הַמִּחְיָה.
+        /// </summary>
+        internal static string MeeinShaloshMichya2 {
+            get {
+                return ResourceManager.GetString("MeeinShaloshMichya2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְעַל הַמִּחְיָה.
+        /// </summary>
+        internal static string MeeinShaloshMichya2Israel {
+            get {
+                return ResourceManager.GetString("MeeinShaloshMichya2Israel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְשַׂמְּחֵנוּ בְּיוֹם חַג הַמַּצּוֹת הַזֶּה,
+        ///.
+        /// </summary>
+        internal static string MeeinShaloshPesach {
+            get {
+                return ResourceManager.GetString("MeeinShaloshPesach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְזָכְרֵנוּ לְטוֹבָה בְּיוֹם רֹאשׁ הַחֹדֶשׁ הַזֶּה,
+        ///.
+        /// </summary>
+        internal static string MeeinShaloshRoshChodesh {
+            get {
+                return ResourceManager.GetString("MeeinShaloshRoshChodesh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְשַׂמְּחֵנוּ בְּיוֹם חַג הַסֻּכּוֹת הַזֶּה,
+        ///.
+        /// </summary>
+        internal static string MeeinShaloshSukkot {
+            get {
+                return ResourceManager.GetString("MeeinShaloshSukkot", resourceCulture);
             }
         }
         
@@ -858,6 +1285,15 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string MizmorLifneyHaAron2 {
             get {
                 return ResourceManager.GetString("MizmorLifneyHaAron2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְהוּא רַחוּם יְכַפֵּר עָוֹן וְלֹא יַשְׁחִית, וְהִרְבָּה לְהָשִׁיב אַפּוֹ, וְלֹא יָעִיר כָּל חֲמָתוֹ. אַתָּה יְיָ לֹא תִכְלָא רַחֲמֶיךָ מִמֶּנִּי, חַסְדְּךָ וַאֲמִתְּךָ תָּמִיד יִצְּרוּנִי. זְכֹר רַחֲמֶיךָ יְיָ וַחֲסָדֶיךָ כִּי מֵעוֹלָם הֵמָּה. תְּנוּ עֹז לֵאלֹהִים עַל יִשְׂרָאֵל גַּאֲוָתוֹ וְעֻזּוֹ בַּשְּׁחָקִים. נוֹרָא אֱלֹהִים מִמִּקְדָּשֶׁיךָ, אֵל יִשְׂרָאֵל, הוּא נֹתֵן עֹז וְתַעֲצֻמוֹת לָעָם, בָּרוּךְ אֱלֹהִים. אֵל נְקָמוֹת יְיָ, אֵל נְקָמוֹת הוֹפִיעַ. הִנָּשֵׂא שֹׁפֵט הָאָרֶץ, הָשֵׁב גְּמוּל עַל גֵּאִ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MizmorLifneyHaAron3 {
+            get {
+                return ResourceManager.GetString("MizmorLifneyHaAron3", resourceCulture);
             }
         }
         
@@ -890,6 +1326,159 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to אַתָּה בְחַרְתָּנוּ מִכָּל הָעַמִּים, אָהַבְתָּ אוֹתָנוּ וְרָצִיתָ בָּנוּ, וְרוֹמַמְתָּנוּ מִכָּל הַלְּשׁוֹנוֹת, וְקִדַּשְׁתָּנוּ בְּמִצְוֹתֶיךָ, וְקֵרַבְתָּנוּ מַלְכֵּנוּ לַעֲבוֹדָתֶךָ וְשִׁמְךָ הַגָּדוֹל וְהַקָּדוֹשׁ עָלֵינוּ קָרָאתָ.
+        ///
+        ///וַתִּתֶּן־לָנוּ יְיָ אֱלֹהֵינוּ בְּאַהֲבָה מוֹעֲדִים לְשִׂמְחָה, חַגִּים וּזְמַנִּים לְשָׂשׂוֹן, אֶת יוֹם {0} מִקְרָא קֹדֶשׁ, זֵכֶר לִיצִיאַת מִצְרָיִם..
+        /// </summary>
+        internal static string MusasfCholHamoed1 {
+            get {
+                return ResourceManager.GetString("MusasfCholHamoed1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּמִפְּנֵי חֲטָאֵינוּ גָּלִינוּ מֵאַרְצֵנוּ וְנִתְרַחַקְנוּ מֵעַל אַדְמָתֵנוּ, וְאֵין אָנוּ יְכוֹלִים לַעֲלוֹת וְלֵרָאוֹת וּלְהִשְׁתַּחֲוֹת לְפָנֶיךָ, וְלַעֲשׂוֹת חוֹבוֹתֵינוּ בְּבֵית בְּחִירָתֶךָ, בַּבַּיִת הַגָּדוֹל וְהַקָּדוֹשׁ שֶׁנִּקְרָא שִׁמְךָ עָלָיו, מִפְּנֵי הַיָּד שֶׁנִּשְׁתַּלְּחָה בְּמִקְדָּשֶׁךָ. יְהִי רָצוֹן מִלְּפָנֶיךָ יְיָ אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, מֶלֶךְ רַחֲמָן, שֶׁתָּשׁוּב וּתְרַחֵם עָלֵינוּ וְעַל מִקְדָּשְׁךָ בְּרַחֲמֶיךָ הָרַבִּים, וְתִבְנֵהוּ מְהֵרָה וּתְגַדֵּל כְּבוֹדוֹ. אָבִי [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MusasfCholHamoed2 {
+            get {
+                return ResourceManager.GetString("MusasfCholHamoed2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, מֶלֶךְ רַחֲמָן, רַחֵם עָלֵינוּ, טוֹב וּמֵטִיב הִדָּרֶשׁ לָנוּ, שׁוּבָה אֵלֵינוּ בַּהֲמוֹן רַחֲמֶיךָ בִּגְלַל אָבוֹת שֶׁעָשׂוּ רְצוֹנֶךָ. בְּנֵה בֵיתְךָ כְּבַתְּחִלָּה וְכוֹנֵן מִקְדָּשְׁךָ עַל מְכוֹנוֹ, וְהַרְאֵנוּ בְּבִנְיָנוֹ וְשַׂמְּחֵנוּ בְּתִקּוּנוֹ, וְהָשֵׁב כֹּהֲנִים לַעֲבוֹדָתָם וּלְוִיִּם לְשִׁירָם וּלְזִמְרָם, וְהָשֵׁב יִשְׂרָאֵל לִנְוֵיהֶם. וְשָׁם נַעֲלֶה וְנֵרָאֶה וְנִשְׁתַּחֲוֶה לְפָנֶיךָ בְּשָׁלֹשׁ פַּעֲמֵי רְגָלֵינוּ, כַּכָּתוּב בְּתוֹרָתֶךָ: שָׁלֹשׁ פְּעָמִים [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MusasfCholHamoed3 {
+            get {
+                return ResourceManager.GetString("MusasfCholHamoed3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְהַשִֹּיאֵנוּ יְיָ אֱלֹהֵינוּ אֶת בִּרְכַּת מוֹעֲדֶיךָ לְחַיִּים וּלְשָׁלוֹם, לְשִׂמְחָה וּלְשָׂשׂוֹן, כַּאֲשֶׁר רָצִיתָ וְאָמַרְתָּ לְבָרְכֵנוּ. קַדְּשֵׁנוּ בְּמִצְוֹתֶיךָ, וְתֵן חֶלְקֵנוּ בְּתוֹרָתֶךָ, שַׂבְּעֵנוּ מִטּוּבֶךָ, וְשַׂמְּחַ נַפְשֵׁנוּ בִּישׁוּעָתֶךָ, וְטַהֵר לִבֵּנוּ לְעָבְדְּךָ בֶּאֱמֶת, וְהַנְחִילֵנוּ יְיָ אֱלֹהֵינוּ בְּשִׂמְחָה וּבְשָׂשׂוֹן מוֹעֲדֵי קָדְשֶׁךָ, וְיִשִׂמְחוּ בְךָ כָּל יִשְׂרָאֵל מְקַדְּשֵׁי שְׁמֶךָ. בָּרוּךְ אַתָּה יְיָ, מְקַדֵּשׁ יִשְׂרָאֵל וְהַזְּמַנִּים..
+        /// </summary>
+        internal static string MusasfCholHamoed4 {
+            get {
+                return ResourceManager.GetString("MusasfCholHamoed4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to חַג הַמַּצּוֹת הַזֶּה, זְמַן חֵרוּתֵנוּ,.
+        /// </summary>
+        internal static string MussafPesach1 {
+            get {
+                return ResourceManager.GetString("MussafPesach1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְהִקְרַבְתֶּם אִשֶּׁה עֹלָה לַיְיָ, פָּרִים בְּנֵי בָקָר שְׁנַיִם וְאַיִל אֶחָד, וְשִׁבְעָה כְבָשִׂים בְּנֵי שָׁנָה, תְּמִימִם יִהְיוּ לָכֶם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafPesachPsukim1 {
+            get {
+                return ResourceManager.GetString("MussafPesachPsukim1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  וּלְכַפָּרַת פָּשַׁע.
+        /// </summary>
+        internal static string MussafRoshChodeshInIbbur {
+            get {
+                return ResourceManager.GetString("MussafRoshChodeshInIbbur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to רָאשֵׁי חֳדָשִׁים לְעַמְּךָ נָתַתָּ, זְמַן כַּפָּרָה לְכָל תּוֹלְדוֹתָם, בִּהְיוֹתָם מַקְרִיבִים לְפָנֶיךָ זִבְחֵי רָצוֹן, וּשְׂעִירֵי חַטָּאת לְכַפֵּר בַּעֲדָם. זִכָּרוֹן לְכֻלָּם יִהְיוּ, וּתְשׁוּעַת נַפְשָׁם מִיַּד שׂוֹנֵא. מִזְבֵּחַ חָדָשׁ בְּצִיּוֹן תָּכִין, וְעוֹלַת רֹאשׁ חֹדֶשׁ נַעֲלֶה עָלָיו וּשְׂעִירֵי עִזִּים נַעֲשֶׂה בְרָצוֹן, וּבַעֲבוֹדַת בֵּית הַמִּקְדָּשׁ נִשְׂמַח כֻּלָּנוּ, וְבְשִׁירֵי דָוִד עַבְדְּךָ הַנִּשְׁמָעִים בְּעִירֶךָ הָאֲמוּרִים לִפְנֵי מִזְבְּחֶךָ, אַהֲבַת עוֹלָם תָּבִיא לָהֶם וּבְרִית אָבוֹת לַבָּנִים תִּזְכֹּר. וַהֲבִיאֵנוּ לְצִיּוֹן עִירְךָ בְּרִנּ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MussafRoshChodeshSE1 {
+            get {
+                return ResourceManager.GetString("MussafRoshChodeshSE1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, חַדֵּשׁ עָלֵינוּ אֶת הַחֹדֶשׁ הַזֶּה לְטוֹבָה וְלִבְרָכָה, לְשָׂשׂוֹן וּלְשִׂמְחָה, לִישׁוּעָה וּלְנֶחָמָה, לְפַרְנָסָה וּלְכַלְכָּלָה, לְחַיִּים טוֹבִים וּלְשָׁלוֹם, לִמְחִילַת חֵטְא וְלִסְלִיחַת עָוֹן{0}, וִיהִי הַחֹדֶשׁ הַזֶּה סוֹף וְקֵץ לְכָל צָרוֹתֵינוּ, תְּחִלָּה וָרֹאשׁ לְפִדְיוֹן נַפְשֵׁנוּ, כִּי בְעַמְּךָ יִשְׂרָאֵל בָּחַרְתָּ מִכָּל הָאֻמּוֹת וְחֻקֵּי רָאשֵׁי חֳדָשִׁים לָהֶם קָבָעְתָּ. בָּרוּךְ אַתָּה יְיָ, מְקַדֵּשׁ יִשְׂרָאֵל וְרָאשֵׁי חֳדָשִׁים..
+        /// </summary>
+        internal static string MussafRoshChodeshSE2 {
+            get {
+                return ResourceManager.GetString("MussafRoshChodeshSE2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to חַג הַסֻּכּוֹת הַזֶּה, זְמַן שִׂמְחָתֵנוּ,.
+        /// </summary>
+        internal static string MussafSukkot1 {
+            get {
+                return ResourceManager.GetString("MussafSukkot1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיּוֹם הַשֵּׁנִי, פָּרִים בְּנֵי בָקָר שְׁנֵים עָשָׂר, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim1 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיּוֹם הַשְּׁלִישִׁי, פָּרִים עַשְׁתֵּי עָשָׂר, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim2 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיּוֹם הָרְבִיעִי, פָּרִים עֲשָׂרָה, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///מִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim3 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיּוֹם הַחֲמִישִׁי, פָּרִים תִּשְׁעָה, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim4 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיּוֹם הַשִּׁשִּׁי, פָּרִים שְׁמֹנָה, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim5 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וּבַיֹּום הַשְּׁבִיעִי, פָּרִים שִׁבְעָה, אֵילִם שְׁנָיִם, כְּבָשִׂים בְּנֵי שָׁנָה אַרְבָּעָה עָשָׂר, תְּמִימִם.
+        ///וּמִנְחָתָם וְנִסְכֵּיהֶם כִּמְדֻבָּר, שְׁלֹשָׁה עֶשְׂרֹנִים לַפָּר, וּשְׁנֵי עֶשְׂרֹנִים לָאָיִל, וְעִשָּׂרוֹן לַכֶּבֶשׂ, וְיַיִן כְּנִסְכּוֹ, וְשָׂעִיר לְכַפֵּר, וּשְׁנֵי תְמִידִים כְּהִלְכָתָם..
+        /// </summary>
+        internal static string MussafSukkotPsukim6 {
+            get {
+                return ResourceManager.GetString("MussafSukkotPsukim6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to נַחֵם יְיָ אֱלֹהֵינוּ אֶת אֲבֵלֵי צִיּוֹן וְאֵת אֲבֵלֵי יְרוּשָׁלָיִם וְאֶת הָעִיר הָאֲבֵלָה וְהַחֳרֵבָה וְהַבְּזוּיָה וְהַשּׁוֹמֵמָה. הָאֲבֵלָה מִבְּלִי בָנֶיהָ, וְהַחֳרֵבָה מִמְּעוֹנוֹתֶיהָ, וְהַבְּזוּיָה מִכְּבוֹדָהּ, וְהַשּׁוֹמֵמָה מֵאֵין יוֹשֵׁב. וְהִיא יוֹשֶׁבֶת וְרֹאשָׁהּ חָפוּי כְּאִשָּׁה עֲקָרָה שֶׁלֹא יָלָדָה. וַיְבַלְּעוּהָ לִגְיוֹנוֹת וַיִּירָשׁוּהָ עוֹבְדֵי פְסִילִים וַיָּטִילוּ אֶת עַמְּךָ יִשְׂרָאֵל לֶחָרֶב וַיַּהַרְגוּ בְּזָדוֹן חֲסִידֵי עֶלְיוֹן. עַל כֵּן צִיּוֹן בְּמַר תִּבְכֶּה וִירוּשָׁל [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Nachem {
@@ -915,33 +1504,6 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string NetilatYadayimBlessing {
             get {
                 return ResourceManager.GetString("NetilatYadayimBlessing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to שְׁנֵי.
-        /// </summary>
-        internal static string OmerCount2 {
-            get {
-                return ResourceManager.GetString("OmerCount2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to הַיּוֹם {0} יָמִים לָעֹמֶר.
-        /// </summary>
-        internal static string OmerShort {
-            get {
-                return ResourceManager.GetString("OmerShort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to הַיּוֹם יוֹם אֶחָד לָעֹמֶר.
-        /// </summary>
-        internal static string OmerShort1 {
-            get {
-                return ResourceManager.GetString("OmerShort1", resourceCulture);
             }
         }
         
@@ -991,7 +1553,7 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to וַיְדַבֵּר יְיָ אֶל מֹשֶׁה לֵּאמֹר: דַּבֵּר אֶל אַהֲרֹן וְאֶל בָּנָיו לֵאמֹר, כֹּה תְבָרְכוּ אֶת בְּנֵי יִשְׂרָאֵל, אָמוֹר לָהֶם: יְבָרֶכְךָ יְיָ וְיִשְׁמְרֶךָ. יָאֵר יְיָ פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ. יִשָּׂא יְיָ פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם. וְשָׂמוּ אֶת שְׁמִי עַל בְּנֵי יִשְׂרָאֵל וַאֲנִי אֲבָרֲכֵם.
+        ///   Looks up a localized string similar to וַיְדַבֵּר יְיָ אֶל מֹשֶׁה לֵּאמֹר: דַּבֵּר אֶל אַהֲרֹן וְאֶל בָּנָיו לֵאמֹר, כֹּה תְבָרְכוּ אֶת בְּנֵי יִשְׂרָאֵל, אָמוֹר לָהֶם: יְבָרֶכְךָ יְיָ וְיִשְׁמְרֶךָ. יָאֵר יְיָ פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ. יִשָּׂא יְיָ פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם. וְשָׂמוּ אֶת שְׁמִי עַל בְּנֵי יִשְׂרָאֵל וַאֲנִי אֲבָרְכֵם.
         ///
         ///אֵלּוּ דְבָרִים שֶׁאֵין לָהֶם שִׁעוּר: הַפֵּאָה וְהַבִּכּוּרִים וְהָרֵאָיוֹן וּגְמִילוּת חֲסָדִים וְתַלְמוּד תּוֹרָה.
         ///
@@ -1022,6 +1584,25 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string PitumHaktoret2 {
             get {
                 return ResourceManager.GetString("PitumHaktoret2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to לְשֵׁם יִחוּד קּוּדְשָׁא בְּרִיךְ הוּא וּשְׁכִינְתֵּיהּ בִּדְחִילוּ וּרְחִימוּ לְיַחֵד שֵׁם י&quot;ה בו&quot;ה בְּיִחוּדָא שְׁלִים בְּשֵׁם כָּל יִשְׂרָאֵל. הִנְּנִי מוּכָן וּמְזֻמָּן לְקַיֵּם מִצְוַת עֲשֵׂה שֶׁל סְפִירַת הָעֹמֶר כְּמוֹ שֶׁכָּתוּב בַּתּוֹרָה: וּסְפַרְתֶּם לָכֶם מִמָּחֳרַת הַשַּׁבָּת מִיּוֹם הֲבִיאֲכֶם אֶת עֹמֶר הַתְּנוּפָה שֶׁבַע שַׁבָּתוֹת תְּמִימוֹת תִּהְיֶינָה. עַד מִמָּחֳרָת הַשַּׁבָּת הַשְּׁבִיעִית תִּסְפְּרוּ חֲמִשִּׁים יוֹם וְהִקְרַבְתֶּם מִנְחָה חֲדָשָׁה לַייָ. וִיהִי נֹעַם יְיָ אֱלֹהֵינוּ עָל [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PreSfiratHaHomer {
+            get {
+                return ResourceManager.GetString("PreSfiratHaHomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ואומר (אך לא בבית האבל):
+        ///אֵל אֶרֶךְ אַפַּיִם וְרַב חֶסֶד וְאֱמֶת, אַל בְּאַפְּךָ תוֹכִיחֵנוּ. חוּסָה יְיָ עַל יִשְׂרָאֵל עַמֶּךָ וְהוֹשִׁיעֵנוּ מִכָּל רָע. חָטָאנוּ לְךָ אָדוֹן, סְלַח נָא כְּרֹב רַחֲמֶיךָ אֵל..
+        /// </summary>
+        internal static string PreST {
+            get {
+                return ResourceManager.GetString("PreST", resourceCulture);
             }
         }
         
@@ -1371,6 +1952,96 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to הַיּוֹם יוֹם אֶחָד לָעֹמֶר..
+        /// </summary>
+        internal static string SfiratHaOmer1 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmer1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שְׁנֵי|שְׁלֹשָׁה|אַרְבָּעָה|חֲמִשָּׁה|שִׁשָּׁה|שִׁבְעָה|שְׁמוֹנָה|תִּשְׁעָה|עֲשָׂרָה|אַחַד עָשָׂר|שְׁנֵים עָשָׂר|שְׁלֹשָׁה עָשָׂר|אַרְבָּעָה עָשָׂר|חֲמִשָּׁה עָשָׂר|שִׁשָּׁה עָשָׂר|שִׁבְעָה עָשָׂר|שְׁמוֹנָה עָשָׂר|תִּשְׁעָה עָשָׂר|עֶשְׂרִים|אֶחָד וְעֶשְׂרִים|שְׁנַיִם וְעֶשְׂרִים|שְׁלֹשָׁה וְעֶשְׂרִים|אַרְבָּעָה וְעֶשְׂרִים|חֲמִשָּׁה וְעֶשְׂרִים|שִׁשָּׁה וְעֶשְׂרִים|שִׁבְעָה וְעֶשְׂרִים|שְׁמוֹנָה וְעֶשְׂרִים|תִּשְׁעָה וְעֶשְׂרִים|שְׁלֹשִׁים|אֶחָד וּשְׁלֹשִׁים|שְׁנַיִם וּשְׁלֹשִׁים|שְׁלֹשָׁה וּשְׁלֹשִׁים|אַרְ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SfiratHaOmer2To49 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmer2To49", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל סְפִירַת הָעֹמֶר..
+        /// </summary>
+        internal static string SfiratHaOmerBlessing {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerBlessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  וְיוֹם אֶחָד| וּשְׁנֵי יָמִים| וּשְׁלֹשָׁה יָמִים| וְאַרְבָּעָה יָמִים| וַחֲמִשָּׁה יָמִים| וְשִׁשָּׁה יָמִים.
+        /// </summary>
+        internal static string SfiratHaOmerDays {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to חֶסֶד|גְּבוּרָה|תִּפְאֶרֶת|נֶצַח|הוֹד|יְסוֹד|מַלְכוּת.
+        /// </summary>
+        internal static string SfiratHaOmerDaysKabbalah1 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerDaysKabbalah1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שֶׁבַּחֶסֶד|שֶׁבַּגְבוּרָה|שֶׁבַּתִפְאֶרֶת|שֶׁבַּנֶצַח|שֶׁבַּהוֹד|שֶׁבַּיְסוֹד|שֶׁבַּמַלְכוּת.
+        /// </summary>
+        internal static string SfiratHaOmerDaysKabbalah2 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerDaysKabbalah2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הַיּוֹם {0} יוֹם שֶׁהֵם {1} לָעֹמֶר..
+        /// </summary>
+        internal static string SfiratHaOmerLong_F1 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerLong_F1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הַיּוֹם {0} יָמִים שֶׁהֵם {1} לָעֹמֶר..
+        /// </summary>
+        internal static string SfiratHaOmerLong2_F1 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerLong2_F1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הַיּוֹם {0} יָמִים לָעֹמֶר..
+        /// </summary>
+        internal static string SfiratHaOmerShort_F0 {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerShort_F0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שָׁבוּעַ אֶחָד|שְׁנֵי שָׁבוּעוֹת|שְׁלֹשָׁה שָׁבוּעוֹת|אַרְבָּעָה שָׁבוּעוֹת|חֲמִשָּׁה שָׁבוּעוֹת|שִׁשָּׁה שָׁבוּעוֹת|שִׁבְעָה שָׁבוּעוֹת.
+        /// </summary>
+        internal static string SfiratHaOmerWeeks {
+            get {
+                return ResourceManager.GetString("SfiratHaOmerWeeks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to עומדים ואומרים:
         ///יְיָ מֶלֶךְ, יְיָ מָלָךְ, יְיָ יִמְלֹךְ לְעֹלָם וָעֶד.
         ///יְיָ מֶלֶךְ, יְיָ מָלָךְ, יְיָ יִמְלֹךְ לְעֹלָם וָעֶד.
@@ -1456,7 +2127,7 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to אָבִינוּ אָב הָרַחֲמָן, הַרְאֵנוּ אוֹת לְטוֹבָה וְקַבֵּץ נְפוּצוֹתֵינוּ מֵאַרְבַּע כַּנְפוֹת הָאָרֶץ. יַכִּירוּ וְיֵדְעוּ כָּל הַגּוֹיִם, כִּי אַתָּה יְיָ אֱלֹהֵינוּ. וְעַתָּה יְיָ אָבִינוּ אָתָּה, אֲנַחְנוּ הַחֹמֶר וְאַתָּה יֹצְרֵנוּ וּמַעֲשֵׂה יָדְךָ כֻּלָּנוּ. הושִׁיעֵנוּ לְמַעַן שְׁמֶךָ, אָבִינוּ מַלְכֵּנוּ צוּרֵנוּ וְגוֹאֲלֵנוּ. חוּסָה יְיָ עַל עַמֶּךָ וְאַל תִּתֵּן נַחֲלָתְךָ לְחֶרְפָּה לִמְשָׁל־בָּם גּוֹיִם, לָמָּה יֹאמְרוּ בָעַמִּים אַיֵּה אֱלֹהֵיהֶם. יָדַעְנוּ יְיָ כִּי חָטָאנוּ וְאֵין מִי יַעֲמֹד  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to אָבִינוּ אָב הָרַחֲמָן, הַרְאֵנוּ אוֹת לְטוֹבָה וְקַבֵּץ נְפוּצוֹתֵינוּ מֵאַרְבַּע כַּנְפוֹת הָאָרֶץ. יַכִּירוּ וְיֵדְעוּ כָּל הַגּוֹיִם, כִּי אַתָּה יְיָ אֱלֹהֵינוּ. וְעַתָּה יְיָ אָבִינוּ אָתָּה, אֲנַחְנוּ הַחֹמֶר וְאַתָּה יֹצְרֵנוּ וּמַעֲשֵׂה יָדְךָ כֻּלָּנוּ. הוֹשִׁיעֵנוּ לְמַעַן שְׁמֶךָ, אָבִינוּ מַלְכֵּנוּ צוּרֵנוּ וְגוֹאֲלֵנוּ. חוּסָה יְיָ עַל עַמֶּךָ וְאַל תִּתֵּן נַחֲלָתְךָ לְחֶרְפָּה לִמְשָׁל־בָּם גּוֹיִם, לָמָּה יֹאמְרוּ בָעַמִּים אַיֵּה אֱלֹהֵיהֶם. יָדַעְנוּ יְיָ כִּי חָטָאנוּ וְאֵין מִי יַעֲמֹד [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TachanunBH3 {
             get {
@@ -1544,14 +2215,52 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to יְהִי רָצוֹן מִלְפָנֶיךָ יְיָ אֱלֹהֵינוּ וְאלֹהֵי אֲבוֹתֵינוּ, שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם, וְתִסְמְכֵנוּ לְשָׁלוֹם, וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם.
-        ///(אם דעתו לחזור מיד אומר וְתַחְזִירֵנוּ לְשָׁלוֹם)
-        ///וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב וְלִסְטִים וְחַיּוֹת רָעוֹת בַּדֶּרֶךְ,
-        ///וּמִכָּל מִינֵי פֻּרְעָנֻיּוֹת הַמִּתְרַגְּשׁוֹת לָבוֹא לָעוֹלָם, וְתִתְּנֵנוּ לְחֵן וּלְחֶסֶד וּלְרַחֲמִים בְּעֵינֶיךָ וּבְעֵינֵי כָל רֹאֵינוּ [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to יְהִי רָצוֹן מִלְפָנֶיךָ יְיָ אֱלֹהֵינוּ וְאלֹהֵי אֲבוֹתֵינוּ, שֶׁתּוֹלִיכֵנוּ לְשָׁלוֹם וְתַצְעִידֵנוּ לְשָׁלוֹם וְתַדְרִיכֵנוּ לְשָׁלוֹם, וְתַגִּיעֵנוּ לִמְחוֹז חֶפְצֵנוּ לְחַיִּים וּלְשִׂמְחָה וּלְשָׁלוֹם (אם דעתו לחזור מיד אומר: וְתַחֲזִירֵנוּ לְשָׁלוֹם) וְתַצִּילֵנוּ מִכַּף כָּל אוֹיֵב וְאוֹרֵב בַּדֶּרֶךְ וּמִכָּל מִינֵי פֻּרְעָנֻיּוֹת הַמִּתְרַגְּשׁוֹת לָבוֹא לָעוֹלָם, וְתִשְלַח בְּרָכָה בְּמַעֲשֵׂה יָדֵינוּ, וְתִתְּנֵנוּ לְחֵן וּלְחֶסֶד וּלְרַחֲמִים בְּעֵינֶיךָ וּבְעֵינֵי כָל רוֹאֵינוּ, וְתִשְׁמַע קו [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TfilatHaderech {
             get {
                 return ResourceManager.GetString("TfilatHaderech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הש&quot;ץ לוקח את הספר ואומר:
+        ///יְהַלְלוּ אֶת שֵׁם יְיָ, כִּי נִשְׂגָּב שְׁמוֹ לְבַדּוֹ.
+        ///
+        ///הקהל ממשיך איתו:
+        ///הוֹדוֹ, עַל אֶרֶץ וְשָׁמָיִם. וַיָּרֶם קֶרֶן לְעַמּוֹ, תְּהִלָּה לְכָל חֲסִידָיו, לִבְנֵי יִשְׂרָאֵל עַם קְרֹבוֹ, הַלְלוּיָהּ..
+        /// </summary>
+        internal static string TorahBookReplacing1 {
+            get {
+                return ResourceManager.GetString("TorahBookReplacing1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to מכניסים את הספר ואומרים:
+        ///וּבְנֻחֹה יֹאמַר: שׁוּבָה יְיָ רִבְבוֹת אַלְפֵי יִשְׂרָאֵל. 
+        ///קוּמָה יְיָ לִמְנוּחָתֶךָ, אַתָּה וַאֲרוֹן עֻזֶּךָ. 
+        ///כֹּהֲנֶיךָ יִלְבְּשׁוּ צֶדֶק, וַחֲסִידֶיךָ יְרַנֵּנוּ.
+        ///בַּעֲבוּר דָּוִד עַבְדֶּךָ אַל תָּשֵׁב פְּנֵי מְשִׁיחֶךָ.
+        ///כִּי לֶקַח טוֹב נָתַתִּי לָכֶם, תּוֹרָתִי אַל תַּעֲזֹבוּ.
+        ///עֵץ חַיִּים הִיא לַמַּחֲזִיקִים בָּהּ, וְתֹמְכֶיהָ מְאֻשָּׁר.
+        ///דְּרָכֶיהָ דַרְכֵי נֹעַם וְכָל נְתִיבוֹתֶיהָ שָׁלוֹם.
+        ///הֲשִׁיבֵנוּ יְיָ אֵלֶיךָ וְנָשׁוּבָה, חַדֵּשׁ יָמֵינוּ כְּקֶדֶם..
+        /// </summary>
+        internal static string TorahBookReplacing2 {
+            get {
+                return ResourceManager.GetString("TorahBookReplacing2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to לְךָ יְיָ הַגְּדֻלָּה וְהַגְּבוּרָה וְהַתִּפְאֶרֶת וְהַנֵּצַח וְהַהוֹד, כִּי כֹל בַּשָּׁמַיִם וּבָאָרֶץ. לְךָ יְיָ הַמַּמְלָכָה וְהַמִּתְנַשֵֹּא לְכֹל לְרֹאשׁ.
+        ///רוֹמְמוּ יְיָ אֱלֹהֵינוּ וְהִשְׁתַּחֲווּ לַהֲדֹם רַגְלָיו, קָדוֹשׁ הוּא. רוֹמְמוּ יְיָ אֱלֹהֵינוּ וְהִשְׁתַּחֲווּ לְהַר קָדְשׁוֹ, כִּי קָדוֹשׁ יְיָ אֱלֹהֵינוּ.
+        ///אַב הָרַחֲמִים הוּא יְרַחֵם עַם עֲמוּסִים, וְיִזְכּוֹר בְּרִית אֵיתָנִים, וְיַצִּיל נַפְשׁוֹתֵינוּ מִן הַשָּׁעוֹת הָרָעוֹת, וְיִגְעַר בְּיֵצֶר הָרָע מִן הַנְּשוּאִים, וְיָחוֹן עָלֵינוּ לִפְל [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string TorahBookWalking {
+            get {
+                return ResourceManager.GetString("TorahBookWalking", resourceCulture);
             }
         }
         
@@ -1574,11 +2283,31 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to וְתִגָּלֶה וְתֵרָאֶה מַלְכוּתוֹ עָלֵינוּ בִּזְמַן קָרוֹב, וְיָחוֹן פְּלֵטָתֵנוּ וּפְלֵטַת עַמּוֹ בֵּית יִשְֹרָאֵל לְחֵן וּלְחֶסֶד וּלְרַחֲמִים וּלְרָצוֹן וְנֹאמַר אָמֵן. הַכֹּל הָבוּ גֹדֶל לֵאלֹהֵינוּ וּתְנוּ כָבוֹד לַתּוֹרָה. כֹּהֵן קְרָב, יַעֲמוֹד (פלוני בן פלוני) הַכֹּהֵן, בָּרוּךְ שֶׁנָּתַן תּוֹרָה לְעַמּוֹ יִשְֹרָאֵל בִּקְדֻשָּׁתוֹ.
+        ///
+        ///הקהל עונה: וְאַתֶּם הַדְּבֵקִים בַּיְיָ אֱלֹהֵיכֶם חַיִּים כֻּלְּכֶם הַיּוֹם..
+        /// </summary>
+        internal static string Vatigaleh {
+            get {
+                return ResourceManager.GetString("Vatigaleh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to וְאַתָּה קָדוֹשׁ יוֹשֵׁב תְּהִלּוֹת יִשְׂרָאֵל. וְקָרָא זֶה אֶל זֶה וְאָמַר: קָדוֹשׁ, קָדוֹשׁ, קָדוֹשׁ יְיָ צְבָאוֹת, מְלֹא כָל הָאָרֶץ כְּבוֹדוֹ. וּמְקַבְּלִין דֵּין מִן דֵּין, וְאָמְרִין: קַדִּישׁ בִּשְׁמֵי מְרוֹמָא עִלָּאָה בֵּית שְׁכִינְתֵּהּ, קַדִּישׁ עַל אַרְעָא עוֹבַד גְּבוּרְתֵּהּ, קַדִּישׁ לְעָלַם וּלְעָלְמֵי עָלְמַיָּא יְיָ צְבָאוֹת, מַלְיָא כָל אַרְעָא זִיו יְקָרֵהּ. וַתִּשָּׂאֵנִי רוּחַ, וָאֶשְׁמַע אַחֲרַי קוֹל רַעַשׁ גָדוֹל: בָּרוּךְ כְּבוֹד יְיָ מִמְּקוֹמוֹ. וּנְטָלַתְנִי רוּחָא, וּשְׁמָעִית ב [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string VeataKadosh {
+        internal static string VeataKadosh1 {
             get {
-                return ResourceManager.GetString("VeataKadosh", resourceCulture);
+                return ResourceManager.GetString("VeataKadosh1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to יְיָ אֱלֹהֵי אַבְרָהָם יִצְחָק וְיִשְׂרָאֵל אֲבוֹתֵינוּ, שָׁמְרָה זֹאת לְעוֹלָם לְיֵצֶר מַחְשְׁבוֹת לְבַב עַמֶּךָ, וְהָכֵן לְבָבָם אֵלֶיךָ. וְהוּא רַחוּם, יְכַפֵּר עָוֹן וְלֹא יַשְׁחִית, וְהִרְבָּה לְהָשִׁיב אַפּוֹ, וְלֹא יָעִיר כָּל חֲמָתוֹ. כִּי אַתָּה אֲדֹנָי טוֹב וְסַלָּח, וְרַב חֶסֶד לְכָל קֹרְאֶיךָ. צִדְקָתְךָ צֶדֶק לְעוֹלָם וְתוֹרָתְךָ אֱמֶת. תִּתֵּן אֱמֶת לְיַעֲקֹב, חֶסֶד לְאַבְרָהָם, אֲשֶׁר נִשְׁבַּעְתָּ לַאֲבֹתֵינוּ מִימֵי קֶדֶם. בָּרוּךְ אֲדֹנָי יוֹם יוֹם יַעֲמָס־לָנוּ, הָאֵל יְשׁוּעָתֵנוּ סֶלָה. [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string VeataKadosh2 {
+            get {
+                return ResourceManager.GetString("VeataKadosh2", resourceCulture);
             }
         }
         
@@ -1614,12 +2343,30 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to וַיְהִי בִּנְסֹעַ הָאָרֹן וַיֹּאמֶר מֹשֶׁה: קוּמָה יְיָ וְיָפֻצוּ אֹיְבֶיךָ וְיָנֻסוּ מְשַׂנְאֶיךָ מִפָּנֶיךָ. כִּי מִצִּיּוֹן תֵּצֵא תוֹרָה וּדְבַר יְיָ מִירוּשָׁלָיִם. בָּרוּךְ שֶׁנָּתַן תּוֹרָה לְעַמּוֹ יִשְׁרָאֵל בִּקְדֻשָּׁתוֹ..
+        /// </summary>
+        internal static string VeyehiBinsoa {
+            get {
+                return ResourceManager.GetString("VeyehiBinsoa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to וִיהִי נֹעַם אֲדֹנָי אֱלֹהֵינוּ עָלֵינוּ, וּמַעֲשֵׂה יָדֵינוּ כּוֹנְנָה עָלֵינוּ, וּמַעֲשֵׂה יָדֵינוּ כּוֹנְנֵהוּ. 
         ///יֹשֵׁב בְּסֵתֶר עֶלְיוֹן, בְּצֵל שַׁדַּי יִתְלוֹנָן. אֹמַר לַיְיָ מַחְסִי וּמְצוּדָתִי, אֱלֹהַי אֶבְטַח בּוֹ. כִּי הוּא יַצִּילְךָ מִפַּח יָקוּשׁ, מִדֶּבֶר הַוּוֹת. בְּאֶבְרָתוֹ יָסֶךְ לָךְ וְתַחַת כְּנָפָיו תֶּחְסֶה, צִנָּה וְסֹחֵרָה אֲמִתּוֹ. לֹא תִירָא מִפַּחַד לָיְלָה, מֵחֵץ יָעוּף יוֹמָם. מִדֶּבֶר בָּאֹפֶל יַהֲלֹךְ, מִקֶּטֶב יָשׁוּד צָהֳרָיִם. יִפֹּל מִצִּדְּךָ אֶלֶף וּרְבָבָה מִימִינֶךָ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string VeyehiNoam {
             get {
                 return ResourceManager.GetString("VeyehiNoam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to וְזֹאת הַתּוֹרָה אֲשֶׁר שָֹם מֹשֶׁה לִפְנֵי בְּנֵי יִשְֹרָאֵל, עַל פִּי יְיָ בְּיַד מֹשֶׁה..
+        /// </summary>
+        internal static string VezotHatorah {
+            get {
+                return ResourceManager.GetString("VezotHatorah", resourceCulture);
             }
         }
         
@@ -1679,6 +2426,17 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to יְהִי רָצוֹן מִלִּפְנֵי אָבִינוּ שֶׁבַּשָׁמַיִם לְכוֹנֵן אֶת בֵּית חַיֵּינוּ וּלְהָשִׁיב אֶת שְׁכִינָתוֹ בְּתוֹכֵנוּ בִּמְהֵרָה בְיָמיֵנוּ, וְנאֹמַר אָמֵן.
+        ///יְהִי רָצוֹן מִלִּפְנֵי אָבִינוּ לְרַחֵם עָלֵינוּ וְעַל פְּלֵיטָתֵנוּ וְלִמְנֹעַ מַשְׁחִית וּמַגֵּפָה מְעָלֵינוּ וּמֵעַל כָּל עַמוֹ בֵּית יִשְׂרָאֵל, וְנֹאמַר אָמֵן.
+        ///יְהִי רָצוֹן מִלִּפְנֵי אָבִינוּ שֶׁבַּשָׁמַיִם לְקַיֵּם בָּנוּ חַכְמֵי יִשְׂרָאֵל, הֵם וּנְשֵׁיהֶם וּבְנֵיהֶם וּבְנוֹתֵיהֶם וְתַלְמִידֵיהֶם וְתַלְמִידֵי תַּלְמִידֵיהֶם בְּכָל מְקוֹמוֹת מו [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string YehiRatzonAfterTorah {
+            get {
+                return ResourceManager.GetString("YehiRatzonAfterTorah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to יְיָ, יְיָ, אֵל רַחוּם וְחַנּוּן, אֶרֶךְ אַפַּיִם וְרַב חֶסֶד וֶאֱמֶת. נֹצֵר חֶסֶד לָאֲלָפִים, נֹשֵׂא עָוֹן וָפֶשַׁע וְחַטָּאָה, וְנַקֵּה. וְסָלַחְתָּ לַעֲוֹנֵנוּ וּלְחַטָּאתֵנוּ וּנְחַלְתָּנוּ. סְלַח לָנוּ אָבִינוּ כִּי חָטָאנוּ, מְחַל לָנוּ מַלְכֵּנוּ כִּי פָשָׁעְנוּ, כִּי אַתָּה אֲדֹנָי טוֹב וְסַלָּח וְרַב חֶסֶד לְכָל קֹרְאֶיךָ..
         /// </summary>
         internal static string YgMidot {
@@ -1702,6 +2460,64 @@ namespace Tests.PrayPal.Content.LegacyTextProviders {
         internal static string Yishtabach {
             get {
                 return ResourceManager.GetString("Yishtabach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הִתְעוֹרְרִי הִתְעוֹרְרִי,
+        ///כִּי בָא אוֹרֵךְ קוּמִי אוֹרִי,
+        ///עוּרִי עוּרִי, שִׁיר דַּבֵּרִי,
+        ///כְּבוֹד יְיָ עָלַיִךְ נִגְלָה.
+        /// 
+        ///זֶה הַיּוֹם עָשָׂה יְיָ נָגִילָה ונִשְׂמְחָה בוֹ.
+        ///
+        ///לֹא תֵבֹשִׁי וְלֹא תִכָּלְמִי,
+        ///מַה תִּשְׁתּוֹחֲחִי וּמַה תֶּהֱמִי,
+        ///בָּךְ יֶחֱסוּ עֲנִיֵּי עַמִּי,
+        ///וְנִבְנְתָה עִיר עַל תִּלָּהּ.
+        ///
+        ///זֶה הַיּוֹם עָשָׂה יְיָ נָגִילָה ונִשְׂמְחָה בוֹ.
+        ///
+        ///יָמִין וּשְׂמֹאל תִּפְרוֹצִי,
+        ///וְאֶת יְיָ תַּעֲרִיצִי,
+        ///עַל יַד אִישׁ בֶּן פַּרְצִי,
+        ///וְנִשְׂמְחָה וְנָגִילָה.
+        ///
+        ///זֶה הַיּוֹם עָשָׂה יְיָ נָגִ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string YomHaazmautArvit1 {
+            get {
+                return ResourceManager.GetString("YomHaazmautArvit1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to פותחים את ארון הקודש.
+        ///הש&quot;ץ אומר והקהל חוזר:
+        ///
+        ///שְׁמַע יִשְׂרָאֵל, יְיָ אֱלֹהֵינוּ, יְיָ אֶחָד.
+        ///שלוש פעמים: יְיָ הוּא הָאֱלֹהִים.
+        ///
+        ///הש&quot;ץ אומר והקהל חוזר:
+        ///מִי שֶׁעָשָׂה נִסִּים לַאֲבוֹתֵינוּ וְלָנוּ וּגְאָלָנוּ מֵעַבְדוּת לְחֵרוּת, הוּא יִגְאָלֵנוּ גְאֻלָּה שְׁלֵמָה בְּקָרוֹב, וִיקַבֵּץ נִדָּחֵינוּ מֵאַרְבַּע כַּנְפוֹת הָאָרֶץ, חֲבֵרִים כָּל יִשְׂרָאֵל, וְנֹאמַר אָמֵן..
+        /// </summary>
+        internal static string YomHaazmautArvit2 {
+            get {
+                return ResourceManager.GetString("YomHaazmautArvit2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הש&quot;ץ אומר:
+        ///וְכִֽי-תָבֹ֨אוּ מִלְחָמָ֜ה בְּאַרְצְכֶ֗ם עַל-הַצַּר֙ הַצֹּרֵ֣ר אֶתְכֶ֔ם וַהֲרֵעֹתֶ֖ם בַּחֲצֹצְר֑וֹת, וֲנִזְכַּרְתֶּ֗ם לִפְנֵי֙ יְהוָ֣ה אֱלֹֽהֵיכֶ֔ם וְנוֹשַׁעְתֶּ֖ם מֵאֹיְבֵיכֶֽם. 
+        ///וּבְי֨וֹם שִׂמְחַתְכֶ֥ם וּֽבְמוֹעֲדֵיכֶם֮ וּבְרָאשֵׁ֣י חָדְשֵׁיכֶם֒ וּתְקַעְתֶּ֣ם בַּחֲצֹֽצְרֹ֗ת עַ֚ל עֹלֹ֣תֵיכֶ֔ם וְעַ֖ל זִבְחֵ֣י שַׁלְמֵיכֶ֑ם וְהָי֨וּ לָכֶ֤ם לְזִכָּרוֹן֙ לִפְנֵ֣י אֱלֹֽהֵיכֶ֔ם אֲנִ֖י יְהוָ֥ה אֱלֹהֵיכֶֽם:
+        ///
+        ///תוקעים בשופר תקיעה גדולה ואומרים:
+        ///לְשָׁנָה הַבָּאָה בִּירוּשָׁלָיִם הַבְּנוּיָה..
+        /// </summary>
+        internal static string YomHaazmautArvit3 {
+            get {
+                return ResourceManager.GetString("YomHaazmautArvit3", resourceCulture);
             }
         }
         
