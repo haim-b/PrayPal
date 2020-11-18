@@ -71,7 +71,7 @@ namespace PrayPal.Tools.Calendar
             }
 
             // Supply initial values before the location is resolved:
-            JewishCalendar jc = new JewishCalendar(DateTime.Now);
+            JewishCalendar jc = new JewishCalendar(DateTime.Now, Settings.IsInIsrael);
             MonthFromNissan = jc.JewishMonth;
             Year = jc.JewishYear;
         }
@@ -217,7 +217,7 @@ namespace PrayPal.Tools.Calendar
 
         private void IncreaseMonth()
         {
-            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1);
+            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1, Settings.IsInIsrael);
 
             // Go to the last day of the month:
             jc.JewishDayOfMonth = jc.DaysInJewishMonth;
@@ -239,7 +239,7 @@ namespace PrayPal.Tools.Calendar
 
         public void DecreaseMonth()
         {
-            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1);
+            JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1, Settings.IsInIsrael);
             jc.back();
 
             BeginInit();
@@ -282,7 +282,7 @@ namespace PrayPal.Tools.Calendar
 
             int month = MonthFromNissan;
 
-            JewishCalendar jc = new JewishCalendar(Year, month, 1) { InIsrael = Settings.IsInIsrael, UseModernHolidays = true };
+            JewishCalendar jc = new JewishCalendar(Year, month, 1, Settings.IsInIsrael) { UseModernHolidays = true };
 
             int row = 1;
             bool selectedValueFound = false;

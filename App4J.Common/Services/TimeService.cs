@@ -59,7 +59,7 @@ namespace PrayPal.Common.Services
                     }
                 }
 
-                return new DayJewishInfo(new JewishCalendar(date));
+                return new DayJewishInfo(new JewishCalendar(date, Settings.IsInIsrael));
             });
         }
 

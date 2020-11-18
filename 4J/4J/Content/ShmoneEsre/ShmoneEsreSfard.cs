@@ -59,7 +59,7 @@ namespace PrayPal.Content
             AddStringFormat(CommonPrayerTextProvider.Current.SE03, CommonPrayerTextProvider.Current.SE03Hael, false, false, AppResources.InTfilatYachidTitle);
         }
 
-        protected override void AddMusafMiddleBlessing2()
+        protected override void AddMussafHolidayPart()
         {
             string holidayPsukim = null;
 
@@ -75,19 +75,19 @@ namespace PrayPal.Content
                         holidayPsukim = CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
                         break;
                     case 17:
-                        holidayPsukim = Settings.IsInIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim2 : CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
+                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim2 : CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
                         break;
                     case 18:
-                        holidayPsukim = Settings.IsInIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim3 : CommonPrayerTextProvider.Current.MussafSukkotPsukim2;
+                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim3 : CommonPrayerTextProvider.Current.MussafSukkotPsukim2;
                         break;
                     case 19:
-                        holidayPsukim = Settings.IsInIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim4 : CommonPrayerTextProvider.Current.MussafSukkotPsukim3;
+                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim4 : CommonPrayerTextProvider.Current.MussafSukkotPsukim3;
                         break;
                     case 20:
-                        holidayPsukim = Settings.IsInIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim5 : CommonPrayerTextProvider.Current.MussafSukkotPsukim4;
+                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim5 : CommonPrayerTextProvider.Current.MussafSukkotPsukim4;
                         break;
                     case 21:
-                        holidayPsukim = Settings.IsInIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim6 : CommonPrayerTextProvider.Current.MussafSukkotPsukim5;
+                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim6 : CommonPrayerTextProvider.Current.MussafSukkotPsukim5;
                         break;
                     default:
                         break;
@@ -99,7 +99,7 @@ namespace PrayPal.Content
                 Add(holidayPsukim);
             }
 
-            base.AddMusafMiddleBlessing2();
+            base.AddMussafHolidayPart();
         }
     }
 }

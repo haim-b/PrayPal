@@ -39,8 +39,14 @@ namespace PrayPal.Content
             }
             else
             {
+                AddPart3Musaf();
                 AddMusafMiddleBlessing1();
-                AddMusafMiddleBlessing2();
+
+                if (!_dayInfo.JewishCalendar.RoshChodesh)
+                {
+                    // IF not Rosh Chodesh, we're on a holiday:
+                    AddMussafHolidayPart();
+                }
             }
 
             AddPart17();
@@ -77,7 +83,7 @@ namespace PrayPal.Content
             }
             else
             {
-                AddStringFormat(CommonPrayerTextProvider.Current.SE01, CommonPrayerTextProvider.Current.SE01AYT, true);
+                AddStringFormat(CommonPrayerTextProvider.Current.SE01, CommonPrayerTextProvider.Current.SE01AYT, true, true);
             }
         }
 
@@ -188,11 +194,14 @@ namespace PrayPal.Content
         {
             Add(CommonPrayerTextProvider.Current.SE17);
 
-            ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(_dayInfo);
-
-            if (yaalehVeYavo != null)
+            if (_prayer != Prayer.Mussaf) // In Mussaf we don't say Yaaleh VeYavo
             {
-                _items.Add(yaalehVeYavo);
+                ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(_dayInfo);
+
+                if (yaalehVeYavo != null)
+                {
+                    _items.Add(yaalehVeYavo);
+                }
             }
 
             Add(CommonPrayerTextProvider.Current.SE17B);
@@ -318,7 +327,7 @@ namespace PrayPal.Content
             }
         }
 
-        protected virtual void AddMusafMiddleBlessing2()
+        protected virtual void AddMussafHolidayPart()
         {
             Add(CommonPrayerTextProvider.Current.MusasfCholHamoed3);
             Add(CommonPrayerTextProvider.Current.MusasfCholHamoed4);

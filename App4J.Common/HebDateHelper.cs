@@ -674,7 +674,7 @@ namespace PrayPal.Common
         {
             DateTime yesterday = DateTime.Now.AddDays(-1);
 
-            Zmanim.HebrewCalendar.JewishCalendar c = new Zmanim.HebrewCalendar.JewishCalendar(yesterday);
+            Zmanim.HebrewCalendar.JewishCalendar c = new Zmanim.HebrewCalendar.JewishCalendar(yesterday, IsInIsrael());
 
             return c.YomTovIndex == Zmanim.HebrewCalendar.JewishCalendar.YOM_KIPPUR;
         }

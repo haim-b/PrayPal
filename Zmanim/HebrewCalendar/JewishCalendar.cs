@@ -109,43 +109,44 @@ namespace Zmanim.HebrewCalendar
         }
 
 
-        /// <summary>
-        /// Default constructor will set a default date to the current system date.
-        /// </summary>
-        public JewishCalendar()
-            : base()
-        {
-        }
+        ///// <summary>
+        ///// Default constructor will set a default date to the current system date.
+        ///// </summary>
+        //public JewishCalendar()
+        //    : base()
+        //{
+        //}
 
         /// <summary>
         /// A constructor that initializes the date to the <seealso cref="java.util.Calendar Calendar"/> parameter.
         /// </summary>
         /// <param name="calendar">
         ///            the <code>Calendar</code> to set the calendar to </param>
-        public JewishCalendar(DateTime calendar)
+        public JewishCalendar(DateTime calendar, bool inIsrael)
             : base(calendar)
         {
+            InIsrael = InIsrael;
         }
 
-        /// <summary>
-        /// Creates a Jewish date based on a Jewish year, month and day of month.
-        /// </summary>
-        /// <param name="jewishYear">
-        ///            the Jewish year </param>
-        /// <param name="jewishMonth">
-        ///            the Jewish month. The method expects a 1 for Nissan ... 12 for Adar and 13 for Adar II. Use the
-        ///            constants <seealso cref="#NISSAN"/> ... <seealso cref="#ADAR"/> (or <seealso cref="#ADAR_II"/> for a leap year Adar II) to avoid any
-        ///            confusion. </param>
-        /// <param name="jewishDayOfMonth">
-        ///            the Jewish day of month. If 30 is passed in for a month with only 29 days (for example <seealso cref="#IYAR"/>,
-        ///            or <seealso cref="#KISLEV"/> in a year that <seealso cref="#isKislevShort()"/>), the 29th (last valid date of the month)
-        ///            will be set </param>
-        /// <exception cref="IllegalArgumentException">
-        ///             if the day of month is < 1 or > 30, or a year of < 0 is passed in. </exception>
-        public JewishCalendar(int jewishYear, int jewishMonth, int jewishDayOfMonth)
-            : base(jewishYear, jewishMonth, jewishDayOfMonth)
-        {
-        }
+        ///// <summary>
+        ///// Creates a Jewish date based on a Jewish year, month and day of month.
+        ///// </summary>
+        ///// <param name="jewishYear">
+        /////            the Jewish year </param>
+        ///// <param name="jewishMonth">
+        /////            the Jewish month. The method expects a 1 for Nissan ... 12 for Adar and 13 for Adar II. Use the
+        /////            constants <seealso cref="#NISSAN"/> ... <seealso cref="#ADAR"/> (or <seealso cref="#ADAR_II"/> for a leap year Adar II) to avoid any
+        /////            confusion. </param>
+        ///// <param name="jewishDayOfMonth">
+        /////            the Jewish day of month. If 30 is passed in for a month with only 29 days (for example <seealso cref="#IYAR"/>,
+        /////            or <seealso cref="#KISLEV"/> in a year that <seealso cref="#isKislevShort()"/>), the 29th (last valid date of the month)
+        /////            will be set </param>
+        ///// <exception cref="IllegalArgumentException">
+        /////             if the day of month is < 1 or > 30, or a year of < 0 is passed in. </exception>
+        //public JewishCalendar(int jewishYear, int jewishMonth, int jewishDayOfMonth)
+        //    : base(jewishYear, jewishMonth, jewishDayOfMonth)
+        //{
+        //}
 
         /// <summary>
         /// Creates a Jewish date based on a Jewish date and whether in Israel

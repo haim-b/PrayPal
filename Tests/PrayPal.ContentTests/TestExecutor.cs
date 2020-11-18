@@ -34,8 +34,8 @@ namespace Tests.PrayPal.Content
             StubTimeService timeService = new StubTimeService(realTimeService);
             var logger = new DummyLogger();
 
-            DateTime startDate = fromTime ?? new DateTime(2020, 1, 1);
-            DateTime endDate = toTime ?? new DateTime(2020, 12, 31);
+            DateTime startDate = fromTime ?? new DateTime(2020, 1, 1, 12, 0, 0);
+            DateTime endDate = toTime ?? new DateTime(2020, 12, 31, 12, 0, 0);
 
             for (DateTime now = startDate; now <= endDate; now = now.AddDays(1))
             {
@@ -183,6 +183,11 @@ namespace Tests.PrayPal.Content
             kadishYatom.AddRange(CreateKadishYatom(jc));
 
             texts.Add(kadishYatom);
+        }
+
+        public static TextsModel GetAshrey()
+        {
+            return new TextsModel(new ParagraphModel(PrayTexts.Ashrey, AppResources.AshreyTitle));
         }
 
         public static TextsModel GetPsalm(int number)
@@ -413,7 +418,7 @@ namespace Tests.PrayPal.Content
             }
             else if (!IsInIsrael)
             {
-                DateTime now = DateTime.Now;
+                DateTime now = jc.Time;
 
                 if (now.Month >= 4 && now.Month < 12)
                 {
@@ -583,6 +588,269 @@ namespace Tests.PrayPal.Content
 
             texts.Add(t);
         }
+
+
+        public static void AddTachanun(List<TextsModel> texts, Prayer pray, Nusach nusach, JewishCalendar jc, bool isTachanunDay)
+        {
+            bool showTachanun = false;
+
+            if (jc.IsAseretYameyTshuva())
+            {
+                AddAvinuMalkenu(texts, nusach, true);
+                showTachanun = true;
+            }
+            else if ((nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz) && jc.Taanis && jc.YomTovIndex != JewishCalendar.TISHA_BEAV && !(pray == Prayer.Mincha && IsRealTaanisEsther(jc)))
+            {
+                AddAvinuMalkenu(texts, nusach, false);
+                showTachanun = true;
+            }
+
+            showTachanun |= isTachanunDay;
+
+            bool showSlichot = false;
+
+            if (showTachanun)
+            {
+                TextsModel tachanun = new TextsModel();
+                DayJewishInfo di = new DayJewishInfo(jc);
+
+                bool isShacharitAndBH = pray == Prayer.Shacharit && (di.DayOfWeek == DayOfWeek.Monday || di.DayOfWeek == DayOfWeek.Thursday);
+
+                if ((nusach == Nusach.Ashkenaz && isShacharitAndBH && !showSlichot) || nusach == Nusach.Sfard || nusach == Nusach.EdotMizrach)
+                {
+                    tachanun.Add(new ParagraphModel(PrayTexts.Viduy1));
+                    tachanun.Add(new ParagraphModel(PrayTexts.Viduy2));
+                    tachanun.Add(new ParagraphModel(PrayTexts.PreYgMidot));
+                    tachanun.Add(new ParagraphModel(PrayTexts.YgMidot));
+                }
+
+                if (isShacharitAndBH && nusach == Nusach.Ashkenaz)
+                {
+                    tachanun.AddRange(PrayTexts.TachanunBH1, PrayTexts.TachanunBH2, PrayTexts.TachanunBH3, PrayTexts.TachanunBH4, PrayTexts.TachanunBH5, PrayTexts.TachanunBH6);
+                }
+
+                tachanun.Add(new ParagraphModel(GetNefilatApayim(nusach)) { Title2 = (nusach == Nusach.Ashkenaz || nusach == Nusach.Sfard) ? AppResources.NefilatAppayimTitle : null });
+
+                if (nusach == Nusach.EdotMizrach)
+                {
+                    tachanun.Add(new ParagraphModel(PrayTexts.TachanunEnding));
+                }
+
+                if (isShacharitAndBH)
+                {
+                    if (nusach == Nusach.EdotMizrach)
+                    {
+                        tachanun.AddRange(PrayTexts.ResourceManager.GetString("TachanunBHsYg"), PrayTexts.ResourceManager.GetString("TachanunBHS1"));
+                        tachanun.AddRange(PrayTexts.ResourceManager.GetString("TachanunBHsYg"), PrayTexts.ResourceManager.GetString("TachanunBHS2"));
+                        tachanun.AddRange(PrayTexts.ResourceManager.GetString("TachanunBHsYg"), PrayTexts.ResourceManager.GetString("TachanunBHS3"));
+                        tachanun.AddRange(PrayTexts.ResourceManager.GetString("TachanunBHS4"));
+                    }
+
+                    if (nusach != Nusach.Ashkenaz)
+                    {
+                        tachanun.AddRange(PrayTexts.TachanunBH1, PrayTexts.TachanunBH2, PrayTexts.TachanunBH3, PrayTexts.TachanunBH4, PrayTexts.TachanunBH5, PrayTexts.TachanunBH6);
+                    }
+
+                    if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+                    {
+                        tachanun.AddRange(PrayTexts.TachanunBH7, PrayTexts.TachanunBH8);
+                    }
+                }
+
+                if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+                {
+                    tachanun.Add(new ParagraphModel(PrayTexts.TachanunEnding));
+                }
+
+                tachanun.Title = AppResources.TachanunTitle;
+                texts.Add(tachanun);
+            }
+            else
+            {
+                //texts[texts.Count - 1].Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
+            }
+        }
+
+        private static bool IsRealTaanisEsther(JewishCalendar jc)
+        {
+            return jc.JewishDayOfMonth == 13 && jc.JewishMonth == (jc.JewishLeapYear ? JewishCalendar.ADAR_II : JewishCalendar.ADAR);
+        }
+
+
+        public static void AddLedavid(List<TextsModel> texts, JewishCalendar jc)
+        {
+            TextsModel ledavid = TestExecutor.GetPsalm(27);
+            texts.Add(ledavid);
+
+            TextsModel kadishYatom = new TextsModel();
+            kadishYatom.Title = AppResources.KadishYatomTitle;
+            kadishYatom.AddRange(TestExecutor.CreateKadishYatom(jc));
+
+            texts.Add(kadishYatom);
+        }
+
+        public static string GetNefilatApayim(Nusach nushach)
+        {
+            if (nushach == Nusach.Sfard || nushach == Nusach.Ashkenaz)
+            {
+                return PrayTexts.NefilatApaim;
+            }
+            else if (nushach == Nusach.EdotMizrach)
+            {
+                return Psalms.Psalm25 + PrayTexts.ResourceManager.GetString("NefilatApayimEnding");
+            }
+
+            return string.Empty;
+        }
+
+        public static bool AddTorahReading(List<TextsModel> texts, Nusach nusach, Prayer prayer, JewishCalendar jc, bool isTachanunDay)
+        {
+            int yomTov = jc.YomTovIndex;
+            DayJewishInfo di = new DayJewishInfo(jc);
+
+            if (prayer == Prayer.Shacharit)
+            {
+                if (di.DayOfWeek != DayOfWeek.Monday
+                    && di.DayOfWeek != DayOfWeek.Thursday
+                    && !jc.Taanis
+                    && !jc.RoshChodesh
+                    && yomTov != JewishCalendar.CHANUKAH
+                    && yomTov != JewishCalendar.PURIM
+                    && yomTov != JewishCalendar.CHOL_HAMOED_SUCCOS
+                    && yomTov != JewishCalendar.HOSHANA_RABBA
+                    && yomTov != JewishCalendar.CHOL_HAMOED_PESACH)
+                {
+                    return false;
+                }
+            }
+            else if (prayer == Prayer.Mincha)
+            {
+                if (yomTov != JewishCalendar.FAST_OF_GEDALYAH
+                    && yomTov != JewishCalendar.FAST_OF_ESTHER
+                    && yomTov != JewishCalendar.TENTH_OF_TEVES
+                    && yomTov != JewishCalendar.SEVENTEEN_OF_TAMMUZ
+                    && yomTov != JewishCalendar.TISHA_BEAV)
+                {
+                    return false;
+                }
+            }
+
+            TextsModel t = new TextsModel() { Title = AppResources.TorahBookHotzaaTitle };
+            texts.Add(t);
+
+            if (prayer == Prayer.Shacharit)
+            {
+                if (di.DayOfWeek == DayOfWeek.Monday || di.DayOfWeek == DayOfWeek.Thursday)
+                {
+                    bool isInIsrael = jc.InIsrael;
+
+                    try
+                    {
+                        jc.InIsrael = false;
+
+                        if (!jc.RoshChodesh
+                            && yomTov != JewishCalendar.SUCCOS
+                            && yomTov != JewishCalendar.CHOL_HAMOED_SUCCOS
+                            && yomTov != JewishCalendar.HOSHANA_RABBA
+                            && yomTov != JewishCalendar.PESACH
+                            && yomTov != JewishCalendar.CHOL_HAMOED_PESACH
+                            && yomTov != JewishCalendar.CHANUKAH
+                            && yomTov != JewishCalendar.PURIM
+                            && yomTov != JewishCalendar.YOM_HAATZMAUT
+                            && yomTov != JewishCalendar.YOM_YERUSHALAYIM
+                            && yomTov != JewishCalendar.TISHA_BEAV
+                            && yomTov != JewishCalendar.TU_BEAV
+                            && !jc.ErevYomTov)
+                        {
+                            t.Add(PrayTexts.PreST);
+                        }
+                        else if (nusach == Nusach.EdotMizrach)
+                        {
+                            t.Add(PrayTexts.ResourceManager.GetString("PreSTNoTachanun"));
+                        }
+                    }
+                    finally
+                    {
+                        jc.InIsrael = isInIsrael;
+                    }
+                }
+            }
+
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+            {
+                t.Add(PrayTexts.VeyehiBinsoa);
+                t.Add(PrayTexts.BrichShmeh);
+            }
+
+            t.Add(PrayTexts.Gadlu);
+
+            t.Add(PrayTexts.TorahBookWalking);
+
+            if (nusach == Nusach.EdotMizrach)
+            {
+                t.Add(new ParagraphModel(PrayTexts.VezotHatorah) { Title2 = AppResources.HagbahaTitle });
+            }
+
+            if (prayer == Prayer.Shacharit && (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz))
+            {
+                t.Add(PrayTexts.Vatigaleh);
+            }
+
+            if (prayer == Prayer.Mincha)
+            {
+                t = new TextsModel() { Title = AppResources.TorahReadingAndHaftarahTitle };
+                texts.Add(t);
+            }
+
+            t.Add(PrayTexts.BarchuTorah);
+            t.Add(PrayTexts.BrachaBeforeTorah);
+            t.Add(PrayTexts.BrachaAfterTorah);
+
+            if (prayer == Prayer.Mincha)
+            {
+                t.Add(new ParagraphModel(AppResources.TeanitReadingCohen) { Title2 = AppResources.CohenTitle });
+                t.Add(new ParagraphModel(AppResources.TeanitReadingLevi) { Title2 = AppResources.LeviTitle });
+                t.Add(new ParagraphModel(AppResources.TeanitReadingIsrael) { Title2 = AppResources.IsraelTitle });
+
+                t.Add(new ParagraphModel(PrayTexts.BeforeHaftarahBlessing) { Title2 = AppResources.HaftarahBlessingTitle });
+
+                t.Add(new ParagraphModel(AppResources.TeanitHaftarah) { Title2 = AppResources.HaftarahTitle });
+                t.Add(new ParagraphModel(PrayTexts.AfterHaftarahBlessing) { Title2 = AppResources.AfterHaftarahTitle });
+
+            }
+
+            ///חצי קדיש
+            t.Add(TestExecutor.CreateHaziKadish(jc));
+
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+            {
+                t.Add(new ParagraphModel(PrayTexts.VezotHatorah) { Title2 = AppResources.HagbahaVeglilahTitle });
+
+                if (isTachanunDay && prayer == Prayer.Shacharit)
+                {
+                    t.Add(PrayTexts.YehiRatzonAfterTorah);
+                }
+            }
+
+            return true;
+        }
+
+        public static void AddTorahEnding(List<TextsModel> texts, Nusach nusach, Prayer prayer)
+        {
+            TextsModel t = new TextsModel(AppResources.TorahBookReplacingTitle, PrayTexts.TorahBookReplacing1);
+
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+            {
+                t.AddRange(Psalms.Psalm24, PrayTexts.TorahBookReplacing2);
+            }
+
+            texts.Add(t);
+        }
+
+
+
+
+
 
 
 

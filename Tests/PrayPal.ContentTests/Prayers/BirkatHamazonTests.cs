@@ -21,7 +21,7 @@ namespace Tests.PrayPal.Content
     public class BirkatHamazonTests
     {
         [TestMethod]
-        public async Task TestBirkatHamazonSfart()
+        public async Task TestBirkatHamazonSfard()
         {
             TestExecutor.PrepareNusach(Nusach.Sfard);
             await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Sfard, jc), (l, t) => new BirkatHamazonSfard());

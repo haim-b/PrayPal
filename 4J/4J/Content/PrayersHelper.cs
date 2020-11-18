@@ -279,7 +279,7 @@ namespace PrayPal.Content
                 throw new ArgumentNullException("dayInfo");
             }
 
-            return !dayInfo.JewishCalendar.YomTov && !dayInfo.JewishCalendar.CholHamoed && dayInfo.YomTov != JewishCalendar.HOSHANA_RABBA;
+            return /*!dayInfo.JewishCalendar.YomTov */ !dayInfo.JewishCalendar.CholHamoed && dayInfo.YomTov != JewishCalendar.HOSHANA_RABBA;
         }
 
         public static bool IsMussafDay(this DayJewishInfo dayInfo)

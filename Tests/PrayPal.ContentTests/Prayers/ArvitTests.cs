@@ -19,7 +19,7 @@ namespace Tests.PrayPal.Content.Prayers
     public class ArvitTests
     {
         [TestMethod]
-        public async Task TestArvitSfart()
+        public async Task TestArvitSfard()
         {
             TestExecutor.PrepareNusach(Nusach.Sfard);
             await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Sfard, jc, l), (l, t) => new ArvitSfard(l));
@@ -290,7 +290,7 @@ namespace Tests.PrayPal.Content.Prayers
                     //    return false;
                     //}
 
-                    Zmanim.HebrewCalendar.JewishCalendar c = new Zmanim.HebrewCalendar.JewishCalendar(now) { InIsrael = true };
+                    JewishCalendar c = new JewishCalendar(now, Settings.IsInIsrael);
 
                     int yomTov = c.YomTovIndex;
 
