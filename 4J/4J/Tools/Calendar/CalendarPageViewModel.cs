@@ -307,7 +307,7 @@ namespace PrayPal.Tools.Calendar
                     selectedValueFound = true;
                 }
 
-                jc = HebDateHelper.Clone(jc);
+                jc = jc.CloneEx();
                 jc.forward();
             }
 

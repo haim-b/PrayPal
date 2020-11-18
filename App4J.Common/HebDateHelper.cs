@@ -210,9 +210,9 @@ namespace PrayPal.Common
             }
         }
 
-        public static bool IsMoridHatal()
+        public static bool IsMoridHatal(JewishCalendar jc)
         {
-            Zmanim.HebrewCalendar.JewishDate cal = new Zmanim.HebrewCalendar.JewishDate();
+            Zmanim.HebrewCalendar.JewishDate cal = jc;
 
             if (cal.JewishMonth == 1) ///Nissan
             {
@@ -474,9 +474,9 @@ namespace PrayPal.Common
             return true;
         }
 
-        public static JewishCalendar Clone(JewishCalendar jc)
+        private static JewishCalendar Clone(JewishCalendar jc)
         {
-            return new JewishCalendar(jc.JewishYear, jc.JewishMonth, jc.JewishDayOfMonth, jc.InIsrael) { UseModernHolidays = jc.UseModernHolidays };
+            return jc.CloneEx();
         }
 
         private static bool IsTachanunDay(JewishCalendar jc, Nusach nusach, bool isCheckingDayBefore)

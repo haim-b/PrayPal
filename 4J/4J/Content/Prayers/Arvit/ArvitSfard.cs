@@ -42,7 +42,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected virtual bool IsAbroadForShmaBlessing()
         {
-            return !HebDateHelper.IsInIsrael();
+            return !Settings.IsInIsrael;
         }
 
         protected override ShmoneEsreBase GetShmoneEsre()

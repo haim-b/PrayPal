@@ -342,7 +342,7 @@ namespace PrayPal.Content.Prayers.Shacharit
             {
                 dayVerse.Add(Psalms.Psalm79);
             }
-            else if (HebDateHelper.IsAfterYomKippur())
+            else if (_dayInfo.IsAfterYomKippur())
             {
                 dayVerse.Add(Psalms.Psalm85);
             }

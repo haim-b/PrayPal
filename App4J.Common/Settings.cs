@@ -1,6 +1,4 @@
-﻿using Plugin.Settings;
-using Plugin.Settings.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http.Headers;
@@ -12,10 +10,11 @@ namespace PrayPal.Common
     {
         private static readonly List<WeakReference<ISettingsListener>> _listeners = new List<WeakReference<ISettingsListener>>();
         // static CultureInfo _language;
+        private static ISettingsProvider _settingsProvider;
 
         static Settings()
         {
-            //string langauge = AppSettings.GetValueOrDefault(LanguageKey, null);
+            //string langauge = AppSettings.GetValue(LanguageKey, null);
 
             //if (langauge == null)
             //{
@@ -25,12 +24,27 @@ namespace PrayPal.Common
             //Language = new CultureInfo(langauge);
         }
 
-        private static ISettings AppSettings
+        private static ISettingsProvider AppSettings
         {
             get
             {
-                return CrossSettings.Current;
+                if (_settingsProvider == null)
+                {
+                    throw new InvalidOperationException("A settings provider was not set.");
+                }
+
+                return _settingsProvider;
             }
+        }
+
+        public static void SetSettingsProvider(ISettingsProvider settingsProvider)
+        {
+            if (settingsProvider is null)
+            {
+                throw new ArgumentNullException(nameof(settingsProvider));
+            }
+
+            _settingsProvider = settingsProvider;
         }
 
         #region Setting Constants
@@ -56,7 +70,7 @@ namespace PrayPal.Common
         //    set
         //    {
         //        _language = value;
-        //        AppSettings.AddOrUpdateValue(LanguageKey, value?.Name ?? "he");
+        //        AppSettings.SetValue(LanguageKey, value?.Name ?? "he");
         //    }
         //}
 
@@ -64,11 +78,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(LanguageKey, "he");
+                return AppSettings.GetValue(LanguageKey, "he");
             }
             set
             {
-                AppSettings.AddOrUpdateValue(LanguageKey, value ?? "he");
+                AppSettings.SetValue(LanguageKey, value ?? "he");
                 OnSettingChanged();
             }
         }
@@ -77,11 +91,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return (Nusach)AppSettings.GetValueOrDefault(NusachKey, (int)Nusach.Sfard);
+                return (Nusach)AppSettings.GetValue(NusachKey, (int)Nusach.Sfard);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(NusachKey, (int)value);
+                AppSettings.SetValue(NusachKey, (int)value);
                 OnSettingChanged();
             }
         }
@@ -90,11 +104,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(IsInIsraelKey, true);
+                return AppSettings.GetValue(IsInIsraelKey, true);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(IsInIsraelKey, value);
+                AppSettings.SetValue(IsInIsraelKey, value);
                 OnSettingChanged();
             }
         }
@@ -103,11 +117,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(UseLocationKey, false);
+                return AppSettings.GetValue(UseLocationKey, false);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(UseLocationKey, value);
+                AppSettings.SetValue(UseLocationKey, value);
                 OnSettingChanged();
             }
         }
@@ -116,11 +130,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(UseLightBackgroundKey, false);
+                return AppSettings.GetValue(UseLightBackgroundKey, false);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(UseLightBackgroundKey, value);
+                AppSettings.SetValue(UseLightBackgroundKey, value);
                 OnSettingChanged();
             }
         }
@@ -129,11 +143,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(UseLargeFontKey, false);
+                return AppSettings.GetValue(UseLargeFontKey, false);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(UseLargeFontKey, value);
+                AppSettings.SetValue(UseLargeFontKey, value);
                 OnSettingChanged();
             }
         }
@@ -142,11 +156,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return AppSettings.GetValueOrDefault(ShowVeanenuKey, false);
+                return AppSettings.GetValue(ShowVeanenuKey, false);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(ShowVeanenuKey, value);
+                AppSettings.SetValue(ShowVeanenuKey, value);
                 OnSettingChanged();
             }
         }
@@ -155,11 +169,11 @@ namespace PrayPal.Common
         {
             get
             {
-                return (TimeCalcMethod)AppSettings.GetValueOrDefault(TimeCalcMethodKey, (int)TimeCalcMethod.Gra);
+                return (TimeCalcMethod)AppSettings.GetValue(TimeCalcMethodKey, (int)TimeCalcMethod.Gra);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(TimeCalcMethodKey, (int)value);
+                AppSettings.SetValue(TimeCalcMethodKey, (int)value);
                 OnSettingChanged();
             }
         }

@@ -1,5 +1,4 @@
-﻿using Plugin.Settings;
-using PrayPal.Common;
+﻿using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
@@ -11,6 +10,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Prayers.MeeinShalosh
@@ -189,12 +189,12 @@ namespace PrayPal.Prayers.MeeinShalosh
 
         private bool GetValue([CallerMemberName] string propertyName = null)
         {
-            return CrossSettings.Current.GetValueOrDefault(propertyName, false);
+            return Preferences.Get(propertyName, false);
         }
 
         private void SetValue(bool value, [CallerMemberName] string propertyName = null)
         {
-            CrossSettings.Current.AddOrUpdateValue(propertyName, value);
+            Preferences.Set(propertyName, value);
         }
 
         public async Task GenerateContentAsync()

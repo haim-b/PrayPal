@@ -230,5 +230,13 @@ namespace PrayPal.Content
             return dayInfo.JewishCalendar.RoshChodesh || dayInfo.JewishCalendar.CholHamoed || dayInfo.YomTov == JewishCalendar.HOSHANA_RABBA;
         }
 
+        public static bool IsAfterYomKippur(this DayJewishInfo dayInfo)
+        {
+            JewishCalendar yesterday = dayInfo.JewishCalendar.CloneEx();
+            yesterday.back();
+
+            return yesterday.YomTovIndex == JewishCalendar.YOM_KIPPUR;
+        }
+
     }
 }

@@ -99,7 +99,7 @@ namespace PrayPal.Content.Prayers.Arvit
             }
             else
             {
-                JewishCalendar jc = HebDateHelper.Clone(_dayInfo.JewishCalendar);
+                JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
                 jc.forward();
 
                 if (jc.YomTovIndex == JewishCalendar.YOM_HAATZMAUT && DateTime.Now.Hour > 12)
@@ -156,7 +156,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         private bool ShouldShowVeyehiNoam()
         {
-            JewishCalendar jc = HebDateHelper.Clone(_dayInfo.JewishCalendar);
+            JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
 
             if (jc.DayOfWeek == 1) //= Motzaey Shabbat
             {

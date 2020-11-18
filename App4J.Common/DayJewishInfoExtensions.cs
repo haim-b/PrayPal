@@ -80,10 +80,16 @@ namespace PrayPal.Common
 
         public static bool ShowAttaChonantanu(this DayJewishInfo info)
         {
-            JewishCalendar jc = HebDateHelper.Clone(info.JewishCalendar);
+            JewishCalendar jc = info.JewishCalendar.CloneEx();
             jc.back();
             int yomTov = jc.YomTovIndex;
             return jc.DayOfWeek == 7 || yomTov == JewishCalendar.PESACH || yomTov == JewishCalendar.SIMCHAS_TORAH || yomTov == JewishCalendar.SHEMINI_ATZERES || yomTov == JewishCalendar.SHAVUOS || yomTov == JewishCalendar.ROSH_HASHANA || yomTov == JewishCalendar.YOM_KIPPUR;
         }
+
+        public static JewishCalendar CloneEx(this JewishCalendar jc)
+        {
+            return new JewishCalendar(jc.JewishYear, jc.JewishMonth, jc.JewishDayOfMonth, jc.InIsrael) { UseModernHolidays = jc.UseModernHolidays };
+        }
+
     }
 }

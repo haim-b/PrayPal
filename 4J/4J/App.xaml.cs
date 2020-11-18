@@ -37,6 +37,8 @@ namespace PrayPal
             IServiceCollection services = new ServiceCollection();
             services.AddLogging(l => l.AddSerilog(logger));
 
+            Settings.SetSettingsProvider(new XamarinSettingsProvider());
+
             Assembly[] assemblies = new[]{
                 Assembly.GetExecutingAssembly(),
                 typeof(Nusach).Assembly

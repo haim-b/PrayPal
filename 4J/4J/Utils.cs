@@ -53,11 +53,21 @@ namespace PrayPal
 
             //return Device.GetNamedSize(NamedSize.Default, typeof(Label));
 
+            if (App.Current == null)
+            {
+                return largeFont ? 22 : 18;
+            }
+
             return largeFont ? (double)App.Current.Resources["TextLargeFontSize"] : (double)App.Current.Resources["TextNormalFontSize"];
         }
 
         public static double GetTitleFontSize(bool largeFont)
         {
+            if (App.Current == null)
+            {
+                return largeFont ? 22 : 18;
+            }
+
             if (largeFont)
             {
                 return Device.GetNamedSize(NamedSize.Medium, typeof(Label));

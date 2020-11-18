@@ -42,7 +42,7 @@ namespace Tests.PrayPal.Content.Prayers
 
             if (yomTov == JewishCalendar.TISHA_BEAV)
             {
-                System.Windows.MessageBox.Show(AppResources.TishaBeavMessage);
+                //System.Windows.MessageBox.Show(AppResources.TishaBeavMessage);
             }
 
             if ((nusach == Nusach.EdotMizrach || nusach == Nusach.Baladi) && jc.RoshChodesh)
@@ -61,7 +61,7 @@ namespace Tests.PrayPal.Content.Prayers
             }
             else
             {
-                JewishCalendar jc2 = HebDateHelper.Clone(jc);
+                JewishCalendar jc2 = jc.CloneEx();
                 jc2.forward();
 
                 if (jc2.YomTovIndex == JewishCalendar.YOM_HAATZMAUT && DateTime.Now.Hour > 12)
@@ -98,7 +98,7 @@ namespace Tests.PrayPal.Content.Prayers
             shma.Add(new ParagraphModel(PrayTexts.BrachotAfterShmaArvit1));
             shma.Add(new ParagraphModel(PrayTexts.BrachotAfterShmaArvit2));
 
-            if (nusach == Nusach.Sfard && !locationService.IsInIsraelAsync().Result)
+            if (nusach == Nusach.Sfard && !Settings.IsInIsrael)
             {
                 shma.Add(PrayTexts.InArvitInChul);
             }
@@ -157,7 +157,7 @@ namespace Tests.PrayPal.Content.Prayers
                 texts.Add(kadishYatom);
                 texts[texts.Count - 1].Add(new ParagraphModel(PrayTexts.Barchu));
 
-                if (new DayJewishInfo(jc, TestExecutor.IsInIsrael).ShouldSayLeDavid())
+                if (new DayJewishInfo(jc).ShouldSayLeDavid())
                 {
                     TestExecutor.AddLedavid(jc, texts);
                 }

@@ -23,8 +23,6 @@ namespace PrayPal.Content.Prayers.BedtimeShma
 
         protected async override Task CreateOverride()
         {
-            ComplexZmanimCalendar zc = await _timeService.GetCurrentZmanimCalendarAsync();
-
             DateTime chatzot = (DateTime)await _timeService.GetNightChatzotAsync(true);
 
             DateTime now = DateTime.Now;
@@ -50,7 +48,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
             Add(CommonPrayerTextProvider.Current.BedtimeShma4);
             Add(CommonPrayerTextProvider.Current.BedtimeShma5);
 
-            if (HebDateHelper.IsTachanunDay(Prayer.Shacharit, Nusach.EdotMizrach, _dayInfo.JewishCalendar) || afterChazot)
+            if (_dayInfo.IsTachanunDay(Nusach.EdotMizrach) || afterChazot)
             {
                 if (!afterChazot)
                 {
@@ -59,10 +57,10 @@ namespace PrayPal.Content.Prayers.BedtimeShma
                 else
                 {
                     ///Since usually bedtime shma is after sunset, we need to go to the previous day to see if it was a tachanun day.;
-                    JewishCalendar jc = HebDateHelper.Clone(_dayInfo.JewishCalendar);
+                    JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
                     jc.back();
 
-                    if (HebDateHelper.IsTachanunDay(Prayer.Shacharit, Nusach.EdotMizrach, jc))
+                    if (_dayInfo.IsTachanunDay(Nusach.EdotMizrach))
                     {
                         Add(CommonPrayerTextProvider.Current.Viduy1);
                         Add(CommonPrayerTextProvider.Current.Viduy2);

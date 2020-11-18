@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PrayPal;
 using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Resources;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,7 @@ using Tests.PrayPal.Content.LegacyModels;
 using Tests.PrayPal.Content.LegacyTextProviders;
 using Zmanim;
 using Zmanim.HebrewCalendar;
+using RunModel = PrayPal.Models.RunModel;
 
 namespace Tests.PrayPal.Content
 {
@@ -25,6 +28,7 @@ namespace Tests.PrayPal.Content
 
         public static async Task TestPrayerAsync(Func<JewishCalendar, ILocationService, ITimeService, IEnumerable<string>> legacyPrayerFactory, Func<ILocationService, ITimeService, IPrayer> newPrayerFactory, DateTime? fromTime = null, DateTime? toTime = null)
         {
+            Settings.SetSettingsProvider(new DummySettingsProvider());
             StubLocationService locationService = new StubLocationService();
             var realTimeService = new TimeService(locationService);
             StubTimeService timeService = new StubTimeService(realTimeService);
@@ -41,18 +45,26 @@ namespace Tests.PrayPal.Content
                 IEnumerable<string> legacyText = legacyPrayerFactory(dayJewishInfo.JewishCalendar, locationService, timeService);
 
                 var t = newPrayerFactory(locationService, timeService);
-                await t.CreateAsync(await timeService.GetDayInfoAsync(), logger);
-                IEnumerable<string> newText = Enumerable.Range(0, t.GetItemsCount()).Select(i => t.GetItemAtIndex(i)).Select(p => p.Content).Where(c => c != null).SelectMany(c => c).Select(r => r.Text);
 
-                //CollectionAssert.AreEqual(legacyText.ToList(), newText.ToList(), "Mismatching paragraph on date '{0}'.", now);
-                //Assert.AreEqual(string.Join(Environment.NewLine, legacyText), string.Join(Environment.NewLine, newText), "Mismatching paragraph on date '{0}'.", now);
+                try
+                {
+                    await t.CreateAsync(await timeService.GetDayInfoAsync(), logger);
+                }
+                catch (NotificationException)
+                {
+                    // This exception is OK.
+                }
+
+                // We need space between paragraphs, but not between runs.
+                RunModel[] space = new[] { new RunModel(" ") };
+                IEnumerable<string> newText = Enumerable.Range(0, t.GetItemsCount()).Select(i => t.GetItemAtIndex(i)).Select(p => p.Content.Concat(space)).SelectMany(c => c).Select(r => r.Text);
 
                 string[] legacy = string.Join(" ", legacyText).Replace(Environment.NewLine, " ").Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                string[] newStrings = string.Join(" ", newText).Replace(Environment.NewLine, " ").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string[] newStrings = string.Join("", newText).Replace(Environment.NewLine, " ").Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < legacy.Length; i++)
                 {
-                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word '{0}' on date '{1}'.", legacy[i], now);//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
+                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word on date '{0}'.", now);//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
                 }
             }
         }
@@ -199,7 +211,7 @@ namespace Tests.PrayPal.Content
 
             string SE2;
 
-            if (HebDateHelper.IsMoridHatal())
+            if (HebDateHelper.IsMoridHatal(jc))
             {
                 SE2 = string.Format(PrayTexts.SE02, PrayTexts.SE02Summer, "{0}");
             }
@@ -430,7 +442,7 @@ namespace Tests.PrayPal.Content
 
             string SE2;
 
-            if (HebDateHelper.IsMoridHatal())
+            if (HebDateHelper.IsMoridHatal(jc))
             {
                 SE2 = string.Format(PrayTexts.SE02, PrayTexts.SE02Summer, "");
             }
@@ -685,6 +697,86 @@ namespace Tests.PrayPal.Content
             public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
             {
 
+            }
+        }
+
+        class DummySettingsProvider : ISettingsProvider
+        {
+            private ConcurrentDictionary<string, object> _settings = new ConcurrentDictionary<string, object>();
+
+            public bool GetValue(string key, bool defaultValue)
+            {
+                if (!_settings.TryGetValue(key, out object value))
+                {
+                    return defaultValue;
+                }
+
+                return (bool)value;
+            }
+
+            public string GetValue(string key, string defaultValue)
+            {
+                if (!_settings.TryGetValue(key, out object value))
+                {
+                    return defaultValue;
+                }
+
+                return (string)value;
+            }
+
+            public int GetValue(string key, int defaultValue)
+            {
+                if (!_settings.TryGetValue(key, out object value))
+                {
+                    return defaultValue;
+                }
+
+                return (int)value;
+            }
+
+            public double GetValue(string key, double defaultValue)
+            {
+                if (!_settings.TryGetValue(key, out object value))
+                {
+                    return defaultValue;
+                }
+
+                return (double)value;
+            }
+
+            public long GetValue(string key, long defaultValue)
+            {
+                if (!_settings.TryGetValue(key, out object value))
+                {
+                    return defaultValue;
+                }
+
+                return (long)value;
+            }
+
+            public void SetValue(string key, bool value)
+            {
+                _settings[key] = value;
+            }
+
+            public void SetValue(string key, string value)
+            {
+                _settings[key] = value;
+            }
+
+            public void SetValue(string key, int value)
+            {
+                _settings[key] = value;
+            }
+
+            public void SetValue(string key, double value)
+            {
+                _settings[key] = value;
+            }
+
+            public void SetValue(string key, long value)
+            {
+                _settings[key] = value;
             }
         }
     }
