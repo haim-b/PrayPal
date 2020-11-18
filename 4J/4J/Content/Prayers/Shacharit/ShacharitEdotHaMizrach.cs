@@ -8,7 +8,7 @@ using PrayPal.Models;
 using PrayPal.Resources;
 using Zmanim.HebrewCalendar;
 
-namespace PrayPal.Content.Prayers.Shacharit
+namespace PrayPal.Content
 {
     [Nusach(Nusach.EdotMizrach)]
     public class ShacharitEdotHaMizrach : ShacharitBase
@@ -24,7 +24,7 @@ namespace PrayPal.Content.Prayers.Shacharit
 
             _items.Add(hashkama);
 
-            // Bikot HaShachar
+            // Birkot HaShachar
             Add(AppResources.BirkotHashacharTitle, _dayInfo.YomTov == JewishCalendar.TISHA_BEAV ? EdotHaMizrachPrayerTextProvider.Instance.BirkotHashachar1Av9th : CommonPrayerTextProvider.Current.BirkotHashachar1, CommonPrayerTextProvider.Current.BirkotHashachar2, CommonPrayerTextProvider.Current.BirkotHashachar3, CommonPrayerTextProvider.Current.BirkotHashachar4);
 
             // Birkot HaTorah
@@ -143,7 +143,7 @@ namespace PrayPal.Content.Prayers.Shacharit
             bool torahReadingAdded = AddTorahReading();
 
             ///אשרי
-            Add(AppResources.AshreyTitle, CommonPrayerTextProvider.Current.Ashrey);
+            Add(AppResources.AshreyTitle, EdotHaMizrachPrayerTextProvider.Instance.YehiChasdecha, CommonPrayerTextProvider.Current.Ashrey);
 
             ///למנצח, ובא לציון
             SpanModel kdushaDesidra = new SpanModel(AppResources.KdushaDesidraTitle);

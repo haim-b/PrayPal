@@ -50,7 +50,7 @@ namespace Tests.PrayPal.Content.Prayers
                 AddEdotMizrachTextsBeforeMincha(texts);
             }
 
-            texts.Add(TestExecutor.GetAshrey());
+            texts.Add(new TextsModel(TestExecutor.GetAshrey()));
 
             if (nusach == Nusach.EdotMizrach)
             {

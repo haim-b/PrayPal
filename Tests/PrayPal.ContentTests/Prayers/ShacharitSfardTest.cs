@@ -168,7 +168,7 @@ namespace Tests.PrayPal.Content.Prayers
             bool torahReadingAdded = TestExecutor.AddTorahReading(texts, nusach, Prayer.Shacharit, jc, isTachanunDay);
 
             // אשרי
-            texts.Add(TestExecutor.GetAshrey());
+            texts.Add(new TextsModel(TestExecutor.GetAshrey()));
 
             // למנצח, ובא לציון
             t = new TextsModel(AppResources.KdushaDesidraTitle);
@@ -317,7 +317,7 @@ namespace Tests.PrayPal.Content.Prayers
                 {
                     t.Add(Psalms.Psalm79);
                 }
-                else if (HebDateHelper.IsAfterYomKippur())
+                else if (HebDateHelper.IsAfterYomKippur(jc))
                 {
                     t.Add(Psalms.Psalm85);
                 }

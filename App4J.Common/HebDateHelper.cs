@@ -670,9 +670,9 @@ namespace PrayPal.Common
         //    return false;
         //}
 
-        public static bool IsAfterYomKippur()
+        public static bool IsAfterYomKippur(JewishCalendar jc)
         {
-            DateTime yesterday = DateTime.Now.AddDays(-1);
+            DateTime yesterday = jc.Time.AddDays(-1);
 
             Zmanim.HebrewCalendar.JewishCalendar c = new Zmanim.HebrewCalendar.JewishCalendar(yesterday, IsInIsrael());
 

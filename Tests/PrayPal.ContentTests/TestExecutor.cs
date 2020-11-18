@@ -185,9 +185,9 @@ namespace Tests.PrayPal.Content
             texts.Add(kadishYatom);
         }
 
-        public static TextsModel GetAshrey()
+        public static ParagraphModel GetAshrey()
         {
-            return new TextsModel(new ParagraphModel(PrayTexts.Ashrey, AppResources.AshreyTitle));
+            return new ParagraphModel(PrayTexts.Ashrey, AppResources.AshreyTitle);
         }
 
         public static TextsModel GetPsalm(int number)
@@ -891,7 +891,7 @@ namespace Tests.PrayPal.Content
                 string sl = string.Join(" ", Enumerable.Range(s, el - s).Select(i => _legacyTexts[i]));
                 string sn = string.Join(" ", Enumerable.Range(s, en - s).Select(i => _newTexts[i]));
 
-                return $"Legacy: {sl + Environment.NewLine} New: {sn}";
+                return $"Legacy: {sl + Environment.NewLine}   New: {sn}";
             }
         }
 

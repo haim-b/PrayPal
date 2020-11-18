@@ -247,5 +247,10 @@ namespace PrayPal.Content
         {
             get { return _texts["ShacharitVerse1AYT"]; }
         }
+
+        public string YehiChasdecha
+        {
+            get { return _texts["YehiChasdecha"]; }
+        }
     }
 }
