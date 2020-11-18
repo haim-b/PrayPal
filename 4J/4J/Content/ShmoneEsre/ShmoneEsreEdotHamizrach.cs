@@ -15,19 +15,6 @@ namespace PrayPal.Content
             : base(prayer)
         { }
 
-        protected override void AddBirkatHaShanim()
-        {
-            if (_dayInfo.IsVetenBracha())
-            {
-                Add(CommonPrayerTextProvider.Current.SE09Summer);
-                Settings.ShowVeanenu = false;
-            }
-            else
-            {
-                Add(CommonPrayerTextProvider.Current.SE09Winter);
-            }
-        }
-
         protected override void AddPart16()
         {
             if (IsMinchaInTeanit)

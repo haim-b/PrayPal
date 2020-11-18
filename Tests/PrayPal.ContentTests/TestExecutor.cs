@@ -64,7 +64,7 @@ namespace Tests.PrayPal.Content
 
                 for (int i = 0; i < legacy.Length; i++)
                 {
-                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word on date '{0}'.", now);//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
+                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word on date '{0}'.\r\n{1}", now, new AssertMessageContextPrinter(legacy, newStrings, i, 10));//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
                 }
             }
         }
@@ -598,6 +598,34 @@ namespace Tests.PrayPal.Content
 
 
 
+
+        class AssertMessageContextPrinter
+        {
+            private readonly string[] _legacyTexts;
+            private readonly string[] _newTexts;
+            private readonly int _i;
+            private readonly int _wordCount;
+
+            public AssertMessageContextPrinter(string[] legacyTexts, string[] newTexts, int i, int wordCount)
+            {
+                _legacyTexts = legacyTexts;
+                _newTexts = newTexts;
+                _i = i;
+                _wordCount = wordCount;
+            }
+
+            public override string ToString()
+            {
+                int s = Math.Max(_i - _wordCount / 2, 0);
+                int el = Math.Min(_i + _wordCount / 2, _legacyTexts.Length - 1);
+                int en = Math.Min(_i + _wordCount / 2, _newTexts.Length - 1);
+
+                string sl = string.Join(" ", Enumerable.Range(s, el - s).Select(i => _legacyTexts[i]));
+                string sn = string.Join(" ", Enumerable.Range(s, en - s).Select(i => _newTexts[i]));
+
+                return $"Legacy: {sl + Environment.NewLine} New: {sn}";
+            }
+        }
 
 
         class StubLocationService : ILocationService

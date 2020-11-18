@@ -33,6 +33,18 @@ namespace PrayPal.Content
             _items.Add(new SpanModel(title, text));// { IsCollapsible = isCollapsible });
         }
 
+        protected override void Add(ParagraphModel paragraph)
+        {
+            if (paragraph is null)
+            {
+                throw new ArgumentNullException(nameof(paragraph));
+            }
+
+            SpanModel span = new SpanModel(null);
+            span.Add(paragraph);
+            _items.Add(span);// { IsCollapsible = isCollapsible });            
+        }
+
         protected void Add(string title, params string[] texts)
         {
             if (texts == null || texts.Length == 0)

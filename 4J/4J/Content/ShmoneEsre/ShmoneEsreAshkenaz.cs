@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PrayPal.Common;
+using PrayPal.Models;
 using PrayPal.Resources;
 
 namespace PrayPal.Content
@@ -33,7 +34,7 @@ namespace PrayPal.Content
         {
             if (!_dayInfo.Teanit && (_prayer == Prayer.Mincha || _prayer == Prayer.Arvit))
             {
-                Add(AshkenazPrayerTextProvider.Instance.SE19ShalomRav, _dayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE19AYT : string.Empty, _dayInfo.AseretYameyTshuva);
+                Add(PrayersHelper.CreateParagraphForStringFormat(AshkenazPrayerTextProvider.Instance.SE19ShalomRav, _dayInfo.AseretYameyTshuva ? new RunModel(CommonPrayerTextProvider.Current.SE19AYT, false, true) : null));
             }
             else
             {

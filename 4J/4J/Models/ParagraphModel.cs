@@ -27,8 +27,16 @@ namespace PrayPal.Models
         { }
 
         public ParagraphModel(string title, params RunModel[] runs)
+            : this(title, (IEnumerable<RunModel>)runs)
+        { }
+
+        public ParagraphModel(string title, IEnumerable<RunModel> runs)
         {
-            //_runs = new List<RunModel>(runs);
+            if (runs is null)
+            {
+                throw new ArgumentNullException(nameof(runs));
+            }
+
             this.AddRange(runs);
             Title = title;
             IsExpanded = true;
@@ -88,16 +96,6 @@ namespace PrayPal.Models
         }
 
         public bool IsLtr { get; set; }
-
-        //public void Add(RunModel run)
-        //{
-        //    if (run == null)
-        //    {
-        //        throw new ArgumentNullException("run");
-        //    }
-
-        //    this.Add(run);
-        //}
 
         public void Add(string text)
         {

@@ -164,26 +164,22 @@ namespace PrayPal.Content
 
         protected virtual void AddBirkatHaShanim()
         {
-            string[] texts = string.Format(CommonPrayerTextProvider.Current.SE09, "|").Split('|');
+            string arg;
 
-            if (texts.Length >= 2)
+            if (_dayInfo.IsVetenBracha())
             {
-                ParagraphModel p = new ParagraphModel(texts[0]);
-
-                if (_dayInfo.IsVetenBracha())
-                {
-                    p.Add(new RunModel(CommonPrayerTextProvider.Current.SE09Summer, false, IsPart9Bold));
-                    Settings.ShowVeanenu = false;
-                }
-                else
-                {
-                    p.Add(new RunModel(CommonPrayerTextProvider.Current.SE09Winter, false, IsPart9Bold));
-                }
-
-                p.Add(texts[1]);
-
-                _items.Add(p);
+                arg = CommonPrayerTextProvider.Current.SE09Summer;
+                Settings.ShowVeanenu = false;
             }
+            else
+            {
+                arg = CommonPrayerTextProvider.Current.SE09Winter;
+            }
+
+
+            ParagraphModel p = PrayersHelper.CreateParagraphForStringFormat(CommonPrayerTextProvider.Current.SE09, new RunModel(arg, false, true));
+
+            _items.Add(p);
         }
 
         protected abstract void AddPart16();

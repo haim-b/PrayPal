@@ -54,6 +54,11 @@ namespace PrayPal.Content
             ParagraphModel p = new ParagraphModel(title, texts[0]);
             p.IsCollapsible = isCollapsible;
 
+            if (texts.Length == 1)
+            {
+                return p;
+            }
+
             if (!string.IsNullOrEmpty(argument))
             {
                 p.Add(new RunModel(argument, isHighlighted, isBold));
@@ -64,6 +69,63 @@ namespace PrayPal.Content
                 p.Add(texts[1]);
             }
             return p;
+        }
+
+        public static ParagraphModel CreateParagraphForStringFormat(string format, params RunModel[] args)
+        {
+            return CreateParagraphForStringFormat(format, null, false, args);
+        }
+
+        public static ParagraphModel CreateParagraphForStringFormat(string format, string title, bool isCollapsible, params RunModel[] args)
+        {
+            if (string.IsNullOrEmpty(format))
+            {
+                throw new ArgumentException($"'{nameof(format)}' cannot be null or empty", nameof(format));
+            }
+
+            if (args is null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
+
+            List<object> texts = string.Format(format, "|").Split('|').ToList<object>();
+
+            if (texts.Count == 0)
+            {
+                return null;
+            }
+
+            // Add arg placeholders:
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                texts.Insert(i + 1, args[i]);
+            }
+
+            return new ParagraphModel(title, GetRuns()) { IsCollapsible = isCollapsible };
+
+            IEnumerable<RunModel> GetRuns()
+            {
+                foreach (object o in texts)
+                {
+                    if (o is null)
+                    {
+                        continue;
+                    }
+                    else if (o is RunModel r)
+                    {
+                        yield return r;
+                        continue;
+                    }
+
+                    string s = (string)o;
+
+                    if (!string.IsNullOrEmpty(s))
+                    {
+                        yield return new RunModel(s);
+                    }
+                }
+            }
         }
 
         public static ParagraphModel GetOseShalom(DayJewishInfo dayInfo)

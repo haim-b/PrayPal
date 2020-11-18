@@ -29,6 +29,16 @@ namespace PrayPal.Content
             _items.Add(new ParagraphModel(title, text) { IsCollapsible = isCollapsible });
         }
 
+        protected override void Add(ParagraphModel paragraph)
+        {
+            if (paragraph is null)
+            {
+                throw new ArgumentNullException(nameof(paragraph));
+            }
+
+            _items.Add(paragraph);
+        }
+
         protected override ParagraphModel GetItemAtIndexImpl(int index)
         {
             return _items.ElementAt(index);

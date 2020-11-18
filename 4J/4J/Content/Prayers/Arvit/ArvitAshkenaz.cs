@@ -23,6 +23,11 @@ namespace PrayPal.Content.Prayers.Arvit
             return CommonResources.MaarivTitle;
         }
 
+        protected override void AddVersesBeforeArvit()
+        {
+            // Nusach Ashkenaz has no verses before Arvit:
+        }
+
         protected override bool IsAbroadForShmaBlessing()
         {
             // Nusach Ashkenaz has no blessing for abroad on Shma:

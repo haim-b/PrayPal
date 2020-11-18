@@ -91,6 +91,8 @@ namespace PrayPal.Content
 
         protected abstract void Add(string text, string title = null, bool isCollapsible = false);
 
+        protected abstract void Add(ParagraphModel paragraph);
+
         public virtual Nusach GetNusach()
         {
             if (_nusach == null)

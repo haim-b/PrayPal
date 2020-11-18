@@ -25,6 +25,20 @@ namespace Tests.PrayPal.Content.Prayers
             await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Sfard, jc, l), (l, t) => new ArvitSfard(l));
         }
 
+        [TestMethod]
+        public async Task TestArvitEdotHaMizrach()
+        {
+            TestExecutor.PrepareNusach(Nusach.EdotMizrach);
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.EdotMizrach, jc, l), (l, t) => new ArvitEdotHaMizrach(l));
+        }
+
+        [TestMethod]
+        public async Task TestArvitAshkenaz()
+        {
+            TestExecutor.PrepareNusach(Nusach.Ashkenaz);
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Ashkenaz, jc, l), (l, t) => new ArvitAshkenaz(l));
+        }
+
         private IEnumerable<string> CreateFromLegacyDebuggedCode(Nusach nusach, JewishCalendar jc, ILocationService locationService)
         {
             List<TextsModel> texts = new List<TextsModel>();

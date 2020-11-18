@@ -40,6 +40,10 @@ namespace PrayPal.Content.Prayers.Arvit
             /*Nusach Edot HaMizrach ending has the following structure:
              * - Barchu
              * - Aleinu Leshabeach
+             * 
+             * On Sfirat HaOmer, it's:
+             * - Aleinu Leshabeach
+             * - Barchu
              * - Sfirat HaOmer (if relevant)
              */
 
@@ -53,7 +57,14 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected override void AddAleinuLeshabeach()
         {
-            Add(AppResources.AleinuLeshabeachTitle, CommonPrayerTextProvider.Current.Barchu, CommonPrayerTextProvider.Current.AleinuLeshabeach);
+            if (_dayInfo.DayOfOmer == -1)
+            {
+                Add(AppResources.AleinuLeshabeachTitle, CommonPrayerTextProvider.Current.Barchu, CommonPrayerTextProvider.Current.AleinuLeshabeach);
+            }
+            else
+            {
+                Add(AppResources.AleinuLeshabeachTitle, CommonPrayerTextProvider.Current.AleinuLeshabeach);
+            }
         }
 
         protected override void AddTextBeforeSforatHaOmer(SpanModel sfiratHaOmer)
