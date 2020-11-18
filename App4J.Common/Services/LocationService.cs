@@ -35,8 +35,8 @@ namespace PrayPal.Common.Services
 
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Low, _locationTimeout);
-                var location = await Geolocation.GetLocationAsync(request, cancellationToken);
+                //var request = new GeolocationRequest(GeolocationAccuracy.Low, _locationTimeout);
+                var location = await Geolocation.GetLastKnownLocationAsync();//.GetLocationAsync(request, cancellationToken);
 
                 if (location != null)
                 {
