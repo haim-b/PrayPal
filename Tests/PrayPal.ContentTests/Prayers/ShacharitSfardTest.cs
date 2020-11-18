@@ -231,6 +231,15 @@ namespace Tests.PrayPal.Content.Prayers
                 TestExecutor.AddLedavid(jc, texts);
             }
 
+            if (isTachanunDay)
+            {
+                texts.Add(new TextsModel(new ParagraphModel(Psalms.Psalm49) { Title2 = AppResources.InMoarningHouseTitle, IsCollapsible = true }));
+            }
+            else
+            {
+                texts.Add(new TextsModel(new ParagraphModel(Psalms.Psalm16) { Title2 = AppResources.InMoarningHouseTitle, IsCollapsible = true }));
+            }
+
             return texts.SelectMany(t => t).Select(p => p.Content);
         }
 

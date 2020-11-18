@@ -14,8 +14,6 @@ namespace PrayPal.Content
     [TextName(PrayerNames.Shacharit)]
     public abstract class ShacharitBase : SpansPrayerBase
     {
-        public bool InMournerHouse { get; set; }
-
         protected async override Task CreateOverride()
         {
             // Sedder Hashkama
@@ -68,10 +66,6 @@ namespace PrayPal.Content
 
             // פסוקי דזמרה
             SpanModel psukeyDezimra = new SpanModel(AppResources.PsukeyDezimraTitle);
-            //psukeyDezimra.Add(Psalms.Psalm30);
-
-            ////// קדיש יתום
-            ////psukeyDezimra.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
 
             // ברוך שאמר
             psukeyDezimra.Add(CommonPrayerTextProvider.Current.BaruchSheamar);
@@ -200,16 +194,15 @@ namespace PrayPal.Content
                 AddLeDavid();
             }
 
-            if (InMournerHouse)
+            lastSpan = _items.Last();
+
+            if (isTachanunDay)
             {
-                if (isTachanunDay)
-                {
-                    kdushaDesidra.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
-                }
-                else
-                {
-                    kdushaDesidra.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
-                }
+                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
+            }
+            else
+            {
+                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
             }
 
 
