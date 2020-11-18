@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PrayPal.Common;
 using PrayPal.Models;
 
-namespace PrayPal.Content.Prayers.Mincha
+namespace PrayPal.Content
 {
     [Nusach(Nusach.Ashkenaz)]
     public class MinchaAshkenaz : MinchaSfard

@@ -14,7 +14,7 @@ namespace PrayPal.Content
     {
         protected override void AddOpening()
         {
-            Add(EdotHaMizrachPrayerTextProvider.Instance.LeshemYichudMincha, AppResources.VersesBeforeMinchaTitle);
+            Add(AppResources.VersesBeforeMinchaTitle, EdotHaMizrachPrayerTextProvider.Instance.LeshemYichudMincha);
 
             _items.Add(PrayersHelper.GetPsalm(84));
 

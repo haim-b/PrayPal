@@ -62,10 +62,10 @@ namespace PrayPal.Content
         private bool ShouldAddTorahReading()
         {
             return _dayInfo.YomTov == JewishCalendar.FAST_OF_GEDALYAH
-                    && _dayInfo.YomTov == JewishCalendar.FAST_OF_ESTHER
-                    && _dayInfo.YomTov == JewishCalendar.TENTH_OF_TEVES
-                    && _dayInfo.YomTov == JewishCalendar.SEVENTEEN_OF_TAMMUZ
-                    && _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
+                    || _dayInfo.YomTov == JewishCalendar.FAST_OF_ESTHER
+                    || _dayInfo.YomTov == JewishCalendar.TENTH_OF_TEVES
+                    || _dayInfo.YomTov == JewishCalendar.SEVENTEEN_OF_TAMMUZ
+                    || _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
         }
 
         private void AddTorahReading()
