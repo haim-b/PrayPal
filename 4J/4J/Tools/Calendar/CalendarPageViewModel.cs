@@ -1,6 +1,8 @@
-﻿using PrayPal.Common;
+﻿using Microsoft.Extensions.Logging;
+using PrayPal.Common;
 using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
+using PrayPal.DayTimes;
 using PrayPal.Resources;
 using PrayPal.Services;
 using System;
@@ -20,15 +22,19 @@ namespace PrayPal.Tools.Calendar
     {
         private readonly ITimeService _timeService;
         private ObservableCollection<HebrewCalendarDayViewModel> _days;
-        private HebrewCalendarDayViewModel _selectedDay;
+        private JewishCalendar _selectedDay;
+        private DayTimesViewModel _selectedDayInfo;
         private int _monthFromNissan;
         private int _year;
         //private string _monthString;
         //private string _yearString;
         private bool _isInitialized;
 
+        private readonly DayTimesViewModel _dayTimesViewModel;
+
         private static readonly ReadOnlyCollection<string> _years;
         private static readonly string[] _monthNames;
+        private string _todayDayTitle;
         private const int StartYear = 5700;
 
         static CalendarPageViewModel()
@@ -49,13 +55,16 @@ namespace PrayPal.Tools.Calendar
             }
         }
 
-        public CalendarPageViewModel(ITimeService timeService, IErrorReportingService errorReportingService)
+        public CalendarPageViewModel(ITimeService timeService, ILocationService locationService, IErrorReportingService errorReportingService, ILogger<DayTimesViewModel> dayTimesLogger)
             : base(AppResources.CalendarTitle, errorReportingService)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
+            _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true };
 
             IncreaseMonthCommand = new Command(IncreaseMonth, CanIncreaseMonth);
             DecreaseMonthCommand = new Command(DecreaseMonth, CanDecreaseMonth);
+            SelectDayCommand = new Command<HebrewCalendarDayViewModel>(ExecuteSelectDay);
+            GoToTodayCommand = new Command(ExecuteGoToTodayCommand);
             Months = new ObservableCollection<string>();
 
             // Add Tishrei to Adar:
@@ -74,12 +83,22 @@ namespace PrayPal.Tools.Calendar
             JewishCalendar jc = new JewishCalendar(DateTime.Now, Settings.IsInIsrael);
             MonthFromNissan = jc.JewishMonth;
             Year = jc.JewishYear;
+            _selectedDay = jc;
+
+
+            ExecuteGoToTodayCommand();
         }
 
         public ObservableCollection<HebrewCalendarDayViewModel> Days
         {
             get { return _days; }
             private set { SetProperty(ref _days, value); }
+        }
+
+        public string TodayDayTitle
+        {
+            get { return _todayDayTitle; }
+            set { SetProperty(ref _todayDayTitle, value); }
         }
 
         public int MonthFromNissan
@@ -142,10 +161,29 @@ namespace PrayPal.Tools.Calendar
             }
         }
 
-        public HebrewCalendarDayViewModel SelectedDay
+        public JewishCalendar SelectedDay
         {
             get { return _selectedDay; }
-            set { SetProperty(ref _selectedDay, value); }
+            set
+            {
+                SetProperty(ref _selectedDay, value);
+
+                if (value == null)
+                {
+                    SelectedDayInfo = null;
+                }
+                else
+                {
+                    _dayTimesViewModel.JewishDate = value;
+                    SelectedDayInfo = _dayTimesViewModel;
+                }
+            }
+        }
+
+        public DayTimesViewModel SelectedDayInfo
+        {
+            get { return _selectedDayInfo; }
+            set { SetProperty(ref _selectedDayInfo, value); }
         }
 
         public ObservableCollection<string> Months { get; }
@@ -158,6 +196,39 @@ namespace PrayPal.Tools.Calendar
         public Command IncreaseMonthCommand { get; }
 
         public Command DecreaseMonthCommand { get; }
+
+        public Command SelectDayCommand { get; }
+
+
+
+        public Command GoToTodayCommand { get; }
+
+        private async Task SelectTodayAsync()
+        {
+            DayJewishInfo dayInfo = await _timeService.GetDayInfoAsync().ConfigureAwait(true);
+
+            if (dayInfo != null)
+            {
+                BeginInit();
+                Year = dayInfo.JewishCalendar.JewishYear;
+                MonthFromNissan = dayInfo.JewishCalendar.JewishMonth;
+                EndInit();
+                SelectedDay = dayInfo.JewishCalendar;
+            }
+
+            if (_todayDayTitle == null)
+            {
+                HebrewDateFormatter formatter = new HebrewDateFormatter { UseGershGershayim = false, HebrewFormat = true, UseEndLetters = false };
+
+                TodayDayTitle = formatter.formatHebrewNumber(dayInfo.JewishCalendar.JewishDayOfMonth);
+            }
+        }
+
+        private void ExecuteGoToTodayCommand()
+        {
+            SelectTodayAsync();
+        }
+
 
         private void UpdateMonthsList(int oldYear)
         {
@@ -260,6 +331,22 @@ namespace PrayPal.Tools.Calendar
             DecreaseMonthCommand.ChangeCanExecute();
         }
 
+        private void ExecuteSelectDay(HebrewCalendarDayViewModel day)
+        {
+            foreach (var item in Days)
+            {
+                if (item.JewishCalendar == day?.JewishCalendar)
+                {
+                    item.IsSelected = true;
+                    continue;
+                }
+
+                item.IsSelected = false;
+            }
+
+            SelectedDay = day.JewishCalendar;
+        }
+
         private void BeginInit()
         {
             _isInitialized = false;
@@ -278,7 +365,7 @@ namespace PrayPal.Tools.Calendar
                 return;
             }
 
-            JewishCalendar selectedValue = _selectedDay?.JewishCalendar;
+            JewishCalendar selectedValue = _selectedDay;
 
             int month = MonthFromNissan;
 
@@ -303,7 +390,7 @@ namespace PrayPal.Tools.Calendar
 
                 if (selectedValue != null && selectedValue.Equals(jc))
                 {
-                    //item.IsSelected = true;
+                    item.IsSelected = true;
                     selectedValueFound = true;
                 }
 
@@ -319,7 +406,7 @@ namespace PrayPal.Tools.Calendar
 
             if (selectedValueFound)
             {
-                //SelectedDay = selectedValue;
+                SelectedDay = selectedValue;
             }
         }
 

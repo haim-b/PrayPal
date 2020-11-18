@@ -125,7 +125,7 @@ namespace Zmanim.HebrewCalendar
         public JewishCalendar(DateTime calendar, bool inIsrael)
             : base(calendar)
         {
-            InIsrael = InIsrael;
+            InIsrael = inIsrael;
         }
 
         ///// <summary>

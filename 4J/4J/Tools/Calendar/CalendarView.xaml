@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:PrayPal"
+             xmlns:dt="clr-namespace:PrayPal.DayTimes"
              x:Class="PrayPal.Tools.Calendar.CalendarView"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -17,7 +18,13 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             
             <!-- Title: -->
             <Grid Margin="0,3" HorizontalOptions="Center">
@@ -46,9 +53,11 @@
                         </DataTrigger>
                     </Button.Triggers></Button>
             </Grid>
-            
+
+            <Button Command="{Binding GoToTodayCommand}" Text="{Binding TodayDayTitle}" HorizontalOptions="End" Style="{StaticResource MonthButtonStyle}"/>
+
             <!-- Headers: -->
-            <Grid x:Name="calendarHeaders" VerticalOptions="Start">
+            <Grid x:Name="calendarHeaders" VerticalOptions="Start" Grid.Row="1">
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="FontAttributes" Value="Bold"/>
@@ -75,7 +84,7 @@
             </Grid>
             
             <!-- Calendar: -->
-            <Grid x:Name="calendar" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding Days}" ColumnSpacing="0" RowSpacing="0">
+            <Grid x:Name="calendar" VerticalOptions="Start" BindableLayout.ItemsSource="{Binding Days}" ColumnSpacing="0" RowSpacing="0" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -96,8 +105,20 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="{Binding Source={StaticResource TextBrush}, Path=Color}" CornerRadius="0" Grid.Row="{Binding GridRow}" Grid.Column="{Binding GridColumn}" Padding="5,0" Background="{DynamicResource BackgroundBrush}">
-                            <StackLayout>
-                                <Label Text="{Binding DayTitle}"/>
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding IsSelected}" Value="True">
+                                    <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            
+                            <StackLayout Spacing="0">
+                                <Label Text="{Binding DayTitle, Mode=OneTime}">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="TextColor" Value="White"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
                                 <Label Text="&#x2B24;" TextColor="Transparent" HorizontalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding HasEvent}" Value="True">
@@ -105,11 +126,24 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
+                                <Label Text="{Binding CivilTitle, Mode=OneTime}" HorizontalTextAlignment="End" FontSize="Micro">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="TextColor" Value="White"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference calendar}, Path=BindingContext.SelectDayCommand}" CommandParameter="{Binding}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </Grid>
-        </StackLayout>
+
+            <dt:DayTimesControl BindingContext="{Binding SelectedDayInfo}" Grid.Row="3"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

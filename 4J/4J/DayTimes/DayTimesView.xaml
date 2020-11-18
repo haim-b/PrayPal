@@ -2,29 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:PrayPal"
-             x:Class="Yahadut.DayTimes.DayTimesView" Title="{app:CustomResource ApplicationTitle}">
+             xmlns:local="clr-namespace:PrayPal.DayTimes"
+             x:Class="PrayPal.DayTimes.DayTimesView" Title="{app:CustomResource ApplicationTitle}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}"/>
-        <ListView Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <!--<ViewCell>
-                        <ViewCell.View>
-                                <StackLayout>
-                                    <Label Text="{Binding Title, Mode=OneTime}"/>
-                                    <Label Text="{Binding Time}"/>
-                                    --><!--Style="{StaticResource TitleTextBlockStyle}" FontSize="{StaticResource TextStyleLargeFontSize}"--><!--
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>-->
-                    <TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>
-                </DataTemplate>
-                </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+    <local:DayTimesControl/>
 </ContentPage>
