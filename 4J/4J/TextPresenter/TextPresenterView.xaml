@@ -49,7 +49,7 @@
                         <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                     Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     </Expander>
-                    
+
                     <Frame.GestureRecognizers>
                         <!-- We add this to disable the tap animation on list items on Android: -->
                         <TapGestureRecognizer/>
@@ -58,11 +58,8 @@
             </ViewCell>
         </DataTemplate>
 
-        <Style x:Key="GroupButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-        </Style>
-
         <Style x:Key="GroupLabelStyle" TargetType="Label">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
             <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
             <Setter Property="FontSize" Value="Large"/>
             <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -70,7 +67,7 @@
 
         <DataTemplate x:Key="JumpListItemTemplate">
             <ViewCell>
-                <Button Text="{Binding Title}" Clicked="OnJumpListItemClicked"/>
+                <Button Text="{Binding Title}" FontSize="Large" Clicked="OnJumpListItemClicked"/>
             </ViewCell>
         </DataTemplate>
 
@@ -100,11 +97,12 @@
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid x:Name="GroupHeaderView" Background="{DynamicResource BackgroundBrush}" IsVisible="{Binding Source={x:Reference groupHeader}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" VerticalOptions="Start">
-                            <Button Style="{DynamicResource GroupButtonStyle}"
-                    Clicked="OnGroupClicked"/>
-                            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}"/>
-                        </Grid>
+                        <Label x:Name="GroupHeaderView" Text="{Binding Title}" Style="{StaticResource GroupLabelStyle}"
+                               IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnGroupClicked"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </ViewCell>
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
@@ -126,10 +124,11 @@
     -->
         </local:ExtendedListView>
 
-        <Grid x:Name="GroupHeaderView" Background="{DynamicResource BackgroundBrush}" IsVisible="{Binding Source={x:Reference groupHeader}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" VerticalOptions="Start">
-            <Button Style="{DynamicResource GroupButtonStyle}"
-                    Clicked="OnGroupClicked"/>
-            <Label x:Name="groupHeader" InputTransparent="True" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}"/>
-        </Grid>
+        <Label x:Name="GroupHeaderView" Text="{Binding Source={x:Reference lst}, Path=ActiveGroup.Title}" Style="{StaticResource GroupLabelStyle}"
+               VerticalOptions="Start" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnGroupClicked"/>
+            </Label.GestureRecognizers>
+        </Label>
     </Grid>
 </ContentPage>

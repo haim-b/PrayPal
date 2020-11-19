@@ -9,6 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="AccentColor">#2196F3</Color>
+            <SolidColorBrush x:Key="AccentBrush" Color="{AppThemeBinding Light=#2196F3, Dark=#2196F3}"/>
             <SolidColorBrush x:Key="BackgroundBrush" Color="{AppThemeBinding Light=White, Dark=Black}"/>
             <SolidColorBrush x:Key="TextBrush" Color="{AppThemeBinding Light=Black, Dark=White}"/>
             <SolidColorBrush x:Key="DetailsBrush" Color="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
