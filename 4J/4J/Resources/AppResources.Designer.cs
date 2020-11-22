@@ -1835,7 +1835,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to השתמש ברקע בהיר עבור יהדות.
+        ///   Looks up a localized string similar to השתמש ברקע בהיר.
         /// </summary>
         public static string UseLightBackgroundSettingTitle {
             get {
