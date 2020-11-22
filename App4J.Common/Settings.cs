@@ -12,6 +12,8 @@ namespace PrayPal.Common
         // static CultureInfo _language;
         private static ISettingsProvider _settingsProvider;
 
+        public static readonly IReadOnlyCollection<string> TimeAffecingSettings = new ReadOnlyCollectionBuilder(new string[] { nameof(UseLocation), nameof(TimeCalcMethod), nameof(IsInIsrael), nameof(Nusach) /* Like Biur Chametz */});
+
         static Settings()
         {
             //string langauge = AppSettings.GetValue(LanguageKey, null);

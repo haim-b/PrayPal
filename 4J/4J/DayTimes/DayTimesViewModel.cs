@@ -221,7 +221,7 @@ namespace PrayPal.DayTimes
 
         protected override async Task OnSettingsChangedAsync(string settingsName)
         {
-            if (settingsName != nameof(Settings.UseLocation))
+            if (!Settings.TimeAffecingSettings.Contains(settingsName))
             {
                 return;
             }

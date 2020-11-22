@@ -8,6 +8,7 @@ using PrayPal.Resources;
 using PrayPal.TextPresenter;
 using Prism.Mvvm;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -93,7 +94,7 @@ namespace PrayPal.Prayers
 
         protected override async Task OnSettingsChangedAsync(string settingsName)
         {
-            if (settingsName != nameof(Settings.UseLocation))
+            if (!Settings.TimeAffecingSettings.Contains(settingsName))
             {
                 return;
             }
