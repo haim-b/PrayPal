@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using PrayPal.Resources;
 using PrayPal.Tools.Calendar;
+using PrayPal.Tools.PrayerDirection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,7 @@ namespace PrayPal.Tools
         {
             Items.Clear();
             Items.Add(new ToolItemViewModel(AppResources.CalendarTitle, typeof(CalendarPageViewModel)));
+            Items.Add(new ToolItemViewModel(AppResources.PrayingDirectionTitle, typeof(PrayerDirectionViewModel)));
 
             return Task.CompletedTask;
         }

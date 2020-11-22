@@ -19,6 +19,18 @@ namespace PrayPal.Prayers
             PageParameter = pageParameter;
         }
 
+        public PrayerItemViewModel(string pageName, string title, string subtitle, object pageParameter = null)
+            : base(title, subtitle)
+        {
+            if (string.IsNullOrWhiteSpace(pageName))
+            {
+                throw new ArgumentException($"'{nameof(pageName)}' cannot be null or whitespace", nameof(pageName));
+            }
+
+            PageName = pageName;
+            PageParameter = pageParameter;
+        }
+
         public PrayerItemViewModel(string pageName, string title, Type viewModelType)
             : this(pageName, title)
         {

@@ -10,6 +10,18 @@
     <DebugType>Full</DebugType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\SEGOEUI.TTF" />
+    <None Remove="Resources\SEGOEUISL.TTF" />
+    <None Remove="Resources\SEGUISYM.TTF" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SEGOEUI.TTF" />
+    <EmbeddedResource Include="Resources\SEGOEUISL.TTF" />
+    <EmbeddedResource Include="Resources\SEGUISYM.TTF" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.0.0" />
@@ -125,6 +137,9 @@
     <EmbeddedResource Update="Tools\Calendar\CalendarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Tools\PrayerDirection\PrayerDirectionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Tools\ToolsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -144,5 +159,9 @@
 
   <ItemGroup>
     <Folder Include="Books\Psalms\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\SEGUISYM.TTF" />
   </ItemGroup>
 </Project>

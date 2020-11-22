@@ -1133,7 +1133,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to בטל.
+        ///   Looks up a localized string similar to ביטול.
         /// </summary>
         public static string MessageBoxCancel {
             get {
@@ -1151,7 +1151,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to אשר.
+        ///   Looks up a localized string similar to אישור.
         /// </summary>
         public static string MessageBoxOK {
             get {

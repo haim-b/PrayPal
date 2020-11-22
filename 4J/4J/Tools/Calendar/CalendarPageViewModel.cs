@@ -55,8 +55,8 @@ namespace PrayPal.Tools.Calendar
             }
         }
 
-        public CalendarPageViewModel(ITimeService timeService, ILocationService locationService, IErrorReportingService errorReportingService, ILogger<DayTimesViewModel> dayTimesLogger)
-            : base(AppResources.CalendarTitle, errorReportingService)
+        public CalendarPageViewModel(ITimeService timeService, ILocationService locationService, INotificationService notificationService, IErrorReportingService errorReportingService, ILogger<DayTimesViewModel> dayTimesLogger, ILogger<CalendarPageViewModel> logger)
+            : base(AppResources.CalendarTitle, notificationService, errorReportingService, logger)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
             _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true };
@@ -224,9 +224,16 @@ namespace PrayPal.Tools.Calendar
             }
         }
 
-        private void ExecuteGoToTodayCommand()
+        private async void ExecuteGoToTodayCommand()
         {
-            SelectTodayAsync();
+            try
+            {
+                await SelectTodayAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to select today.");
+            }
         }
 
 

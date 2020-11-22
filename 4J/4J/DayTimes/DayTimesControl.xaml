@@ -8,7 +8,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}"/>
+            <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
             <ListView Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -16,7 +16,8 @@
                             <ViewCell.View>
                                 <StackLayout Margin="2">
                                     <Label Text="{Binding Title, Mode=OneTime}" FontSize="Medium"/>
-                                    <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                                    <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                           TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

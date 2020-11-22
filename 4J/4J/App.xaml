@@ -19,6 +19,7 @@
             
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="FontFamily" Value="SegoeUI"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -43,14 +44,17 @@
             
             <Style TargetType="Label" ApplyToDerivedTypes="True">
                 <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+                <Setter Property="FontFamily" Value="SegoeUI"/>
             </Style>
 
-            <Style TargetType="Picker">
+            <Style TargetType="Picker" ApplyToDerivedTypes="True">
                 <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+                <Setter Property="FontFamily" Value="SegoeUI"/>
             </Style>
 
             <Style TargetType="local:HyperlinkSpan">
                 <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="FontFamily" Value="SegoeUI"/>
             </Style>
 
             <!--<Style x:Key="ListItemDetailTextStyle" TargetType="Label" BasedOn="{x:Static Device+Styles.ListItemDetailTextStyle}">

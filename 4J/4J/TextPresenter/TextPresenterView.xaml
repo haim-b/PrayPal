@@ -15,10 +15,11 @@
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
                 <StackLayout Margin="{StaticResource ParagraphThickness}">
-                    <Label Text="{Binding Title}" TextColor="{StaticResource AccentColor}"
+                    <Label Text="{Binding Title}" TextColor="{StaticResource AccentColor}" FontFamily="SegoeUI"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
-                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                           FontFamily="SegoeUI"/>
                     <StackLayout.GestureRecognizers>
                         <!-- We add this to disable the tap animation on list items on Android: -->
                         <TapGestureRecognizer/>
@@ -31,7 +32,7 @@
                 <Frame x:Name="frame" BorderColor="{StaticResource AccentColor}" BackgroundColor="{StaticResource AccentColor}" Padding="4" Margin="{StaticResource ParagraphThickness}">
                     <Expander x:Name="expander" IsExpanded="{Binding IsExpanded, Mode=OneTime}">
                         <Expander.Header>
-                            <Label Text="{Binding Title}" TextColor="White" HorizontalTextAlignment="Center"
+                            <Label Text="{Binding Title}" TextColor="White" HorizontalTextAlignment="Center" FontFamily="SegoeUI"
                     Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference expander}, Path=IsExpanded}" Value="True">
@@ -47,7 +48,8 @@
                         </Expander.Triggers>
 
                         <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
-                    Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                    Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                               FontFamily="SegoeUI"/>
                     </Expander>
 
                     <Frame.GestureRecognizers>
@@ -62,12 +64,13 @@
             <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
             <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
             <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontFamily" Value="SegoeUI"/>
             <Setter Property="VerticalTextAlignment" Value="Center"/>
         </Style>
 
         <DataTemplate x:Key="JumpListItemTemplate">
             <ViewCell>
-                <Button Text="{Binding Title}" FontSize="Large" Clicked="OnJumpListItemClicked"/>
+                <Button Text="{Binding Title}" FontFamily="SegoeUI" Clicked="OnJumpListItemClicked"/>
             </ViewCell>
         </DataTemplate>
 

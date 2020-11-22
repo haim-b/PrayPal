@@ -741,13 +741,13 @@
     <value>מרכז היהדות</value>
   </data>
   <data name="MessageBoxCancel" xml:space="preserve">
-    <value>בטל</value>
+    <value>ביטול</value>
   </data>
   <data name="MessageBoxNo" xml:space="preserve">
     <value>לא</value>
   </data>
   <data name="MessageBoxOK" xml:space="preserve">
-    <value>אשר</value>
+    <value>אישור</value>
   </data>
   <data name="MessageBoxYes" xml:space="preserve">
     <value>כן</value>

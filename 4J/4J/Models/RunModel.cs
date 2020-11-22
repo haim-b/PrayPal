@@ -23,7 +23,7 @@ namespace PrayPal.Models
         {
             try
             {
-                _defaultFont = null;// new FontFamily(@"Segoe WP SemiLight");
+                _defaultFont = "SegoeUISL";// new FontFamily(@"Segoe WP SemiLight");
             }
             catch
             { }

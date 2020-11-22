@@ -1,4 +1,5 @@
-﻿using PrayPal.Common;
+﻿using Microsoft.Extensions.Logging;
+using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
@@ -27,8 +28,8 @@ namespace PrayPal.Prayers.MeeinShalosh
 
         private Task _contentGenerationTask;
 
-        public MeeinShaloshPageViewModel(ITimeService timeService, IErrorReportingService errorReportingService)
-            : base(AppResources.MeeinShaloshTitle, errorReportingService)
+        public MeeinShaloshPageViewModel(ITimeService timeService, INotificationService notificationService, IErrorReportingService errorReportingService, ILogger<MeeinShaloshPageViewModel> logger)
+            : base(AppResources.MeeinShaloshTitle, notificationService, errorReportingService, logger)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
 

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
 
 namespace PrayPal.Droid
 {
@@ -40,6 +41,11 @@ namespace PrayPal.Droid
 
         public override void OnBackPressed()
         {
+            //Intent i = new Intent();
+            //i.SetPackage("com.google.android.apps.googleassistant");
+            //i.SetClassName("com.google.android.apps.googleassistant", "com.google.android.apps.googleassistant.AssistantActivity");
+            //StartActivity(i);
+
             if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
             {
                 // Do something if there are some pages in the `PopupStack`
