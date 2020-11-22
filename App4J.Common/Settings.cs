@@ -12,7 +12,7 @@ namespace PrayPal.Common
         // static CultureInfo _language;
         private static ISettingsProvider _settingsProvider;
 
-        public static readonly IReadOnlyCollection<string> TimeAffecingSettings = new ReadOnlyCollectionBuilder(new string[] { nameof(UseLocation), nameof(TimeCalcMethod), nameof(IsInIsrael), nameof(Nusach) /* Like Biur Chametz */});
+        public static readonly IReadOnlyCollection<string> TimeAffecingSettings = new ReadOnlyCollectionBuilder<string>(new string[] { nameof(UseLocation), nameof(TimeCalcMethod), nameof(IsInIsrael), nameof(Nusach) /* Like Biur Chametz */}).ToReadOnlyCollection();
 
         static Settings()
         {
@@ -202,13 +202,17 @@ namespace PrayPal.Common
 
         private static void OnSettingChanged([CallerMemberName] string settingName = null)
         {
-            foreach (var listener in _listeners)
+            for (int i = _listeners.Count - 1; i >= 0; i--)
             {
                 try
                 {
-                    if (listener.TryGetTarget(out var l))
+                    if (_listeners[i].TryGetTarget(out var l))
                     {
                         l.OnSettingsChanged(settingName);
+                    }
+                    else
+                    {
+                        _listeners.RemoveAt(i);
                     }
                 }
                 catch { }
