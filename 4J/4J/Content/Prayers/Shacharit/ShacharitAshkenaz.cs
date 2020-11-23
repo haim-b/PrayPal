@@ -13,7 +13,7 @@ namespace PrayPal.Content
     [Nusach(Nusach.Ashkenaz)]
     public class ShacharitAshkenaz : ShacharitSfard
     {
-        protected override async Task CreateOverride()
+        protected override async Task CreateOverrideAsync()
         {
             // Sedder Hashkama
             SpanModel hashkama = new SpanModel(AppResources.SederHashkamaTitle);
@@ -31,7 +31,7 @@ namespace PrayPal.Content
             SpanModel talitTfillin;
 
             // Talit and Tfillin
-            if (_dayInfo.IsTfillinTime())
+            if (DayInfo.IsTfillinTime())
             {
                 talitTfillin = new SpanModel(AppResources.TalitAndTfillinTitle);
                 talitTfillin.Add(new ParagraphModel(AppResources.AtifatTalitTitle, CommonPrayerTextProvider.Current.AtifatTalit));
@@ -56,7 +56,7 @@ namespace PrayPal.Content
 
             // ברייתא דרבי ישמעאל
             Add(AppResources.BrayitaDerabiYishmaelTitle, CommonPrayerTextProvider.Current.BrayitaDerabiYishmael);
-            Add(AppResources.KadishDerabananTitle, PrayersHelper.GetKadishDerabanan(_dayInfo, false).ToArray());
+            Add(AppResources.KadishDerabananTitle, PrayersHelper.GetKadishDerabanan(DayInfo, false).ToArray());
 
 
             // פסוקי דזמרה
@@ -64,7 +64,7 @@ namespace PrayPal.Content
             psukeyDezimra.Add(Psalms.Psalm30);
 
             // קדיש יתום
-            psukeyDezimra.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+            psukeyDezimra.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
 
             // ברוך שאמר
             psukeyDezimra.Add(CommonPrayerTextProvider.Current.BaruchSheamar);
@@ -88,12 +88,12 @@ namespace PrayPal.Content
 
             SpanModel yistabach = new SpanModel(AppResources.YishtabachTitle, CommonPrayerTextProvider.Current.Yishtabach);
 
-            if (_dayInfo.AseretYameyTshuva)
+            if (DayInfo.AseretYameyTshuva)
             {
                 yistabach.Add(new ParagraphModel(Psalms.Psalm130));
             }
 
-            yistabach.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+            yistabach.Add(PrayersHelper.GetHalfKadish(DayInfo));
 
             _items.Add(yistabach);
 
@@ -120,18 +120,18 @@ namespace PrayPal.Content
             // הלל
             lastSpan = AddHallel() ?? lastSpan;
 
-            bool hasMusaf = PrayersHelper.IsMussafDay(_dayInfo);
+            bool hasMusaf = PrayersHelper.IsMussafDay(DayInfo);
 
             if (!hasMusaf)
             {
-                lastSpan.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+                lastSpan.Add(PrayersHelper.GetHalfKadish(DayInfo));
             }
             else
             {
                 AddFullKadish();
             }
 
-            bool isTachanunDay = _dayInfo.IsTachanunDay(GetNusach());
+            bool isTachanunDay = DayInfo.IsTachanunDay(GetNusach());
 
             // קריאת התורה
             bool torahReadingAdded = AddTorahReading();
@@ -165,7 +165,7 @@ namespace PrayPal.Content
 
             if (hasMusaf)
             {
-                Add(PrayersHelper.GetHalfKadish(_dayInfo));
+                Add(PrayersHelper.GetHalfKadish(DayInfo));
 
                 await AddShmoneEsre(Prayer.Mussaf);
 
@@ -185,7 +185,7 @@ namespace PrayPal.Content
             Add(AppResources.PrayerEndingTitle, CommonPrayerTextProvider.Current.KavehElHashem, CommonPrayerTextProvider.Current.PitumHaktoret1, CommonPrayerTextProvider.Current.KavehElHashemEnding);
 
             // קדיש דרבנן
-            Add(AppResources.KadishDerabananTitle, PrayersHelper.GetKadishDerabanan(_dayInfo, false).ToArray());
+            Add(AppResources.KadishDerabananTitle, PrayersHelper.GetKadishDerabanan(DayInfo, false).ToArray());
 
             AddLeDavid();
 
@@ -201,13 +201,13 @@ namespace PrayPal.Content
             }
 
 
-            if (_dayInfo.YomTov == JewishCalendar.TISHA_BEAV)
+            if (DayInfo.YomTov == JewishCalendar.TISHA_BEAV)
             {
                 throw new NotificationException(AppResources.TishaBeavMessage);
             }
-            else if (_dayInfo.YomTov != -1 && !_dayInfo.JewishCalendar.CholHamoed && _dayInfo.YomTov != JewishCalendar.YOM_HAZIKARON)
+            else if (DayInfo.YomTov != -1 && !DayInfo.JewishCalendar.CholHamoed && DayInfo.YomTov != JewishCalendar.YOM_HAZIKARON)
             {
-                string moedTitle = HebDateHelper.GetMoedTitle(_dayInfo.JewishCalendar, true);
+                string moedTitle = HebDateHelper.GetMoedTitle(DayInfo.JewishCalendar, true);
                 throw new NotificationException("שים לב שהיום " + moedTitle + ", וייתכן שיש שינויים בתפילה שלא יוצגו.");
             }
 
@@ -232,7 +232,7 @@ namespace PrayPal.Content
 
             avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu1);
 
-            if (_dayInfo.AseretYameyTshuva)
+            if (DayInfo.AseretYameyTshuva)
             {
                 avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu2AYT);
             }
@@ -283,7 +283,7 @@ namespace PrayPal.Content
 
         protected override void AddDayVerseExtras(SpanModel dayVerse)
         {
-            dayVerse.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+            dayVerse.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
         }
 
         protected override void AddAleinuLeshabeach()

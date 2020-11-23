@@ -24,7 +24,7 @@ namespace PrayPal.Content
             {
                 return true;
             }
-            else if (_dayInfo.Teanit && _dayInfo.YomTov != JewishCalendar.TISHA_BEAV)
+            else if (DayInfo.Teanit && DayInfo.YomTov != JewishCalendar.TISHA_BEAV)
             {
                 return true;
             }
@@ -38,7 +38,7 @@ namespace PrayPal.Content
 
             avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu1);
 
-            if (_dayInfo.AseretYameyTshuva)
+            if (DayInfo.AseretYameyTshuva)
             {
                 avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu2AYT);
             }
@@ -93,7 +93,7 @@ namespace PrayPal.Content
         {
             span.Add(new ParagraphModel(AppResources.HagbahaVeglilahTitle, CommonPrayerTextProvider.Current.VezotHatorah));
 
-            if (_dayInfo.IsTachanunDay(GetNusach()))
+            if (DayInfo.IsTachanunDay(GetNusach()))
             {
                 span.Add(CommonPrayerTextProvider.Current.YehiRatzonAfterTorah);
             }
@@ -108,23 +108,23 @@ namespace PrayPal.Content
 
         protected override void AddDayVerseExtras(SpanModel dayVerse)
         {
-            if (_dayInfo.JewishCalendar.RoshChodesh)
+            if (DayInfo.JewishCalendar.RoshChodesh)
             {
-                dayVerse.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+                dayVerse.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
                 dayVerse.Add(new ParagraphModel(AppResources.BarchiNafshiTitle, Psalms.Psalm104));
             }
 
-            dayVerse.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+            dayVerse.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
 
-            int yomTov = _dayInfo.YomTov;
+            int yomTov = DayInfo.YomTov;
 
             if (yomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || yomTov == JewishCalendar.HOSHANA_RABBA)
             {
                 dayVerse.Add(Psalms.Psalm27);
-                dayVerse.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+                dayVerse.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
             }
 
-            if (_dayInfo.IsTachanunDay(Nusach.Sfard))
+            if (DayInfo.IsTachanunDay(Nusach.Sfard))
             {
                 dayVerse.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
             }

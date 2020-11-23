@@ -9,5 +9,7 @@ namespace PrayPal
     {
         Task NavigateToAsync(string route);
         Task NavigateToAsync(string route, string paramName, string ParamValue);
+        Task NavigateToAsync(string route, string param1Name, string Param1Value, string param2Name, string Param2Value);
+        Task NavigateToAsync(string route, string param1Name, string Param1Value, string param2Name, string Param2Value, string param3Name, string Param3Value);
     }
 }

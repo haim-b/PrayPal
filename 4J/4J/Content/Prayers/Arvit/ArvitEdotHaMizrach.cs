@@ -19,7 +19,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected override void AddVersesBeforeArvit()
         {
-            if (_dayInfo.JewishCalendar.RoshChodesh)
+            if (DayInfo.JewishCalendar.RoshChodesh)
             {
                 Add(AppResources.BarchiNafshiTitle, Psalms.Psalm104);
             }
@@ -27,7 +27,7 @@ namespace PrayPal.Content.Prayers.Arvit
             Add(AppResources.VersesBeforeArvitTitle,
                 new ParagraphModel(EdotHaMizrachPrayerTextProvider.Instance.LeshemYichudArvit),
                 new ParagraphModel(CommonPrayerTextProvider.Current.VersesBeforeArvit),
-                PrayersHelper.GetHalfKadish(_dayInfo));
+                PrayersHelper.GetHalfKadish(DayInfo));
         }
 
         protected override ShmoneEsreBase GetShmoneEsre()
@@ -49,7 +49,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
             AddAleinuLeshabeach();
 
-            if (_dayInfo.DayOfOmer != -1)
+            if (DayInfo.DayOfOmer != -1)
             {
                 AddSfiratHaOmer();
             }
@@ -57,7 +57,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected override void AddAleinuLeshabeach()
         {
-            if (_dayInfo.DayOfOmer == -1)
+            if (DayInfo.DayOfOmer == -1)
             {
                 Add(AppResources.AleinuLeshabeachTitle, CommonPrayerTextProvider.Current.Barchu, CommonPrayerTextProvider.Current.AleinuLeshabeach);
             }

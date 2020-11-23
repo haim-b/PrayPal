@@ -13,7 +13,7 @@ namespace PrayPal.Content
     [TextName(PrayerNames.BirkatHamazon)]
     public abstract class BirkatHamazonBase : ParagraphsPrayerBase
     {
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
             AddOpening();
             AddPart1();
@@ -39,11 +39,11 @@ namespace PrayPal.Content
             Add(CommonPrayerTextProvider.Current.BirkatHamazon_P1, AppResources.BirkatHamazonTitle);
             Add(CommonPrayerTextProvider.Current.BirkatHamazon_P2);
 
-            if (_dayInfo.YomTov == JewishCalendar.CHANUKAH)
+            if (DayInfo.YomTov == JewishCalendar.CHANUKAH)
             {
                 Add(CommonPrayerTextProvider.Current.AlHanissimHannukah, AppResources.AlHanissimHannukahTitle);
             }
-            else if (_dayInfo.YomTov == JewishCalendar.PURIM)
+            else if (DayInfo.YomTov == JewishCalendar.PURIM)
             {
                 Add(CommonPrayerTextProvider.Current.AlHanissimPurim, AppResources.AlHanissimPurimTitle);
             }
@@ -51,7 +51,7 @@ namespace PrayPal.Content
             Add(CommonPrayerTextProvider.Current.BirkatHamazon_P3);
             Add(CommonPrayerTextProvider.Current.BirkatHamazon_P4);
 
-            ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(_dayInfo);
+            ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(DayInfo);
 
             if (yaalehVeYavo != null)
             {
@@ -75,18 +75,18 @@ namespace PrayPal.Content
 
         protected virtual void AddPart4()
         {
-            if (_dayInfo.JewishCalendar.RoshChodesh)
+            if (DayInfo.JewishCalendar.RoshChodesh)
             {
                 Add(CommonPrayerTextProvider.Current.BirkatHamazon_RoshHodesh);
             }
-            else if (_dayInfo.YomTov == JewishCalendar.SUCCOS || _dayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || _dayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
+            else if (DayInfo.YomTov == JewishCalendar.SUCCOS || DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || DayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
             {
                 Add(CommonPrayerTextProvider.Current.BirkatHamazon_Sukkot);
             }
 
             string magdil = CommonPrayerTextProvider.Current.Magdil;
 
-            if (_dayInfo.JewishCalendar.RoshChodesh || _dayInfo.IsCholHamoed || _dayInfo.YomTov == JewishCalendar.CHANUKAH)
+            if (DayInfo.JewishCalendar.RoshChodesh || DayInfo.IsCholHamoed || DayInfo.YomTov == JewishCalendar.CHANUKAH)
             {
                 magdil = CommonPrayerTextProvider.Current.Migdol;
             }

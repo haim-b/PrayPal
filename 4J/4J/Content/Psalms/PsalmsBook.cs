@@ -17,21 +17,12 @@ namespace PrayPal.Content
         public const string TodayInMonthVersesSentinel = "PsalmsTodayInMonthVerses";
         public const string VersesSentinel = "Verse";
 
-        private readonly ITimeService _timeService;
-        private readonly ILogger _logger;
-
         private DocumentModel<SpanModel> _model;
         private int _dayOrVerse;
         private string _sentinel;
-        private object _contentGenerationParameter;
+        private string _contentGenerationParameter;
 
-        public PsalmsBook(ITimeService timeService, ILogger<PsalmsBook> logger)
-        {
-            _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }
-
-        public object ContentGenerationParameter
+        public string ContentGenerationParameter
         {
             get { return _contentGenerationParameter; }
             set
@@ -50,7 +41,7 @@ namespace PrayPal.Content
             Title = _model.Title;
         }
 
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
             return Task.Run(new Action(CreateContent));
         }
@@ -59,7 +50,7 @@ namespace PrayPal.Content
         {
             foreach (SpanModel span in _model.Texts)
             {
-                Add(span.Title, span.ToArray());
+                _items.Add(span);
             }
         }
 
@@ -96,7 +87,7 @@ namespace PrayPal.Content
                     //dayOrVerse = jc.JewishDayOfMonth;
                 }
 
-                return (await PsalmsTextGenerator.GetVersesTodayForMonthAsync(_timeService, dayOrVerse), sentinel, dayOrVerse);
+                return (await PsalmsTextGenerator.GetVersesTodayForMonthAsync(DayInfo.JewishCalendar, dayOrVerse), sentinel, dayOrVerse);
             }
             else if (parameter.StartsWith(VersesSentinel))
             {

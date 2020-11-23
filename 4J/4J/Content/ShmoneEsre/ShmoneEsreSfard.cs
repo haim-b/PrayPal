@@ -63,31 +63,31 @@ namespace PrayPal.Content
         {
             string holidayPsukim = null;
 
-            if (_dayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
+            if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
             {
                 holidayPsukim = CommonPrayerTextProvider.Current.MussafPesachPsukim1;
             }
-            else if (_dayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || _dayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
+            else if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || DayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
             {
-                switch (_dayInfo.JewishCalendar.JewishDayOfMonth)
+                switch (DayInfo.JewishCalendar.JewishDayOfMonth)
                 {
                     case 16:
                         holidayPsukim = CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
                         break;
                     case 17:
-                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim2 : CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
+                        holidayPsukim = DayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim2 : CommonPrayerTextProvider.Current.MussafSukkotPsukim1;
                         break;
                     case 18:
-                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim3 : CommonPrayerTextProvider.Current.MussafSukkotPsukim2;
+                        holidayPsukim = DayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim3 : CommonPrayerTextProvider.Current.MussafSukkotPsukim2;
                         break;
                     case 19:
-                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim4 : CommonPrayerTextProvider.Current.MussafSukkotPsukim3;
+                        holidayPsukim = DayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim4 : CommonPrayerTextProvider.Current.MussafSukkotPsukim3;
                         break;
                     case 20:
-                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim5 : CommonPrayerTextProvider.Current.MussafSukkotPsukim4;
+                        holidayPsukim = DayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim5 : CommonPrayerTextProvider.Current.MussafSukkotPsukim4;
                         break;
                     case 21:
-                        holidayPsukim = _dayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim6 : CommonPrayerTextProvider.Current.MussafSukkotPsukim5;
+                        holidayPsukim = DayInfo.JewishCalendar.InIsrael ? CommonPrayerTextProvider.Current.MussafSukkotPsukim6 : CommonPrayerTextProvider.Current.MussafSukkotPsukim5;
                         break;
                     default:
                         break;

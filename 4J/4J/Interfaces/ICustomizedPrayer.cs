@@ -6,6 +6,6 @@ namespace PrayPal
 {
     public interface ICustomizedPrayer
     {
-        object ContentGenerationParameter { get; set; }
+        string ContentGenerationParameter { get; set; }
     }
 }

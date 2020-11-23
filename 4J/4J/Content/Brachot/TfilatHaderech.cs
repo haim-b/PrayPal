@@ -17,7 +17,7 @@ namespace PrayPal.Content.Brachot
             return AppResources.TfilatHaderechTitle;
         }
 
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
             Add(CommonPrayerTextProvider.Current.TfilatHaderech);
 

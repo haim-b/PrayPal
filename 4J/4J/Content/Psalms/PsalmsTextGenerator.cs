@@ -211,14 +211,9 @@ namespace PrayPal
             return result;
         }
 
-        public static async Task<DocumentModel<SpanModel>> GetVersesTodayForMonthAsync(ITimeService timeService, int? dayOfMonth = null)
+        public static async Task<DocumentModel<SpanModel>> GetVersesTodayForMonthAsync(JewishCalendar jewithMonth, int? dayOfMonth = null)
         {
-            if (timeService is null)
-            {
-                throw new ArgumentNullException(nameof(timeService));
-            }
-
-            JewishCalendar jc = (await timeService.GetDayInfoAsync()).JewishCalendar;
+            JewishCalendar jc = jewithMonth;
 
             if (dayOfMonth == null)
             {

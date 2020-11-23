@@ -15,11 +15,18 @@ using Xamarin.Forms;
 
 namespace PrayPal.TextPresenter
 {
-    [QueryProperty(nameof(TextName), "textName")]
+    [QueryProperty(nameof(TextName), TextNameParam)]
+    [QueryProperty(nameof(TextParam), TextParamParam)]
+    [QueryProperty(nameof(StartFromParagraphIndexValue), StartFromParagraphIndexParam)]
     public class TextPresenterViewModel : BindableBase, IContentPage
     {
+        public const string TextNameParam = "textName";
+        public const string TextParamParam = "textParam";
+        public const string StartFromParagraphIndexParam = "startFromParagraph";
+
         private ITextDocument _textDocument;
         private string _textName;
+        private string _textParam;
         private readonly IEnumerable<Lazy<ITextDocument, PrayerMetadata>> _texts;
         private readonly ITimeService _timeService;
         private readonly ILogger _logger;
@@ -37,11 +44,33 @@ namespace PrayPal.TextPresenter
             set
             {
                 _textName = Uri.UnescapeDataString(value);
-                OnTextNameChanged();
+                OnParamChanged();
             }
         }
 
-        private async void OnTextNameChanged()
+        public string TextParam
+        {
+            get { return _textParam; }
+            set
+            {
+                _textParam = Uri.UnescapeDataString(value);
+                OnParamChanged();
+            }
+        }
+
+        public string StartFromParagraphIndexValue
+        {
+            get { return StartFromParagraphIndex.ToString(); }
+            set
+            {
+                StartFromParagraphIndex = int.Parse(value);
+                OnParamChanged();
+            }
+        }
+
+        public int StartFromParagraphIndex { get; private set; }
+
+        private async void OnParamChanged()
         {
             await GenerateContentAsync();
         }
@@ -75,6 +104,18 @@ namespace PrayPal.TextPresenter
             Trace.WriteLine($"Day info: {dayInfo?.JewishCalendar?.JewishMonth.ToString() ?? "null"}.");
 
             var text = texts[0];
+
+            if (text.Value is ICustomizedPrayer cp)
+            {
+                if (TextParam == null)
+                {
+                    // If the VM is a custom prayer, it needs a text param.
+                    // If the text param wasn't set yet, don't generate the content yet:
+                    return;
+                }
+
+                cp.ContentGenerationParameter = TextParam;
+            }
 
             await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
 

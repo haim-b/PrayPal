@@ -23,9 +23,9 @@ namespace PrayPal.Content.Brachot
             get { return true; }
         }
 
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
-            int candleIndex = _dayInfo.JewishCalendar.DayOfChanukah;
+            int candleIndex = DayInfo.JewishCalendar.DayOfChanukah;
 
             AddInstruction(candleIndex);
 
@@ -72,7 +72,7 @@ namespace PrayPal.Content.Brachot
 
             Add(string.Format(AppResources.HannukahCandleBlessingTitle, candleName), CommonPrayerTextProvider.Current.HannukahCandlesBlessing);
 
-            if (_dayInfo.JewishCalendar.JewishDayOfMonth == 25)
+            if (DayInfo.JewishCalendar.JewishDayOfMonth == 25)
             {
                 Add(AppResources.ShehecheyanuTitle, CommonPrayerTextProvider.Current.Shehecheyanu);
             }

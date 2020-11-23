@@ -13,7 +13,7 @@ namespace PrayPal.Content
 {
     public static class PrayersHelper
     {
-        private static readonly HebrewDateFormatter _psalmFormatter = new HebrewDateFormatter { UseGershGershayim = true, UseEndLetters = false };
+        private static readonly HebrewDateFormatter _psalmFormatter = new HebrewDateFormatter { UseGershGershayim = false, UseEndLetters = false };
 
         public static ParagraphModel GetYaalehVeYavo(DayJewishInfo dayInfo)
         {

@@ -54,18 +54,18 @@ namespace PrayPal.Content.Prayers.Arvit
              * - LeDavid (= psalm 27) (if relevant)
              */
 
-            if (_dayInfo.DayOfOmer != -1)
+            if (DayInfo.DayOfOmer != -1)
             {
                 AddSfiratHaOmer();
             }
 
             AddAleinuLeshabeach();
 
-            if (_dayInfo.ShouldSayLeDavid())
+            if (DayInfo.ShouldSayLeDavid())
             {
                 SpanModel ledavid = PrayersHelper.GetPsalm(27);
 
-                ledavid.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+                ledavid.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
 
                 _items.Add(ledavid);
             }
@@ -82,7 +82,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
             aleinu.Add(CommonPrayerTextProvider.Current.AleinuLeshabeach);
 
-            aleinu.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, true));
+            aleinu.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
 
             aleinu.Add(CommonPrayerTextProvider.Current.Barchu);
 

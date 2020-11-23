@@ -40,7 +40,7 @@
                   IsVisible="{Binding Source={x:Reference chkFruit}, Path=IsChecked}"/>
 
             <ScrollView Grid.Row="4" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Never">
-                <Label FormattedText="{Binding Text1.Content, Converter={StaticResource FormattedStringConverter}}" LineBreakMode="WordWrap"/>
+                <Label FormattedText="{Binding Text1.Content, Converter={StaticResource FormattedStringConverter}}" FontFamily="{DynamicResource DocTextFont}" LineBreakMode="WordWrap"/>
             </ScrollView>
         </Grid>
     </ContentPage.Content>

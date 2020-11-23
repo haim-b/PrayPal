@@ -37,7 +37,7 @@ namespace PrayPal.Content.Prayers.Arvit
             get { return true; }
         }
 
-        protected async override Task CreateOverride()
+        protected async override Task CreateOverrideAsync()
         {
             if (IsYomHaazmaut())
             {
@@ -49,7 +49,7 @@ namespace PrayPal.Content.Prayers.Arvit
             SpanModel shma = new SpanModel(AppResources.KriatShmaAndBlessingTitle);
             shma.AddRange(GetShmaAndBlessings().Select(p => new ParagraphModel(p)));
 
-            shma.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+            shma.Add(PrayersHelper.GetHalfKadish(DayInfo));
 
             _items.Add(shma);
 
@@ -58,24 +58,24 @@ namespace PrayPal.Content.Prayers.Arvit
             if (ShouldShowVeyehiNoam())
             {
                 SpanModel motzaeyShabbat = new SpanModel(AppResources.ForMotzashTitle);
-                motzaeyShabbat.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+                motzaeyShabbat.Add(PrayersHelper.GetHalfKadish(DayInfo));
                 motzaeyShabbat.Add(CommonPrayerTextProvider.Current.VeyehiNoam, CommonPrayerTextProvider.Current.VeataKadosh1, CommonPrayerTextProvider.Current.VeataKadosh2);
 
                 _items.Add(motzaeyShabbat);
             }
 
-            Add(AppResources.KadishShalemTitle, PrayersHelper.GetFullKadish(_dayInfo).ToArray());
+            Add(AppResources.KadishShalemTitle, PrayersHelper.GetFullKadish(DayInfo).ToArray());
 
             AddPsalm121();
 
             AddEnding();
 
-            if (_dayInfo.YomTov == JewishCalendar.TISHA_BEAV)
+            if (DayInfo.YomTov == JewishCalendar.TISHA_BEAV)
             {
                 throw new NotificationException(AppResources.TishaBeavMessage);
             }
 
-            if (_dayInfo.DayOfOmer != -1)
+            if (DayInfo.DayOfOmer != -1)
             {
                 if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 23)
                 {
@@ -93,13 +93,13 @@ namespace PrayPal.Content.Prayers.Arvit
 
         private bool IsYomHaazmaut()
         {
-            if (_dayInfo.YomTov == JewishCalendar.YOM_HAATZMAUT)
+            if (DayInfo.YomTov == JewishCalendar.YOM_HAATZMAUT)
             {
                 return true;
             }
             else
             {
-                JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
+                JewishCalendar jc = DayInfo.JewishCalendar.CloneEx();
                 jc.forward();
 
                 if (jc.YomTovIndex == JewishCalendar.YOM_HAATZMAUT && DateTime.Now.Hour > 12)
@@ -143,7 +143,7 @@ namespace PrayPal.Content.Prayers.Arvit
         private async Task AddShmoneEsre()
         {
             ShmoneEsreBase shmoneEsre = GetShmoneEsre();
-            await shmoneEsre.CreateAsync(_dayInfo, Logger);
+            await shmoneEsre.CreateAsync(DayInfo, Logger);
 
             SpanModel shmoneEsreSpan = new SpanModel(shmoneEsre.Title);
 
@@ -156,7 +156,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         private bool ShouldShowVeyehiNoam()
         {
-            JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
+            JewishCalendar jc = DayInfo.JewishCalendar.CloneEx();
 
             if (jc.DayOfWeek == 1) //= Motzaey Shabbat
             {
@@ -190,7 +190,7 @@ namespace PrayPal.Content.Prayers.Arvit
         {
             Add(AppResources.Psalm121Title, Psalms.Psalm121);
 
-            Add(AppResources.KadishYatomTitle, PrayersHelper.GetKadishYatom(_dayInfo, false).ToArray());
+            Add(AppResources.KadishYatomTitle, PrayersHelper.GetKadishYatom(DayInfo, false).ToArray());
         }
 
         protected abstract void AddEnding();
@@ -199,7 +199,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected virtual void AddSfiratHaOmer()
         {
-            int omer = _dayInfo.DayOfOmer;
+            int omer = DayInfo.DayOfOmer;
 
             if (omer < 0)
             {

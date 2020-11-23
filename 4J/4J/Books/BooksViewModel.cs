@@ -33,7 +33,7 @@ namespace PrayPal.Books
         public Task GenerateContentAsync()
         {
             Items.Clear();
-            Items.Add(new PrayerItemViewModel(BookNames.Psalms, AppResources.TehillimTitle));
+            Items.Add(new PrayerItemViewModel(BookNames.Psalms, AppResources.TehillimTitle, typeof(Psalms.PsalmSelectionPageViewModel)));
             Items.Add(new PrayerItemViewModel(BookNames.IggerretHaramban, AppResources.IgerretHarambanTitle));
 
             return Task.CompletedTask;
@@ -48,7 +48,7 @@ namespace PrayPal.Books
                 return;
             }
 
-            await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), "textName", item.PageName);
+            await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), TextPresenterViewModel.TextNameParam, item.PageName);
         }
 
     }

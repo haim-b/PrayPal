@@ -21,7 +21,7 @@ namespace PrayPal.Content
             Title = GetTitle();
         }
 
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
             AddOpening();
 
@@ -42,7 +42,7 @@ namespace PrayPal.Content
                 AddPart3Musaf();
                 AddMusafMiddleBlessing1();
 
-                if (!_dayInfo.JewishCalendar.RoshChodesh)
+                if (!DayInfo.JewishCalendar.RoshChodesh)
                 {
                     // IF not Rosh Chodesh, we're on a holiday:
                     AddMussafHolidayPart();
@@ -77,7 +77,7 @@ namespace PrayPal.Content
 
         protected void AddPart1()
         {
-            if (!_dayInfo.AseretYameyTshuva)
+            if (!DayInfo.AseretYameyTshuva)
             {
                 Add(string.Format(CommonPrayerTextProvider.Current.SE01, string.Empty));
             }
@@ -98,7 +98,7 @@ namespace PrayPal.Content
 
             ParagraphModel p = new ParagraphModel(texts[0]);
 
-            if (_dayInfo.IsMoridHatal())
+            if (DayInfo.IsMoridHatal())
             {
                 p.Add(new RunModel(CommonPrayerTextProvider.Current.SE02Summer, false, true));
             }
@@ -112,7 +112,7 @@ namespace PrayPal.Content
                 p.Add(texts[1]);
             }
 
-            if (_dayInfo.AseretYameyTshuva)
+            if (DayInfo.AseretYameyTshuva)
             {
                 p.Add(new RunModel(CommonPrayerTextProvider.Current.SE02AYT, true));
             }
@@ -132,13 +132,13 @@ namespace PrayPal.Content
                 Add(CommonPrayerTextProvider.Current.Kdusha, AppResources.KdushaTitle, true);
             }
 
-            AddStringFormat(CommonPrayerTextProvider.Current.SE03, _dayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE03Hamelech : CommonPrayerTextProvider.Current.SE03Hael, _dayInfo.AseretYameyTshuva);
+            AddStringFormat(CommonPrayerTextProvider.Current.SE03, DayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE03Hamelech : CommonPrayerTextProvider.Current.SE03Hael, DayInfo.AseretYameyTshuva);
         }
 
         protected void AddParts4To15()
         {
-            bool showAttaChonantanu = _prayer == Prayer.Arvit && _dayInfo.ShowAttaChonantanu();
-            bool aseretYameyTshuva = _dayInfo.AseretYameyTshuva;
+            bool showAttaChonantanu = _prayer == Prayer.Arvit && DayInfo.ShowAttaChonantanu();
+            bool aseretYameyTshuva = DayInfo.AseretYameyTshuva;
 
             AddStringFormat(CommonPrayerTextProvider.Current.SE04, showAttaChonantanu ? CommonPrayerTextProvider.Current.SE04Havdalah : "", false, true);
 
@@ -146,7 +146,7 @@ namespace PrayPal.Content
             Add(CommonPrayerTextProvider.Current.SE06);
             Add(CommonPrayerTextProvider.Current.SE07);
 
-            if ((_prayer == Prayer.Mincha || _prayer == Prayer.Shacharit) && _dayInfo.Teanit)
+            if ((_prayer == Prayer.Mincha || _prayer == Prayer.Shacharit) && DayInfo.Teanit)
             {
                 Add(string.Format(CommonPrayerTextProvider.Current.Anenu, CommonPrayerTextProvider.Current.AnenuEnding), AppResources.InHazarahTitle);
             }
@@ -162,7 +162,7 @@ namespace PrayPal.Content
             Add(CommonPrayerTextProvider.Current.SE12);
             Add(CommonPrayerTextProvider.Current.SE13);
 
-            bool isAv9th = _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
+            bool isAv9th = DayInfo.YomTov == JewishCalendar.TISHA_BEAV;
             AddStringFormat(CommonPrayerTextProvider.Current.SE14, isAv9th ? CommonPrayerTextProvider.Current.Nachem : CommonPrayerTextProvider.Current.SE14B, false, isAv9th);
 
             Add(CommonPrayerTextProvider.Current.SE15);
@@ -172,7 +172,7 @@ namespace PrayPal.Content
         {
             string arg;
 
-            if (_dayInfo.IsVetenBracha())
+            if (DayInfo.IsVetenBracha())
             {
                 arg = CommonPrayerTextProvider.Current.SE09Summer;
                 Settings.ShowVeanenu = false;
@@ -196,7 +196,7 @@ namespace PrayPal.Content
 
             if (_prayer != Prayer.Mussaf) // In Mussaf we don't say Yaaleh VeYavo
             {
-                ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(_dayInfo);
+                ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(DayInfo);
 
                 if (yaalehVeYavo != null)
                 {
@@ -220,11 +220,11 @@ namespace PrayPal.Content
 
         protected void AddAlHanissim()
         {
-            if (_dayInfo.YomTov == JewishCalendar.CHANUKAH)
+            if (DayInfo.YomTov == JewishCalendar.CHANUKAH)
             {
                 Add(CommonPrayerTextProvider.Current.AlHanissimHannukah, AppResources.AlHanissimHannukahTitle);
             }
-            else if (_dayInfo.YomTov == JewishCalendar.PURIM)
+            else if (DayInfo.YomTov == JewishCalendar.PURIM)
             {
                 Add(CommonPrayerTextProvider.Current.AlHanissimPurim, AppResources.AlHanissimPurimTitle);
             }
@@ -232,7 +232,7 @@ namespace PrayPal.Content
 
         private void AddPart18()
         {
-            AddStringFormat(CommonPrayerTextProvider.Current.SE18, _dayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE18AYT : string.Empty, _dayInfo.AseretYameyTshuva);
+            AddStringFormat(CommonPrayerTextProvider.Current.SE18, DayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE18AYT : string.Empty, DayInfo.AseretYameyTshuva);
         }
 
         private void AddBirkatCohanim()
@@ -245,7 +245,7 @@ namespace PrayPal.Content
                 shouldAdd = true;
                 title = AppResources.BirkatCohanimTitle;
             }
-            else if (IsMinchaInTeanit && _dayInfo.YomTov != JewishCalendar.TISHA_BEAV)
+            else if (IsMinchaInTeanit && DayInfo.YomTov != JewishCalendar.TISHA_BEAV)
             {
                 shouldAdd = true;
                 title = AppResources.BirkatCohanimInTeanitTitle;
@@ -259,7 +259,7 @@ namespace PrayPal.Content
 
         protected virtual void AddPart19()
         {
-            AddStringFormat(CommonPrayerTextProvider.Current.SE19, _dayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE19AYT : string.Empty, _dayInfo.AseretYameyTshuva);
+            AddStringFormat(CommonPrayerTextProvider.Current.SE19, DayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE19AYT : string.Empty, DayInfo.AseretYameyTshuva);
         }
 
         private void AddEnding1()
@@ -270,7 +270,7 @@ namespace PrayPal.Content
 
         private void AddOseShalom()
         {
-            _items.Add(PrayersHelper.GetOseShalom(_dayInfo));
+            _items.Add(PrayersHelper.GetOseShalom(DayInfo));
         }
 
         protected virtual void AddEnding2()
@@ -280,7 +280,7 @@ namespace PrayPal.Content
 
         protected bool IsMinchaInTeanit
         {
-            get { return _prayer == Prayer.Mincha && _dayInfo.Teanit; }
+            get { return _prayer == Prayer.Mincha && DayInfo.Teanit; }
         }
 
         protected override string GetTitle()
@@ -300,22 +300,22 @@ namespace PrayPal.Content
 
         private void AddMusafMiddleBlessing1()
         {
-            if (_dayInfo.JewishCalendar.RoshChodesh)
+            if (DayInfo.JewishCalendar.RoshChodesh)
             {
                 Add(CommonPrayerTextProvider.Current.MussafRoshChodeshSE1);
-                AddStringFormat(CommonPrayerTextProvider.Current.MussafRoshChodeshSE2, _dayInfo.IsIbburTime ? CommonPrayerTextProvider.Current.MussafRoshChodeshInIbbur : string.Empty);
+                AddStringFormat(CommonPrayerTextProvider.Current.MussafRoshChodeshSE2, DayInfo.IsIbburTime ? CommonPrayerTextProvider.Current.MussafRoshChodeshInIbbur : string.Empty);
             }
             else
             {
                 string holidayText1 = null;
                 string holidayText2 = null;
 
-                if (_dayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
+                if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
                 {
                     holidayText1 = CommonPrayerTextProvider.Current.MussafPesach1;
                     holidayText2 = CommonPrayerTextProvider.Current.YaalehVeyavoPesach;
                 }
-                else if (_dayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || _dayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
+                else if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || DayInfo.YomTov == JewishCalendar.HOSHANA_RABBA)
                 {
                     holidayText1 = CommonPrayerTextProvider.Current.MussafSukkot1;
                     holidayText2 = CommonPrayerTextProvider.Current.YaalehVeyavoSukkot;

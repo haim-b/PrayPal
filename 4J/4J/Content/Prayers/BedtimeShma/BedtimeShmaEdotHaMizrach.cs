@@ -21,7 +21,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
         }
 
-        protected async override Task CreateOverride()
+        protected async override Task CreateOverrideAsync()
         {
             DateTime chatzot = (DateTime)await _timeService.GetNightChatzotAsync(true);
 
@@ -35,7 +35,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
 
             try
             {
-                bedtimeShma6 = string.Format(AppResources.ThreeTimesInst_F0, EdotHaMizrachPrayerTextProvider.Instance.BedtimeShma6.Split('|')[_dayInfo.JewishCalendar.DayOfWeek - 1]);
+                bedtimeShma6 = string.Format(AppResources.ThreeTimesInst_F0, EdotHaMizrachPrayerTextProvider.Instance.BedtimeShma6.Split('|')[DayInfo.JewishCalendar.DayOfWeek - 1]);
             }
             catch (Exception) { }
 
@@ -48,7 +48,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
             Add(CommonPrayerTextProvider.Current.BedtimeShma4);
             Add(CommonPrayerTextProvider.Current.BedtimeShma5);
 
-            if (_dayInfo.IsTachanunDay(Nusach.EdotMizrach) || afterChazot)
+            if (DayInfo.IsTachanunDay(Nusach.EdotMizrach) || afterChazot)
             {
                 if (!afterChazot)
                 {
@@ -57,10 +57,10 @@ namespace PrayPal.Content.Prayers.BedtimeShma
                 else
                 {
                     ///Since usually bedtime shma is after sunset, we need to go to the previous day to see if it was a tachanun day.;
-                    JewishCalendar jc = _dayInfo.JewishCalendar.CloneEx();
+                    JewishCalendar jc = DayInfo.JewishCalendar.CloneEx();
                     jc.back();
 
-                    if (_dayInfo.IsTachanunDay(Nusach.EdotMizrach))
+                    if (DayInfo.IsTachanunDay(Nusach.EdotMizrach))
                     {
                         Add(CommonPrayerTextProvider.Current.Viduy1);
                         Add(CommonPrayerTextProvider.Current.Viduy2);

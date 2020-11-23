@@ -23,7 +23,7 @@ namespace PrayPal.Content
 
         protected override void AddEnding()
         {
-            _items.Add(PrayersHelper.GetOseShalom(_dayInfo));
+            _items.Add(PrayersHelper.GetOseShalom(DayInfo));
         }
     }
 }

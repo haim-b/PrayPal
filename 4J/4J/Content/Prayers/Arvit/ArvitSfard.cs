@@ -20,11 +20,11 @@ namespace PrayPal.Content.Prayers.Arvit
         protected override void AddVersesBeforeArvit()
         {
             // Nusach sfard don't say Shir Hamaalot on Motzaey Shabbat:
-            if (_dayInfo.JewishCalendar.DayOfWeek != 1)
+            if (DayInfo.JewishCalendar.DayOfWeek != 1)
             {
                 Add(AppResources.VersesBeforeArvitTitle,
                     new ParagraphModel(CommonPrayerTextProvider.Current.VersesBeforeArvit),
-                    PrayersHelper.GetHalfKadish(_dayInfo));
+                    PrayersHelper.GetHalfKadish(DayInfo));
             }
         }
 
@@ -58,7 +58,7 @@ namespace PrayPal.Content.Prayers.Arvit
              * - Aleinu Leshabeach
              */
 
-            if (_dayInfo.DayOfOmer != -1)
+            if (DayInfo.DayOfOmer != -1)
             {
                 AddSfiratHaOmer();
             }
@@ -70,7 +70,7 @@ namespace PrayPal.Content.Prayers.Arvit
         {
             SpanModel aleinu = new SpanModel(AppResources.AleinuLeshabeachTitle);
 
-            if (_dayInfo.DayOfOmer == -1)
+            if (DayInfo.DayOfOmer == -1)
             {
                 aleinu.Add(CommonPrayerTextProvider.Current.Barchu);
             }
@@ -88,7 +88,7 @@ namespace PrayPal.Content.Prayers.Arvit
 
         protected override void AddTextAfterSforatHaOmer(SpanModel sfiratHaOmer)
         {
-            int omer = _dayInfo.DayOfOmer;
+            int omer = DayInfo.DayOfOmer;
             string dayKabbalahDetail1 = CommonPrayerTextProvider.Current.SfiratHaOmerDaysKabbalah1.Split('|')[(omer - 1) % 7];
             string dayKabbalahDetail2 = CommonPrayerTextProvider.Current.SfiratHaOmerDaysKabbalah2.Split('|')[(omer - 1) / 7];
             sfiratHaOmer.Add(string.Format(CommonPrayerTextProvider.Current.AfterSfiratHaOmer2_F0, dayKabbalahDetail1, dayKabbalahDetail2));

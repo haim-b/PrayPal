@@ -40,12 +40,12 @@ namespace PrayPal.Content
 
         protected override bool ShouldAddAvinuMalkenu()
         {
-            return base.ShouldAddAvinuMalkenu() || _dayInfo.Teanit && _dayInfo.YomTov != JewishCalendar.TISHA_BEAV && !IsRealTeanitEsther();
+            return base.ShouldAddAvinuMalkenu() || DayInfo.Teanit && DayInfo.YomTov != JewishCalendar.TISHA_BEAV && !IsRealTeanitEsther();
         }
 
         private bool IsRealTeanitEsther()
         {
-            return _dayInfo.JewishCalendar.JewishDayOfMonth == 13 && _dayInfo.JewishCalendar.JewishMonth == (_dayInfo.JewishCalendar.JewishLeapYear ? JewishCalendar.ADAR_II : JewishCalendar.ADAR);
+            return DayInfo.JewishCalendar.JewishDayOfMonth == 13 && DayInfo.JewishCalendar.JewishMonth == (DayInfo.JewishCalendar.JewishLeapYear ? JewishCalendar.ADAR_II : JewishCalendar.ADAR);
         }
 
         protected override void AddAvinuMalkenu()
@@ -54,7 +54,7 @@ namespace PrayPal.Content
 
             avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu1);
 
-            if (_dayInfo.AseretYameyTshuva)
+            if (DayInfo.AseretYameyTshuva)
             {
                 avinuMalkenu.Add(CommonPrayerTextProvider.Current.AvinuMalkenu2AYT);
             }
@@ -85,7 +85,7 @@ namespace PrayPal.Content
 
         protected virtual void AddLeDavid()
         {
-            if (_dayInfo.ShouldSayLeDavid())
+            if (DayInfo.ShouldSayLeDavid())
             {
                 SpanModel ledavid = PrayersHelper.GetPsalm(27);
                 _items.Add(ledavid);

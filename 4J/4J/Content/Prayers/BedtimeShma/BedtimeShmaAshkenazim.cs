@@ -11,7 +11,7 @@ namespace PrayPal.Content.Prayers.BedtimeShma
     [Nusach(Nusach.Sfard, Nusach.Ashkenaz)]
     public class BedtimeShmaAshkenazim : BedtimeShmaBase
     {
-        protected override Task CreateOverride()
+        protected override Task CreateOverrideAsync()
         {
             Add(CommonPrayerTextProvider.Current.BedtimeShma1);
             Add(CommonPrayerTextProvider.Current.KriatShma1);

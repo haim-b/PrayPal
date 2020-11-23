@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PrayPal.TextPresenter"
+             xmlns:p="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="PrayPal.TextPresenter.TextPresenterView"
              x:Name="page"
              Style="{DynamicResource BodyStyle}"
-             Title="{Binding TextDocument.Title}">
+             Title="{Binding TextDocument.Title}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <Thickness x:Key="ParagraphThickness">0,0,0,25</Thickness>
         <local:FormattedStringConverter x:Key="FormattedStringConverter" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" HighlightColor="{DynamicResource AccentColor}"/>
@@ -14,7 +16,7 @@
 
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
-                <StackLayout Margin="{StaticResource ParagraphThickness}">
+                <StackLayout Padding="{StaticResource ParagraphThickness}">
                     <Label Text="{Binding Title}" TextColor="{StaticResource AccentColor}" FontFamily="SegoeUI"
                 Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
                     <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
@@ -74,11 +76,45 @@
             </ViewCell>
         </DataTemplate>
 
+        <DataTemplate x:Key="JumpCollectionItemTemplate">
+            <Button Text="{Binding ShortTitle}" FontFamily="SegoeUI" Clicked="OnJumpListItemClicked" Margin="2" HorizontalOptions="Start"/>
+        </DataTemplate>
+
         <Style x:Key="JumpListStyle" TargetType="ListView">
-            <Setter Property="ItemsSource" Value="{Binding TextDocument.Items}"/>
             <Setter Property="SelectionMode" Value="None"/>
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="ItemTemplate" Value="{StaticResource JumpListItemTemplate}"/>
+        </Style>
+
+        <Style x:Key="JumpCollectionStyle" TargetType="FlexLayout">
+            <!--<Setter Property="SelectionMode" Value="None"/>-->
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="BindableLayout.ItemTemplate" Value="{StaticResource JumpCollectionItemTemplate}"/>
+        </Style>
+
+        <Style x:Key="PopupPageStype" TargetType="p:PopupPage">
+            <Setter Property="BindingContext" Value="{Binding Source={x:Reference page}, Path=BindingContext}"/>
+            <Setter Property="CloseWhenBackgroundIsClicked" Value="True"/>
+            <Setter Property="FlowDirection" Value="{Binding Source={x:Reference page}, Path=FlowDirection}"/>
+            <Setter Property="ControlTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ListView BindingContext="{Binding Source={RelativeSource TemplatedParent}, Path=BindingContext}" ItemsSource="{Binding TextDocument.Items}" Style="{StaticResource JumpListStyle}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger TargetType="p:PopupPage" Binding="{Binding TextDocument.UseCompactZoomedOutItems}" Value="True">
+                    <Setter Property="ControlTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <FlexLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}, Path=BindingContext}" BindableLayout.ItemsSource="{Binding TextDocument.Items}" Style="{StaticResource JumpCollectionStyle}"
+                                            Direction="RowReverse" Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Start" AlignContent="Center"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <local:CollapsibleTemplateSelector x:Key="CollapsibleTemplate" RegularTemplate="{StaticResource RegularTextTemplate}" CollapsibleTemplate="{StaticResource CollapsibleTextTemplate}"/>

@@ -13,7 +13,6 @@ namespace PrayPal.Content
 {
     public abstract class PrayerBase<T> : IPrayer
     {
-        protected DayJewishInfo _dayInfo;
         protected readonly ICollection<T> _items = new LinkedList<T>();
         private Nusach? _nusach;
 
@@ -36,10 +35,10 @@ namespace PrayPal.Content
             ValidateDayInfo(dayInfo);
 
             Logger = logger;
-            _dayInfo = dayInfo;
+            DayInfo = dayInfo;
             _items.Clear();
 
-            await CreateOverride();
+            await CreateOverrideAsync();
 
             _itemsList = null;
         }
@@ -52,7 +51,7 @@ namespace PrayPal.Content
             }
         }
 
-        protected abstract Task CreateOverride();
+        protected abstract Task CreateOverrideAsync();
 
         protected abstract string GetTitle();
 
@@ -139,6 +138,8 @@ namespace PrayPal.Content
                 return false;
             }
         }
+
+        protected DayJewishInfo DayInfo { get; private set; }
     }
 
     public interface IPrayer : ITextDocument
@@ -157,6 +158,8 @@ namespace PrayPal.Content
         bool UseCompactZoomedOutItems { get; }
 
         string Title { get; }
+
+        bool HasGroups { get; }
     }
 
     public class PrayerMetadata

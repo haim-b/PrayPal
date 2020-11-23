@@ -71,7 +71,7 @@ namespace PrayPal.Content
                 _items.Add(psalm93);
             }
 
-            if (_dayInfo.Teanit)
+            if (DayInfo.Teanit)
             {
                 SpanModel psalm102 = PrayersHelper.GetPsalm(102);
                 _items.Add(psalm102);

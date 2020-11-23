@@ -65,7 +65,7 @@ namespace PrayPal.Prayers
                 return;
             }
 
-            await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), "textName", item.PageName);
+            await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel), TextPresenterViewModel.TextNameParam, item.PageName);
         }
 
         private static string GetArvitTitle()

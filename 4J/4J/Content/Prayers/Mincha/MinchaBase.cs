@@ -19,7 +19,7 @@ namespace PrayPal.Content
             return CommonResources.MinchaTitle;
         }
 
-        protected async override Task CreateOverride()
+        protected async override Task CreateOverrideAsync()
         {
             AddOpening();
             AddAshrey();
@@ -37,7 +37,7 @@ namespace PrayPal.Content
 
             AddAleinuLeshabeach();
 
-            if (_dayInfo.YomTov == JewishCalendar.TISHA_BEAV)
+            if (DayInfo.YomTov == JewishCalendar.TISHA_BEAV)
             {
                 throw new NotificationException(AppResources.TishaBeavMessage);
             }
@@ -50,7 +50,7 @@ namespace PrayPal.Content
         {
             SpanModel span = new SpanModel(AppResources.AshreyTitle);
             span.AddRange(GetAshrey());
-            span.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+            span.Add(PrayersHelper.GetHalfKadish(DayInfo));
             _items.Add(span);
         }
 
@@ -61,11 +61,11 @@ namespace PrayPal.Content
 
         private bool ShouldAddTorahReading()
         {
-            return _dayInfo.YomTov == JewishCalendar.FAST_OF_GEDALYAH
-                    || _dayInfo.YomTov == JewishCalendar.FAST_OF_ESTHER
-                    || _dayInfo.YomTov == JewishCalendar.TENTH_OF_TEVES
-                    || _dayInfo.YomTov == JewishCalendar.SEVENTEEN_OF_TAMMUZ
-                    || _dayInfo.YomTov == JewishCalendar.TISHA_BEAV;
+            return DayInfo.YomTov == JewishCalendar.FAST_OF_GEDALYAH
+                    || DayInfo.YomTov == JewishCalendar.FAST_OF_ESTHER
+                    || DayInfo.YomTov == JewishCalendar.TENTH_OF_TEVES
+                    || DayInfo.YomTov == JewishCalendar.SEVENTEEN_OF_TAMMUZ
+                    || DayInfo.YomTov == JewishCalendar.TISHA_BEAV;
         }
 
         private void AddTorahReading()
@@ -79,7 +79,7 @@ namespace PrayPal.Content
             AddTorahReadingText(span);
 
             // Half Kadish
-            span.Add(PrayersHelper.GetHalfKadish(_dayInfo));
+            span.Add(PrayersHelper.GetHalfKadish(DayInfo));
 
             AddAfterTorahReading(span);
 
@@ -120,7 +120,7 @@ namespace PrayPal.Content
         private async Task AddShmoneEsre()
         {
             ShmoneEsreBase shmoneEsre = GetShmoneEsre();
-            await shmoneEsre.CreateAsync(_dayInfo, Logger);
+            await shmoneEsre.CreateAsync(DayInfo, Logger);
 
             SpanModel shmoneEsreSpan = new SpanModel(shmoneEsre.Title);
 
@@ -133,7 +133,7 @@ namespace PrayPal.Content
 
         private void AddTachanun()
         {
-            bool showTachanun = _dayInfo.IsTachanunDay(GetNusach(), true);
+            bool showTachanun = DayInfo.IsTachanunDay(GetNusach(), true);
 
             if (ShouldAddAvinuMalkenu())
             {
@@ -166,7 +166,7 @@ namespace PrayPal.Content
 
         protected virtual bool ShouldAddAvinuMalkenu()
         {
-            return _dayInfo.AseretYameyTshuva;
+            return DayInfo.AseretYameyTshuva;
         }
 
         protected abstract void AddAvinuMalkenu();
@@ -182,14 +182,14 @@ namespace PrayPal.Content
         protected void AddFullKadhish()
         {
             SpanModel fullKadish = new SpanModel(AppResources.KadishShalemTitle);
-            fullKadish.AddRange(PrayersHelper.GetFullKadish(_dayInfo));
+            fullKadish.AddRange(PrayersHelper.GetFullKadish(DayInfo));
             _items.Add(fullKadish);
         }
 
         protected void AddKadishYatom()
         {
             SpanModel kadishYatom = new SpanModel(AppResources.KadishYatomTitle);
-            kadishYatom.AddRange(PrayersHelper.GetKadishYatom(_dayInfo, false));
+            kadishYatom.AddRange(PrayersHelper.GetKadishYatom(DayInfo, false));
             _items.Add(kadishYatom);
         }
 

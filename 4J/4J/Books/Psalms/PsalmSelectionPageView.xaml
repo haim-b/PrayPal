@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PrayPal.Books.Psalms"
+             xmlns:app="clr-namespace:PrayPal"
+             x:Class="PrayPal.Books.Psalms.PsalmSelectionPageView"
+             Title="{app:CustomResource TehillimTitle}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <app:PickerEx Grid.Row="1" ItemsSource="{Binding VersesByWeekDay}" SelectedIndex="{Binding SelectedVerseByWeekDayIndex, Mode=TwoWay}" Margin="4,6"/>
+
+        <Button Grid.Row="1" Grid.Column="1" Text="{app:CustomResource GoToButtonTitle}" Command="{Binding ShowVerseByWeekDayCommand}" VerticalOptions="Center"/>
+
+        <app:PickerEx Grid.Row="2" ItemsSource="{Binding VersesByMonthDay}" SelectedIndex="{Binding SelectedVerseByMonthDayIndex, Mode=TwoWay}" ItemDisplayBinding="{Binding Item1}" Margin="4,6"/>
+
+        <Button Grid.Row="2" Grid.Column="1" Text="{app:CustomResource GoToButtonTitle}" Command="{Binding ShowVerseByMonthCommand}" VerticalOptions="Center"/>
+
+        <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="End">
+            <Label Text="{app:CustomResource GoToPsalmVerseTitle}" VerticalOptions="Center"/>
+
+            <local:PsalmEntry x:Name="verseText" Text="{Binding PsalmVerse, Mode=TwoWay}" Keyboard="Text" WidthRequest="128" Margin="4,6,4,0"/>
+        </StackLayout>
+
+        <Button Grid.Row="3" Grid.Column="1" Text="{app:CustomResource GoToButtonTitle}" Command="{Binding ShowByVerseCommand}" VerticalOptions="Center"/>
+
+        <Label Grid.Row="4" HorizontalOptions="End" Text="{app:CustomResource GoToPsalmVerseInstruction}" Margin="4,0,12,4" IsVisible="{Binding Source={x:Reference verseText}, Path=IsFocused}"/>
+
+        <StackLayout Grid.Row="5" Grid.ColumnSpan="2" Margin="0,28,0,0">
+            <Frame x:Name="frameBefore" BorderColor="{StaticResource AccentColor}" BackgroundColor="{StaticResource AccentColor}" Padding="2" VerticalOptions="End">
+                <Expander x:Name="expanderBefore" IsExpanded="{Binding IsBeforeTextExpanded}">
+                    <Expander.Header>
+                        <Label Text="{app:CustomResource BeforePsalmTitle}" HorizontalTextAlignment="Center" TextColor="White">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference expanderBefore}, Path=IsExpanded}" Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Expander.Header>
+                    <Expander.Triggers>
+                        <DataTrigger TargetType="Expander" Binding="{Binding Source={x:Reference expanderBefore}, Path=IsExpanded}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+                        </DataTrigger>
+                    </Expander.Triggers>
+                    <ScrollView>
+                        <Label Text="{Binding BeforePsalmText}" LineBreakMode="WordWrap" FontFamily="{DynamicResource DocTextFont}" Margin="0,0,0,16"/>
+                    </ScrollView>
+                </Expander>
+            </Frame>
+
+            <Frame x:Name="frameAfter" BorderColor="{StaticResource AccentColor}" BackgroundColor="{StaticResource AccentColor}" Padding="2" VerticalOptions="End">
+                <Expander x:Name="expanderAfter" IsExpanded="{Binding IsAfterTextExpanded}" VerticalOptions="End">
+                    <Expander.Header>
+                        <Label Text="{app:CustomResource AfterPsalmTitle}" HorizontalTextAlignment="Center" TextColor="White">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference expanderAfter}, Path=IsExpanded}" Value="True">
+                                    <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Expander.Header>
+                    <Expander.Triggers>
+                        <DataTrigger TargetType="Expander" Binding="{Binding Source={x:Reference expanderAfter}, Path=IsExpanded}" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+                        </DataTrigger>
+                    </Expander.Triggers>
+                    <ScrollView>
+                        <Label Text="{Binding AfterPsalmText}" LineBreakMode="WordWrap" FontFamily="{DynamicResource DocTextFont}" Margin="0,0,0,16"/>
+                    </ScrollView>
+                </Expander>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>

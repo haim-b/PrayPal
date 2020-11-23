@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -22,7 +23,7 @@ namespace PrayPal
             Element result = _viewFactory();
             object viewModel = _viewModelFactory();
 
-            if (viewModel != null && viewModel.GetType().GetCustomAttribute<QueryPropertyAttribute>() == null)
+            if (viewModel != null && viewModel.GetType().GetCustomAttributes<QueryPropertyAttribute>()?.Any() != true)
             {
                 // If the page has no query parameters, we can generate its content immediately:
                 (viewModel as IContentPage)?.GenerateContentAsync();
