@@ -23,13 +23,12 @@ namespace PrayPal
             Element result = _viewFactory();
             object viewModel = _viewModelFactory();
 
-            if (viewModel != null && viewModel.GetType().GetCustomAttributes<QueryPropertyAttribute>()?.Any() != true)
-            {
-                // If the page has no query parameters, we can generate its content immediately:
-                (viewModel as IContentPage)?.GenerateContentAsync();
-            }
-
             result.BindingContext = viewModel;
+
+            if (result is Page p && viewModel is IContentPage cp)
+            {
+                p.Appearing += (s, e) => cp.GenerateContentAsync();
+            }
 
             return result;
         }

@@ -17,7 +17,7 @@ namespace PrayPal.Content
         public const string TodayInMonthVersesSentinel = "PsalmsTodayInMonthVerses";
         public const string VersesSentinel = "Verse";
 
-        private DocumentModel<SpanModel> _model;
+        private Func<DocumentModel<SpanModel>> _documentFactory;
         private int _dayOrVerse;
         private string _sentinel;
         private string _contentGenerationParameter;
@@ -32,29 +32,32 @@ namespace PrayPal.Content
             }
         }
 
-        private async void GenerateModel(string value)
+        private void GenerateModel(string value)
         {
-            var parameters = await ParseParameterAsync(value);
-            _model = parameters.document;
+            var parameters = ParseParameter(value);
+            _documentFactory = parameters.documentFactory;
             _sentinel = parameters.sentinel;
             _dayOrVerse = parameters.dayOrVerse;
-            Title = _model.Title;
         }
 
-        protected override Task CreateOverrideAsync()
+        protected override async Task CreateOverrideAsync()
         {
-            return Task.Run(new Action(CreateContent));
+            //await Task.Run(new Action(CreateContent));
+            CreateContent();
         }
 
         private void CreateContent()
         {
-            foreach (SpanModel span in _model.Texts)
+            var doc = _documentFactory.Invoke();
+            Title = doc.Title;
+
+            foreach (SpanModel span in doc.Texts)
             {
                 _items.Add(span);
             }
         }
 
-        private async Task<(DocumentModel<SpanModel> document, string sentinel, int dayOrVerse)> ParseParameterAsync(string parameter)
+        private (Func<DocumentModel<SpanModel>> documentFactory, string sentinel, int dayOrVerse) ParseParameter(string parameter)
         {
             string sentinel;
             int dayOrVerse;
@@ -70,11 +73,10 @@ namespace PrayPal.Content
 
                 if (!int.TryParse(parameter.Replace(TodayInWeekVersesSentinel, ""), out dayOrVerse))
                 {
-                    //JewishCalendar jc = HebDateHelper.GetCalendarToday();
-                    dayOrVerse = (int)DateTime.Now.DayOfWeek + 1; //jc.DayOfWeek;
+                    dayOrVerse = DayInfo.JewishCalendar.DayOfWeek;
                 }
 
-                return (PsalmsTextGenerator.GetVersesTodayForWeek(dayOrVerse), sentinel, dayOrVerse);
+                return (() => PsalmsTextGenerator.GetVersesTodayForWeek(dayOrVerse), sentinel, dayOrVerse);
             }
             else if (parameter.StartsWith(TodayInMonthVersesSentinel))
             {
@@ -87,7 +89,7 @@ namespace PrayPal.Content
                     //dayOrVerse = jc.JewishDayOfMonth;
                 }
 
-                return (await PsalmsTextGenerator.GetVersesTodayForMonthAsync(DayInfo.JewishCalendar, dayOrVerse), sentinel, dayOrVerse);
+                return (() => PsalmsTextGenerator.GetVersesTodayForMonth(DayInfo.JewishCalendar, dayOrVerse), sentinel, dayOrVerse);
             }
             else if (parameter.StartsWith(VersesSentinel))
             {
@@ -98,7 +100,7 @@ namespace PrayPal.Content
                     dayOrVerse = 1;
                 }
 
-                return (PsalmsTextGenerator.GetAllVerses(), sentinel, dayOrVerse);
+                return (() => PsalmsTextGenerator.GetAllVerses(), sentinel, dayOrVerse);
             }
 
             throw new NotSupportedException("Content generation parameter value is invalid.");
@@ -106,7 +108,7 @@ namespace PrayPal.Content
 
         protected override string GetTitle()
         {
-            return _model?.Title;
+            return Title;
         }
 
         public override bool UseCompactZoomedOutItems

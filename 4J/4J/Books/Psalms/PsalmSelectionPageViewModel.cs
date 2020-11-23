@@ -164,20 +164,16 @@ namespace PrayPal.Books.Psalms
 
         private void SetVersesByMonthDay(DayJewishInfo dayInfo)
         {
-            string title = null;
-            string titleShort = null;
-
             HebrewDateFormatter formatter = new HebrewDateFormatter();
-            formatter.UseGershGershayim = false;
+            formatter.UseGershGershayim = true;
             formatter.UseEndLetters = false;
 
             List<Tuple<string, string>> items = new List<Tuple<string, string>>(30);
 
             for (int i = 1; i <= dayInfo.JewishCalendar.DaysInJewishMonth; i++)
             {
-                title = string.Format(AppResources.PsalmForMonthDayTitleFormat, formatter.formatHebrewNumber(i));
-                titleShort = string.Format(AppResources.PsalmForMonthDayTitleShortFormat, formatter.formatHebrewNumber(i));
-
+                string title = string.Format(AppResources.PsalmForMonthDayTitleFormat, formatter.formatHebrewNumber(i));
+                string titleShort = string.Format(AppResources.PsalmForMonthDayTitleShortFormat, formatter.formatHebrewNumber(i));
                 items.Add(new Tuple<string, string>(title, titleShort));
             }
 
@@ -201,15 +197,10 @@ namespace PrayPal.Books.Psalms
 
         private async void ExecuteShowByVerseCommand()
         {
-            if (PsalmVerse == null)
-            {
-                return;
-            }
-
             await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel),
                 TextPresenterViewModel.TextNameParam, BookNames.Psalms,
                 TextPresenterViewModel.TextParamParam, PsalmsBook.VersesSentinel + PsalmVerse,
-                TextPresenterViewModel.StartFromParagraphIndexParam, GetVerseIndex(PsalmVerse).ToString());
+                TextPresenterViewModel.StartFromParagraphIndexParam, GetVerseIndex(PsalmVerse ?? "1").ToString());
         }
 
         private int GetVerseIndex(string verse)

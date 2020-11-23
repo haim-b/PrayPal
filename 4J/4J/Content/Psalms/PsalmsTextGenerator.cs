@@ -15,7 +15,8 @@ namespace PrayPal
 {
     public class PsalmsTextGenerator
     {
-        private static readonly HebrewDateFormatter _formatter = new HebrewDateFormatter() { UseGershGershayim = false, UseEndLetters = false };
+        private static readonly HebrewDateFormatter _verseFormatter = new HebrewDateFormatter() { UseGershGershayim = false, UseEndLetters = false };
+        private static readonly HebrewDateFormatter _dayFormatter = new HebrewDateFormatter() { UseGershGershayim = true, UseEndLetters = false };
 
         //public static DocumentModel GetVerses(string typeName)
         //{
@@ -185,7 +186,7 @@ namespace PrayPal
                         p.Add(GetPsalm(i));
                     }
 
-                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _formatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
                     p.Add(p119);
 
                     for (int i = 2; i <= 11; i++)
@@ -211,9 +212,9 @@ namespace PrayPal
             return result;
         }
 
-        public static async Task<DocumentModel<SpanModel>> GetVersesTodayForMonthAsync(JewishCalendar jewithMonth, int? dayOfMonth = null)
+        public static DocumentModel<SpanModel> GetVersesTodayForMonth(JewishCalendar jewishMonth, int? dayOfMonth = null)
         {
-            JewishCalendar jc = jewithMonth;
+            JewishCalendar jc = jewishMonth;
 
             if (dayOfMonth == null)
             {
@@ -230,7 +231,7 @@ namespace PrayPal
 
             if (_monthDayFromTo.TryGetValue((int)dayOfMonth, out fromTo))
             {
-                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _formatter.formatHebrewNumber((int)dayOfMonth));
+                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _dayFormatter.formatHebrewNumber((int)dayOfMonth));
 
                 for (int i = fromTo.Item1; i <= fromTo.Item2; i++)
                 {
@@ -249,9 +250,9 @@ namespace PrayPal
             }
             else if (dayOfMonth == 25)
             {
-                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _formatter.formatHebrewNumber(25));
+                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _dayFormatter.formatHebrewNumber(25));
 
-                string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _formatter.formatHebrewNumber(119), _formatter.formatHebrewNumber(1), _formatter.formatHebrewNumber(96));
+                string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _verseFormatter.formatHebrewNumber(119), _verseFormatter.formatHebrewNumber(1), _verseFormatter.formatHebrewNumber(96));
 
                 SpanModel p119 = new SpanModel(title, PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
                 p.Add(p119);
@@ -263,9 +264,9 @@ namespace PrayPal
             }
             else if (dayOfMonth == 26)
             {
-                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _formatter.formatHebrewNumber(26));
+                result.Title = string.Format(AppResources.PsalmForMonthDayTitleFormat, _dayFormatter.formatHebrewNumber(26));
 
-                string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _formatter.formatHebrewNumber(119), _formatter.formatHebrewNumber(97), _formatter.formatHebrewNumber(176));
+                string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _verseFormatter.formatHebrewNumber(119), _verseFormatter.formatHebrewNumber(97), _verseFormatter.formatHebrewNumber(176));
 
                 SpanModel p119 = new SpanModel(title, PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
                 p.Add(p119);
@@ -295,7 +296,7 @@ namespace PrayPal
             {
                 if (i == 119)
                 {
-                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _formatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
                     p.Add(p119);
 
                     for (int j = 2; j <= 11; j++)

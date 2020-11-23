@@ -42,6 +42,7 @@
             
             <Style TargetType="Page" ApplyToDerivedTypes="True">
                 <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+                <Setter Property="Padding" Value="4,0"/>
             </Style>
             
             <Style TargetType="Label" ApplyToDerivedTypes="True">

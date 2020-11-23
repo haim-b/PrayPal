@@ -44,7 +44,6 @@ namespace PrayPal.TextPresenter
             set
             {
                 _textName = Uri.UnescapeDataString(value);
-                OnParamChanged();
             }
         }
 
@@ -54,7 +53,6 @@ namespace PrayPal.TextPresenter
             set
             {
                 _textParam = Uri.UnescapeDataString(value);
-                OnParamChanged();
             }
         }
 
@@ -64,16 +62,10 @@ namespace PrayPal.TextPresenter
             set
             {
                 StartFromParagraphIndex = int.Parse(value);
-                OnParamChanged();
             }
         }
 
         public int StartFromParagraphIndex { get; private set; }
-
-        private async void OnParamChanged()
-        {
-            await GenerateContentAsync();
-        }
 
         public ITextDocument TextDocument
         {

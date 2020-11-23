@@ -629,7 +629,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to עבור.
+        ///   Looks up a localized string similar to הצג.
         /// </summary>
         public static string GoToButtonTitle {
             get {
