@@ -212,11 +212,11 @@ namespace PrayPal.Books.Psalms
                 gematriya = GetGematriyaValue(verse);
             }
 
-            /////Verse 119 is split into 11 parts (1 like every verse + 10 more):
-            //if (gematriya > 119)
-            //{
-            //    gematriya += 10;
-            //}
+            // Verse 119 is split into 11 parts (1 like every verse + 10 more):
+            if (gematriya > 119)
+            {
+                gematriya += 10;
+            }
 
             return gematriya - 1; // The index is zero-based.
         }
