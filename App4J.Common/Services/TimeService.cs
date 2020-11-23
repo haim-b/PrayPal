@@ -36,11 +36,6 @@ namespace PrayPal.Common.Services
                 {
                     ComplexZmanimCalendar zc = await GetCurrentZmanimCalendarAsync(date, position);
 
-                    if (zc == null)
-                    {
-                        return null;
-                    }
-
                     DateTime? sunset = zc.GetSunset();
 
                     if (sunset != null)
@@ -49,12 +44,12 @@ namespace PrayPal.Common.Services
 
                         if (dayCritical)
                         {
-                            sunsetTimeOfDay = sunsetTimeOfDay - TimeSpan.FromMinutes(10);
+                            sunsetTimeOfDay -= TimeSpan.FromMinutes(10);
                         }
 
                         if (sunsetTimeOfDay < date.TimeOfDay)
                         {
-                            date = date + TimeSpan.FromDays(1);
+                            date += TimeSpan.FromDays(1);
                         }
                     }
                 }
@@ -70,12 +65,13 @@ namespace PrayPal.Common.Services
                 position = await _locationService.GetCurrentPositionAsync();
             }
 
-            if (position == null)
+            GeoLocation location = ToGeoLocation(position);
+
+            if (location == null)
             {
-                return null;
+                location = new GeoLocation();
             }
 
-            GeoLocation location = ToGeoLocation(position);
             return new ComplexZmanimCalendar(date ?? DateTime.Now, location);
         }
 
@@ -200,7 +196,6 @@ namespace PrayPal.Common.Services
 
         private static GeoLocation ToGeoLocation(Geoposition position)
         {
-
             if (position == null)
             {
                 return null;
