@@ -108,8 +108,10 @@
                     <Setter Property="ControlTemplate">
                         <Setter.Value>
                             <ControlTemplate>
-                                <FlexLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}, Path=BindingContext}" BindableLayout.ItemsSource="{Binding TextDocument.Items}" Style="{StaticResource JumpCollectionStyle}"
+                                <ScrollView>
+                                    <FlexLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}, Path=BindingContext}" BindableLayout.ItemsSource="{Binding TextDocument.Items}" Style="{StaticResource JumpCollectionStyle}"
                                             Direction="RowReverse" Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Start" AlignContent="Center"/>
+                                </ScrollView>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>

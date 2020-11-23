@@ -54,7 +54,7 @@ namespace PrayPal.TextPresenter
             {
                 await PopupNavigation.Instance.PopAllAsync();
 
-                lst.ScrollTo(group.FirstOrDefault(), group, ScrollToPosition.Start, true);
+                lst.ScrollTo(group.FirstOrDefault(), group, ScrollToPosition.Start, false);
             }
             catch { }
         }
@@ -69,32 +69,11 @@ namespace PrayPal.TextPresenter
                 // Wait a bit for the content to load:
                 await Task.Delay(1500);
 
-                object item;
-                IEnumerable<object> group = null;
+                object item = null; ;
 
                 if (vm.TextDocument.HasGroups)
                 {
-                    int counter = 0;
-                    int indexIncludingGroups = 0;
-
-                    foreach (IEnumerable<object> g in lst.ItemsSource)
-                    {
-                        indexIncludingGroups++;
-
-                        foreach (object _ in g)
-                        {
-                            indexIncludingGroups++;
-
-                            if (vm.StartFromParagraphIndex == counter++)
-                            {
-                                goto getGroup;
-                            }
-                        }
-                    }
-
-                getGroup:
-                    group = (IEnumerable<object>)lst.GetItemGroup(indexIncludingGroups);
-                    item = group?.FirstOrDefault();
+                    item = lst.ItemsSource.Cast<IEnumerable<object>>().SelectMany(a => a).ElementAtOrDefault(vm.StartFromParagraphIndex);
                 }
                 else
                 {
@@ -103,7 +82,7 @@ namespace PrayPal.TextPresenter
 
                 if (item != null)
                 {
-                    lst.ScrollTo(item, group, ScrollToPosition.Start, true);
+                    lst.ScrollTo(item, /*group,*/ ScrollToPosition.Start, false); // We don't use animation because when it's on we can't scroll after the 70th item.
                 }
             }
         }
