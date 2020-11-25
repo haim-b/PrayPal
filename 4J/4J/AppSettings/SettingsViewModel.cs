@@ -9,7 +9,6 @@ using PrayPal.Resources;
 using PrayPal.Common.Services;
 using Microsoft.Extensions.Logging;
 using PrayPal.Common;
-using Xamarin.Essentials;
 
 namespace PrayPal.AppSettings
 {
@@ -19,15 +18,16 @@ namespace PrayPal.AppSettings
         //private readonly Command _goToLocationSettingsCommand;
 
         private readonly ITimeService _timeService;
+        private readonly IPermissionsService _permissionsService;
         private bool _showVeanenuSetting;
 
-        public SettingsViewModel(ITimeService timeService, ILogger<SettingsViewModel> logger)
+        public SettingsViewModel(ITimeService timeService, IPermissionsService permissionsService, ILogger<SettingsViewModel> logger)
             : base(AppResources.Settings, logger)
         {
             //_goToLockScreenSettingsCommand = new Command(ExecuteGoToLockScreenSettings);
             //_goToLocationSettingsCommand = new Command(ExecuteGoToLocationSettings);
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
-
+            _permissionsService = permissionsService ?? throw new ArgumentNullException(nameof(permissionsService));
             ShowUseLightBackgroundSetting = App.Current.RequestedTheme != OSAppTheme.Light;
 
             Initialize();
@@ -65,9 +65,7 @@ namespace PrayPal.AppSettings
             {
                 if (useLocation)
                 {
-                    var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-
-                    if (status != PermissionStatus.Granted)
+                    if (!(await _permissionsService.RequestAsync(Permissions.Location)))
                     {
                         return;
                     }

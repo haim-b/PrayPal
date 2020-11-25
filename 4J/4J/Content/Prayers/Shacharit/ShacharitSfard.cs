@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PrayPal.Common;
+using PrayPal.Common.Services;
 using PrayPal.Models;
 using PrayPal.Resources;
 using Zmanim.HebrewCalendar;
@@ -13,6 +14,10 @@ namespace PrayPal.Content
     [Nusach(Nusach.Sfard)]
     public class ShacharitSfard : ShacharitBase
     {
+        public ShacharitSfard(IPermissionsService permissionsService)
+            : base(permissionsService)
+        { }
+
         protected override ShmoneEsreBase GetShmoneEsre(Prayer prayer)
         {
             return new ShmoneEsreSfard(prayer);

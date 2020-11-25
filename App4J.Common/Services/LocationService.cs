@@ -11,14 +11,16 @@ namespace PrayPal.Common.Services
     public class LocationService : ILocationService
     {
         private readonly TimeSpan _locationTimeout;
+        private readonly IPermissionsService _permissionsService;
         private readonly ILogger _logger;
 
-        public LocationService(ILogger<LocationService> logger)
+        public LocationService(IPermissionsService permissionsService, ILogger<LocationService> logger)
         {
             //#if DEBUG
             //            _locationTimeout = TimeSpan.FromSeconds(20);
             //#else
             _locationTimeout = TimeSpan.FromSeconds(7);
+            _permissionsService = permissionsService ?? throw new ArgumentNullException(nameof(permissionsService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             //#endif
 
@@ -28,6 +30,11 @@ namespace PrayPal.Common.Services
 
         public async Task<Geoposition> GetCurrentPositionAsync(CancellationToken cancellationToken = default)
         {
+            //if (!await _permissionsService.HasBeenRequestedAsync(Permissions.Location) && await _permissionsService.RequestAsync(Permissions.Location))
+            //{
+            //    Settings.UseLocation = true;
+            //}
+
             if (!IsActive)
             {
                 return null;

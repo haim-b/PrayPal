@@ -1076,4 +1076,24 @@ namespace Tests.PrayPal.Content
             }
         }
     }
+
+    internal class DummyPermissionsService : IPermissionsService
+    {
+        public static IPermissionsService Instance => new DummyPermissionsService();
+
+        public Task<bool> HasBeenRequestedAsync(Permissions permission)
+        {
+            return Task.FromResult(permission == Permissions.Location);
+        }
+
+        public Task<bool> IsAllowedAsync(Permissions permission)
+        {
+            return Task.FromResult(permission == Permissions.Location);
+        }
+
+        public Task<bool> RequestAsync(Permissions permission)
+        {
+            return Task.FromResult(permission == Permissions.Location);
+        }
+    }
 }

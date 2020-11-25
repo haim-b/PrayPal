@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PrayPal.Common;
 using PrayPal.Common.Resources;
+using PrayPal.Common.Services;
 using PrayPal.Models;
 using PrayPal.Resources;
 using Zmanim.HebrewCalendar;
@@ -14,6 +15,13 @@ namespace PrayPal.Content
     [TextName(PrayerNames.Shacharit)]
     public abstract class ShacharitBase : SpansPrayerBase
     {
+        private readonly IPermissionsService _permissionsService;
+
+        public ShacharitBase(IPermissionsService permissionsService)
+        {
+            _permissionsService = permissionsService ?? throw new ArgumentNullException(nameof(permissionsService));
+        }
+
         protected async override Task CreateOverrideAsync()
         {
             // Sedder Hashkama
@@ -39,10 +47,7 @@ namespace PrayPal.Content
 
                 talitTfillin.Add(new ParagraphModel(AppResources.HanachatTfillinTitle, CommonPrayerTextProvider.Current.HanachatTfillin));
 
-                if (await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () => await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>() == Xamarin.Essentials.PermissionStatus.Granted))
-                {
-                    talitTfillin.Add(new SpecialControlModel(new CameraPreviewViewModel { IsOn = true, Camera = CameraOptions.Front, Height = 500 }) { Title = AppResources.HeadTfillinMirrorTitle });
-                }
+                await AddTfillinMirrorAsync(talitTfillin);
 
                 talitTfillin.Add(CommonPrayerTextProvider.Current.ParashahAfterTfillin1, CommonPrayerTextProvider.Current.ParashahAfterTfillin2);
             }
@@ -230,6 +235,14 @@ namespace PrayPal.Content
             //shmoneEsreSpan.AddRange(shmoneEsre.Items);
 
             //_items.Add(shmoneEsreSpan);
+        }
+
+        protected async Task AddTfillinMirrorAsync(SpanModel talitTfillin)
+        {
+            if (await _permissionsService.RequestAsync(Permissions.Camera))
+            {
+                talitTfillin.Add(new SpecialControlModel(new CameraPreviewViewModel { IsOn = true, Camera = CameraOptions.Front, Height = 500 }) { Title = AppResources.HeadTfillinMirrorTitle });
+            }
         }
 
         protected bool ShouldSayMizmorLetoda()
@@ -571,37 +584,30 @@ namespace PrayPal.Content
                 return false;
             }
 
-            bool isInIsrael = DayInfo.JewishCalendar.InIsrael;
+            JewishCalendar jc = DayInfo.JewishCalendar.CloneEx();
 
-            // Mark not in israel to include issru chag:
-            try
-            {
-                DayInfo.JewishCalendar.InIsrael = false;
+            // Mark not in Israel to include issru chag (it will be considered as a Yom Tov):
+            jc.InIsrael = false;
 
-                switch (DayInfo.YomTov)
-                {
-                    case JewishCalendar.SUCCOS:
-                    case JewishCalendar.CHOL_HAMOED_SUCCOS:
-                    case JewishCalendar.HOSHANA_RABBA:
-                    case JewishCalendar.SIMCHAS_TORAH: // Equals issru chag
-                    case JewishCalendar.CHANUKAH:
-                    case JewishCalendar.TU_BESHVAT:
-                    case JewishCalendar.PURIM:
-                    case JewishCalendar.SHUSHAN_PURIM:
-                    case JewishCalendar.PURIM_KATAN:
-                    case JewishCalendar.PESACH: // Includes issru chag
-                    case JewishCalendar.CHOL_HAMOED_PESACH:
-                    case JewishCalendar.PESACH_SHENI:
-                    case JewishCalendar.YOM_HAATZMAUT:
-                    case JewishCalendar.YOM_YERUSHALAYIM:
-                    case JewishCalendar.TISHA_BEAV:
-                    case JewishCalendar.TU_BEAV:
-                        return false;
-                }
-            }
-            finally
+            switch (jc.YomTovIndex)
             {
-                DayInfo.JewishCalendar.InIsrael = isInIsrael;
+                case JewishCalendar.SUCCOS:
+                case JewishCalendar.CHOL_HAMOED_SUCCOS:
+                case JewishCalendar.HOSHANA_RABBA:
+                case JewishCalendar.SIMCHAS_TORAH: // Equals to issru chag
+                case JewishCalendar.CHANUKAH:
+                case JewishCalendar.TU_BESHVAT:
+                case JewishCalendar.PURIM:
+                case JewishCalendar.SHUSHAN_PURIM:
+                case JewishCalendar.PURIM_KATAN:
+                case JewishCalendar.PESACH: // Includes issru chag
+                case JewishCalendar.CHOL_HAMOED_PESACH:
+                case JewishCalendar.PESACH_SHENI:
+                case JewishCalendar.YOM_HAATZMAUT:
+                case JewishCalendar.YOM_YERUSHALAYIM:
+                case JewishCalendar.TISHA_BEAV:
+                case JewishCalendar.TU_BEAV:
+                    return false;
             }
 
             if (DayInfo.JewishCalendar.ErevYomTov)

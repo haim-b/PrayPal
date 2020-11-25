@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PrayPal.Common;
+using PrayPal.Common.Services;
 using PrayPal.Models;
 using PrayPal.Resources;
 using Zmanim.HebrewCalendar;
@@ -13,6 +14,10 @@ namespace PrayPal.Content
     [Nusach(Nusach.Ashkenaz)]
     public class ShacharitAshkenaz : ShacharitSfard
     {
+        public ShacharitAshkenaz(IPermissionsService permissionsService)
+            : base(permissionsService)
+        { }
+
         protected override async Task CreateOverrideAsync()
         {
             // Sedder Hashkama
@@ -37,6 +42,7 @@ namespace PrayPal.Content
                 talitTfillin.Add(new ParagraphModel(AppResources.AtifatTalitTitle, CommonPrayerTextProvider.Current.AtifatTalit));
 
                 talitTfillin.Add(new ParagraphModel(AppResources.HanachatTfillinTitle, CommonPrayerTextProvider.Current.HanachatTfillin));
+                await AddTfillinMirrorAsync(talitTfillin);
                 talitTfillin.Add(CommonPrayerTextProvider.Current.ParashahAfterTfillin1, CommonPrayerTextProvider.Current.ParashahAfterTfillin2);
             }
             else

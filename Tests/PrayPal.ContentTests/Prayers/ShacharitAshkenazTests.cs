@@ -22,7 +22,7 @@ namespace Tests.PrayPal.Content.Prayers
         public async Task TestShacharitAshkenaz()
         {
             TestExecutor.PrepareNusach(Nusach.Ashkenaz);
-            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Ashkenaz, jc, l), (l, t) => new ShacharitAshkenaz());
+            await TestExecutor.TestPrayerAsync((jc, l, t) => CreateFromLegacyDebuggedCode(Nusach.Ashkenaz, jc, l), (l, t) => new ShacharitAshkenaz(DummyPermissionsService.Instance));
         }
 
         private IEnumerable<string> CreateFromLegacyDebuggedCode(Nusach nusach, JewishCalendar jc, ILocationService locationService)
