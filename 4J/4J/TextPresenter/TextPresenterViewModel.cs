@@ -111,14 +111,17 @@ namespace PrayPal.TextPresenter
                 cp.ContentGenerationParameter = TextParam;
             }
 
-            try
+            await Task.Factory.StartNew(async () =>
             {
-                await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
-            }
-            catch (NotificationException ne)
-            {
-                await NotificationService.ShowWarningAsync(ne.Message);
-            }
+                try
+                {
+                    await text.Value.CreateAsync(dayInfo, _logger);
+                }
+                catch (NotificationException ne)
+                {
+                    await NotificationService.ShowWarningAsync(ne.Message);
+                }
+            }).Unwrap();
 
             Trace.WriteLine($"Number of spans: {(text.Value as PrayerBase<SpanModel>)?.Items?.Count.ToString() ?? "N/A"}.");
 

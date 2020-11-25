@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace PrayPal.Services
 {
@@ -10,12 +11,12 @@ namespace PrayPal.Services
     {
         public async Task ShowErrorMessageAsync(string message)
         {
-            await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK);
+            await MainThread.InvokeOnMainThreadAsync(async () => await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK));
         }
 
         public async Task ShowWarningAsync(string message)
         {
-            await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK);
+            await MainThread.InvokeOnMainThreadAsync(async () => await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK));
         }
     }
 

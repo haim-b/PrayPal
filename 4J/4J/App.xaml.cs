@@ -14,6 +14,7 @@ using System.Reflection;
 using PrayPal.Common;
 using PrayPal.Content;
 using System.Linq;
+using System.Globalization;
 
 namespace PrayPal
 {
@@ -47,7 +48,7 @@ namespace PrayPal
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => t.Namespace.StartsWith("PrayPal") && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider"))
+                .Where(t => t.Namespace.StartsWith("PrayPal", false, CultureInfo.InvariantCulture) && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider", false, CultureInfo.InvariantCulture))
                 .AsImplementedInterfaces()
                 .AsSelf();
 

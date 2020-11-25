@@ -38,9 +38,9 @@ namespace PrayPal.Content
             DayInfo = dayInfo;
             _items.Clear();
 
-            await CreateOverrideAsync();
-
             _itemsList = null;
+
+            await CreateOverrideAsync();
         }
 
         protected virtual void ValidateDayInfo(DayJewishInfo dayInfo)
