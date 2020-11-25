@@ -120,10 +120,13 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
-                                <Label Text="&#x2B24;" TextColor="Transparent" HorizontalTextAlignment="Center">
+                                <Label Text="&#x2B24;" IsVisible="False" TextColor="Transparent" HorizontalTextAlignment="Center">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding HasEvent}" Value="True">
-                                            <Setter Property="TextColor" Value="{DynamicResource AccentColor}"/>
+                                            <Setter Property="IsVisible" Value="True"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="TextColor" Value="White"/>
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>

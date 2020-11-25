@@ -30,10 +30,10 @@ namespace PrayPal.Common.Services
 
         public async Task<Geoposition> GetCurrentPositionAsync(CancellationToken cancellationToken = default)
         {
-            //if (!await _permissionsService.HasBeenRequestedAsync(Permissions.Location) && await _permissionsService.RequestAsync(Permissions.Location))
-            //{
-            //    Settings.UseLocation = true;
-            //}
+            if (!await _permissionsService.HasBeenRequestedAsync(Permissions.Location) && await _permissionsService.RequestAsync(Permissions.Location))
+            {
+                Settings.UseLocation = true;
+            }
 
             if (!IsActive)
             {

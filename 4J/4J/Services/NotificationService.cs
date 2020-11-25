@@ -12,10 +12,17 @@ namespace PrayPal.Services
         {
             await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK);
         }
+
+        public async Task ShowWarningAsync(string message)
+        {
+            await App.Current.MainPage.DisplayAlert(AppShell.Current.Title, message, AppResources.MessageBoxOK);
+        }
     }
 
     public interface INotificationService
     {
         Task ShowErrorMessageAsync(string message);
+
+        Task ShowWarningAsync(string message);
     }
 }

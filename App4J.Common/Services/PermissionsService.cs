@@ -13,7 +13,8 @@ namespace PrayPal.Common.Services
         {
             Func<Task<PermissionStatus>> check = GetCheckingMethod(permission);
 
-            return await check() == PermissionStatus.Unknown;
+            var status = await check();
+            return status != PermissionStatus.Unknown;
         }
 
         public async Task<bool> IsAllowedAsync(Permissions permission)

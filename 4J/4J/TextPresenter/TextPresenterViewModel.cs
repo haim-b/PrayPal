@@ -4,6 +4,7 @@ using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
+using PrayPal.Services;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace PrayPal.TextPresenter
     [QueryProperty(nameof(TextName), TextNameParam)]
     [QueryProperty(nameof(TextParam), TextParamParam)]
     [QueryProperty(nameof(StartFromParagraphIndexValue), StartFromParagraphIndexParam)]
-    public class TextPresenterViewModel : BindableBase, IContentPage
+    public class TextPresenterViewModel : PageViewModelBase, IContentPage
     {
         public const string TextNameParam = "textName";
         public const string TextParamParam = "textParam";
@@ -31,7 +32,8 @@ namespace PrayPal.TextPresenter
         private readonly ITimeService _timeService;
         private readonly ILogger _logger;
 
-        public TextPresenterViewModel(IEnumerable<Lazy<ITextDocument, PrayerMetadata>> texts, ITimeService timeService, ILogger<TextPresenterViewModel> logger)
+        public TextPresenterViewModel(IEnumerable<Lazy<ITextDocument, PrayerMetadata>> texts, ITimeService timeService, INotificationService notificationService, IErrorReportingService errorReportingService, ILogger<TextPresenterViewModel> logger)
+            : base("a", notificationService, errorReportingService, logger)
         {
             _texts = texts ?? throw new ArgumentNullException(nameof(texts));
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
@@ -109,7 +111,14 @@ namespace PrayPal.TextPresenter
                 cp.ContentGenerationParameter = TextParam;
             }
 
-            await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
+            try
+            {
+                await Task.Factory.StartNew(async () => await text.Value.CreateAsync(dayInfo, _logger)).Unwrap();
+            }
+            catch (NotificationException ne)
+            {
+                await NotificationService.ShowWarningAsync(ne.Message);
+            }
 
             Trace.WriteLine($"Number of spans: {(text.Value as PrayerBase<SpanModel>)?.Items?.Count.ToString() ?? "N/A"}.");
 
