@@ -1,5 +1,6 @@
 ﻿using _4J;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -15,12 +16,7 @@ namespace PrayPal
                 return null;
             }
 
-            if (App.Current.Resources.TryGetValue(item.GetType().Name, out var template))
-            {
-                return (DataTemplate)template;
-            }
-
-            return null;
+            return App.Current.Resources.Values.OfType<ViewModelTemplate>().FirstOrDefault(dt => dt.ForType == item.GetType())?.Template;
         }
     }
 }

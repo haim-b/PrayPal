@@ -863,6 +863,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to מראה לתפילין של ראש.
+        /// </summary>
+        public static string HeadTfillinMirrorTitle {
+            get {
+                return ResourceManager.GetString("HeadTfillinMirrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to איגרת הרמב&quot;ן.
         /// </summary>
         public static string IgerretHarambanTitle {

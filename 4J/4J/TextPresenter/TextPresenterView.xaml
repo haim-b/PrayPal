@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PrayPal.TextPresenter"
+             xmlns:app="clr-namespace:PrayPal"
              xmlns:p="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="PrayPal.TextPresenter.TextPresenterView"
              x:Name="page"
@@ -14,14 +15,29 @@
         <local:FlowDirectionIsLtrConverter x:Key="LtrConverter"/>
         <local:IntAdditionConverter x:Key="IntAdditionConverter" AdditionAmount="30"/>
 
+        <local:SpanContentTemplateSelector x:Key="SpanContentTemplateSelector">
+            <local:SpanContentTemplateSelector.ParagraphTemplate>
+                <DataTemplate>
+                    <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
+                           Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                           FontFamily="SegoeUI"/>
+                </DataTemplate>
+            </local:SpanContentTemplateSelector.ParagraphTemplate>
+            <local:SpanContentTemplateSelector.SpecialContentTemplate>
+                <DataTemplate>
+                    <app:ContentControl BindingContext="{Binding ViewModel}" ContentTemplate="{StaticResource viewModelSelector}"/>
+                </DataTemplate>
+            </local:SpanContentTemplateSelector.SpecialContentTemplate>
+        </local:SpanContentTemplateSelector>
+
         <DataTemplate x:Key="RegularTextTemplate">
             <ViewCell>
                 <StackLayout Padding="{StaticResource ParagraphThickness}">
                     <Label Text="{Binding Title}" TextColor="{StaticResource AccentColor}" FontFamily="SegoeUI"
-                Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-                    <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
-                Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                           FontFamily="SegoeUI"/>
+                           Style="{DynamicResource ListItemDetailTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+
+                    <app:ContentControl BindingContext="{Binding}" ContentTemplate="{StaticResource SpanContentTemplateSelector}"/>
+
                     <StackLayout.GestureRecognizers>
                         <!-- We add this to disable the tap animation on list items on Android: -->
                         <TapGestureRecognizer/>
@@ -49,9 +65,8 @@
                             </DataTrigger>
                         </Expander.Triggers>
 
-                        <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
-                    Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                               FontFamily="SegoeUI"/>
+                        <app:ContentControl ContentTemplate="{StaticResource SpanContentTemplateSelector}"/>
+
                     </Expander>
 
                     <Frame.GestureRecognizers>

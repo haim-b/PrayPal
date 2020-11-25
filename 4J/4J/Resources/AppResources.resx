@@ -764,4 +764,7 @@
   <data name="TableOfContentsTitle" xml:space="preserve">
     <value>תוכן</value>
   </data>
+  <data name="HeadTfillinMirrorTitle" xml:space="preserve">
+    <value>מראה לתפילין של ראש</value>
+  </data>
 </root>

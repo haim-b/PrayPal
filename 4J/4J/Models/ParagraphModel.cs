@@ -18,6 +18,9 @@ namespace PrayPal.Models
             SetFontSize();
         }
 
+        protected ParagraphModel()
+        { }
+
         public ParagraphModel(string content)
             : this(null, content)
         { }
@@ -97,7 +100,7 @@ namespace PrayPal.Models
 
         public bool IsLtr { get; set; }
 
-        public void Add(string text)
+        public virtual void Add(string text)
         {
             if (text == null)
             {

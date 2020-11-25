@@ -38,6 +38,12 @@ namespace PrayPal.Content
                 talitTfillin.Add(new ParagraphModel(AppResources.AtifatTalitTitle, CommonPrayerTextProvider.Current.AtifatTalit));
 
                 talitTfillin.Add(new ParagraphModel(AppResources.HanachatTfillinTitle, CommonPrayerTextProvider.Current.HanachatTfillin));
+
+                if (await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(async () => await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>() == Xamarin.Essentials.PermissionStatus.Granted))
+                {
+                    talitTfillin.Add(new SpecialControlModel(new CameraPreviewViewModel { IsOn = true, Camera = CameraOptions.Front, Height = 500 }) { Title = AppResources.HeadTfillinMirrorTitle });
+                }
+
                 talitTfillin.Add(CommonPrayerTextProvider.Current.ParashahAfterTfillin1, CommonPrayerTextProvider.Current.ParashahAfterTfillin2);
             }
             else
