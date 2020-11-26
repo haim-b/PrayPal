@@ -14,29 +14,29 @@ using System.Reflection;
 using PrayPal.Common;
 using PrayPal.Content;
 using System.Linq;
-using System.Globalization;
+using Xamarin.Essentials;
 
 namespace PrayPal
 {
     public partial class App : Application, ISettingsListener
     {
         private readonly MainViewModel _mainViewModel;
-
+        private readonly Serilog.Core.Logger _logger;
 
         public App()
         {
             InitializeComponent();
 
-            var logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "log.txt");
+            var logPath = Path.Combine(FileSystem.AppDataDirectory, "log.txt");
 
-            var logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .Enrich.FromLogContext()
-                .WriteTo.File(logPath)
-                .CreateLogger();
+            _logger = new LoggerConfiguration()
+               .MinimumLevel.Debug()
+               .Enrich.FromLogContext()
+               .WriteTo.File(logPath)
+               .CreateLogger();
 
             IServiceCollection services = new ServiceCollection();
-            services.AddLogging(l => l.AddSerilog(logger));
+            services.AddLogging(l => l.AddSerilog(_logger));
 
             Settings.SetSettingsProvider(new XamarinSettingsProvider());
 
@@ -48,7 +48,7 @@ namespace PrayPal
             var builder = new ContainerBuilder();
 
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => t.Namespace.StartsWith("PrayPal", false, CultureInfo.InvariantCulture) && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider", false, CultureInfo.InvariantCulture))
+                .Where(t => t.Namespace.StartsWith("PrayPal") && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider"))
                 .AsImplementedInterfaces()
                 .AsSelf();
 
@@ -71,6 +71,8 @@ namespace PrayPal
             {
                 foreach (var vfa in viewType.GetCustomAttributes<ViewForAttribute>())
                 {
+                    // First we unregister the route in case the app is re-awakening and already has the route registered:
+                    Routing.UnRegisterRoute(vfa.ViewModelType.Name);
                     Routing.RegisterRoute(vfa.ViewModelType.Name, new LocalRouteFactory(() => (Element)container.Resolve(viewType), () => container.Resolve(vfa.ViewModelType)));
                 }
             }
@@ -88,6 +90,7 @@ namespace PrayPal
 
         protected override void OnSleep()
         {
+            _logger?.Dispose();
         }
 
         protected override void OnResume()
