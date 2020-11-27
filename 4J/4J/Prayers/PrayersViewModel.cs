@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Zmanim.HebrewCalendar;
+using Microsoft.AppCenter.Analytics;
 
 namespace PrayPal.Prayers
 {
@@ -59,6 +60,14 @@ namespace PrayPal.Prayers
 
         private async void OnItemTappedExecuted(PrayerItemViewModel item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
+            Logger.LogInformation("Opened " + item.PageName);
+            Analytics.TrackEvent("Opened prayer", Utils.AnalyticsProperty("prayer", item.PageName));
+
             if (item.ViewModelType != null)
             {
                 await _navigationService.NavigateToAsync(item.ViewModelType.Name);

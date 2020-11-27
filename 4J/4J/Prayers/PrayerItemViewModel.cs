@@ -7,7 +7,7 @@ namespace PrayPal.Prayers
 {
     public class PrayerItemViewModel : ItemViewModel
     {
-        public PrayerItemViewModel(string pageName, string title, object pageParameter = null)
+        public PrayerItemViewModel(string pageName, string title)//, object pageParameter = null)
             : base(title, null)
         {
             if (string.IsNullOrWhiteSpace(pageName))
@@ -16,10 +16,10 @@ namespace PrayPal.Prayers
             }
 
             PageName = pageName;
-            PageParameter = pageParameter;
+            //PageParameter = pageParameter;
         }
 
-        public PrayerItemViewModel(string pageName, string title, string subtitle, object pageParameter = null)
+        public PrayerItemViewModel(string pageName, string title, string subtitle)//, object pageParameter = null)
             : base(title, subtitle)
         {
             if (string.IsNullOrWhiteSpace(pageName))
@@ -28,7 +28,7 @@ namespace PrayPal.Prayers
             }
 
             PageName = pageName;
-            PageParameter = pageParameter;
+            //PageParameter = pageParameter;
         }
 
         public PrayerItemViewModel(string pageName, string title, Type viewModelType)
@@ -39,7 +39,7 @@ namespace PrayPal.Prayers
 
         public string PageName { get; }
 
-        public object PageParameter { get; }
+        //public object PageParameter { get; }
 
         public Type ViewModelType { get; }
     }

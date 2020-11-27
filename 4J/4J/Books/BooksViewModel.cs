@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AppCenter.Analytics;
+using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Prayers;
 using PrayPal.Resources;
@@ -42,6 +43,14 @@ namespace PrayPal.Books
 
         private async void OnItemTappedExecuted(PrayerItemViewModel item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
+            Logger.LogInformation($"Opened " + item.PageName);
+            Analytics.TrackEvent("Opening book", Utils.AnalyticsProperty("book", item.PageName));
+
             if (item.ViewModelType != null)
             {
                 await _navigationService.NavigateToAsync(item.ViewModelType.Name);

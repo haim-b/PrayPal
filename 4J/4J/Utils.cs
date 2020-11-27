@@ -75,5 +75,10 @@ namespace PrayPal
 
             return Device.GetNamedSize(NamedSize.Caption, typeof(Label));
         }
+
+        public static IDictionary<string, string> AnalyticsProperty(string name, string value)
+        {
+            return new Dictionary<string, string> { { name, value } };
+        }
     }
 }

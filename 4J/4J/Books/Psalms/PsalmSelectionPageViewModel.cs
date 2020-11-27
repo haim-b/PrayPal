@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AppCenter.Analytics;
+using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
@@ -183,6 +184,9 @@ namespace PrayPal.Books.Psalms
 
         private async void ExecuteShowVerseByDayCommand()
         {
+            Logger.LogInformation("Opened Psalms day of week");
+            Analytics.TrackEvent("Opened Psalm by week", Utils.AnalyticsProperty("day", (_selectedVerseByWeekDayIndex + 1).ToString()));
+
             await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel),
                 TextPresenterViewModel.TextNameParam, BookNames.Psalms,
                 TextPresenterViewModel.TextParamParam, PsalmsBook.TodayInWeekVersesSentinel + (_selectedVerseByWeekDayIndex + 1));
@@ -190,6 +194,9 @@ namespace PrayPal.Books.Psalms
 
         private async void ExecuteShowVerseByMonthCommand()
         {
+            Logger.LogInformation("Opened Psalms by day of month");
+            Analytics.TrackEvent("Opened Psalm by month", Utils.AnalyticsProperty("day", (_selectedVerseByMonthDayIndex + 1).ToString()));
+
             await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel),
                 TextPresenterViewModel.TextNameParam, BookNames.Psalms,
                 TextPresenterViewModel.TextParamParam, PsalmsBook.TodayInMonthVersesSentinel + (_selectedVerseByMonthDayIndex + 1));
@@ -197,10 +204,15 @@ namespace PrayPal.Books.Psalms
 
         private async void ExecuteShowByVerseCommand()
         {
+            int verseIndex = GetVerseIndex(PsalmVerse ?? "1");
+
+            Logger.LogInformation("Opened Psalms by verse");
+            Analytics.TrackEvent("Opened Psalm by verse", Utils.AnalyticsProperty("verse", (verseIndex + 1).ToString()));
+
             await _navigationService.NavigateToAsync(nameof(TextPresenterViewModel),
                 TextPresenterViewModel.TextNameParam, BookNames.Psalms,
                 TextPresenterViewModel.TextParamParam, PsalmsBook.VersesSentinel + PsalmVerse,
-                TextPresenterViewModel.StartFromParagraphIndexParam, GetVerseIndex(PsalmVerse ?? "1").ToString());
+                TextPresenterViewModel.StartFromParagraphIndexParam, verseIndex.ToString());
         }
 
         private int GetVerseIndex(string verse)

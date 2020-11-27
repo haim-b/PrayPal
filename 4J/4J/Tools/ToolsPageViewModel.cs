@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AppCenter.Analytics;
+using Microsoft.Extensions.Logging;
 using PrayPal.Resources;
 using PrayPal.Tools.Calendar;
 using PrayPal.Tools.PrayerDirection;
@@ -31,14 +32,22 @@ namespace PrayPal.Tools
         public Task GenerateContentAsync()
         {
             Items.Clear();
-            Items.Add(new ToolItemViewModel(AppResources.CalendarTitle, typeof(CalendarPageViewModel)));
-            Items.Add(new ToolItemViewModel(AppResources.PrayingDirectionTitle, typeof(PrayerDirectionViewModel)));
+            Items.Add(new ToolItemViewModel("Calendar", AppResources.CalendarTitle, typeof(CalendarPageViewModel)));
+            Items.Add(new ToolItemViewModel("PrayerDirection", AppResources.PrayingDirectionTitle, typeof(PrayerDirectionViewModel)));
 
             return Task.CompletedTask;
         }
 
         private async void OnItemTappedExecuted(ToolItemViewModel item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
+            Logger.LogInformation("Opened " + item.Name);
+            Analytics.TrackEvent("Opened tool", Utils.AnalyticsProperty("tool", item.Name));
+
             await _navigationService.NavigateToAsync(item.ViewModelType.Name);
         }
 
