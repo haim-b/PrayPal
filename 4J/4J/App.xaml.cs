@@ -15,28 +15,44 @@ using PrayPal.Common;
 using PrayPal.Content;
 using System.Linq;
 using Xamarin.Essentials;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Serilog.Sink.AppCenter;
+using PrayPal.Helpers;
+using System.Globalization;
 
 namespace PrayPal
 {
     public partial class App : Application, ISettingsListener
     {
         private readonly MainViewModel _mainViewModel;
-        private readonly Serilog.Core.Logger _logger;
+        private static readonly Autofac.IContainer _container;
 
-        public App()
+        static App()
         {
-            InitializeComponent();
+            // Android exposes Hebrew as iw-IL, which is illegal in .Net, so we need to fix it:
+            if (CultureInfo.CurrentCulture == CultureInfo.InvariantCulture) // iw-IL makes it fallback to invariant
+            {
+                CultureInfo.CurrentCulture = new CultureInfo("he-IL");
+            }
+
+            AppCenter.Start($"android={Secrets.AndroidSecredKey};" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
 
             var logPath = Path.Combine(FileSystem.AppDataDirectory, "log.txt");
 
-            _logger = new LoggerConfiguration()
+            Serilog.Core.Logger logger = new LoggerConfiguration()
                .MinimumLevel.Debug()
                .Enrich.FromLogContext()
                .WriteTo.File(logPath)
+               .WriteTo.AppCenterSink(new Serilog.Core.LoggingLevelSwitch(Serilog.Events.LogEventLevel.Debug), target: AppCenterTarget.ExceptionsAsCrashes, appCenterSecret: Secrets.AndroidSecredKey)
                .CreateLogger();
 
             IServiceCollection services = new ServiceCollection();
-            services.AddLogging(l => l.AddSerilog(_logger));
+            services.AddLogging(l => l.AddSerilog(logger));
 
             Settings.SetSettingsProvider(new XamarinSettingsProvider());
 
@@ -60,22 +76,24 @@ namespace PrayPal
 
             //builder.RegisterSource(new AnyConcreteTypeNotAlreadyRegisteredSource());
             builder.Populate(services);
-            var container = builder.Build();
+            _container = builder.Build();
 
-            DependencyService.Register<MockDataStore>();
-            _mainViewModel = container.Resolve<MainViewModel>();
-
-            var viewsWithViewModels = container.ComponentRegistry.Registrations.Select(r => r.Activator.LimitType).Where(t => t.GetCustomAttributes<ViewForAttribute>().Any());
+            var viewsWithViewModels = _container.ComponentRegistry.Registrations.Select(r => r.Activator.LimitType).Where(t => t.GetCustomAttributes<ViewForAttribute>().Any());
 
             foreach (var viewType in viewsWithViewModels)
             {
                 foreach (var vfa in viewType.GetCustomAttributes<ViewForAttribute>())
                 {
-                    // First we unregister the route in case the app is re-awakening and already has the route registered:
-                    Routing.UnRegisterRoute(vfa.ViewModelType.Name);
-                    Routing.RegisterRoute(vfa.ViewModelType.Name, new LocalRouteFactory(() => (Element)container.Resolve(viewType), () => container.Resolve(vfa.ViewModelType)));
+                    Routing.RegisterRoute(vfa.ViewModelType.Name, new LocalRouteFactory(() => (Element)_container.Resolve(viewType), () => _container.Resolve(vfa.ViewModelType)));
                 }
             }
+        }
+
+        public App()
+        {
+            InitializeComponent();
+
+            _mainViewModel = _container.Resolve<MainViewModel>();
 
             PrayersHelper.SetPrayerTextProvider(Settings.Nusach);
             Settings.RegisterListener(this);
@@ -90,7 +108,6 @@ namespace PrayPal
 
         protected override void OnSleep()
         {
-            _logger?.Dispose();
         }
 
         protected override void OnResume()
