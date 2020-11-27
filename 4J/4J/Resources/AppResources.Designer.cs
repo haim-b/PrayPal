@@ -440,6 +440,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ניתן ללחוץ על הכותרות הגדולות כדי לקפוץ למיקום מסויים בטקסט.
+        /// </summary>
+        public static string ClickDocHeaderInstruction {
+            get {
+                return ResourceManager.GetString("ClickDocHeaderInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to לחץ כאן.
         /// </summary>
         public static string ClickHereLabel {

@@ -779,4 +779,7 @@
   <data name="ThemeSettingLabel" xml:space="preserve">
     <value>ערכת נושא:</value>
   </data>
+  <data name="ClickDocHeaderInstruction" xml:space="preserve">
+    <value>ניתן ללחוץ על הכותרות הגדולות כדי לקפוץ למיקום מסויים בטקסט</value>
+  </data>
 </root>

@@ -4,29 +4,43 @@
              xmlns:app="clr-namespace:PrayPal"
              x:Class="PrayPal.Prayers.PrayersView"
              Title="{app:CustomResource ApplicationTitle}">
-    <ListView x:Name="lst" ItemsSource="{Binding Items}"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="lst" ItemsSource="{Binding Items}"
             SelectionMode="None"
             SeparatorVisibility="None"
             CachingStrategy="RecycleElement">
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
-                <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout Margin="2">
-                            <Label Text="{Binding Title, Mode=OneTime}" FontSize="Medium"/>
-                            <Label Text="{Binding Subtitle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
+                    <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Margin="2">
+                                <Label Text="{Binding Title, Mode=OneTime}" FontSize="Medium"/>
+                                <Label Text="{Binding Subtitle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                                        TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
 
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Expander IsExpanded="True" Grid.Row="1">
+            <Expander.Header>
+                <Label Text="{app:CustomResource ClickDocHeaderInstruction}" TextColor="White" BackgroundColor="{DynamicResource AccentColor}"/>
+            </Expander.Header>
+
+            <Image Source="{AppThemeBinding Light=header_click_light.png, Dark=header_click_dark.png}" HeightRequest="150" Margin="0,3,0,0"/>
+        </Expander>
+    </Grid>
 </ContentPage>
