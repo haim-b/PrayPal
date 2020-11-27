@@ -85,12 +85,13 @@ namespace PrayPal.AppSettings
             }
         }
 
-        public bool UseLightBackground
+        public int Theme
         {
-            get { return Settings.UseLightBackground; }
+            get { return (int)Settings.Theme; }
             set
             {
-                Settings.UseLightBackground = value;
+                Settings.Theme = (Theme)value;
+                RaisePropertyChanged();
             }
         }
 
@@ -133,6 +134,8 @@ namespace PrayPal.AppSettings
         public List<string> FontSizes { get; } = new List<string>(2) { AppResources.FontSizeSettingLabelRegular, AppResources.FontSizeSettingLabelLarge };
 
         public List<string> Nusachim { get; } = new List<string>() { AppResources.NusachAshkenazTitle, AppResources.NusachSfardTitle, AppResources.NusachEdotMizrachTitle };
+
+        public List<string> Themes { get; } = new List<string>() { AppResources.ThemeNameFromOS, AppResources.ThemeNameLight, AppResources.ThemeNameDark };
 
         public bool ShowVeanenu
         {

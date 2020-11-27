@@ -311,7 +311,7 @@
     <value>לפני תפילת מנחה</value>
   </data>
   <data name="FontSizeSettingLabel" xml:space="preserve">
-    <value>גודל טקסט:</value>
+    <value>גודל טקסט בתפילות:</value>
   </data>
   <data name="FontSizeSettingLabelLarge" xml:space="preserve">
     <value>גדול</value>
@@ -766,5 +766,17 @@
   </data>
   <data name="HeadTfillinMirrorTitle" xml:space="preserve">
     <value>מראה לתפילין של ראש</value>
+  </data>
+  <data name="ThemeNameDark" xml:space="preserve">
+    <value>כהה</value>
+  </data>
+  <data name="ThemeNameFromOS" xml:space="preserve">
+    <value>כמו מערכת ההפעלה</value>
+  </data>
+  <data name="ThemeNameLight" xml:space="preserve">
+    <value>בהירה</value>
+  </data>
+  <data name="ThemeSettingLabel" xml:space="preserve">
+    <value>ערכת נושא:</value>
   </data>
 </root>

@@ -57,7 +57,7 @@ namespace PrayPal.Common
         private const string TimeCalcMethodKey = "TimeCalcMethod";
         private const string UseLocationKey = "UseLocation";
         private const string ShowVeanenuKey = "ShowVeanenu";
-        private const string UseLightBackgroundKey = "UseLightBackground";
+        private const string ThemeKey = "Theme";
         private const string UseLargeFontKey = "UseLargeFont";
 
         #endregion
@@ -128,15 +128,15 @@ namespace PrayPal.Common
             }
         }
 
-        public static bool UseLightBackground
+        public static Theme Theme
         {
             get
             {
-                return AppSettings.GetValue(UseLightBackgroundKey, false);
+                return (Theme)AppSettings.GetValue(ThemeKey, (int)Theme.FromOS);
             }
             set
             {
-                AppSettings.SetValue(UseLightBackgroundKey, value);
+                AppSettings.SetValue(ThemeKey, (int)value);
                 OnSettingChanged();
             }
         }

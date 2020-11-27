@@ -28,6 +28,7 @@ namespace PrayPal
     {
         private readonly MainViewModel _mainViewModel;
         private static readonly Autofac.IContainer _container;
+        private OSAppTheme _osTheme;
 
         static App()
         {
@@ -91,6 +92,10 @@ namespace PrayPal
 
         public App()
         {
+            _osTheme = RequestedTheme;
+
+            OnSettingsChanged(nameof(Settings.Theme));
+
             InitializeComponent();
 
             _mainViewModel = _container.Resolve<MainViewModel>();
@@ -116,12 +121,29 @@ namespace PrayPal
 
         public void OnSettingsChanged(string settingName)
         {
-            if (settingName != nameof(Settings.UseLightBackground))
+            if (settingName != nameof(Settings.Theme))
             {
                 return;
             }
 
-            UserAppTheme = Settings.UseLightBackground ? OSAppTheme.Light : OSAppTheme.Unspecified;
+            OSAppTheme theme = OSAppTheme.Unspecified;
+
+            switch (Settings.Theme)
+            {
+                case Theme.FromOS:
+                    theme = _osTheme;
+                    break;
+                case Theme.Light:
+                    theme = OSAppTheme.Light;
+                    break;
+                case Theme.Dark:
+                    theme = OSAppTheme.Dark;
+                    break;
+                default:
+                    break;
+            }
+
+            UserAppTheme = theme;
         }
     }
 }

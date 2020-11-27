@@ -593,7 +593,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to גודל טקסט:.
+        ///   Looks up a localized string similar to גודל טקסט בתפילות:.
         /// </summary>
         public static string FontSizeSettingLabel {
             get {
@@ -1714,6 +1714,42 @@ namespace PrayPal.Resources {
         public static string TfilotHashacharTitle {
             get {
                 return ResourceManager.GetString("TfilotHashacharTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to כהה.
+        /// </summary>
+        public static string ThemeNameDark {
+            get {
+                return ResourceManager.GetString("ThemeNameDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to כמו מערכת ההפעלה.
+        /// </summary>
+        public static string ThemeNameFromOS {
+            get {
+                return ResourceManager.GetString("ThemeNameFromOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to בהירה.
+        /// </summary>
+        public static string ThemeNameLight {
+            get {
+                return ResourceManager.GetString("ThemeNameLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ערכת נושא:.
+        /// </summary>
+        public static string ThemeSettingLabel {
+            get {
+                return ResourceManager.GetString("ThemeSettingLabel", resourceCulture);
             }
         }
         

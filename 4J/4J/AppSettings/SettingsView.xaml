@@ -13,7 +13,7 @@
 			</HyperlinkButton>-->
                 <!--</StackPanel>-->
 
-                <Label Margin="0,15">
+                <!--<Label Margin="0,15">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{app:CustomResource ReportingLabel}"/>
@@ -21,7 +21,7 @@
                             <Span Text="."/>
                         </FormattedString>
                     </Label.FormattedText>
-                </Label>
+                </Label>-->
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="{app:CustomResource NusachSettingLabel}" VerticalTextAlignment="Center"/>
@@ -44,16 +44,19 @@
 							SelectedIndex="{Binding UseLargeFont, Mode=TwoWay}"/>
                 </StackLayout>
 
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{app:CustomResource ThemeSettingLabel}" VerticalTextAlignment="Center"/>
+                    <app:PickerEx Title="{app:CustomResource ThemeSettingLabel}"
+							ItemsSource="{Binding Themes, Mode=OneTime}"
+							SelectedIndex="{Binding Theme, Mode=TwoWay}"/>
+                </StackLayout>
+
 
                 <!--<Label Text="{app:CustomResource LockScreenSupportInfo}" LineBreakMode="WordWrap"/>
 				<Button Content="{app:CustomResource GoToLockScreenSettingsCommandTitle}" toolkit:TiltEffect.IsTiltEnabled="True" Command="{Binding GoToLockScreenSettingsCommand, Mode=OneTime}" HorizontalAlignment="Center"/>-->
 
                 <!--<CheckBox ="{app:CustomResource UseLightBackgroundSettingTitle}" IsChecked="{Binding UseLightBackground, Mode=TwoWay}"
 				Visibility="{StaticResource PhoneDarkThemeVisibility}" toolkit:TiltEffect.IsTiltEnabled="True"/>-->
-
-                <app:SwitchEx IsVisible="{Binding ShowUseLightBackgroundSetting}"
-							  IsToggled="{Binding UseLightBackground, Mode=TwoWay}"
-							  Title="{app:CustomResource UseLightBackgroundSettingTitle}"/>
 
                 <app:SwitchEx IsVisible="{Binding ShowVeanenuSetting}"
 					IsToggled="{Binding ShowVeanenu, Mode=TwoWay}"
