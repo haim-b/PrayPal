@@ -17,11 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E158DD27
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.PrayPal.Content", "Tests\PrayPal.ContentTests\Tests.PrayPal.Content.csproj", "{E7A4E481-1840-4216-AB3D-150D4B5895D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{0F0318DE-0645-48C1-9F33-E2C8E62E8EBB}"
-	ProjectSection(SolutionItems) = preProject
-		appcenter-post-clone.sh = appcenter-post-clone.sh
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
