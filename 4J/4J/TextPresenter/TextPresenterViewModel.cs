@@ -1,5 +1,4 @@
-﻿using CodeMill.VMFirstNav;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
