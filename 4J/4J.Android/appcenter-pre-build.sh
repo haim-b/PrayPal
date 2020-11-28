@@ -14,12 +14,9 @@ fi
 # correct path to the file relative to the root of your repo
 APP_CENTER_SECRETS_JSON_FILE=$APPCENTER_SOURCE_DIRECTORY/4J/4J/secrets.json
 
-if [ -e "$APP_CENTER_SECRETS_JSON_FILE" ]
-then
-    echo "Updating secrets.json"
-    echo "$APP_CENTER_SECRETS_JSON" > $APP_CENTER_SECRETS_JSON_FILE
-    sed -i -e 's/\\"/'\"'/g' $APP_CENTER_SECRETS_JSON_FILE
+echo "Creating secrets.json"
+echo "$APP_CENTER_SECRETS_JSON" > $APP_CENTER_SECRETS_JSON_FILE
+sed -i -e 's/\\"/'\"'/g' $APP_CENTER_SECRETS_JSON_FILE
 
-    echo "File content:"
-    cat $APP_CENTER_SECRETS_JSON_FILE
-fi
+echo "File content:"
+cat $APP_CENTER_SECRETS_JSON_FILE
