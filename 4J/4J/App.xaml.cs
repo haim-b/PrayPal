@@ -38,10 +38,12 @@ namespace PrayPal
                 CultureInfo.CurrentCulture = new CultureInfo("he-IL");
             }
 
+#if !DEBUG
             AppCenter.Start($"android={Secrets.AndroidSecredKey};" +
-                  "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
-                  typeof(Analytics), typeof(Crashes));
+                      "uwp={Your UWP App secret here};" +
+                      "ios={Your iOS App secret here}",
+                      typeof(Analytics), typeof(Crashes));
+#endif
 
             var logPath = Path.Combine(FileSystem.AppDataDirectory, "log.txt");
 

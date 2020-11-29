@@ -87,12 +87,17 @@ namespace Tests.PrayPal.Content.Prayers
 
             texts.Add(TestExecutor.CreateKadishShalem(jc));
 
-            if (nusach == Nusach.EdotMizrach)
+            ///למנצח
+            TextsModel psalm67 = new TextsModel();
+            psalm67.Title = string.Format(AppResources.PsalmTitle, psalmFormatter.formatHebrewNumber(67));
+            psalm67.Add(new ParagraphModel(Psalms.Psalm67));
+
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
             {
-                ///למנצח
-                TextsModel psalm67 = new TextsModel();
-                psalm67.Title = string.Format(AppResources.PsalmTitle, psalmFormatter.formatHebrewNumber(67));
-                psalm67.Add(new ParagraphModel(Psalms.Psalm67));
+                texts.Last().Add(new ParagraphModel(Psalms.Psalm67, AppResources.InPrayerWithEdotHaMizrach) { IsCollapsible = true });
+            }
+            else if (nusach == Nusach.EdotMizrach)
+            {
                 texts.Add(psalm67);
 
                 texts.Add(TestExecutor.CreateKadishYatom(jc));
