@@ -76,6 +76,13 @@ namespace PrayPal.Content
 
         protected override void AddAleinuLeshabeach()
         {
+            SpanModel lastSpan = _items.Last();
+
+            // למנצח collapsed
+            SpanModel psalm67 = PrayersHelper.GetPsalm(67);
+            lastSpan.Add(new ParagraphModel(AppResources.InPrayerWithEdotHaMizrach, psalm67.First()) { SubTitle = psalm67.Title, IsCollapsible = true });
+
+
             base.AddAleinuLeshabeach();
 
             AddKadishYatom();

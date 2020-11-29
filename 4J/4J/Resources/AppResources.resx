@@ -798,4 +798,7 @@
   <data name="RequestAllPermissionsCommandTitle" xml:space="preserve">
     <value>הענק הרשאות</value>
   </data>
+  <data name="InPrayerWithEdotHaMizrach" xml:space="preserve">
+    <value>בתפילה עם עדות המזרח</value>
+  </data>
 </root>

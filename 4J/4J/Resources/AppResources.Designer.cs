@@ -926,6 +926,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to בתפילה עם עדות המזרח.
+        /// </summary>
+        public static string InPrayerWithEdotHaMizrach {
+            get {
+                return ResourceManager.GetString("InPrayerWithEdotHaMizrach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to בתפילת הלחש אומר.
         /// </summary>
         public static string InTfilatYachidTitle {
