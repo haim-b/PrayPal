@@ -115,7 +115,12 @@
                                 </DataTrigger>
                             </Frame.Triggers>
                             
-                            <StackLayout Spacing="0">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
                                 <Label Text="{Binding DayTitle, Mode=OneTime}">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
@@ -123,7 +128,7 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
-                                <Label Text="&#x2B24;" IsVisible="False" TextColor="{DynamicResource AccentColor}" HorizontalTextAlignment="Center">
+                                <Label Text="&#x2B24;" IsVisible="False" TextColor="{DynamicResource AccentColor}" Grid.Row="1" HorizontalTextAlignment="Center" FontFamily="{DynamicResource SymbolsFont}" FontSize="10">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding HasEvent}" Value="True">
                                             <Setter Property="IsVisible" Value="True"/>
@@ -133,7 +138,7 @@
                                         </DataTrigger>
                                     </Label.Triggers>
                                 </Label>
-                                <Label Text="{Binding CivilTitle, Mode=OneTime}" HorizontalTextAlignment="End" FontSize="Micro">
+                                <Label Text="{Binding CivilTitle, Mode=OneTime}" HorizontalTextAlignment="End" FontSize="11" Grid.Row="2">
                                     <Label.Triggers>
                                         <DataTrigger TargetType="Label" Binding="{Binding IsSelected}" Value="True">
                                             <Setter Property="TextColor" Value="White"/>
@@ -144,7 +149,7 @@
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference calendar}, Path=BindingContext.SelectDayCommand}" CommandParameter="{Binding}"/>
                                 </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

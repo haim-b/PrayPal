@@ -21,6 +21,8 @@ namespace PrayPal.DayTimes
         protected readonly ILocationService _locationService;
         protected readonly ITimeService _timeService;
         protected readonly ObservableCollection<TimeOfDay> _times = new ObservableCollection<TimeOfDay>();
+        private string _errorMessage;
+        private bool _hasErrors;
 
         private string _dateTitle;
 
@@ -91,6 +93,12 @@ namespace PrayPal.DayTimes
 
         protected async Task GenerateZmanim(Geoposition position, JewishCalendar jc, JewishCalendar dafYomiDate)
         {
+            if (!Settings.UseLocation)
+            {
+                ShowError(AppResources.NeedToEnableAppLocationMessage);
+                return;
+            }
+
             if (position == null)
             {
                 position = await _locationService.GetCurrentPositionAsync();
@@ -230,5 +238,34 @@ namespace PrayPal.DayTimes
 
             await GenerateContentAsync();
         }
+
+
+
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                SetProperty(ref _errorMessage, value);
+            }
+        }
+
+
+        private void ShowError(string message)
+        {
+            ErrorMessage = message;
+            HasErrors = !string.IsNullOrEmpty(message);
+        }
+
+        public bool HasErrors
+        {
+            get { return _hasErrors; }
+            private set
+            {
+                SetProperty(ref _hasErrors, value);
+            }
+        }
+
     }
 }

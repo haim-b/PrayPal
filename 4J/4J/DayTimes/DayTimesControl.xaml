@@ -4,40 +4,56 @@
              x:Class="PrayPal.DayTimes.DayTimesControl">
     <ContentView.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
-            <ListView x:Name="lst" Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout>
-                                    <Label Text="{Binding Title, Mode=OneTime}">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
-                                                <Setter Property="FontSize" Value="Medium"/>
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                    <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
+                <ListView x:Name="lst" Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title, Mode=OneTime}">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
+                                                    <Setter Property="FontSize" Value="Medium"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
                                            Style="{DynamicResource DetailsLabelStyle}"/>
 
-                                    <StackLayout.Triggers>
-                                        <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
-                                            <Setter Property="Margin" Value="10"/>
-                                            <Setter Property="Spacing" Value="0"/>
-                                        </DataTrigger>
-                                    </StackLayout.Triggers>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                        <!--<TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                        <StackLayout.Triggers>
+                                            <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
+                                                <Setter Property="Margin" Value="10"/>
+                                                <Setter Property="Spacing" Value="0"/>
+                                            </DataTrigger>
+                                        </StackLayout.Triggers>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                            <!--<TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid" Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Grid.Triggers>
+            </Grid>
+
+            <Label Text="{Binding ErrorMessage}" IsVisible="False" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
         </Grid>
     </ContentView.Content>
 </ContentView>
