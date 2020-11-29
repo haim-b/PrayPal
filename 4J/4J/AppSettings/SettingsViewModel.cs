@@ -9,6 +9,7 @@ using PrayPal.Resources;
 using PrayPal.Common.Services;
 using Microsoft.Extensions.Logging;
 using PrayPal.Common;
+using System.Linq;
 
 namespace PrayPal.AppSettings
 {
@@ -21,6 +22,8 @@ namespace PrayPal.AppSettings
         private readonly IPermissionsService _permissionsService;
         private List<PermissionInfo> _permissionsInfo;
         private bool _showVeanenuSetting;
+        private bool _arePermissionsRequired;
+
 
         public SettingsViewModel(ITimeService timeService, IPermissionsService permissionsService, ILogger<SettingsViewModel> logger)
             : base(AppResources.Settings, logger)
@@ -41,12 +44,16 @@ namespace PrayPal.AppSettings
             {
                 ShowVeanenuSetting = (await _timeService.GetDayInfoAsync()).IsVetenBracha();
 
-                List<PermissionInfo> permissions = new List<PermissionInfo>();
-
-                permissions.Add(new PermissionInfo(Permissions.Location, AppResources.LocationPermissionTitle, AppResources.UseLocationPrivacyPolicy, await _permissionsService.IsAllowedAsync(Permissions.Location)));
-                permissions.Add(new PermissionInfo(Permissions.Camera, AppResources.CameraPermissionTitle, AppResources.CameraPermissionReason, await _permissionsService.IsAllowedAsync(Permissions.Camera)));
+                List<PermissionInfo> permissions = new List<PermissionInfo>
+                {
+                    new PermissionInfo(Permissions.Location, AppResources.LocationPermissionTitle, AppResources.UseLocationPrivacyPolicy, await _permissionsService.IsAllowedAsync(Permissions.Location)),
+                    new PermissionInfo(Permissions.Camera, AppResources.CameraPermissionTitle, AppResources.CameraPermissionReason, await _permissionsService.IsAllowedAsync(Permissions.Camera))
+                };
 
                 PermissionsInfo = permissions;
+                ArePermissionsRequired = permissions.Any(p => !p.IsAllowed);
+
+                Settings.UseLocation = permissions.First(p => p.Name == Permissions.Location).IsAllowed;
             }
             catch (Exception ex)
             {
@@ -54,20 +61,27 @@ namespace PrayPal.AppSettings
             }
         }
 
-        public bool UseLocation
-        {
-            get { return Settings.UseLocation; }
-            set
-            {
-                SetUseLocation(value);
-            }
-        }
+        //public bool UseLocation
+        //{
+        //    get { return Settings.UseLocation; }
+        //    set
+        //    {
+        //        SetUseLocation(value);
+        //    }
+        //}
 
         public List<PermissionInfo> PermissionsInfo
         {
             get { return _permissionsInfo; }
             set { SetProperty(ref _permissionsInfo, value); }
         }
+
+        public bool ArePermissionsRequired
+        {
+            get { return _arePermissionsRequired; }
+            set { SetProperty(ref _arePermissionsRequired, value); }
+        }
+
 
         public Command RequestPermissionsCommand { get; }
 
@@ -76,31 +90,31 @@ namespace PrayPal.AppSettings
             get { return "mailto:" + AppResources.EmailAddress; }
         }
 
-        private async void SetUseLocation(bool useLocation)
-        {
-            try
-            {
-                if (useLocation)
-                {
-                    if (!(await _permissionsService.RequestAsync(Permissions.Location)))
-                    {
-                        return;
-                    }
-                }
+        //private async void SetUseLocation(bool useLocation)
+        //{
+        //    try
+        //    {
+        //        if (useLocation)
+        //        {
+        //            if (!(await _permissionsService.RequestAsync(Permissions.Location)))
+        //            {
+        //                return;
+        //            }
+        //        }
 
 
-                Settings.UseLocation = useLocation;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, "Set location exception.");
-                return;
-            }
-            finally
-            {
-                RaisePropertyChanged("UseLocation");
-            }
-        }
+        //        Settings.UseLocation = useLocation;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogError(ex, "Set location exception.");
+        //        return;
+        //    }
+        //    finally
+        //    {
+        //        RaisePropertyChanged("UseLocation");
+        //    }
+        //}
 
         public int Theme
         {

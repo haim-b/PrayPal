@@ -69,7 +69,7 @@
 
                 <Label Text="{app:CustomResource PermissionsTableInstruction}" Margin="0,20,0,0"/>
 
-                <Button Text="{app:CustomResource RequestAllPermissionsCommandTitle}" Command="{Binding RequestPermissionsCommand, Mode=OneTime}" HorizontalOptions="Start" Padding="5,0"/>
+                <Button Text="{app:CustomResource RequestAllPermissionsCommandTitle}" Command="{Binding RequestPermissionsCommand, Mode=OneTime}" IsVisible="{Binding ArePermissionsRequired}" HorizontalOptions="Start" Padding="5,0"/>
 
                 <ListView ItemsSource="{Binding PermissionsInfo}" HasUnevenRows="True">
 					<ListView.ItemTemplate>

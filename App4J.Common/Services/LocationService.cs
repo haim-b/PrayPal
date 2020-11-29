@@ -45,11 +45,12 @@ namespace PrayPal.Common.Services
                 //var request = new GeolocationRequest(GeolocationAccuracy.Low, _locationTimeout);
                 var location = await Geolocation.GetLastKnownLocationAsync();//.GetLocationAsync(request, cancellationToken);
 
-                if (location != null)
+                if (location == null)
                 {
-                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    return null;
                 }
 
+                //Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                 return new Geoposition(location.Longitude, location.Latitude, location.Altitude);
             }
             catch (Exception ex) when (ex is FeatureNotSupportedException
