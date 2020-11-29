@@ -19,6 +19,7 @@
             <Color x:Key="DetailsColor">#777777</Color>
 
             <x:String x:Key="DocTextFont">SegoeUISL</x:String>
+            <x:String x:Key="SymbolsFont">SegoeUISym</x:String>
             
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>

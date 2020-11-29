@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Zmanim.HebrewCalendar;
 using Microsoft.AppCenter.Analytics;
+using Xamarin.Essentials;
 
 namespace PrayPal.Prayers
 {
@@ -38,6 +39,16 @@ namespace PrayPal.Prayers
         public ObservableCollection<PrayerItemViewModel> Items { get; }
 
         public Command<PrayerItemViewModel> ItemTappedCommand { get; }
+
+        public bool ShowHeadersInstruction
+        {
+            get { return Preferences.Get(nameof(ShowHeadersInstruction), true); }
+            set
+            {
+                Preferences.Set(nameof(ShowHeadersInstruction), value);
+                OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs(nameof(ShowHeadersInstruction)));
+            }
+        }
 
         public async Task GenerateContentAsync()
         {

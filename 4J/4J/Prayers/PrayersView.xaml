@@ -35,9 +35,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Expander IsExpanded="True" Grid.Row="1">
+        <Expander IsExpanded="{Binding ShowHeadersInstruction, FallbackValue=True}" Grid.Row="1">
             <Expander.Header>
-                <Label Text="{app:CustomResource ClickDocHeaderInstruction}" TextColor="White" BackgroundColor="{DynamicResource AccentColor}"/>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{DynamicResource AccentColor}" Spacing="0">
+                    <Label Text="{app:CustomResource ClickDocHeaderInstruction}" TextColor="White" Margin="0,0,10,0"/>
+                    <Button Text="&#x25BC;" InputTransparent="True" BackgroundColor="White" TextColor="{DynamicResource AccentColor}" FontFamily="{DynamicResource SymbolsFont}" HorizontalOptions="End" CornerRadius="15" Padding="0" WidthRequest="30" HeightRequest="30" Margin="2" VerticalOptions="Center">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding ShowHeadersInstruction}" Value="False">
+                                <Setter Property="Text" Value="&#x25B2;"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
             </Expander.Header>
 
             <Image Source="{AppThemeBinding Light=header_click_light.png, Dark=header_click_dark.png}" HeightRequest="150" Margin="0,3,0,0"/>
