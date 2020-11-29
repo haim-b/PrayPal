@@ -64,8 +64,11 @@ namespace PrayPal
 
             var builder = new ContainerBuilder();
 
+            Type prayerInterfaceType = typeof(IPrayer);
+            Type textProvider = typeof(CommonPrayerTextProvider);
+
             builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => t.Namespace.StartsWith("PrayPal") && t.GetCustomAttribute<TextNameAttribute>() == null && !t.Name.EndsWith("TextProvider"))
+                .Where(t => t.Namespace.StartsWith("PrayPal") && !prayerInterfaceType.IsAssignableFrom(t) && !textProvider.IsAssignableFrom(t))
                 .AsImplementedInterfaces()
                 .AsSelf();
 
