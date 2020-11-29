@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
+using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
@@ -59,7 +60,7 @@ namespace PrayPal.Tools.Calendar
             : base(AppResources.CalendarTitle, notificationService, errorReportingService, logger)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
-            _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true };
+            _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true, IsSubView = true };
 
             IncreaseMonthCommand = new Command(IncreaseMonth, CanIncreaseMonth);
             DecreaseMonthCommand = new Command(DecreaseMonth, CanDecreaseMonth);

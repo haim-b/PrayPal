@@ -9,15 +9,28 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
+            <ListView x:Name="lst" Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Margin="2">
-                                    <Label Text="{Binding Title, Mode=OneTime}" FontSize="Medium"/>
+                                <StackLayout>
+                                    <Label Text="{Binding Title, Mode=OneTime}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
+                                                <Setter Property="FontSize" Value="Medium"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
                                     <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                                           TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+                                           Style="{DynamicResource DetailsLabelStyle}"/>
+
+                                    <StackLayout.Triggers>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference lst}, Path=BindingContext.IsSubView}" Value="False">
+                                            <Setter Property="Margin" Value="10"/>
+                                            <Setter Property="Spacing" Value="0"/>
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

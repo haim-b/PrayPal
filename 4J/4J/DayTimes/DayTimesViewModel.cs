@@ -82,6 +82,8 @@ namespace PrayPal.DayTimes
 
         public bool ShowGregorianDate { get; set; }
 
+        public bool IsSubView { get; set; }
+
         public async Task GenerateContentAsync()
         {
             await GenerateZmanim(null, null, null);
