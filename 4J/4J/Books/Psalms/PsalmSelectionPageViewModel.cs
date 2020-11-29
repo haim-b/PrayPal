@@ -8,6 +8,7 @@ using PrayPal.Services;
 using PrayPal.TextPresenter;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,13 +101,25 @@ namespace PrayPal.Books.Psalms
         public int SelectedVerseByWeekDayIndex
         {
             get { return _selectedVerseByWeekDayIndex; }
-            set { SetProperty(ref _selectedVerseByWeekDayIndex, value); }
+            set
+            {
+                // We don't use SetProperty because we want the PropertyChanged event if the index remains 0,
+                // otherwise the UI will not show the selected item if it's the first one:
+                _selectedVerseByWeekDayIndex = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(SelectedVerseByWeekDayIndex)));
+            }
         }
 
         public int SelectedVerseByMonthDayIndex
         {
             get { return _selectedVerseByMonthDayIndex; }
-            set { SetProperty(ref _selectedVerseByMonthDayIndex, value); }
+            set
+            {
+                // We don't use SetProperty because we want the PropertyChanged event if the index remains 0,
+                // otherwise the UI will not show the selected item if it's the first one:
+                _selectedVerseByMonthDayIndex = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(SelectedVerseByMonthDayIndex)));
+            }
         }
 
         public Command ShowVerseByWeekDayCommand
