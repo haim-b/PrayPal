@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Autofac.Features.Metadata;
+using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
 using PrayPal.Services;
-using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,11 +27,11 @@ namespace PrayPal.TextPresenter
         private ITextDocument _textDocument;
         private string _textName;
         private string _textParam;
-        private readonly IEnumerable<Lazy<ITextDocument, PrayerMetadata>> _texts;
+        private readonly IEnumerable<Meta<ITextDocument, PrayerMetadata>> _texts;
         private readonly ITimeService _timeService;
         private readonly ILogger _logger;
 
-        public TextPresenterViewModel(IEnumerable<Lazy<ITextDocument, PrayerMetadata>> texts, ITimeService timeService, INotificationService notificationService, IErrorReportingService errorReportingService, ILogger<TextPresenterViewModel> logger)
+        public TextPresenterViewModel(IEnumerable<Meta<ITextDocument, PrayerMetadata>> texts, ITimeService timeService, INotificationService notificationService, IErrorReportingService errorReportingService, ILogger<TextPresenterViewModel> logger)
             : base("a", notificationService, errorReportingService, logger)
         {
             _texts = texts ?? throw new ArgumentNullException(nameof(texts));
