@@ -8,7 +8,21 @@
     <Grid x:Name="ContentRoot" Margin="19,9.5,19,0" >
         <Grid FlowDirection="LeftToRight" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="{Binding Source={RelativeSource Self}, Path=Width}" MinimumWidthRequest="100"
               Rotation="{Binding Angle}">
-            <Label  Text="&#x2B06;" FontFamily="SegoeUISym" HorizontalTextAlignment="Center" FontSize="150" /> <!--FontFamily="Segoe UI Symbol"-->
+            <Label  Text="&#x2B06;" FontFamily="SegoeUISym" HorizontalTextAlignment="Center" FontSize="150" />
+
+            <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding HasErrors}" Value="True">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </Grid.Triggers>
         </Grid>
-    </Grid>
+
+            <Label Text="{Binding ErrorMessage}" IsVisible="False" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
 </ContentPage>
