@@ -185,7 +185,7 @@ namespace PrayPal.Content
             CommonPrayerTextProvider.Current = textProvider;
         }
 
-        public static SpanModel GetPsalm(int number)
+        public static SpanModel GetPsalm(int number, bool useVersePrefixInTitle = false)
         {
             if (number <= 0 || number > 150)
             {
@@ -194,7 +194,7 @@ namespace PrayPal.Content
 
             string hebrewNumber = _psalmFormatter.formatHebrewNumber(number);
 
-            SpanModel span = new SpanModel(string.Format(AppResources.PsalmTitle, hebrewNumber));
+            SpanModel span = new SpanModel(string.Format(useVersePrefixInTitle ? AppResources.PsalmVerseTitleFormat : AppResources.PsalmTitle, hebrewNumber));
             span.ShortTitle = hebrewNumber;
             span.Add(new ParagraphModel(Psalms.ResourceManager.GetString("Psalm" + number)));
             return span;

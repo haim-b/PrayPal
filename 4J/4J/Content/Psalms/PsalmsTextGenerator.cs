@@ -186,12 +186,12 @@ namespace PrayPal
                         p.Add(GetPsalm(i));
                     }
 
-                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), Psalms.ResourceManager.GetString("Psalm119_1")) { ShortTitle = "קיט" };
                     p.Add(p119);
 
                     for (int i = 2; i <= 11; i++)
                     {
-                        p119.Add(PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_" + i));
+                        p119.Add(Psalms.ResourceManager.GetString("Psalm119_" + i));
                     }
 
                     break;
@@ -254,12 +254,12 @@ namespace PrayPal
 
                 string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _verseFormatter.formatHebrewNumber(119), _verseFormatter.formatHebrewNumber(1), _verseFormatter.formatHebrewNumber(96));
 
-                SpanModel p119 = new SpanModel(title, PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                SpanModel p119 = new SpanModel(title, Psalms.ResourceManager.GetString("Psalm119_1")) { ShortTitle = "קיט" };
                 p.Add(p119);
 
                 for (int i = 2; i <= 6; i++)
                 {
-                    p119.Add(PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_" + i));
+                    p119.Add(Psalms.ResourceManager.GetString("Psalm119_" + i));
                 }
             }
             else if (dayOfMonth == 26)
@@ -268,12 +268,12 @@ namespace PrayPal
 
                 string title = string.Format(AppResources.PsalmVerseTitleFormat + ": {1}-{2}", _verseFormatter.formatHebrewNumber(119), _verseFormatter.formatHebrewNumber(97), _verseFormatter.formatHebrewNumber(176));
 
-                SpanModel p119 = new SpanModel(title, PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                SpanModel p119 = new SpanModel(title, Psalms.ResourceManager.GetString("Psalm119_1")) { ShortTitle = "קיט" };
                 p.Add(p119);
 
                 for (int i = 7; i <= 11; i++)
                 {
-                    p119.Add(PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_" + i));
+                    p119.Add(Psalms.ResourceManager.GetString("Psalm119_" + i));
                 }
             }
 
@@ -296,12 +296,12 @@ namespace PrayPal
             {
                 if (i == 119)
                 {
-                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_1"));
+                    SpanModel p119 = new SpanModel(string.Format(AppResources.PsalmVerseTitleFormat, _verseFormatter.formatHebrewNumber(119)), Psalms.ResourceManager.GetString("Psalm119_1")) { ShortTitle = "קיט" };
                     p.Add(p119);
 
                     for (int j = 2; j <= 11; j++)
                     {
-                        p119.Add(PrayPal.Resources.Psalms.ResourceManager.GetString("Psalm119_" + j));
+                        p119.Add(Psalms.ResourceManager.GetString("Psalm119_" + j));
                     }
                 }
                 else
@@ -316,7 +316,7 @@ namespace PrayPal
 
         private static SpanModel GetPsalm(int number)
         {
-            return PrayersHelper.GetPsalm(number);
+            return PrayersHelper.GetPsalm(number, true);
         }
 
         private static Dictionary<int, Tuple<int, int>> _monthDayFromTo = new Dictionary<int, Tuple<int, int>>
