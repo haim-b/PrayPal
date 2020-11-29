@@ -10,6 +10,7 @@ using PrayPal.Common.Services;
 using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using System.Linq;
+using Microsoft.AppCenter.Analytics;
 
 namespace PrayPal.AppSettings
 {
@@ -35,10 +36,10 @@ namespace PrayPal.AppSettings
             ShowUseLightBackgroundSetting = App.Current.RequestedTheme != OSAppTheme.Light;
             RequestPermissionsCommand = new Command(RequestPermissions);
 
-            Initialize();
+            Initialize(false);
         }
 
-        private async void Initialize()
+        private async void Initialize(bool afterCommand)
         {
             try
             {
@@ -54,6 +55,11 @@ namespace PrayPal.AppSettings
                 ArePermissionsRequired = permissions.Any(p => !p.IsAllowed);
 
                 Settings.UseLocation = permissions.First(p => p.Name == Permissions.Location).IsAllowed;
+
+                if (afterCommand)
+                {
+                    Analytics.TrackEvent("Permissions changed", permissions.ToDictionary(p => p.Name.ToString(), p => p.IsAllowed.ToString()));
+                }
             }
             catch (Exception ex)
             {
@@ -224,7 +230,7 @@ namespace PrayPal.AppSettings
             }
 
             // Refresh the permissions info:
-            Initialize();
+            Initialize(true);
         }
 
         //public Command GoToLockScreenSettingsCommand
