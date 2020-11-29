@@ -10,20 +10,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <ListView x:Name="lst" ItemsSource="{Binding Items}"
-            SelectionMode="None"
-            SeparatorVisibility="None"
+            SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True"
             CachingStrategy="RecycleElement">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
-                    <!--<TextCell Text="{Binding Title}" Detail="{Binding Subtitle}" Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
                     <ViewCell>
                         <ViewCell.View>
-                            <StackLayout Margin="2">
+                            <StackLayout Margin="10" Spacing="0">
                                 <Label Text="{Binding Title, Mode=OneTime}" FontSize="Medium"/>
-                                <Label Text="{Binding Subtitle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                                       TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}"/>
+                                <!--<Label Text="{Binding Subtitle}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                       Style="{DynamicResource DetailsLabelStyle}"/>-->
 
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>

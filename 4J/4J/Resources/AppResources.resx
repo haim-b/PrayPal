@@ -674,7 +674,7 @@
     <value>יש לאפשר את שירותי המיקום במסך ההגדרות של מערכת ההפעלה.</value>
   </data>
   <data name="UseChulSettingDescription" xml:space="preserve">
-    <value>סמן תיבה זו אם ברצונך שחישובי הזמנים יתבצעו לפי הדינים של מי שגר בחו"ל</value>
+    <value>חישובי הזמנים יתבצעו לפי הדינים של מי שגר בחו"ל</value>
   </data>
   <data name="UseChulSettingTitle" xml:space="preserve">
     <value>השתמש בדיני הדרים בחו"ל</value>
@@ -781,5 +781,21 @@
   </data>
   <data name="ClickDocHeaderInstruction" xml:space="preserve">
     <value>ניתן ללחוץ על הכותרות הגדולות כדי לקפוץ למיקום מסויים בטקסט</value>
+  </data>
+  <data name="CameraPermissionReason" xml:space="preserve">
+    <value>עבור מראת תפילין בשחרית</value>
+  </data>
+  <data name="CameraPermissionTitle" xml:space="preserve">
+    <value>מצלמה</value>
+  </data>
+  <data name="LocationPermissionTitle" xml:space="preserve">
+    <value>מיקום</value>
+  </data>
+  <data name="PermissionsTableInstruction" xml:space="preserve">
+    <value>האפליקציה זקוקה להרשאות כדי לפעול באופן תקין.
+להלן פירוט של מה נעשה עם ההרשאות. לא יעשה דבר מעבר.</value>
+  </data>
+  <data name="RequestAllPermissionsCommandTitle" xml:space="preserve">
+    <value>הענק הרשאות</value>
   </data>
 </root>

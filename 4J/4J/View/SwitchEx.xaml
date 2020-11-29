@@ -12,12 +12,6 @@
                 <!--<Setter Property="FontSize" Value="Default" />-->
                 <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}" />
             </Style>
-
-            <Style x:Key="DetailsLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{Binding Source={StaticResource DetailsBrush}, Path=Color}" />
-                <Setter Property="LineBreakMode" Value="WordWrap"/>
-            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>

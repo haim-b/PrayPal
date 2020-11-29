@@ -19,6 +19,7 @@ namespace PrayPal.AppSettings
 
         private readonly ITimeService _timeService;
         private readonly IPermissionsService _permissionsService;
+        private List<PermissionInfo> _permissionsInfo;
         private bool _showVeanenuSetting;
 
         public SettingsViewModel(ITimeService timeService, IPermissionsService permissionsService, ILogger<SettingsViewModel> logger)
@@ -29,6 +30,7 @@ namespace PrayPal.AppSettings
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
             _permissionsService = permissionsService ?? throw new ArgumentNullException(nameof(permissionsService));
             ShowUseLightBackgroundSetting = App.Current.RequestedTheme != OSAppTheme.Light;
+            RequestPermissionsCommand = new Command(RequestPermissions);
 
             Initialize();
         }
@@ -38,6 +40,13 @@ namespace PrayPal.AppSettings
             try
             {
                 ShowVeanenuSetting = (await _timeService.GetDayInfoAsync()).IsVetenBracha();
+
+                List<PermissionInfo> permissions = new List<PermissionInfo>();
+
+                permissions.Add(new PermissionInfo(Permissions.Location, AppResources.LocationPermissionTitle, AppResources.UseLocationPrivacyPolicy, await _permissionsService.IsAllowedAsync(Permissions.Location)));
+                permissions.Add(new PermissionInfo(Permissions.Camera, AppResources.CameraPermissionTitle, AppResources.CameraPermissionReason, await _permissionsService.IsAllowedAsync(Permissions.Camera)));
+
+                PermissionsInfo = permissions;
             }
             catch (Exception ex)
             {
@@ -53,6 +62,14 @@ namespace PrayPal.AppSettings
                 SetUseLocation(value);
             }
         }
+
+        public List<PermissionInfo> PermissionsInfo
+        {
+            get { return _permissionsInfo; }
+            set { SetProperty(ref _permissionsInfo, value); }
+        }
+
+        public Command RequestPermissionsCommand { get; }
 
         public string MailTo
         {
@@ -180,6 +197,22 @@ namespace PrayPal.AppSettings
             }
         }
 
+        private async void RequestPermissions()
+        {
+            try
+            {
+                await _permissionsService.RequestAsync(Permissions.Location);
+                await _permissionsService.RequestAsync(Permissions.Camera);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to request permissions.");
+            }
+
+            // Refresh the permissions info:
+            Initialize();
+        }
+
         //public Command GoToLockScreenSettingsCommand
         //{
         //    get { return _goToLockScreenSettingsCommand; }
@@ -199,5 +232,31 @@ namespace PrayPal.AppSettings
         //{
         //    await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings-location:"));
         //}
+    }
+
+    public class PermissionInfo : BindableBase
+    {
+        private bool _isAllowed;
+
+        public Permissions Name { get; }
+
+        public string Title { get; }
+
+        public string Reason { get; }
+
+        public PermissionInfo(Permissions name, string title, string reason, bool isAllowed)
+        {
+            Name = name;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+            Reason = reason ?? throw new ArgumentNullException(nameof(reason));
+            _isAllowed = isAllowed;
+        }
+
+        public bool IsAllowed
+        {
+            get { return _isAllowed; }
+            set { SetProperty(ref _isAllowed, value); }
+        }
+
     }
 }

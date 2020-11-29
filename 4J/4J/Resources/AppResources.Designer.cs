@@ -431,6 +431,24 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to עבור מראת תפילין בשחרית.
+        /// </summary>
+        public static string CameraPermissionReason {
+            get {
+                return ResourceManager.GetString("CameraPermissionReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to מצלמה.
+        /// </summary>
+        public static string CameraPermissionTitle {
+            get {
+                return ResourceManager.GetString("CameraPermissionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;לא ניתן לטעון תוכן&gt;.
         /// </summary>
         public static string CannotLoadContentError {
@@ -1088,6 +1106,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to מיקום.
+        /// </summary>
+        public static string LocationPermissionTitle {
+            get {
+                return ResourceManager.GetString("LocationPermissionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to יש להפעיל שימוש במיקום.
         /// </summary>
         public static string LocationServicesAreNeeded {
@@ -1385,6 +1412,16 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to האפליקציה זקוקה להרשאות כדי לפעול באופן תקין.
+        ///להלן פירוט של מה נעשה עם ההרשאות. לא יעשה דבר מעבר..
+        /// </summary>
+        public static string PermissionsTableInstruction {
+            get {
+                return ResourceManager.GetString("PermissionsTableInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to סיום התפילה.
         /// </summary>
         public static string PrayerEndingTitle {
@@ -1534,6 +1571,15 @@ namespace PrayPal.Resources {
         public static string ReportMistakeQuestion {
             get {
                 return ResourceManager.GetString("ReportMistakeQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to הענק הרשאות.
+        /// </summary>
+        public static string RequestAllPermissionsCommandTitle {
+            get {
+                return ResourceManager.GetString("RequestAllPermissionsCommandTitle", resourceCulture);
             }
         }
         
@@ -1871,7 +1917,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to סמן תיבה זו אם ברצונך שחישובי הזמנים יתבצעו לפי הדינים של מי שגר בחו&quot;ל.
+        ///   Looks up a localized string similar to חישובי הזמנים יתבצעו לפי הדינים של מי שגר בחו&quot;ל.
         /// </summary>
         public static string UseChulSettingDescription {
             get {

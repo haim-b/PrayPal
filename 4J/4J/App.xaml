@@ -62,6 +62,12 @@
                 <Setter Property="FontFamily" Value="SegoeUI"/>
             </Style>
 
+            <Style x:Key="DetailsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{Binding Source={StaticResource DetailsBrush}, Path=Color}" />
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+            </Style>
+            
             <!--<Style x:Key="ListItemDetailTextStyle" TargetType="Label" BasedOn="{x:Static Device+Styles.ListItemDetailTextStyle}">
                 <Setter Property="TextColor" Value="{Binding Source={StaticResource TextBrush}, Path=Color}"/>                
             </Style>

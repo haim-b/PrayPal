@@ -9,7 +9,7 @@
        xmlns:s="clr-namespace:PrayPal.AppSettings"
        Title="{app:CustomResource ApplicationTitle}"
        x:Class="PrayPal.AppShell"
-       FlowDirection="RightToLeft" Background="Black">
+       FlowDirection="RightToLeft">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
