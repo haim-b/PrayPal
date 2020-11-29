@@ -9,11 +9,14 @@ using Microsoft.Extensions.Logging;
 using PrayPal.AppSettings;
 using PrayPal.Tools;
 using PrayPal.Books;
+using Xamarin.Essentials;
 
 namespace PrayPal
 {
     public class MainViewModel : BindableBase, IContentPage
     {
+        private const string AppAlreadyRanKey = "AppAlreadyRan";
+
         private readonly ILogger _logger;
 
         public MainViewModel(DayTimesViewModel dayTimes, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
@@ -26,6 +29,12 @@ namespace PrayPal
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             DayTimes.ShowPrayersTime = true;
             DayTimes.ShowRelativePrayers = true;
+
+            if (IsFirstTime)
+            {
+                CurrentView = Settings;
+                IsFirstTime = false;
+            }
         }
 
         public DayTimesViewModel DayTimes { get; }
@@ -37,6 +46,14 @@ namespace PrayPal
         public ToolsPageViewModel Tools { get; }
 
         public SettingsViewModel Settings { get; }
+
+        public object CurrentView { get; set; }
+
+        private bool IsFirstTime
+        {
+            get { return !Preferences.Get(AppAlreadyRanKey, false); }
+            set { Preferences.Set(AppAlreadyRanKey, !value); }
+        }
 
         public async Task GenerateContentAsync()
         {

@@ -12,5 +12,21 @@ namespace PrayPal
             InitializeComponent();
         }
 
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            var vm = BindingContext as MainViewModel;
+
+            if (vm == null)
+            {
+                return;
+            }
+
+            if (vm.CurrentView == vm.Settings)
+            {
+                tab.CurrentItem = settingsTabItem;
+            }
+        }
     }
 }
