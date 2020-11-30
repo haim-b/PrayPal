@@ -59,6 +59,11 @@ namespace PrayPal.Common.Services
                     throw new NotSupportedException("Permission is not supported.");
             }
 
+            if (MainThread.IsMainThread)
+            {
+                return await request() == PermissionStatus.Granted;
+            }
+
             return await MainThread.InvokeOnMainThreadAsync(async () => await request()) == PermissionStatus.Granted;
         }
     }
