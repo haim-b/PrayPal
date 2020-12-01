@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.Hardware;
+using Microsoft.AppCenter.Crashes;
 
 namespace PrayPal.Droid
 {
@@ -96,26 +97,34 @@ namespace PrayPal.Droid
 
         public void SurfaceChanged(ISurfaceHolder holder, Android.Graphics.Format format, int width, int height)
         {
-            var parameters = Preview.GetParameters();
-            parameters.SetPreviewSize(_previewSize.Width, _previewSize.Height);
-            RequestLayout();
-
-            switch (_windowManager.DefaultDisplay.Rotation)
+            try
             {
-                case SurfaceOrientation.Rotation0:
-                    _camera.SetDisplayOrientation(90);
-                    break;
-                case SurfaceOrientation.Rotation90:
-                    _camera.SetDisplayOrientation(0);
-                    break;
-                case SurfaceOrientation.Rotation270:
-                    _camera.SetDisplayOrientation(180);
-                    break;
-            }
+                var parameters = Preview.GetParameters();
+                parameters.SetPreviewSize(_previewSize.Width, _previewSize.Height);
+                RequestLayout();
 
-            Preview.SetParameters(parameters);
-            Preview.StartPreview();
-            IsPreviewing = true;
+                switch (_windowManager.DefaultDisplay.Rotation)
+                {
+                    case SurfaceOrientation.Rotation0:
+                        _camera.SetDisplayOrientation(90);
+                        break;
+                    case SurfaceOrientation.Rotation90:
+                        _camera.SetDisplayOrientation(0);
+                        break;
+                    case SurfaceOrientation.Rotation270:
+                        _camera.SetDisplayOrientation(180);
+                        break;
+                }
+
+                Preview.SetParameters(parameters);
+                Preview.StartPreview();
+                IsPreviewing = true;
+            }
+            catch (Exception ex)
+            {
+                IsPreviewing = false;
+                Crashes.TrackError(ex);
+            }
         }
 
         Camera.Size GetOptimalPreviewSize(IList<Camera.Size> sizes, int w, int h)
