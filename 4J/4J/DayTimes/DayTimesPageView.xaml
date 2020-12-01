@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PrayPal"
+             xmlns:local="clr-namespace:PrayPal.DayTimes"
+             x:Class="PrayPal.DayTimes.DayTimesPageView" Title="{app:CustomResource ApplicationTitle}">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="DayTimeStackLayoutStyle">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Spacing" Value="0"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="DayTimeMainLabelStyle">
+            <Setter Property="FontSize" Value="Medium"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <local:DayTimesView BindingContext="{Binding DayTimesViewModel}"/>
+</ContentPage>

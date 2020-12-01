@@ -54,6 +54,9 @@
     <Compile Update="DayTimes\DayTimesView.xaml.cs">
       <DependentUpon>DayTimesView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="DayTimes\DayTimesPageView.xaml.cs">
+      <DependentUpon>DayTimesPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AppResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -98,10 +101,10 @@
     <EmbeddedResource Update="Books\Psalms\PsalmSelectionPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DayTimes\DayTimesControl.xaml">
+    <EmbeddedResource Update="DayTimes\DayTimesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DayTimes\DayTimesView.xaml">
+    <EmbeddedResource Update="DayTimes\DayTimesPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Prayers\MeeinShalosh\MeeinShaloshPage.xaml">

@@ -19,7 +19,7 @@ namespace PrayPal
 
         private readonly ILogger _logger;
 
-        public MainViewModel(DayTimesViewModel dayTimes, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
+        public MainViewModel(DayTimesPageViewModel dayTimes, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
         {
             DayTimes = dayTimes ?? throw new ArgumentNullException(nameof(dayTimes));
             Prayers = prayers ?? throw new ArgumentNullException(nameof(prayers));
@@ -27,8 +27,6 @@ namespace PrayPal
             Tools = toolsPageViewModel ?? throw new ArgumentNullException(nameof(toolsPageViewModel));
             Settings = settings;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            DayTimes.ShowPrayersTime = true;
-            DayTimes.ShowRelativePrayers = true;
 
             if (IsFirstTime)
             {
@@ -37,7 +35,7 @@ namespace PrayPal
             }
         }
 
-        public DayTimesViewModel DayTimes { get; }
+        public DayTimesPageViewModel DayTimes { get; }
 
         public PrayersViewModel Prayers { get; }
 

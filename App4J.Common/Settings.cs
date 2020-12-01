@@ -123,8 +123,11 @@ namespace PrayPal.Common
             }
             set
             {
-                AppSettings.SetValue(UseLocationKey, value);
-                OnSettingChanged();
+                if (UseLocation != value)
+                {
+                    AppSettings.SetValue(UseLocationKey, value);
+                    OnSettingChanged();
+                }
             }
         }
 

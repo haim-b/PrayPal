@@ -1,9 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:app="clr-namespace:PrayPal"
-             xmlns:local="clr-namespace:PrayPal.DayTimes"
-             x:Class="PrayPal.DayTimes.DayTimesView" Title="{app:CustomResource ApplicationTitle}">
+             x:Class="PrayPal.DayTimes.DayTimesView">
+    <ContentView.Content>
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
+                <ListView x:Name="lst" Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Style="{DynamicResource DayTimeStackLayoutStyle}">
+                                        <Label Text="{Binding Title, Mode=OneTime}" Style="{DynamicResource DayTimeMainLabelStyle}"/>
 
-    <local:DayTimesControl/>
-</ContentPage>
+                                        <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                           Style="{DynamicResource DetailsLabelStyle}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                            <!--<TextCell Text="{Binding Title, Mode=OneTime}" TextColor="{Binding Source={StaticResource TextBrush}, Path=Color}" DetailColor="{Binding Source={StaticResource DetailsBrush}, Path=Color}"/>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid.Triggers>
+                    <DataTrigger TargetType="Grid" Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Grid.Triggers>
+            </Grid>
+
+            <Label Text="{Binding ErrorMessage}" IsVisible="False" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding HasErrors}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

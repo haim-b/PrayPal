@@ -79,13 +79,13 @@ namespace PrayPal.AppSettings
         public List<PermissionInfo> PermissionsInfo
         {
             get { return _permissionsInfo; }
-            set { SetProperty(ref _permissionsInfo, value); }
+            private set { SetProperty(ref _permissionsInfo, value); }
         }
 
         public bool ArePermissionsRequired
         {
             get { return _arePermissionsRequired; }
-            set { SetProperty(ref _arePermissionsRequired, value); }
+            private set { SetProperty(ref _arePermissionsRequired, value); }
         }
 
 
@@ -127,8 +127,13 @@ namespace PrayPal.AppSettings
             get { return (int)Settings.Theme; }
             set
             {
-                Settings.Theme = (Theme)value;
-                RaisePropertyChanged();
+                Theme newValue = (Theme)value;
+
+                if (Settings.Theme != newValue)
+                {
+                    Settings.Theme = newValue;
+                    RaisePropertyChanged();
+                }
             }
         }
 
@@ -137,8 +142,13 @@ namespace PrayPal.AppSettings
             get { return Settings.TimeCalcMethod == TimeCalcMethod.Gra ? 0 : 1; }
             set
             {
-                Settings.TimeCalcMethod = value == 0 ? TimeCalcMethod.Gra : TimeCalcMethod.Mga;
-                RaisePropertyChanged();
+                TimeCalcMethod newValue = value == 0 ? TimeCalcMethod.Gra : TimeCalcMethod.Mga;
+
+                if (Settings.TimeCalcMethod != newValue)
+                {
+                    Settings.TimeCalcMethod = newValue;
+                    RaisePropertyChanged();
+                }
             }
         }
 
@@ -147,10 +157,15 @@ namespace PrayPal.AppSettings
             get { return (int)Settings.Nusach; }
             set
             {
-                Settings.Nusach = (Nusach)value;
-                RaisePropertyChanged();
+                Nusach newValue = (Nusach)value;
 
-                PrayersHelper.SetPrayerTextProvider((Nusach)value);
+                if (Settings.Nusach != newValue)
+                {
+                    Settings.Nusach = newValue;
+                    RaisePropertyChanged();
+
+                    PrayersHelper.SetPrayerTextProvider((Nusach)value);
+                }
             }
         }
 
@@ -159,10 +174,15 @@ namespace PrayPal.AppSettings
             get { return Settings.UseLargeFont ? 1 : 0; }
             set
             {
-                Settings.UseLargeFont = value == 1;
-                RaisePropertyChanged();
+                bool newValue = value == 1;
 
-                ParagraphModel.SetFontSize();
+                if (Settings.UseLargeFont != newValue)
+                {
+                    Settings.UseLargeFont = newValue;
+                    RaisePropertyChanged();
+
+                    ParagraphModel.SetFontSize();
+                }
             }
         }
 
@@ -182,8 +202,11 @@ namespace PrayPal.AppSettings
             }
             set
             {
-                Settings.ShowVeanenu = value;
-                RaisePropertyChanged();
+                if (Settings.ShowVeanenu != value)
+                {
+                    Settings.ShowVeanenu = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 

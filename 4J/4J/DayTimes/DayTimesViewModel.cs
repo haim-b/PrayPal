@@ -16,10 +16,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PrayPal.DayTimes
 {
-    public class DayTimesViewModel : ScreenPageViewModelBase, IContentPage
+    public class DayTimesViewModel : BindableBase
     {
         protected readonly ILocationService _locationService;
         protected readonly ITimeService _timeService;
+        private readonly ILogger<DayTimesViewModel> _logger;
         protected readonly ObservableCollection<TimeOfDay> _times = new ObservableCollection<TimeOfDay>();
         private string _errorMessage;
         private bool _hasErrors;
@@ -27,14 +28,11 @@ namespace PrayPal.DayTimes
         private string _dateTitle;
 
         public DayTimesViewModel(ILocationService locationService, ITimeService timeService, ILogger<DayTimesViewModel> logger)
-            : base(AppResources.ZmaneyHayom, logger)
         {
             _locationService = locationService ?? throw new ArgumentNullException(nameof(locationService));
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
-
-            ShowRelativePrayers = true;
-            IncludeIsruChag = true;
-            DateTitle = Title;
+            _logger = logger;
+            DateTitle = AppResources.ZmaneyHayom;
         }
 
         public ObservableCollection<TimeOfDay> Times
@@ -66,8 +64,11 @@ namespace PrayPal.DayTimes
             get { return _jewishDate; }
             set
             {
-                _jewishDate = value;
-                OnJewishDateChanged(value);
+                if (_jewishDate != value)
+                {
+                    _jewishDate = value;
+                    OnJewishDateChanged(value);
+                }
             }
         }
 
@@ -84,14 +85,7 @@ namespace PrayPal.DayTimes
 
         public bool ShowGregorianDate { get; set; }
 
-        public bool IsSubView { get; set; }
-
-        public async Task GenerateContentAsync()
-        {
-            await GenerateZmanim(null, null, null);
-        }
-
-        protected async Task GenerateZmanim(Geoposition position, JewishCalendar jc, JewishCalendar dafYomiDate)
+        public async Task GenerateZmanim(Geoposition position, JewishCalendar jc, JewishCalendar dafYomiDate)
         {
             if (!Settings.UseLocation)
             {
@@ -99,109 +93,118 @@ namespace PrayPal.DayTimes
                 return;
             }
 
-            if (position == null)
+            ShowError(null);
+
+            try
             {
-                position = await _locationService.GetCurrentPositionAsync();
-            }
+                if (position == null)
+                {
+                    position = await _locationService.GetCurrentPositionAsync();
+                }
 
-            if (jc == null)
+                if (jc == null)
+                {
+                    jc = (await _timeService.GetDayInfoAsync()).JewishCalendar;
+                }
+
+                if (dafYomiDate == null)
+                {
+                    dafYomiDate = jc;
+                }
+
+                CultureInfo ci = new CultureInfo("he-IL");
+                //ci.DateTimeFormat.Calendar = new HebrewCalendar();
+                //ci.DateTimeFormat.LongDatePattern = "dddd, dd MMMM yyyy";
+
+                Calendar hebrewCalendar = ci.OptionalCalendars.ElementAtOrDefault(1);
+
+                if (hebrewCalendar != null)
+                {
+                    ci.DateTimeFormat.Calendar = hebrewCalendar;
+                }
+
+                //DateTime now = HebDateHelper.GetCurrentDateTime(position);
+                //ITimeZone timeZone = new WindowsTimeZone(System.TimeZoneInfo.Local);
+                //GeoLocation location = new GeoLocation(string.Empty, position.Latitude, position.Longitude, position.Altitude, timeZone);
+                //DateTime time = HebDateHelper.GetCurrentDateTime();
+                //ComplexZmanimCalendar zc = new ComplexZmanimCalendar(time, location);
+
+                _times.Clear();
+
+                if (jc == null)
+                {
+                    DateTitle = null;
+                    return;
+                }
+
+                HebrewDateFormatter formatter = new HebrewDateFormatter();
+                formatter.HebrewFormat = true;
+
+                if (ShowGregorianDate)
+                {
+                    _times.Add(new TimeOfDay(jc.Time.ToString("d")));
+                }
+
+                string yomTov = HebDateHelper.GetMoedTitle(jc, IncludeIsruChag);
+
+                if (!string.IsNullOrEmpty(yomTov))
+                {
+                    _times.Add(new TimeOfDay(yomTov));
+                }
+
+                string parasha = HebDateHelper.GetParasha(jc);
+
+                if (!string.IsNullOrEmpty(parasha))
+                {
+                    _times.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                }
+
+                _times.Add(new TimeOfDay(CommonResources.DafYomiTitle + ": " + GetDafYomiText(jc, dafYomiDate, formatter)));
+
+                //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, GetValue(zc.GetSofZmanShmaGRA()).ToString("t"))));
+                //_zmanim.Add(new ZmanHayom(AppResources.EndTimeOfPrayer, GetValue(zc.GetSofZmanTfilaGRA())));
+
+                if (ShowPrayersTime)
+                {
+                    //ComplexZmanimCalendar calendar = await _timeService.GetCurrentZmanimCalendarAsync(ShowRelativePrayers ? (DateTime?)jc.Time : null, position);
+
+                    AddPrayerInfo(await _timeService.GetShacharitInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
+                    //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, Settings.Instance.TimeCalcMethod == "MGA" ? calendar?.GetSofZmanShmaMGA() : calendar?.GetSofZmanShmaGRA())));
+                    AddPrayerInfo(await _timeService.GetMinchaInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
+                    AddPrayerInfo(await _timeService.GetArvitInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
+                }
+
+                DateTime? sunset = await _timeService.GetSunsetAsync(position);
+
+                if (sunset != null)
+                {
+                    _times.Add(new TimeOfDay(AppResources.Sunset + ": " + sunset.Value.ToString("t")));
+                }
+
+                DateTime? knissatShabbat = await _timeService.GetKnissatShabbatAsync(position, jc.Time);
+
+                if (knissatShabbat != null)
+                {
+                    _times.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}", CommonResources.KnissatShabbat, knissatShabbat.Value)));
+                }
+
+                int omer = jc.DayOfOmer;
+
+                if (omer == 1)
+                {
+                    _times.Add(new TimeOfDay(CommonResources.Omer1));
+                }
+                else if (omer > 1)
+                {
+                    _times.Add(new TimeOfDay(string.Format(CommonResources.OmerShort, omer)));
+                }
+
+                DateTitle = jc.Time.ToString("dddd", ci) + ", " + formatter.format(jc);//now.ToString("D", ci.DateTimeFormat);
+            }
+            catch (Exception ex)
             {
-                jc = (await _timeService.GetDayInfoAsync()).JewishCalendar;
+                _logger.LogError(ex, "Failed to generate times.");
             }
-
-            if (dafYomiDate == null)
-            {
-                dafYomiDate = jc;
-            }
-
-            CultureInfo ci = new CultureInfo("he-IL");
-            //ci.DateTimeFormat.Calendar = new HebrewCalendar();
-            //ci.DateTimeFormat.LongDatePattern = "dddd, dd MMMM yyyy";
-
-            Calendar hebrewCalendar = ci.OptionalCalendars.ElementAtOrDefault(1);
-
-            if (hebrewCalendar != null)
-            {
-                ci.DateTimeFormat.Calendar = hebrewCalendar;
-            }
-
-            //DateTime now = HebDateHelper.GetCurrentDateTime(position);
-            //ITimeZone timeZone = new WindowsTimeZone(System.TimeZoneInfo.Local);
-            //GeoLocation location = new GeoLocation(string.Empty, position.Latitude, position.Longitude, position.Altitude, timeZone);
-            //DateTime time = HebDateHelper.GetCurrentDateTime();
-            //ComplexZmanimCalendar zc = new ComplexZmanimCalendar(time, location);
-
-            _times.Clear();
-
-            if (jc == null)
-            {
-                DateTitle = null;
-                return;
-            }
-
-            HebrewDateFormatter formatter = new HebrewDateFormatter();
-            formatter.HebrewFormat = true;
-
-            if (ShowGregorianDate)
-            {
-                _times.Add(new TimeOfDay(jc.Time.ToString("d")));
-            }
-
-            string yomTov = HebDateHelper.GetMoedTitle(jc, IncludeIsruChag);
-
-            if (!string.IsNullOrEmpty(yomTov))
-            {
-                _times.Add(new TimeOfDay(yomTov));
-            }
-
-            string parasha = HebDateHelper.GetParasha(jc);
-
-            if (!string.IsNullOrEmpty(parasha))
-            {
-                _times.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
-            }
-
-            _times.Add(new TimeOfDay(CommonResources.DafYomiTitle + ": " + GetDafYomiText(jc, dafYomiDate, formatter)));
-
-            //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, GetValue(zc.GetSofZmanShmaGRA()).ToString("t"))));
-            //_zmanim.Add(new ZmanHayom(AppResources.EndTimeOfPrayer, GetValue(zc.GetSofZmanTfilaGRA())));
-
-            if (ShowPrayersTime)
-            {
-                //ComplexZmanimCalendar calendar = await _timeService.GetCurrentZmanimCalendarAsync(ShowRelativePrayers ? (DateTime?)jc.Time : null, position);
-
-                AddPrayerInfo(await _timeService.GetShacharitInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
-                //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, Settings.Instance.TimeCalcMethod == "MGA" ? calendar?.GetSofZmanShmaMGA() : calendar?.GetSofZmanShmaGRA())));
-                AddPrayerInfo(await _timeService.GetMinchaInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
-                AddPrayerInfo(await _timeService.GetArvitInfoAsync(position, ShowRelativePrayers ? (DateTime?)jc.Time : null));
-            }
-
-            DateTime? sunset = await _timeService.GetSunsetAsync(position);
-
-            if (sunset != null)
-            {
-                _times.Add(new TimeOfDay(AppResources.Sunset + ": " + sunset.Value.ToString("t")));
-            }
-
-            DateTime? knissatShabbat = await _timeService.GetKnissatShabbatAsync(position, jc.Time);
-
-            if (knissatShabbat != null)
-            {
-                _times.Add(new TimeOfDay(string.Format("{0}: ‭{1:t}", CommonResources.KnissatShabbat, knissatShabbat.Value)));
-            }
-
-            int omer = jc.DayOfOmer;
-
-            if (omer == 1)
-            {
-                _times.Add(new TimeOfDay(CommonResources.Omer1));
-            }
-            else if (omer > 1)
-            {
-                _times.Add(new TimeOfDay(string.Format(CommonResources.OmerShort, omer)));
-            }
-
-            DateTitle = jc.Time.ToString("dddd", ci) + ", " + formatter.format(jc);//now.ToString("D", ci.DateTimeFormat);
         }
 
         private void AddPrayerInfo(PrayerInfo prayer)
@@ -227,16 +230,6 @@ namespace PrayPal.DayTimes
             }
 
             return HebDateHelper.GetDafYomi(dafYomiDate) + " (" + formatter.format(dafYomiDate) + ")";
-        }
-
-        protected override async Task OnSettingsChangedAsync(string settingsName)
-        {
-            if (!Settings.TimeAffecingSettings.Contains(settingsName))
-            {
-                return;
-            }
-
-            await GenerateContentAsync();
         }
 
 

@@ -29,7 +29,7 @@ namespace PrayPal.Tools.Calendar
         private int _year;
         //private string _monthString;
         //private string _yearString;
-        private bool _isInitialized;
+        private readonly UsageCounter _initializationCounter;
 
         private readonly DayTimesViewModel _dayTimesViewModel;
 
@@ -60,7 +60,9 @@ namespace PrayPal.Tools.Calendar
             : base(AppResources.CalendarTitle, notificationService, errorReportingService, logger)
         {
             _timeService = timeService ?? throw new ArgumentNullException(nameof(timeService));
-            _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true, IsSubView = true };
+            _dayTimesViewModel = new DayTimesViewModel(locationService, timeService, dayTimesLogger) { ShowPrayersTime = true, ShowRelativePrayers = false, IncludeIsruChag = false, ShowGregorianDate = true };
+
+            _initializationCounter = new UsageCounter(BuildItems);
 
             IncreaseMonthCommand = new Command(IncreaseMonth, CanIncreaseMonth);
             DecreaseMonthCommand = new Command(DecreaseMonth, CanDecreaseMonth);
@@ -82,8 +84,13 @@ namespace PrayPal.Tools.Calendar
 
             // Supply initial values before the location is resolved:
             JewishCalendar jc = new JewishCalendar(DateTime.Now, Settings.IsInIsrael);
-            MonthFromNissan = jc.JewishMonth;
-            Year = jc.JewishYear;
+
+            using (BeginInit())
+            {
+                MonthFromNissan = jc.JewishMonth;
+                Year = jc.JewishYear;
+            }
+
             _selectedDay = jc;
 
 
@@ -210,10 +217,12 @@ namespace PrayPal.Tools.Calendar
 
             if (dayInfo != null)
             {
-                BeginInit();
-                Year = dayInfo.JewishCalendar.JewishYear;
-                MonthFromNissan = dayInfo.JewishCalendar.JewishMonth;
-                EndInit();
+                using (BeginInit())
+                {
+                    Year = dayInfo.JewishCalendar.JewishYear;
+                    MonthFromNissan = dayInfo.JewishCalendar.JewishMonth;
+                }
+
                 SelectedDay = dayInfo.JewishCalendar;
             }
 
@@ -284,14 +293,13 @@ namespace PrayPal.Tools.Calendar
 
         public async Task GenerateContentAsync()
         {
-            var today = await _timeService.GetDayInfoAsync();
+            using (BeginInit())
+            {
+                var today = await _timeService.GetDayInfoAsync();
 
-            MonthFromNissan = today.JewishCalendar.JewishMonth;
-            Year = today.JewishCalendar.JewishYear;
-
-            _isInitialized = true;
-
-            BuildItems();
+                MonthFromNissan = today.JewishCalendar.JewishMonth;
+                Year = today.JewishCalendar.JewishYear;
+            }
         }
 
         private void IncreaseMonth()
@@ -302,11 +310,12 @@ namespace PrayPal.Tools.Calendar
             jc.JewishDayOfMonth = jc.DaysInJewishMonth;
             jc.forward();
 
-            BeginInit();
-            // Set the year first so that the months list will update before we set the month index:
-            Year = jc.JewishYear;
-            MonthFromNissan = jc.JewishMonth;
-            EndInit();
+            using (BeginInit())
+            {
+                // Set the year first so that the months list will update before we set the month index:
+                Year = jc.JewishYear;
+                MonthFromNissan = jc.JewishMonth;
+            }
         }
 
 
@@ -321,11 +330,12 @@ namespace PrayPal.Tools.Calendar
             JewishCalendar jc = new JewishCalendar(Year, MonthFromNissan, 1, Settings.IsInIsrael);
             jc.back();
 
-            BeginInit();
-            // Set the year first so that the months list will update before we set the month index:
-            Year = jc.JewishYear;
-            MonthFromNissan = jc.JewishMonth;
-            EndInit(); ;
+            using (BeginInit())
+            {
+                // Set the year first so that the months list will update before we set the month index:
+                Year = jc.JewishYear;
+                MonthFromNissan = jc.JewishMonth;
+            }
         }
 
         private bool CanDecreaseMonth()
@@ -355,20 +365,14 @@ namespace PrayPal.Tools.Calendar
             SelectedDay = day.JewishCalendar;
         }
 
-        private void BeginInit()
+        private IDisposable BeginInit()
         {
-            _isInitialized = false;
-        }
-
-        private void EndInit()
-        {
-            _isInitialized = true;
-            BuildItems();
+            return _initializationCounter.IncreaseCount();
         }
 
         private void BuildItems()
         {
-            if (!_isInitialized)
+            if (_initializationCounter.Count != 0)
             {
                 return;
             }

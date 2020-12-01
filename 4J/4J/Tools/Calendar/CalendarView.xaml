@@ -155,7 +155,7 @@
                 </BindableLayout.ItemTemplate>
             </Grid>
 
-            <dt:DayTimesControl BindingContext="{Binding SelectedDayInfo}" Grid.Row="3"/>
+            <dt:DayTimesView BindingContext="{Binding SelectedDayInfo}" Grid.Row="3"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
