@@ -120,6 +120,12 @@ namespace PrayPal.Prayers.MeeinShalosh
                 await generationTask;
             }
 
+            if (_basicTextFormat == null)
+            {
+                Text1 = null;
+                return;
+            }
+
             string part1 = string.Join(_andSeparator, GetPart1Texts());
             string part2 = string.Join(" ", GetPart2Texts());
             string part3 = Settings.Nusach == Nusach.EdotMizrach ? string.Join(" ", GetPart3Texts()) : null;
