@@ -126,7 +126,7 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>יהדות</value>
+    <value>PrayPal</value>
   </data>
   <data name="PrayersAndGracesTitle" xml:space="preserve">
     <value>תפילות וברכות</value>
@@ -279,9 +279,6 @@
   </data>
   <data name="MeeinShaloshWineTitle" xml:space="preserve">
     <value>על יין</value>
-  </data>
-  <data name="AppUrl" xml:space="preserve">
-    <value>https://skydrive.live.com/?lc=1037#!/edit.aspx?cid=0009ECAB68FB43D3&amp;group=1&amp;resid=9ECAB68FB43D3%21106&amp;app=OneNote&amp;nd=1</value>
   </data>
   <data name="TishaBeavMessage" xml:space="preserve">
     <value>שים לב שהיום תשעה באב, והתפילה המופיעה כאן אינה מלאה.</value>
@@ -738,7 +735,7 @@
 נעשה שימוש בספריית הזמנים Zmanim.</value>
   </data>
   <data name="AboutViewTitle" xml:space="preserve">
-    <value>מרכז היהדות</value>
+    <value>PrayPal</value>
   </data>
   <data name="MessageBoxCancel" xml:space="preserve">
     <value>ביטול</value>

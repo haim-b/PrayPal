@@ -80,7 +80,7 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to מרכז היהדות.
+        ///   Looks up a localized string similar to PrayPal.
         /// </summary>
         public static string AboutViewTitle {
             get {
@@ -152,20 +152,11 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to יהדות.
+        ///   Looks up a localized string similar to PrayPal.
         /// </summary>
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://skydrive.live.com/?lc=1037#!/edit.aspx?cid=0009ECAB68FB43D3&amp;group=1&amp;resid=9ECAB68FB43D3%21106&amp;app=OneNote&amp;nd=1.
-        /// </summary>
-        public static string AppUrl {
-            get {
-                return ResourceManager.GetString("AppUrl", resourceCulture);
             }
         }
         
