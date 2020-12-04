@@ -49,7 +49,7 @@ namespace PrayPal.Books
             }
 
             Logger.LogInformation($"Opened " + item.PageName);
-            Analytics.TrackEvent("Opening book", Utils.AnalyticsProperty("book", item.PageName));
+            Analytics.TrackEvent("Opened book", Utils.AnalyticsProperty("book", item.PageName));
 
             if (item.ViewModelType != null)
             {
