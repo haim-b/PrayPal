@@ -214,7 +214,7 @@ namespace PrayPal.Content
 
             if (_prayer != Prayer.Arvit)
             {
-                Add(CommonPrayerTextProvider.Current.ModimDeRabanan, AppResources.ModimDeRabananTitle);
+                Add(CommonPrayerTextProvider.Current.ModimDeRabanan, AppResources.ModimDeRabananTitle, true);
             }
         }
 
