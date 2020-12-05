@@ -12,12 +12,14 @@
 
   <ItemGroup>
     <None Remove="Resources\SEGOEUI.TTF" />
+    <None Remove="Resources\SEGOEUII.TTF" />
     <None Remove="Resources\SEGOEUISL.TTF" />
     <None Remove="Resources\SEGUISYM.TTF" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\SEGOEUI.TTF" />
+    <EmbeddedResource Include="Resources\SEGOEUII.TTF" />
     <EmbeddedResource Include="Resources\SEGOEUISL.TTF" />
     <EmbeddedResource Include="Resources\SEGUISYM.TTF" />
   </ItemGroup>
@@ -92,6 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Psalms.resx</DependentUpon>
     </Compile>
+    <Compile Update="SummaryView\SummaryPageView.xaml.cs">
+      <DependentUpon>SummaryPageView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -142,6 +147,9 @@
       <LastGenOutput>Psalms.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="AppSettings\SettingsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SummaryView\SummaryPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TextPresenter\TextPresenterView.xaml">

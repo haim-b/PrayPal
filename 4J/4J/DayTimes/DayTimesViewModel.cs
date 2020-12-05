@@ -23,7 +23,6 @@ namespace PrayPal.DayTimes
         private readonly ILogger<DayTimesViewModel> _logger;
         protected readonly ObservableCollection<TimeOfDay> _times = new ObservableCollection<TimeOfDay>();
         private string _errorMessage;
-        private bool _hasErrors;
 
         private string _dateTitle;
 
@@ -248,16 +247,12 @@ namespace PrayPal.DayTimes
         private void ShowError(string message)
         {
             ErrorMessage = message;
-            HasErrors = !string.IsNullOrEmpty(message);
+            RaisePropertyChanged(nameof(HasErrors));
         }
 
         public bool HasErrors
         {
-            get { return _hasErrors; }
-            private set
-            {
-                SetProperty(ref _hasErrors, value);
-            }
+            get { return !string.IsNullOrEmpty(_errorMessage); }
         }
 
     }

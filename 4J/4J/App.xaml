@@ -20,6 +20,7 @@
 
             <x:String x:Key="DocTextFont">SegoeUISL</x:String>
             <x:String x:Key="SymbolsFont">SegoeUISym</x:String>
+            <x:String x:Key="ItalicFont">SegoeUIItalic</x:String>
             
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>

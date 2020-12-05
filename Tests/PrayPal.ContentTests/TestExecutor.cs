@@ -971,6 +971,11 @@ namespace Tests.PrayPal.Content
             {
                 throw new NotImplementedException();
             }
+
+            public Task<DateTime?> GetSunriseAsync(Geoposition position = null)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         class DummyLogger : ILogger, IDisposable

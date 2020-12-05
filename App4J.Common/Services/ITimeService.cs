@@ -24,6 +24,8 @@ namespace PrayPal.Common.Services
 
         Task<ComplexZmanimCalendar> GetCurrentZmanimCalendarAsync(DateTime? date = null, Geoposition position = null);
 
+        Task<DateTime?> GetSunriseAsync(Geoposition position = null);
+
         Task<DateTime?> GetSunsetAsync(Geoposition position = null);
 
         Task<DateTime?> GetKnissatShabbatAsync(Geoposition position, DateTime? date);

@@ -5,3 +5,4 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("SEGOEUI.TTF", Alias = "SegoeUI")]
 [assembly: ExportFont("SEGOEUISL.TTF", Alias = "SegoeUISL")]
 [assembly: ExportFont("SEGUISYM.TTF", Alias = "SegoeUISym")]
+[assembly: ExportFont("SEGOEUII.TTF", Alias = "SegoeUIItalic")]

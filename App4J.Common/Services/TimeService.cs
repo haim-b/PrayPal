@@ -177,6 +177,23 @@ namespace PrayPal.Common.Services
             return null;
         }
 
+        public async Task<DateTime?> GetSunriseAsync(Geoposition position = null)
+        {
+            if (position == null)
+            {
+                position = await _locationService.GetCurrentPositionAsync();
+            }
+
+            if (position == null)
+            {
+                return null;
+            }
+
+            GeoLocation location = ToGeoLocation(position);
+
+            return new ZmanimCalendar(location).GetSunrise();
+        }
+
         public async Task<DateTime?> GetSunsetAsync(Geoposition position = null)
         {
             if (position == null)
@@ -207,6 +224,11 @@ namespace PrayPal.Common.Services
 
         public async Task<DateTime?> GetKnissatShabbatAsync(Geoposition location, DateTime? forDate = null)
         {
+            if (location == null)
+            {
+                location = await _locationService.GetCurrentPositionAsync();
+            }
+
             if (location == null)
             {
                 return null;

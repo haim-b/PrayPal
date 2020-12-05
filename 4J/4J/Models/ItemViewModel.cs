@@ -12,6 +12,10 @@ namespace PrayPal.Models
         private string _title;
         private string _subtitle;
 
+        public ItemViewModel(string title)
+            : this(title, null)
+        { }
+
         public ItemViewModel(string title, string subtitle)
         {
             _title = title ?? throw new ArgumentNullException(nameof(title));

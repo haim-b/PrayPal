@@ -10,6 +10,7 @@ using PrayPal.AppSettings;
 using PrayPal.Tools;
 using PrayPal.Books;
 using Xamarin.Essentials;
+using PrayPal.SummaryView;
 
 namespace PrayPal
 {
@@ -19,9 +20,9 @@ namespace PrayPal
 
         private readonly ILogger _logger;
 
-        public MainViewModel(DayTimesPageViewModel dayTimes, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
+        public MainViewModel(SummaryPageViewModel summary, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
         {
-            DayTimes = dayTimes ?? throw new ArgumentNullException(nameof(dayTimes));
+            Summary = summary ?? throw new ArgumentNullException(nameof(summary));
             Prayers = prayers ?? throw new ArgumentNullException(nameof(prayers));
             Books = books ?? throw new ArgumentNullException(nameof(books));
             Tools = toolsPageViewModel ?? throw new ArgumentNullException(nameof(toolsPageViewModel));
@@ -35,7 +36,7 @@ namespace PrayPal
             }
         }
 
-        public DayTimesPageViewModel DayTimes { get; }
+        public SummaryPageViewModel Summary { get; }
 
         public PrayersViewModel Prayers { get; }
 
@@ -55,7 +56,7 @@ namespace PrayPal
 
         public async Task GenerateContentAsync()
         {
-            await SafeInitializeViewModelAsync(DayTimes);
+            await SafeInitializeViewModelAsync(Summary);
             await SafeInitializeViewModelAsync(Prayers);
             await SafeInitializeViewModelAsync(Books);
             await SafeInitializeViewModelAsync(Tools);

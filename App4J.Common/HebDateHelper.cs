@@ -32,7 +32,7 @@ namespace PrayPal.Common
                 }
             }
 
-            return new PrayerInfo() { Prayer = Prayer.Unknown };
+            return null;
         }
 
         public static PrayerInfo[] GetPrayersInfo(Geoposition position, DateTime? date = null, bool relativePrayers = true)
@@ -1005,6 +1005,6 @@ namespace PrayPal.Common
 
     public enum Prayer
     {
-        Unknown, Shacharit, Mincha, Arvit, Mussaf
+        Shacharit, Mincha, Arvit, Mussaf
     }
 }

@@ -53,20 +53,20 @@ namespace PrayPal.Prayers
         public async Task GenerateContentAsync()
         {
             Items.Clear();
-            Items.Add(new PrayerItemViewModel(PrayerNames.Shacharit, CommonResources.ShacharitTitle, await FormatPrayerTime(_timeService.GetShacharitInfoAsync())));
+            Items.Add(new PrayerItemViewModel(PrayerNames.Shacharit, CommonResources.ShacharitTitle, FormatPrayerTime(await _timeService.GetShacharitInfoAsync())));
             Items.Add(new PrayerItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
             Items.Add(new PrayerItemViewModel(PrayerNames.MeeinShalosh, AppResources.MeeinShaloshTitle, typeof(MeeinShaloshPageViewModel)));
-            Items.Add(new PrayerItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle, await FormatPrayerTime(_timeService.GetMinchaInfoAsync())));
-            Items.Add(new PrayerItemViewModel(PrayerNames.Arvit, GetArvitTitle(), await FormatPrayerTime(_timeService.GetMinchaInfoAsync())));
+            Items.Add(new PrayerItemViewModel(PrayerNames.Mincha, CommonResources.MinchaTitle, FormatPrayerTime(await _timeService.GetMinchaInfoAsync())));
+            Items.Add(new PrayerItemViewModel(PrayerNames.Arvit, GetArvitTitle(), FormatPrayerTime(await _timeService.GetMinchaInfoAsync())));
             Items.Add(new PrayerItemViewModel(PrayerNames.TfilatHaDerech, AppResources.TfilatHaderechTitle));
             Items.Add(new PrayerItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
 
             await HandleHannukahAsync();
         }
 
-        private async Task<string> FormatPrayerTime(Task<PrayerInfo> task)
+        private string FormatPrayerTime(PrayerInfo prayerInfo)
         {
-            return (await task)?.Start.ToString();
+            return prayerInfo?.Start.ToString();
         }
 
         private async void OnItemTappedExecuted(PrayerItemViewModel item)

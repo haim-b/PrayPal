@@ -2,7 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:app="clr-namespace:PrayPal"
-       xmlns:dt="clr-namespace:PrayPal.DayTimes"
+       xmlns:sv="clr-namespace:PrayPal.SummaryView"
        xmlns:p="clr-namespace:PrayPal.Prayers"
        xmlns:b="clr-namespace:PrayPal.Books"
        xmlns:t="clr-namespace:PrayPal.Tools"
@@ -38,10 +38,10 @@
 
     <TabBar>
         <Tab x:Name="tab">
-            <ShellContent BindingContext="{Binding DayTimes, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate dt:DayTimesPageView}" Route="TimesPage"/>
+            <ShellContent BindingContext="{Binding Summary, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate sv:SummaryPageView}" Route="SummaryPage"/>
             <ShellContent BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate p:PrayersView}" Route="PrayersPage"/>
             <ShellContent BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate b:BooksView}" Route="BooksPage"/>
-            <ShellContent BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate t:ToolsView}" Route="PrayersPage"/>
+            <ShellContent BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate t:ToolsView}" Route="ToolsPage"/>
             <ShellContent x:Name="settingsTabItem" BindingContext="{Binding Settings, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate s:SettingsView}" Route="SettingsPage"/>
         </Tab>
     </TabBar>

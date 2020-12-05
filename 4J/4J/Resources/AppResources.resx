@@ -798,4 +798,19 @@
   <data name="InPrayerWithEdotHaMizrach" xml:space="preserve">
     <value>בתפילה עם עדות המזרח</value>
   </data>
+  <data name="SummaryNowTitle" xml:space="preserve">
+    <value>עכשיו</value>
+  </data>
+  <data name="SummaryThisWeekTitle" xml:space="preserve">
+    <value>השבוע</value>
+  </data>
+  <data name="SummaryTodayTitle" xml:space="preserve">
+    <value>היום</value>
+  </data>
+  <data name="SummaryViewTitle" xml:space="preserve">
+    <value>תקציר</value>
+  </data>
+  <data name="Sunrise" xml:space="preserve">
+    <value>זריחה</value>
+  </data>
 </root>

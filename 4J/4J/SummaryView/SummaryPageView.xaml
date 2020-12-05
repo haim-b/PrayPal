@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:PrayPal"
+             x:Class="PrayPal.SummaryView.SummaryPageView" Title="{app:CustomResource ApplicationTitle}">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="DayTimeStackLayoutStyle">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Spacing" Value="0"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="DayTimeMainLabelStyle">
+            <Setter Property="FontSize" Value="Medium"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding DateTitle}" Margin="3" Style="{DynamicResource TitleStyle}" FontFamily="SegoeUI"/>
+            <ListView x:Name="lst" Grid.Row="1" ItemsSource="{Binding Times}" SelectionMode="None" SeparatorVisibility="None" HasUnevenRows="True"
+                      IsGroupingEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Style="{DynamicResource DayTimeStackLayoutStyle}">
+                                    <Label Text="{Binding Title, Mode=OneTime}" Style="{DynamicResource DayTimeMainLabelStyle}"/>
+
+                                    <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                           Style="{DynamicResource DetailsLabelStyle}"/>
+
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference lst}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="0">
+                                <Label Text="{Binding Title}" TextColor="{DynamicResource DetailsColor}" FontFamily="{DynamicResource ItalicFont}" FontSize="Small" Margin="0,20,10,0"/>
+                                <BoxView HorizontalOptions="Start" HeightRequest="1" Color="{DynamicResource DetailsColor}" WidthRequest="200"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+            </ListView>
+
+            <Grid.Triggers>
+                <DataTrigger TargetType="Grid" Binding="{Binding HasErrors}" Value="True">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </Grid.Triggers>
+        </Grid>
+
+        <Label Text="{Binding ErrorMessage}" IsVisible="False" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Large">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding HasErrors}" Value="True">
+                    <Setter Property="IsVisible" Value="True"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+    </Grid>
+</ContentPage>

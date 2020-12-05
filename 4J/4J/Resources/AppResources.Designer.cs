@@ -1656,6 +1656,51 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to עכשיו.
+        /// </summary>
+        public static string SummaryNowTitle {
+            get {
+                return ResourceManager.GetString("SummaryNowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to השבוע.
+        /// </summary>
+        public static string SummaryThisWeekTitle {
+            get {
+                return ResourceManager.GetString("SummaryThisWeekTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to היום.
+        /// </summary>
+        public static string SummaryTodayTitle {
+            get {
+                return ResourceManager.GetString("SummaryTodayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to תקציר.
+        /// </summary>
+        public static string SummaryViewTitle {
+            get {
+                return ResourceManager.GetString("SummaryViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to זריחה.
+        /// </summary>
+        public static string Sunrise {
+            get {
+                return ResourceManager.GetString("Sunrise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to שקיעה.
         /// </summary>
         public static string Sunset {
