@@ -83,6 +83,11 @@ namespace PrayPal.Content
             get { return _texts["BedtimeShma2AfterChatzot"]; }
         }
 
+        public string NoTachanunText
+        {
+            get { return _texts["NoTachanunText"]; }
+        }
+
         public string TachanunBHsYg
         {
             get { return _texts["TachanunBHsYg"]; }

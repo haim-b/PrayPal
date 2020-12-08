@@ -19,7 +19,7 @@ namespace PrayPal.Content
         {
             bool aseretYameyTshuva = DayInfo.AseretYameyTshuva;
 
-            if (_prayer != Prayer.Arvit)
+            if (Prayer != Prayer.Arvit)
             {
                 AddStringFormat(CommonPrayerTextProvider.Current.Kdusha, aseretYameyTshuva ? CommonPrayerTextProvider.Current.SE03Hamelech : CommonPrayerTextProvider.Current.SE03Hael, aseretYameyTshuva, false, AppResources.KdushaTitle, true);
                 AddStringFormat(CommonPrayerTextProvider.Current.SE03, DayInfo.AseretYameyTshuva ? CommonPrayerTextProvider.Current.SE03Hamelech : CommonPrayerTextProvider.Current.SE03Hael, aseretYameyTshuva, false, AppResources.InTfilatYachidTitle);
@@ -32,7 +32,7 @@ namespace PrayPal.Content
 
         protected override void AddPart19()
         {
-            if (!DayInfo.Teanit && (_prayer == Prayer.Mincha || _prayer == Prayer.Arvit))
+            if (!DayInfo.Teanit && (Prayer == Prayer.Mincha || Prayer == Prayer.Arvit))
             {
                 Add(PrayersHelper.CreateParagraphForStringFormat(AshkenazPrayerTextProvider.Instance.SE19ShalomRav, DayInfo.AseretYameyTshuva ? new RunModel(CommonPrayerTextProvider.Current.SE19AYT, false, true) : null));
             }

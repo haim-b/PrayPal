@@ -57,6 +57,18 @@ namespace PrayPal.Content
                 CommonPrayerTextProvider.Current.AvinuMalkenu4);
         }
 
+        protected override bool AddTachanun()
+        {
+            bool tachanunAdded = base.AddTachanun();
+
+            if (!tachanunAdded)
+            {
+                Add(AppResources.AfterHazarahTitle, EdotHaMizrachPrayerTextProvider.Instance.NoTachanunText);
+            }
+
+            return tachanunAdded;
+        }
+
         protected override void AddAleinuLeshabeach()
         {
             ///למנצח

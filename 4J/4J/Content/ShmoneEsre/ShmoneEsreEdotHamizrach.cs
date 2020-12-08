@@ -31,16 +31,21 @@ namespace PrayPal.Content
             }
         }
 
-        protected override void AddEnding2()
-        {
-            Add(CommonPrayerTextProvider.Current.SE_End, AppResources.AfterHazarahTitle);
-        }
-
         public override bool IsPart9Bold
         {
             get
             {
                 return false;
+            }
+        }
+
+        protected override void AddEnding2()
+        {
+            base.AddEnding2();
+
+            if (Prayer == Prayer.Arvit)
+            {
+                Add(EdotHaMizrachPrayerTextProvider.Instance.NoTachanunText);
             }
         }
 

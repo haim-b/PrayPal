@@ -124,6 +124,12 @@ namespace Tests.PrayPal.Content.Prayers
             TextsModel shmoneEsre = new TextsModel();
             shmoneEsre.Title = AppResources.SE_Title;
             shmoneEsre.AddRange(TestExecutor.CreateShmoneEsre(Prayer.Arvit, jc, yomTov, nusach));
+
+            if (nusach == Nusach.EdotMizrach)
+            {
+                shmoneEsre.Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
+            }
+
             texts.Add(shmoneEsre);
 
             if (IsVeyehiNoam(jc.Time))

@@ -13,13 +13,13 @@ namespace PrayPal.Content
 {
     public abstract class ShmoneEsreBase : ParagraphsPrayerBase
     {
-        protected readonly Prayer _prayer;
-
         public ShmoneEsreBase(Prayer prayer)
         {
-            _prayer = prayer;
+            Prayer = prayer;
             Title = GetTitle();
         }
+
+        protected Prayer Prayer { get; }
 
         protected override Task CreateOverrideAsync()
         {
@@ -29,7 +29,7 @@ namespace PrayPal.Content
 
             AddPart2();
 
-            if (_prayer != Prayer.Mussaf)
+            if (Prayer != Prayer.Mussaf)
             {
                 AddPart3();
 
@@ -127,7 +127,7 @@ namespace PrayPal.Content
 
         protected virtual void AddPart3()
         {
-            if (_prayer != Prayer.Arvit)
+            if (Prayer != Prayer.Arvit)
             {
                 Add(CommonPrayerTextProvider.Current.Kdusha, AppResources.KdushaTitle, true);
             }
@@ -137,7 +137,7 @@ namespace PrayPal.Content
 
         protected void AddParts4To15()
         {
-            bool showAttaChonantanu = _prayer == Prayer.Arvit && DayInfo.ShowAttaChonantanu();
+            bool showAttaChonantanu = Prayer == Prayer.Arvit && DayInfo.ShowAttaChonantanu();
             bool aseretYameyTshuva = DayInfo.AseretYameyTshuva;
 
             AddStringFormat(CommonPrayerTextProvider.Current.SE04, showAttaChonantanu ? CommonPrayerTextProvider.Current.SE04Havdalah : "", false, true);
@@ -146,7 +146,7 @@ namespace PrayPal.Content
             Add(CommonPrayerTextProvider.Current.SE06);
             Add(CommonPrayerTextProvider.Current.SE07);
 
-            if ((_prayer == Prayer.Mincha || _prayer == Prayer.Shacharit) && DayInfo.Teanit)
+            if ((Prayer == Prayer.Mincha || Prayer == Prayer.Shacharit) && DayInfo.Teanit)
             {
                 Add(string.Format(CommonPrayerTextProvider.Current.Anenu, CommonPrayerTextProvider.Current.AnenuEnding), AppResources.InHazarahTitle);
             }
@@ -194,7 +194,7 @@ namespace PrayPal.Content
         {
             Add(CommonPrayerTextProvider.Current.SE17);
 
-            if (_prayer != Prayer.Mussaf) // In Mussaf we don't say Yaaleh VeYavo
+            if (Prayer != Prayer.Mussaf) // In Mussaf we don't say Yaaleh VeYavo
             {
                 ParagraphModel yaalehVeYavo = PrayersHelper.GetYaalehVeYavo(DayInfo);
 
@@ -212,7 +212,7 @@ namespace PrayPal.Content
         {
             Add(CommonPrayerTextProvider.Current.Modim);
 
-            if (_prayer != Prayer.Arvit)
+            if (Prayer != Prayer.Arvit)
             {
                 Add(CommonPrayerTextProvider.Current.ModimDeRabanan, AppResources.ModimDeRabananTitle, true);
             }
@@ -240,7 +240,7 @@ namespace PrayPal.Content
             bool shouldAdd = false;
             string title = null;
 
-            if (_prayer == Prayer.Shacharit || _prayer == Prayer.Mussaf)
+            if (Prayer == Prayer.Shacharit || Prayer == Prayer.Mussaf)
             {
                 shouldAdd = true;
                 title = AppResources.BirkatCohanimTitle;
@@ -280,12 +280,12 @@ namespace PrayPal.Content
 
         protected bool IsMinchaInTeanit
         {
-            get { return _prayer == Prayer.Mincha && DayInfo.Teanit; }
+            get { return Prayer == Prayer.Mincha && DayInfo.Teanit; }
         }
 
         protected override string GetTitle()
         {
-            return _prayer == Prayer.Mussaf ? AppResources.MussafTitle : AppResources.SE_Title;
+            return Prayer == Prayer.Mussaf ? AppResources.MussafTitle : AppResources.SE_Title;
         }
 
         public virtual bool IsPart9Bold

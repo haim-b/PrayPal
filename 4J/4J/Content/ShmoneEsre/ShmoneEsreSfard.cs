@@ -18,7 +18,7 @@ namespace PrayPal.Content
 
         protected override void AddOpening()
         {
-            if (_prayer == Prayer.Mincha || _prayer == Prayer.Mussaf)
+            if (Prayer == Prayer.Mincha || Prayer == Prayer.Mussaf)
             {
                 Add(CommonPrayerTextProvider.Current.KiShemHashem);
             }

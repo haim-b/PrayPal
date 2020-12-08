@@ -131,7 +131,7 @@ namespace PrayPal.Content
 
         protected abstract ShmoneEsreBase GetShmoneEsre();
 
-        private void AddTachanun()
+        protected virtual bool AddTachanun()
         {
             bool showTachanun = DayInfo.IsTachanunDay(GetNusach(), true);
 
@@ -152,9 +152,12 @@ namespace PrayPal.Content
                 tachanun.Add(new ParagraphModel(CommonPrayerTextProvider.Current.TachanunEnding));
 
                 _items.Add(tachanun);
+
+                return true;
             }
             else
             {
+                return false;
                 //texts[texts.Count - 1].Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
             }
         }
@@ -166,7 +169,18 @@ namespace PrayPal.Content
 
         protected virtual bool ShouldAddAvinuMalkenu()
         {
-            return DayInfo.AseretYameyTshuva;
+            if (DayInfo.AseretYameyTshuva)
+            {
+                return true;
+            }
+
+            if (DayInfo.YomTov == JewishCalendar.FAST_OF_ESTHER)
+            {
+                // We don't say Avinu Malkenu on Fast of Esther, unless it got earlier to the 11th:
+                return DayInfo.JewishCalendar.JewishDayOfMonth == 11;
+            }
+
+            return DayInfo.YomTov == JewishCalendar.TENTH_OF_TEVES && (GetNusach() == Nusach.Sfard || GetNusach() == Nusach.Ashkenaz);
         }
 
         protected abstract void AddAvinuMalkenu();

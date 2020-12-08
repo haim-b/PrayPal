@@ -92,6 +92,13 @@ namespace PrayPal.Common
                         goto Result;
                     }
 
+                    if (_jc.YomTovIndex == JewishCalendar.FAST_OF_ESTHER && _jc.JewishDayOfMonth != 11)
+                    {
+                        // There's no Tachanun on Fast of Esther, unless it got earlier to the 11th:
+                        _tachanunDay = false;
+                        goto Result;
+                    }
+
                     JewishCalendar clone = Clone(_jc);
                     clone.forward();
 
@@ -162,17 +169,17 @@ namespace PrayPal.Common
                 return false;
             }
 
-            if (_jc.JewishMonth == 1) //Nissan
+            if (_jc.JewishMonth == JewishDate.NISSAN)
             {
                 return false;
             }
 
-            if (_jc.JewishMonth == 3 && _jc.JewishDayOfMonth >= 1 && _jc.JewishDayOfMonth <= 12) //Sivan
+            if (_jc.JewishMonth == JewishDate.SIVAN && _jc.JewishDayOfMonth >= 1 && _jc.JewishDayOfMonth <= 12)
             {
                 return false;
             }
 
-            if (_jc.JewishMonth == 6 && _jc.JewishDayOfMonth >= 29) //before Rosh Hashana
+            if (_jc.JewishMonth == JewishDate.ELUL && _jc.JewishDayOfMonth >= 29) // before Rosh Hashana
             {
                 if (nusach == Nusach.EdotMizrach || nusach == Nusach.Baladi)
                 {
@@ -185,9 +192,9 @@ namespace PrayPal.Common
                 }
             }
 
-            if (_jc.JewishMonth == 7 && _jc.JewishDayOfMonth >= 9) //Tishrey
+            if (_jc.JewishMonth == JewishDate.TISHREI && _jc.JewishDayOfMonth >= 9)
             {
-                if ((nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz) && isDayBefore && _jc.JewishDayOfMonth == 9) //before Yom Kippur
+                if ((nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz) && isDayBefore && _jc.JewishDayOfMonth == 9) // before Yom Kippur
                 {
                     return true;
                 }

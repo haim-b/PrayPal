@@ -371,17 +371,7 @@ namespace Tests.PrayPal.Content.Prayers
 
         internal static void AddHallel(List<TextsModel> texts, JewishCalendar jc, int yomTov, Nusach nusach)
         {
-            ///0=no hallel, 1=partial hallel, 2=full hallel
-            int hallelMode = 0;
-
-            if (yomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || yomTov == JewishCalendar.HOSHANA_RABBA || yomTov == JewishCalendar.CHANUKAH || yomTov == JewishCalendar.YOM_HAATZMAUT || yomTov == JewishCalendar.YOM_YERUSHALAYIM)
-            {
-                hallelMode = 2;
-            }
-            else if (jc.RoshChodesh || yomTov == JewishCalendar.CHOL_HAMOED_PESACH)
-            {
-                hallelMode = 1;
-            }
+            int hallelMode = GetHallelMode(jc);
 
             if (hallelMode == 0)
             {
@@ -430,5 +420,22 @@ namespace Tests.PrayPal.Content.Prayers
             texts.Add(t);
         }
 
+        internal static int GetHallelMode(JewishCalendar jc)
+        {
+            int yomTov = jc.YomTovIndex;
+            ///0=no hallel, 1=partial hallel, 2=full hallel
+            int hallelMode = 0;
+
+            if (yomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || yomTov == JewishCalendar.HOSHANA_RABBA || yomTov == JewishCalendar.CHANUKAH || yomTov == JewishCalendar.YOM_HAATZMAUT || yomTov == JewishCalendar.YOM_YERUSHALAYIM)
+            {
+                hallelMode = 2;
+            }
+            else if (jc.RoshChodesh || yomTov == JewishCalendar.CHOL_HAMOED_PESACH)
+            {
+                hallelMode = 1;
+            }
+
+            return hallelMode;
+        }
     }
 }

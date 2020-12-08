@@ -277,11 +277,14 @@ namespace PrayPal.Content
 
                 return tachanun;
             }
-            else
+            else if (GetHallelMode() == HallelMode.None)
             {
-                //texts[texts.Count - 1].Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
-                return null;
+                var noTachanun = new SpanModel(AppResources.AfterHazarahTitle, EdotHaMizrachPrayerTextProvider.Instance.NoTachanunText);
+                _items.Add(noTachanun);
+                return noTachanun;
             }
+
+            return null;
         }
 
         protected override void AddAvinuMalkenu()

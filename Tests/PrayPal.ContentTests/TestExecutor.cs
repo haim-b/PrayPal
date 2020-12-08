@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tests.PrayPal.Content.LegacyModels;
 using Tests.PrayPal.Content.LegacyTextProviders;
+using Tests.PrayPal.Content.Prayers;
 using Zmanim;
 using Zmanim.HebrewCalendar;
 using RunModel = PrayPal.Models.RunModel;
@@ -64,7 +65,7 @@ namespace Tests.PrayPal.Content
 
                 for (int i = 0; i < legacy.Length; i++)
                 {
-                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word on date '{0}'.\r\n{1}", now, new AssertMessageContextPrinter(legacy, newStrings, i, 10));//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
+                    Assert.AreEqual(legacy[i], newStrings[i], "Mismatching word on date {0} ({1}).\r\n{2}", now, dayJewishInfo.JewishCalendar, new AssertMessageContextPrinter(legacy, newStrings, i, 10));//, string.Join(" ", Enumerable.Range(i - 5, 5).Select(j => legacy[j])));
                 }
             }
         }
@@ -665,9 +666,9 @@ namespace Tests.PrayPal.Content
                 tachanun.Title = AppResources.TachanunTitle;
                 texts.Add(tachanun);
             }
-            else
+            else if (nusach == Nusach.EdotMizrach && (pray == Prayer.Mincha || pray == Prayer.Shacharit && ShacharitSfardTest.GetHallelMode(jc) == 0))
             {
-                //texts[texts.Count - 1].Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
+                texts[texts.Count - 1].Add(PrayTexts.ResourceManager.GetString("NoTachanunText"));
             }
         }
 

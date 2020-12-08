@@ -355,16 +355,7 @@ namespace PrayPal.Content
 
         protected virtual SpanModel AddHallel()
         {
-            HallelMode hallelMode = HallelMode.None;
-
-            if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || DayInfo.YomTov == JewishCalendar.HOSHANA_RABBA || DayInfo.YomTov == JewishCalendar.CHANUKAH || DayInfo.YomTov == JewishCalendar.YOM_HAATZMAUT || DayInfo.YomTov == JewishCalendar.YOM_YERUSHALAYIM)
-            {
-                hallelMode = HallelMode.Full;
-            }
-            else if (DayInfo.JewishCalendar.RoshChodesh || DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
-            {
-                hallelMode = HallelMode.Partial;
-            }
+            HallelMode hallelMode = GetHallelMode();
 
             if (hallelMode == HallelMode.None)
             {
@@ -409,6 +400,22 @@ namespace PrayPal.Content
             _items.Add(hallel);
 
             return hallel;
+        }
+
+        protected HallelMode GetHallelMode()
+        {
+            HallelMode hallelMode = HallelMode.None;
+
+            if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS || DayInfo.YomTov == JewishCalendar.HOSHANA_RABBA || DayInfo.YomTov == JewishCalendar.CHANUKAH || DayInfo.YomTov == JewishCalendar.YOM_HAATZMAUT || DayInfo.YomTov == JewishCalendar.YOM_YERUSHALAYIM)
+            {
+                hallelMode = HallelMode.Full;
+            }
+            else if (DayInfo.JewishCalendar.RoshChodesh || DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
+            {
+                hallelMode = HallelMode.Partial;
+            }
+
+            return hallelMode;
         }
 
         protected bool ShouldShowSlichot()
