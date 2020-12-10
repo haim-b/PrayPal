@@ -57,7 +57,7 @@ namespace PrayPal.Common
                 }
                 else
                 {
-                    AddPrayersInfo(now, location, prayers);
+                    AddRelativePrayersInfo(now.Date, location, prayers);
                 }
             }
 
@@ -138,77 +138,77 @@ namespace PrayPal.Common
             }
         }
 
-        private static void AddPrayersInfo(DateTime date, Zmanim.Utilities.GeoLocation location, List<PrayerInfo> prayers)
-        {
-            Zmanim.ComplexZmanimCalendar zc = new Zmanim.ComplexZmanimCalendar(date, location);
+        //private static void AddPrayersInfo(DateTime date, Zmanim.Utilities.GeoLocation location, List<PrayerInfo> prayers)
+        //{
+        //    Zmanim.ComplexZmanimCalendar zc = new Zmanim.ComplexZmanimCalendar(date, location);
 
-            DateTime? hanetz = zc.GetSunrise();
+        //    DateTime? hanetz = zc.GetSunrise();
 
-            TimeCalcMethod timeCalcMethod = Settings.TimeCalcMethod;
+        //    TimeCalcMethod timeCalcMethod = Settings.TimeCalcMethod;
 
-            DateTime? sofZmanTfila;
+        //    DateTime? sofZmanTfila;
 
-            if (timeCalcMethod == TimeCalcMethod.Gra)
-            {
-                sofZmanTfila = zc.GetSofZmanTfilaGRA();
-            }
-            else
-            {
-                sofZmanTfila = zc.GetSofZmanTfilaMGA();
-            }
+        //    if (timeCalcMethod == TimeCalcMethod.Gra)
+        //    {
+        //        sofZmanTfila = zc.GetSofZmanTfilaGRA();
+        //    }
+        //    else
+        //    {
+        //        sofZmanTfila = zc.GetSofZmanTfilaMGA();
+        //    }
 
-            if (hanetz != null && sofZmanTfila != null)
-            {
-                string extraInfo = null;
-                DateTime? sofZmanShma;
+        //    if (hanetz != null && sofZmanTfila != null)
+        //    {
+        //        string extraInfo = null;
+        //        DateTime? sofZmanShma;
 
-                if (timeCalcMethod == TimeCalcMethod.Gra)
-                {
-                    sofZmanShma = zc.GetSofZmanShmaGRA();
-                }
-                else
-                {
-                    sofZmanShma = zc.GetSofZmanShmaMGA();
-                }
+        //        if (timeCalcMethod == TimeCalcMethod.Gra)
+        //        {
+        //            sofZmanShma = zc.GetSofZmanShmaGRA();
+        //        }
+        //        else
+        //        {
+        //            sofZmanShma = zc.GetSofZmanShmaMGA();
+        //        }
 
-                if (sofZmanShma != null)
-                {
-                    extraInfo = string.Format("{0}: ‭{1:t}", CommonResources.EndTimeOfShma, sofZmanShma.Value.ToString("t"));
-                }
+        //        if (sofZmanShma != null)
+        //        {
+        //            extraInfo = string.Format("{0}: ‭{1:t}", CommonResources.EndTimeOfShma, sofZmanShma.Value.ToString("t"));
+        //        }
 
-                prayers.Add(new PrayerInfo() { Prayer = Prayer.Shacharit, Start = hanetz.Value, End = sofZmanTfila.Value, PrayerName = CommonResources.Shacharit, ExtraInfo = extraInfo });
-            }
+        //        prayers.Add(new PrayerInfo() { Prayer = Prayer.Shacharit, Start = hanetz.Value, End = sofZmanTfila.Value, PrayerName = CommonResources.Shacharit, ExtraInfo = extraInfo });
+        //    }
 
-            if (prayers.Count == 3)
-            {
-                return;
-            }
+        //    if (prayers.Count == 3)
+        //    {
+        //        return;
+        //    }
 
-            DateTime? minchaGdola = zc.GetMinchaGedola();
-            DateTime? sunset = zc.GetSunset();
+        //    DateTime? minchaGdola = zc.GetMinchaGedola();
+        //    DateTime? sunset = zc.GetSunset();
 
-            if (minchaGdola != null && sunset != null)
-            {
-                prayers.Add(new PrayerInfo() { Prayer = Prayer.Mincha, Start = minchaGdola.Value, End = sunset.Value, PrayerName = CommonResources.Mincha });
-            }
+        //    if (minchaGdola != null && sunset != null)
+        //    {
+        //        prayers.Add(new PrayerInfo() { Prayer = Prayer.Mincha, Start = minchaGdola.Value, End = sunset.Value, PrayerName = CommonResources.Mincha });
+        //    }
 
-            if (prayers.Count == 3)
-            {
-                return;
-            }
+        //    if (prayers.Count == 3)
+        //    {
+        //        return;
+        //    }
 
-            DateTime? tzaisHakokhavim = zc.GetTzais();
-            //DateTime? hazot=zc
+        //    DateTime? tzaisHakokhavim = zc.GetTzais();
+        //    //DateTime? hazot=zc
 
-            zc = new Zmanim.ComplexZmanimCalendar(date + TimeSpan.FromDays(1), location);
+        //    zc = new Zmanim.ComplexZmanimCalendar(date + TimeSpan.FromDays(1), location);
 
-            DateTime? alotHashachar = zc.GetAlos90();
+        //    DateTime? alotHashachar = zc.GetAlos90();
 
-            if (tzaisHakokhavim != null && alotHashachar != null)
-            {
-                prayers.Add(new PrayerInfo() { Prayer = Prayer.Arvit, Start = tzaisHakokhavim.Value, End = alotHashachar.Value, PrayerName = CommonResources.Arvit });
-            }
-        }
+        //    if (tzaisHakokhavim != null && alotHashachar != null)
+        //    {
+        //        prayers.Add(new PrayerInfo() { Prayer = Prayer.Arvit, Start = tzaisHakokhavim.Value, End = alotHashachar.Value, PrayerName = CommonResources.Arvit });
+        //    }
+        //}
 
         public static bool IsMoridHatal(JewishCalendar jc)
         {

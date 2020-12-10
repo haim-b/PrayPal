@@ -92,17 +92,7 @@ namespace PrayPal
                 throw new ArgumentNullException(nameof(timeService));
             }
 
-            PrayerInfo[] prayers = HebDateHelper.GetPrayersInfo(position, relativeToDate, relativeToDate != null);
-
-            foreach (PrayerInfo prayer in prayers)
-            {
-                if (prayer.Start <= relativeToDate && relativeToDate <= prayer.End)
-                {
-                    return prayer;
-                }
-            }
-
-            return null;
+            return HebDateHelper.GetNextPrayer(position);
 
             //DateTime now = relativeToDate ?? DateTime.Now;
 

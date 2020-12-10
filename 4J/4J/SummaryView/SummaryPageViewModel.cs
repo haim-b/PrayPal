@@ -113,7 +113,7 @@ namespace PrayPal.SummaryView
                 };
 
                 List<ItemViewModel> nowItems = await GetNowItemsAsync(position, jc, formatter);
-                List<string> nowItemNames = nowItems.OfType<PrayerItemViewModel>().Select(p => p.PageName).ToList();
+                List<string> nowItemNames = nowItems.Select(p => p.Title).ToList();
 
                 SummaryViewItem now = new SummaryViewItem(AppResources.SummaryNowTitle);
                 nowItems.ForEach(i => now.Add(i));
@@ -125,7 +125,7 @@ namespace PrayPal.SummaryView
                 // Make sure to add only items that don't already appear on Now:
                 foreach (var item in todayItems)
                 {
-                    if (item is PrayerItemViewModel p && nowItemNames.Contains(p.PageName))
+                    if (nowItemNames.Contains(item.Title))
                     {
                         continue;
                     }
@@ -167,7 +167,7 @@ namespace PrayPal.SummaryView
                         items.Add(CreateHannukahCandleLighting(jc, nextPrayer));
                     }
 
-                    items.Add(new PrayerItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
+                    items.Add(new PrayerItemViewModel(AppResources.BedtimeShmaTitle, AppResources.BedtimeShmaTitle));
                 }
             }
 
@@ -180,7 +180,7 @@ namespace PrayPal.SummaryView
         {
             string candleTitle = CommonResources.ResourceManager.GetString("Chanuka" + jc.DayOfChanukah);
 
-            return new PrayerItemViewModel(PrayerNames.HannukahCandles, candleTitle + $": {arvitInfo.Start}-{arvitInfo.End}");
+            return new PrayerItemViewModel(PrayerNames.HannukahCandles, candleTitle);// + $": {arvitInfo.Start.ToString("t")}-{arvitInfo.End.ToString("t")}");
         }
 
         private async Task<List<ItemViewModel>> GetTodayItemsAsync(Geoposition position, JewishCalendar jc, HebrewDateFormatter formatter)
@@ -207,11 +207,6 @@ namespace PrayPal.SummaryView
 
             var arvitInfo = await _timeService.GetArvitInfoAsync(position, jc.Time);
             AddPrayerInfo(arvitInfo, items);
-
-            if (jc.Chanukah)
-            {
-                items.Add(CreateHannukahCandleLighting(jc, arvitInfo));
-            }
 
             DateTime? sunrise = await _timeService.GetSunriseAsync(position);
 
