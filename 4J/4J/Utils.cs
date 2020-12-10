@@ -7,6 +7,9 @@ using System.Text;
 using System.Linq;
 using Autofac;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using PrayPal.Common.Services;
+using PrayPal.Common;
 
 namespace PrayPal
 {
@@ -79,6 +82,50 @@ namespace PrayPal
         public static IDictionary<string, string> AnalyticsProperty(string name, string value)
         {
             return new Dictionary<string, string> { { name, value } };
+        }
+
+
+        public static async Task<PrayerInfo> GetNextPrayerAsync(this ITimeService timeService, Geoposition position = null, DateTime? relativeToDate = null)
+        {
+            if (timeService is null)
+            {
+                throw new ArgumentNullException(nameof(timeService));
+            }
+
+            PrayerInfo[] prayers = HebDateHelper.GetPrayersInfo(position, relativeToDate, relativeToDate != null);
+
+            foreach (PrayerInfo prayer in prayers)
+            {
+                if (prayer.Start <= relativeToDate && relativeToDate <= prayer.End)
+                {
+                    return prayer;
+                }
+            }
+
+            return null;
+
+            //DateTime now = relativeToDate ?? DateTime.Now;
+
+            //IEnumerable<Task<PrayerInfo>> prayers = IteratePrayers();
+
+            //foreach (var prayerTask in prayers)
+            //{
+            //    var prayer = await prayerTask;
+
+            //    if (prayer.Start <= now && now <= prayer.End)
+            //    {
+            //        return prayer;
+            //    }
+            //}
+
+            //return null;
+
+            //IEnumerable<Task<PrayerInfo>> IteratePrayers()
+            //{
+            //    yield return timeService.GetShacharitInfoAsync(position, relativeToDate);
+            //    yield return timeService.GetMinchaInfoAsync();
+            //    yield return timeService.GetArvitInfoAsync();
+            //}
         }
     }
 }

@@ -106,7 +106,7 @@ namespace PrayPal.Prayers
 
             if (jc.Chanukah)
             {
-                PrayerItemViewModel item = new PrayerItemViewModel(PrayerNames.HannukahCandles, AppResources.HadlakatNerotHannukahTitle); ;
+                PrayerItemViewModel item = new PrayerItemViewModel(PrayerNames.HannukahCandles, AppResources.HadlakatNerotHannukahTitle);
 
                 Items.Add(item);
             }

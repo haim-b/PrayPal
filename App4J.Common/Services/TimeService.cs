@@ -171,7 +171,7 @@ namespace PrayPal.Common.Services
 
             if (tzaisHakokhavim != null && hanetz != null)
             {
-                return new PrayerInfo() { Prayer = Prayer.Arvit, Start = tzaisHakokhavim.Value, End = hanetz.Value, PrayerName = CommonResources.Arvit };
+                return new PrayerInfo() { Prayer = Prayer.Arvit, Start = tzaisHakokhavim.Value, End = hanetz.Value, PrayerName = Settings.Nusach != Nusach.Ashkenaz ? CommonResources.Arvit : CommonResources.MaarivTitle };
             }
 
             return null;

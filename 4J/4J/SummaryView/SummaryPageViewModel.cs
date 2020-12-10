@@ -112,7 +112,8 @@ namespace PrayPal.SummaryView
                     HebrewFormat = true
                 };
 
-                List<ItemViewModel> nowItems = GetNowItems(position, jc, formatter);
+                List<ItemViewModel> nowItems = await GetNowItemsAsync(position, jc, formatter);
+                List<string> nowItemNames = nowItems.OfType<PrayerItemViewModel>().Select(p => p.PageName).ToList();
 
                 SummaryViewItem now = new SummaryViewItem(AppResources.SummaryNowTitle);
                 nowItems.ForEach(i => now.Add(i));
@@ -120,7 +121,17 @@ namespace PrayPal.SummaryView
                 List<ItemViewModel> todayItems = await GetTodayItemsAsync(position, jc, formatter);
 
                 SummaryViewItem today = new SummaryViewItem(AppResources.SummaryTodayTitle);
-                todayItems.ForEach(i => today.Add(i));
+
+                // Make sure to add only items that don't already appear on Now:
+                foreach (var item in todayItems)
+                {
+                    if (item is PrayerItemViewModel p && nowItemNames.Contains(p.PageName))
+                    {
+                        continue;
+                    }
+
+                    today.Add(item);
+                }
 
                 List<ItemViewModel> weekItems = await GetWeekItemsAsync(position, jc, formatter);
 
@@ -139,11 +150,11 @@ namespace PrayPal.SummaryView
             }
         }
 
-        private List<ItemViewModel> GetNowItems(Geoposition position, JewishCalendar jc, HebrewDateFormatter formatter)
+        private async Task<List<ItemViewModel>> GetNowItemsAsync(Geoposition position, JewishCalendar jc, HebrewDateFormatter formatter)
         {
             List<ItemViewModel> items = new List<ItemViewModel>();
 
-            var nextPrayer = HebDateHelper.GetNextPrayer(position);
+            var nextPrayer = await _timeService.GetNextPrayerAsync(position);
 
             if (nextPrayer != null && nextPrayer.Prayer != Prayer.Mussaf)
             {
@@ -151,6 +162,11 @@ namespace PrayPal.SummaryView
 
                 if (nextPrayer.Prayer == Prayer.Arvit)
                 {
+                    if (jc.Chanukah)
+                    {
+                        items.Add(CreateHannukahCandleLighting(jc, nextPrayer));
+                    }
+
                     items.Add(new PrayerItemViewModel(PrayerNames.BedtimeShma, AppResources.BedtimeShmaTitle));
                 }
             }
@@ -158,6 +174,13 @@ namespace PrayPal.SummaryView
             items.Add(new PrayerItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
 
             return items;
+        }
+
+        private ItemViewModel CreateHannukahCandleLighting(JewishCalendar jc, PrayerInfo arvitInfo)
+        {
+            string candleTitle = CommonResources.ResourceManager.GetString("Chanuka" + jc.DayOfChanukah);
+
+            return new PrayerItemViewModel(PrayerNames.HannukahCandles, candleTitle + $": {arvitInfo.Start}-{arvitInfo.End}");
         }
 
         private async Task<List<ItemViewModel>> GetTodayItemsAsync(Geoposition position, JewishCalendar jc, HebrewDateFormatter formatter)
@@ -181,8 +204,14 @@ namespace PrayPal.SummaryView
             AddPrayerInfo(await _timeService.GetShacharitInfoAsync(position, jc.Time), items);
             //_zmanim.Add(new ZmanHayom(string.Format("{0}: ‭{1:t}", AppResources.EndTimeOfShma, Settings.Instance.TimeCalcMethod == "MGA" ? calendar?.GetSofZmanShmaMGA() : calendar?.GetSofZmanShmaGRA())));
             AddPrayerInfo(await _timeService.GetMinchaInfoAsync(position, jc.Time), items);
-            AddPrayerInfo(await _timeService.GetArvitInfoAsync(position, jc.Time), items);
 
+            var arvitInfo = await _timeService.GetArvitInfoAsync(position, jc.Time);
+            AddPrayerInfo(arvitInfo, items);
+
+            if (jc.Chanukah)
+            {
+                items.Add(CreateHannukahCandleLighting(jc, arvitInfo));
+            }
 
             DateTime? sunrise = await _timeService.GetSunriseAsync(position);
 
