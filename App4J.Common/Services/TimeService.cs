@@ -116,7 +116,7 @@ namespace PrayPal.Common.Services
 
                 if (sofZmanShma != null)
                 {
-                    extraInfo = string.Format("{0}: ‭{1:t}", CommonResources.EndTimeOfShma, sofZmanShma.Value.ToString("t"));
+                    extraInfo = string.Format("{0}|‭{1:t}", CommonResources.EndTimeOfShma, sofZmanShma.Value.ToString("t"));
                 }
 
                 return new PrayerInfo() { Prayer = Prayer.Shacharit, Start = hanetz.Value, End = sofZmanTfila.Value, PrayerName = CommonResources.Shacharit, ExtraInfo = extraInfo };

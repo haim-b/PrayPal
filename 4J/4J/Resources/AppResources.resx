@@ -813,4 +813,7 @@
   <data name="Sunrise" xml:space="preserve">
     <value>זריחה</value>
   </data>
+  <data name="BirkatHaMazonEndTimeInstruction" xml:space="preserve">
+    <value>עד 72 דקות אחרי האכילה</value>
+  </data>
 </root>

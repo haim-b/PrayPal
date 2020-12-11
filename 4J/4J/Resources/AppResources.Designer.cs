@@ -278,6 +278,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to עד 72 דקות אחרי האכילה.
+        /// </summary>
+        public static string BirkatHaMazonEndTimeInstruction {
+            get {
+                return ResourceManager.GetString("BirkatHaMazonEndTimeInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ברכת המזון.
         /// </summary>
         public static string BirkatHamazonTitle {

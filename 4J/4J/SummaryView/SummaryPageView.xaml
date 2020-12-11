@@ -5,7 +5,7 @@
              x:Class="PrayPal.SummaryView.SummaryPageView" Title="{app:CustomResource ApplicationTitle}">
     <ContentPage.Resources>
         <Style TargetType="StackLayout" x:Key="DayTimeStackLayoutStyle">
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="10,2"/>
             <Setter Property="Spacing" Value="0"/>
         </Style>
 
@@ -30,7 +30,7 @@
                                 <StackLayout Style="{DynamicResource DayTimeStackLayoutStyle}">
                                     <Label Text="{Binding Title, Mode=OneTime}" Style="{DynamicResource DayTimeMainLabelStyle}"/>
 
-                                    <Label Text="{Binding Time}" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                                    <Label Text="{Binding Subtitle}"
                                            Style="{DynamicResource DetailsLabelStyle}"/>
 
 

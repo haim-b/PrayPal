@@ -217,7 +217,16 @@ namespace PrayPal.DayTimes
 
             if (!string.IsNullOrEmpty(prayer.ExtraInfo))
             {
-                _times.Add(new TimeOfDay(prayer.ExtraInfo));
+                string[] parts = prayer.ExtraInfo.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length == 1)
+                {
+                    _times.Add(new TimeOfDay(prayer.ExtraInfo));
+                }
+                else
+                {
+                    _times.Add(new TimeOfDay(parts[0] + ": " + parts[1]));
+                }
             }
         }
 
