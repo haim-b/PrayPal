@@ -79,25 +79,59 @@ namespace PrayPal.Content.Brachot
             };
         }
 
-        //public static IEnumerable<ParagraphModel> GetParashaReadingForShacharit(int parashaIndex)
-        //{
-        //    ParashaMarks marks = _parashotToReadingMarks[parashaIndex];
-
-        //    ResourceManager book = GetBook(marks.BookNumber);
-
-        //    string[] chapter = book.GetString("Chapter" + marks.Chapter).Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //    yield return new ParagraphModel(AppResources.CohenTitle, string.Join(" ", GetPsukimRange(marks.FirstReaderStart, marks.SecondReaderStart).Select(i => chapter[i])));
-        //    yield return new ParagraphModel(AppResources.LeviTitle, string.Join(" ", GetPsukimRange(marks.SecondReaderStart, marks.ThirdReaderStart).Select(i => chapter[i])));
-        //    yield return new ParagraphModel(AppResources.IsraelTitle, string.Join(" ", Enumerable.Range(marks.ThirdReaderStart.Pasuk - 1, marks.ThirdReaderLength).Select(i => chapter[i])));
-        //}
-
-        private static IEnumerable<int> GetPsukimRange(PasukMark firstReaderStart, PasukMark secondReaderStart)
+        public static IEnumerable<ParagraphModel> GetParashaReadingForShacharit(int parashaIndex)
         {
-            int start = firstReaderStart.Pasuk - 1;
-            int count = secondReaderStart.Pasuk - firstReaderStart.Pasuk;
+            ParashaMarks marks = _parashotToReadingMarks[parashaIndex];
 
-            return Enumerable.Range(start, count);
+            ResourceManager book = GetBook(marks.BookNumber);
+
+            string[] chapter = GetChapter(book, marks.Chapter);
+            Func<string[]> nextChapterFactory = () => GetChapter(book, marks.Chapter + 1);
+
+            yield return new ParagraphModel(AppResources.CohenTitle, string.Join(" ", GetPsukimByRange(marks.FirstReaderStart, marks.SecondReaderStart, chapter, nextChapterFactory)));
+            yield return new ParagraphModel(AppResources.LeviTitle, string.Join(" ", GetPsukimByRange(marks.SecondReaderStart, marks.ThirdReaderStart, chapter, nextChapterFactory)));
+            yield return new ParagraphModel(AppResources.IsraelTitle, string.Join(" ", GetPsukimByFirstAndLength(marks.ThirdReaderStart, marks.ThirdReaderLength, chapter, nextChapterFactory)));
+        }
+
+        private static string[] GetChapter(ResourceManager book, int chapter)
+        {
+            return book.GetString("Chapter" + chapter).Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static IEnumerable<string> GetPsukimByRange(int firstReaderStart, int secondReaderStart, string[] chapter, Func<string[]> nextChapterFactory)
+        {
+            int count = secondReaderStart - firstReaderStart;
+
+            return GetPsukimByFirstAndLength(firstReaderStart, count, chapter, nextChapterFactory);
+        }
+
+        private static IEnumerable<string> GetPsukimByFirstAndLength(int firstReaderStart, int count, string[] chapter, Func<string[]> nextChapterFactory)
+        {
+            int start = firstReaderStart - 1;
+
+            if (count > 0) // All in the same chapter
+            {
+                for (int i = start; i < count; i++)
+                {
+                    yield return chapter[i];
+                }
+
+                yield break;
+            }
+            else
+            {
+                for (int i = start; i < chapter.Length - firstReaderStart; i++)
+                {
+                    yield return chapter[i];
+                }
+
+                string[] nextChapter = nextChapterFactory();
+
+                for (int i = 0; i < count - firstReaderStart; i++)
+                {
+                    yield return nextChapter[i];
+                }
+            }
         }
 
         private static ResourceManager GetBook(int bookNumber)
