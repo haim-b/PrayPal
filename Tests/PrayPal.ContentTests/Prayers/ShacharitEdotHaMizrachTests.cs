@@ -244,7 +244,7 @@ namespace Tests.PrayPal.Content.Prayers
                 texts.Add(new TextsModel(AppResources.BarchiNafshiTitle, Psalms.Psalm104));
             }
             // (שיר של יום (רגיל
-            if (!hasMusaf)
+            if (!hasMusaf && jc.DayOfWeek != 7)
             {
                 if (isTachanunDay)
                 {

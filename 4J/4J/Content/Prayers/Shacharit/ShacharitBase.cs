@@ -613,13 +613,13 @@ namespace PrayPal.Content
             return true;
         }
 
-        protected void AddDayVerse()
+        protected void AddDayVerse(SpanModel dayVerse = null)
         {
             //CultureInfo culture = new CultureInfo("he-IL");
             DayOfWeek day = DayInfo.DayOfWeek;
 
             //TextsModel t = new TextsModel(string.Format(AppResources.DayVerseTitle_F0, culture.DateTimeFormat.DayNames[(int)day]));
-            SpanModel dayVerse = new SpanModel(AppResources.DayVerseTitle);
+            dayVerse = dayVerse ?? new SpanModel(AppResources.DayVerseTitle);
 
             string opening;
             string verse;

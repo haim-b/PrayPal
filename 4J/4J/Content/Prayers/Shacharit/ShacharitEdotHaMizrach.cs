@@ -204,19 +204,16 @@ namespace PrayPal.Content
             ///(שיר של יום (רגיל
             if (!hasMussaf)
             {
-                //TODO: Add a title.
-                SpanModel preVerseOfDay = new SpanModel("");
+                SpanModel verseOfDay = new SpanModel(AppResources.DayVerseTitle);
 
                 if (DayInfo.IsTachanunDay(GetNusach()))
                 {
-                    preVerseOfDay.Add(EdotHaMizrachPrayerTextProvider.Instance.PreVerseOfDay1);
+                    verseOfDay.Add(EdotHaMizrachPrayerTextProvider.Instance.PreVerseOfDay1);
                 }
 
-                preVerseOfDay.Add(EdotHaMizrachPrayerTextProvider.Instance.PreVerseOfDay2);
+                verseOfDay.Add(EdotHaMizrachPrayerTextProvider.Instance.PreVerseOfDay2);
 
-                _items.Add(preVerseOfDay);
-
-                AddDayVerse();
+                AddDayVerse(verseOfDay);
             }
 
             ///קווה אל ה'
