@@ -656,6 +656,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to רביעי.
+        /// </summary>
+        public static string ForthTorahReaderTitle {
+            get {
+                return ResourceManager.GetString("ForthTorahReaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to הצג.
         /// </summary>
         public static string GoToButtonTitle {
@@ -919,9 +928,9 @@ namespace PrayPal.Resources {
         /// <summary>
         ///   Looks up a localized string similar to בבית האבל.
         /// </summary>
-        public static string InMoarningHouseTitle {
+        public static string InMourningHouseTitle {
             get {
-                return ResourceManager.GetString("InMoarningHouseTitle", resourceCulture);
+                return ResourceManager.GetString("InMourningHouseTitle", resourceCulture);
             }
         }
         
@@ -1859,6 +1868,15 @@ namespace PrayPal.Resources {
         public static string ThemeSettingLabel {
             get {
                 return ResourceManager.GetString("ThemeSettingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to שלישי.
+        /// </summary>
+        public static string ThirdTorahReaderTitle {
+            get {
+                return ResourceManager.GetString("ThirdTorahReaderTitle", resourceCulture);
             }
         }
         

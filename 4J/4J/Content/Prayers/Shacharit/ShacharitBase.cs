@@ -205,18 +205,6 @@ namespace PrayPal.Content
                 AddLeDavid();
             }
 
-            lastSpan = _items.Last();
-
-            if (isTachanunDay)
-            {
-                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
-            }
-            else
-            {
-                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
-            }
-
-
             if (DayInfo.YomTov == JewishCalendar.TISHA_BEAV)
             {
                 throw new NotificationException(AppResources.TishaBeavMessage);

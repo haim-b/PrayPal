@@ -481,7 +481,7 @@
   <data name="GoToLockScreenSettingsCommandTitle" xml:space="preserve">
     <value>הגדרות מסך נעילה</value>
   </data>
-  <data name="InMoarningHouseTitle" xml:space="preserve">
+  <data name="InMourningHouseTitle" xml:space="preserve">
     <value>בבית האבל</value>
   </data>
   <data name="LockScreenSupportInfo" xml:space="preserve">
@@ -815,5 +815,11 @@
   </data>
   <data name="BirkatHaMazonEndTimeInstruction" xml:space="preserve">
     <value>עד 72 דקות אחרי האכילה</value>
+  </data>
+  <data name="ForthTorahReaderTitle" xml:space="preserve">
+    <value>רביעי</value>
+  </data>
+  <data name="ThirdTorahReaderTitle" xml:space="preserve">
+    <value>שלישי</value>
   </data>
 </root>

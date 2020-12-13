@@ -356,7 +356,7 @@ namespace PrayPal.Content
                 dayVerse.Add(Psalms.Psalm85);
             }
 
-            dayVerse.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
+            dayVerse.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
 
             dayVerse.AddRange(PrayersHelper.GetKadishYatom(DayInfo, true));
         }

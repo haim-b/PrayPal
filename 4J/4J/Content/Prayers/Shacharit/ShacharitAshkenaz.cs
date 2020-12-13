@@ -199,11 +199,11 @@ namespace PrayPal.Content
 
             if (isTachanunDay)
             {
-                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
+                lastSpan.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
             }
             else
             {
-                lastSpan.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
+                lastSpan.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
             }
 
 

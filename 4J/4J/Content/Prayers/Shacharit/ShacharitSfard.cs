@@ -131,11 +131,11 @@ namespace PrayPal.Content
 
             if (DayInfo.IsTachanunDay(Nusach.Sfard))
             {
-                dayVerse.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
+                dayVerse.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm49) { IsCollapsible = true });
             }
             else
             {
-                dayVerse.Add(new ParagraphModel(AppResources.InMoarningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
+                dayVerse.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm16) { IsCollapsible = true });
             }
         }
     }
