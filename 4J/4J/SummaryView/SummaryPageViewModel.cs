@@ -235,11 +235,18 @@ namespace PrayPal.SummaryView
         {
             List<ItemViewModel> items = new List<ItemViewModel>();
 
-            string parasha = HebDateHelper.GetParasha(jc);
-
-            if (!string.IsNullOrEmpty(parasha))
+            try
             {
-                items.Add(new ItemViewModel(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                string parasha = HebDateHelper.GetParasha(jc);
+
+                if (!string.IsNullOrEmpty(parasha))
+                {
+                    items.Add(new ItemViewModel(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Failed to calculate the Parasha.");
             }
 
             DateTime? knissatShabbat = await _timeService.GetKnissatShabbatAsync(position, jc.Time);

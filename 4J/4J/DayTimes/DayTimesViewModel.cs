@@ -151,11 +151,18 @@ namespace PrayPal.DayTimes
                     _times.Add(new TimeOfDay(yomTov));
                 }
 
-                string parasha = HebDateHelper.GetParasha(jc);
-
-                if (!string.IsNullOrEmpty(parasha))
+                try
                 {
-                    _times.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                    string parasha = HebDateHelper.GetParasha(jc);
+
+                    if (!string.IsNullOrEmpty(parasha))
+                    {
+                        _times.Add(new TimeOfDay(string.Format(CommonResources.ParashaNameTitleFormat, parasha)));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to calculate the Parasha.");
                 }
 
                 _times.Add(new TimeOfDay(CommonResources.DafYomiTitle + ": " + GetDafYomiText(jc, dafYomiDate, formatter)));
