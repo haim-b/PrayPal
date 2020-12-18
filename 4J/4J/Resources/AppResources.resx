@@ -816,10 +816,19 @@
   <data name="BirkatHaMazonEndTimeInstruction" xml:space="preserve">
     <value>עד 72 דקות אחרי האכילה</value>
   </data>
-  <data name="ForthTorahReaderTitle" xml:space="preserve">
+  <data name="FourthTorahReaderTitle" xml:space="preserve">
     <value>רביעי</value>
   </data>
   <data name="ThirdTorahReaderTitle" xml:space="preserve">
     <value>שלישי</value>
+  </data>
+  <data name="For4TorahOlimTitle" xml:space="preserve">
+    <value>לארבעה עולים</value>
+  </data>
+  <data name="InSecondBookAliyaTitle_F0" xml:space="preserve">
+    <value>{0} (בספר שני)</value>
+  </data>
+  <data name="TextGenerationErrorMessage" xml:space="preserve">
+    <value>התרחשה שגיאה בזמן יצירת הטקסט.</value>
   </data>
 </root>

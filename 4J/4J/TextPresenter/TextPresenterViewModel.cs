@@ -4,6 +4,7 @@ using PrayPal.Common;
 using PrayPal.Common.Services;
 using PrayPal.Content;
 using PrayPal.Models;
+using PrayPal.Resources;
 using PrayPal.Services;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,11 @@ namespace PrayPal.TextPresenter
                 catch (NotificationException ne)
                 {
                     await NotificationService.ShowWarningAsync(ne.Message);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex, $"Failed to generate content. Text name: {TextName}, Param: {TextParam}.");
+                    await NotificationService.ShowErrorMessageAsync(AppResources.TextGenerationErrorMessage);
                 }
             }).Unwrap();
 

@@ -647,6 +647,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to לארבעה עולים.
+        /// </summary>
+        public static string For4TorahOlimTitle {
+            get {
+                return ResourceManager.GetString("For4TorahOlimTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to למוצאי שבת.
         /// </summary>
         public static string ForMotzashTitle {
@@ -658,9 +667,9 @@ namespace PrayPal.Resources {
         /// <summary>
         ///   Looks up a localized string similar to רביעי.
         /// </summary>
-        public static string ForthTorahReaderTitle {
+        public static string FourthTorahReaderTitle {
             get {
-                return ResourceManager.GetString("ForthTorahReaderTitle", resourceCulture);
+                return ResourceManager.GetString("FourthTorahReaderTitle", resourceCulture);
             }
         }
         
@@ -940,6 +949,15 @@ namespace PrayPal.Resources {
         public static string InPrayerWithEdotHaMizrach {
             get {
                 return ResourceManager.GetString("InPrayerWithEdotHaMizrach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (בספר שני).
+        /// </summary>
+        public static string InSecondBookAliyaTitle_F0 {
+            get {
+                return ResourceManager.GetString("InSecondBookAliyaTitle_F0", resourceCulture);
             }
         }
         
@@ -1814,6 +1832,15 @@ namespace PrayPal.Resources {
         public static string TehillimTodayTitle {
             get {
                 return ResourceManager.GetString("TehillimTodayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to התרחשה שגיאה בזמן יצירת הטקסט..
+        /// </summary>
+        public static string TextGenerationErrorMessage {
+            get {
+                return ResourceManager.GetString("TextGenerationErrorMessage", resourceCulture);
             }
         }
         

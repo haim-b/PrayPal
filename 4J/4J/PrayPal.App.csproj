@@ -64,15 +64,35 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Deuteronomy.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Deuteronomy.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Exodus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Exodus.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Genesis.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Genesis.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Leviticus.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Leviticus.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\LocalResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>LocalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Numbers.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Numbers.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\PrayersAshkenaz.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -127,13 +147,29 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Genesis.resx">
+    <EmbeddedResource Update="Resources\Deuteronomy.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Deuteronomy.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Exodus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Exodus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Genesis.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Genesis.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Leviticus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Leviticus.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\LocalResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Numbers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Numbers.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\PrayersAshkenaz.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

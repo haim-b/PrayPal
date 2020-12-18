@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using PrayPal.Common;
 using PrayPal.Common.Resources;
 using PrayPal.Common.Services;
@@ -547,8 +548,19 @@ namespace PrayPal.Content
 
         }
 
-        protected static void AddTorahReadingText(SpanModel span)
+        protected void AddTorahReadingText(SpanModel span)
         {
+            try
+            {
+                var ps = Parashot.GetParashaReadingForShacharit(DayInfo.JewishCalendar, Prayer.Shacharit, Logger);
+
+                span.AddRange(ps);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, $"Failed to create Torah reading. Date: {DayInfo.JewishCalendar}, Prayer: {this.GetType().Name}.");
+            }
+
             //span.Add(CommonPrayerTextProvider.Current.BarchuTorah);
             //span.Add(CommonPrayerTextProvider.Current.BrachaBeforeTorah);
             //span.Add(CommonPrayerTextProvider.Current.BrachaAfterTorah);
