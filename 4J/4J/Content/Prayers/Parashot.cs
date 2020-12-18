@@ -245,7 +245,7 @@ namespace PrayPal.Content
             switch (day)
             {
                 case 1:
-                    yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(22, 12, part1Factory(), () => part2)));
+                    yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(22, 11, part1Factory(), () => part2)));
                     yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByFirstAndLength(12, 3, part2, null)));
                     yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(GetPsukimByFirstAndLength(15, 3, part2, null)));
                     yield break;
@@ -276,7 +276,7 @@ namespace PrayPal.Content
                 case 8:
                     yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByFirstAndLength(54, 3, part2, null)));
                     yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByFirstAndLength(57, 3, part2, null)));
-                    yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(GetPsukimByRange(60, 5, part2, part3Factory)));
+                    yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(GetPsukimByRange(60, 4, part2, part3Factory)));
                     yield break;
                 default:
                     yield break;
@@ -294,9 +294,9 @@ namespace PrayPal.Content
 
             string[] chapter = GetChapter(book, 28);
 
-            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(1, 4, chapter, null)));
-            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(3, 6, chapter, null)));
-            yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByRange(6, 11, chapter, null)));
+            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(1, 3, chapter, null)));
+            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(3, 5, chapter, null)));
+            yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByRange(6, 10, chapter, null)));
             yield return new ParagraphModel(AppResources.FourthTorahReaderTitle, Flatten(GetPsukimByFirstAndLength(11, 5, chapter, null)));
         }
 
@@ -330,8 +330,8 @@ namespace PrayPal.Content
 
         private static IEnumerable<ParagraphModel> MarksToParagraphs(ParashaMarks marks, string[] chapter, Func<string[]> nextChapterFactory)
         {
-            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(marks.FirstReaderStart, marks.SecondReaderStart, chapter, nextChapterFactory)));
-            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(marks.SecondReaderStart, marks.ThirdReaderStart, chapter, nextChapterFactory)));
+            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(marks.FirstReaderStart, marks.SecondReaderStart - 1, chapter, nextChapterFactory)));
+            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(marks.SecondReaderStart, marks.ThirdReaderStart - 1, chapter, nextChapterFactory)));
             yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByFirstAndLength(marks.ThirdReaderStart, marks.ThirdReaderLength, chapter, nextChapterFactory)));
         }
 
@@ -345,16 +345,16 @@ namespace PrayPal.Content
             return book.GetString("Chapter" + chapter).Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        private static IEnumerable<string> GetPsukimByRange(int firstReaderStart, int secondReaderStart, string[] chapter, Func<string[]> nextChapterFactory)
+        private static IEnumerable<string> GetPsukimByRange(int readerStart, int readerEnd, string[] chapter, Func<string[]> nextChapterFactory)
         {
-            int count = secondReaderStart - firstReaderStart;
+            int count = readerEnd - readerStart;
 
             if (count <= 0)
             {
-                count = (chapter.Length - firstReaderStart) + secondReaderStart;
+                count = (chapter.Length - readerStart) + readerEnd;
             }
 
-            return GetPsukimByFirstAndLength(firstReaderStart, count, chapter, nextChapterFactory);
+            return GetPsukimByFirstAndLength(readerStart, count, chapter, nextChapterFactory);
         }
 
         private static IEnumerable<string> GetPsukimByFirstAndLength(int firstReaderStart, int count, string[] chapter, Func<string[]> nextChapterFactory)
