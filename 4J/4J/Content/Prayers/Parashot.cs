@@ -111,6 +111,11 @@ namespace PrayPal.Content
                 throw new ArgumentNullException(nameof(logger));
             }
 
+            if (prayer == Prayer.Mincha)
+            {
+                return GetMincha(jc, logger);
+            }
+
             if (prayer != Prayer.Shacharit)
             {
                 return Enumerable.Empty<ParagraphModel>();
@@ -147,6 +152,26 @@ namespace PrayPal.Content
             }
 
             return GetMondayAndThursday(jc);
+        }
+
+        private static IEnumerable<ParagraphModel> GetMincha(JewishCalendar jc, ILogger logger)
+        {
+            if (!jc.Taanis)
+            {
+                yield break;
+            }
+
+            string torahReadingFont = null;
+
+            yield return new ParagraphModel(AppResources.CohenTitle, new RunModel(AppResources.TeanitReadingCohen) { Font = torahReadingFont });
+            yield return new ParagraphModel(AppResources.LeviTitle, new RunModel(AppResources.TeanitReadingLevi) { Font = torahReadingFont });
+            yield return new ParagraphModel(AppResources.IsraelTitle, new RunModel(AppResources.TeanitReadingIsrael) { Font = torahReadingFont });
+
+            yield return new ParagraphModel(AppResources.HaftarahBlessingTitle, CommonPrayerTextProvider.Current.BeforeHaftarahBlessing);
+
+            yield return new ParagraphModel(AppResources.HaftarahTitle, new RunModel(AppResources.TeanitHaftarah) { Font = torahReadingFont });
+
+            yield return new ParagraphModel(AppResources.AfterHaftarahTitle, CommonPrayerTextProvider.Current.AfterHaftarahBlessing);
         }
 
         private static IEnumerable<ParagraphModel> GetCholHaMoedPesach(JewishCalendar jc, ILogger logger)

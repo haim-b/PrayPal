@@ -91,23 +91,13 @@ namespace PrayPal.Content
 
         protected abstract void AddTorahBookHotzaa(SpanModel span);
 
-        private static void AddTorahReadingText(SpanModel span)
+        private void AddTorahReadingText(SpanModel span)
         {
             span.Add(CommonPrayerTextProvider.Current.BarchuTorah);
             span.Add(CommonPrayerTextProvider.Current.BrachaBeforeTorah);
             span.Add(CommonPrayerTextProvider.Current.BrachaAfterTorah);
 
-            string torahReadingFont = "Tahoma";
-
-            span.Add(new ParagraphModel(AppResources.CohenTitle, new RunModel(AppResources.TeanitReadingCohen) { Font = torahReadingFont }));
-            span.Add(new ParagraphModel(AppResources.LeviTitle, new RunModel(AppResources.TeanitReadingLevi) { Font = torahReadingFont }));
-            span.Add(new ParagraphModel(AppResources.IsraelTitle, new RunModel(AppResources.TeanitReadingIsrael) { Font = torahReadingFont }));
-
-            span.Add(new ParagraphModel(AppResources.HaftarahBlessingTitle, CommonPrayerTextProvider.Current.BeforeHaftarahBlessing));
-
-            span.Add(new ParagraphModel(AppResources.HaftarahTitle, new RunModel(AppResources.TeanitHaftarah) { Font = torahReadingFont }));
-            span.Add(new ParagraphModel(AppResources.AfterHaftarahTitle, CommonPrayerTextProvider.Current.AfterHaftarahBlessing));
-
+            span.AddRange(Parashot.GetParashaReadingForShacharit(DayInfo.JewishCalendar, Prayer.Mincha, Logger));
         }
 
         protected virtual void AddAfterTorahReading(SpanModel span)
