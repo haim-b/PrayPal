@@ -21,15 +21,21 @@ using RunModel = PrayPal.Models.RunModel;
 
 namespace Tests.PrayPal.Content
 {
+    [TestClass]
     static class TestExecutor
     {
         public static readonly HebrewDateFormatter PsalmFormatter = new HebrewDateFormatter() { UseGershGershayim = false };
         public static bool IsInIsrael = true;
         public static bool ShowVeanenu = false;
 
-        public static async Task TestPrayerAsync(Func<JewishCalendar, ILocationService, ITimeService, IEnumerable<string>> legacyPrayerFactory, Func<ILocationService, ITimeService, IPrayer> newPrayerFactory, DateTime? fromTime = null, DateTime? toTime = null)
+        [AssemblyInitialize]
+        public static void InitializeTests(TestContext tc)
         {
             Settings.SetSettingsProvider(new DummySettingsProvider());
+        }
+
+        public static async Task TestPrayerAsync(Func<JewishCalendar, ILocationService, ITimeService, IEnumerable<string>> legacyPrayerFactory, Func<ILocationService, ITimeService, IPrayer> newPrayerFactory, DateTime? fromTime = null, DateTime? toTime = null)
+        {
             StubLocationService locationService = new StubLocationService();
             var realTimeService = new TimeService(locationService);
             StubTimeService timeService = new StubTimeService(realTimeService);
@@ -979,29 +985,6 @@ namespace Tests.PrayPal.Content
             }
         }
 
-        class DummyLogger : ILogger, IDisposable
-        {
-            public IDisposable BeginScope<TState>(TState state)
-            {
-                return this;
-            }
-
-            public void Dispose()
-            {
-
-            }
-
-            public bool IsEnabled(LogLevel logLevel)
-            {
-                return false;
-            }
-
-            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-            {
-
-            }
-        }
-
         class DummySettingsProvider : ISettingsProvider
         {
             private ConcurrentDictionary<string, object> _settings = new ConcurrentDictionary<string, object>();
@@ -1080,6 +1063,29 @@ namespace Tests.PrayPal.Content
             {
                 _settings[key] = value;
             }
+        }
+    }
+
+    internal class DummyLogger : ILogger, IDisposable
+    {
+        public IDisposable BeginScope<TState>(TState state)
+        {
+            return this;
+        }
+
+        public void Dispose()
+        {
+
+        }
+
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return false;
+        }
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        {
+
         }
     }
 

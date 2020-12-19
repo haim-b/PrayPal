@@ -74,12 +74,17 @@ namespace PrayPal.Content
                 new ParashaMarks(5,11,26,32,6,10), // Re'e
                 new ParashaMarks(5,16,18,21,11,20), // Shoftim
                 new ParashaMarks(5,21,10,15,18,7), // Ki Tetze
-                new ParashaMarks(5,21,10,15,18,7), // Ki Tetze
-                new ParashaMarks(5,21,10,15,18,7), // Ki Tetze
                 new ParashaMarks(5,26,1,4,9,11), // Ki Tavo
                 new ParashaMarks(5,29,9,12,15,28), // Nitzavim
                 new ParashaMarks(5,31,1,4,7,13), // Vayelech
                 new ParashaMarks(5,32,1,7,13,18), // Ha'azinu
+                new ParashaMarks(2,35,1,4,11,20), // Vayak'hel-Pkudey
+                new ParashaMarks(3,12,1,5,1,5), // Tazria-Metzora
+                new ParashaMarks(3,16,1,7,12,17), // Achrey Mot-Kdoshim
+                new ParashaMarks(3,25,1,4,8,13), // Behar-Bechukotay
+                new ParashaMarks(4,19,1,7,10,17), // Chukat-Balak
+                new ParashaMarks(4,30,2,10,14,17), // Matot-Masey
+                new ParashaMarks(5,29,9,12,15,28), // Nitzavim-Vayelech
                 new ParashaMarks(5,33,1,8,13,17) // Vezot HaBracha
             };
 
@@ -247,7 +252,7 @@ namespace PrayPal.Content
                 case 1:
                     yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(22, 11, part1Factory(), () => part2)));
                     yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByFirstAndLength(12, 3, part2, null)));
-                    yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(GetPsukimByFirstAndLength(15, 3, part2, null)));
+                    yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByFirstAndLength(15, 3, part2, null)));
                     yield break;
                 case 2:
                     cohen = Flatten(GetPsukimByFirstAndLength(18, 3, part2, null));
@@ -276,7 +281,7 @@ namespace PrayPal.Content
                 case 8:
                     yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByFirstAndLength(54, 3, part2, null)));
                     yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByFirstAndLength(57, 3, part2, null)));
-                    yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(GetPsukimByRange(60, 4, part2, part3Factory)));
+                    yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByRange(60, 4, part2, part3Factory)));
                     yield break;
                 default:
                     yield break;
@@ -285,7 +290,7 @@ namespace PrayPal.Content
             // on Day 2-7 of Hanukkah:
             yield return new ParagraphModel(AppResources.CohenTitle, cohen);
             yield return new ParagraphModel(AppResources.LeviTitle, levi);
-            yield return new ParagraphModel(AppResources.ThirdTorahReaderTitle, Flatten(new[] { cohen, levi }));
+            yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(new[] { cohen, levi }));
         }
 
         private static IEnumerable<ParagraphModel> GetRoshChodesh()
@@ -331,7 +336,22 @@ namespace PrayPal.Content
         private static IEnumerable<ParagraphModel> MarksToParagraphs(ParashaMarks marks, string[] chapter, Func<string[]> nextChapterFactory)
         {
             yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(marks.FirstReaderStart, marks.SecondReaderStart - 1, chapter, nextChapterFactory)));
+
+            if (marks.SecondReaderStart < marks.FirstReaderStart)
+            {
+                // We moved to the next chapter:
+                chapter = nextChapterFactory();
+                nextChapterFactory = null;
+            }
             yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(marks.SecondReaderStart, marks.ThirdReaderStart - 1, chapter, nextChapterFactory)));
+
+            if (marks.ThirdReaderStart < marks.SecondReaderStart)
+            {
+                // We moved to the next chapter:
+                chapter = nextChapterFactory();
+                nextChapterFactory = null;
+            }
+
             yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByFirstAndLength(marks.ThirdReaderStart, marks.ThirdReaderLength, chapter, nextChapterFactory)));
         }
 
@@ -347,7 +367,12 @@ namespace PrayPal.Content
 
         private static IEnumerable<string> GetPsukimByRange(int readerStart, int readerEnd, string[] chapter, Func<string[]> nextChapterFactory)
         {
-            int count = readerEnd - readerStart;
+            if (readerEnd == 0) // Means read until the end
+            {
+                readerEnd = chapter.Length;
+            }
+
+            int count = readerEnd - readerStart + 1; // Pasuk 1 to 3 are 3 psukim, not 2, so we add 1
 
             if (count <= 0)
             {
@@ -361,11 +386,11 @@ namespace PrayPal.Content
         {
             int start = firstReaderStart - 1;
 
-            if (firstReaderStart + count <= chapter.Length) // All in the same chapter
+            if (start + count <= chapter.Length) // All in the same chapter
             {
                 for (int i = start; i < start + count; i++)
                 {
-                    yield return chapter[i];
+                    yield return Clean(chapter[i]);
                 }
 
                 yield break;
@@ -374,15 +399,20 @@ namespace PrayPal.Content
             {
                 for (int i = start; i < chapter.Length; i++)
                 {
-                    yield return chapter[i];
+                    yield return Clean(chapter[i]);
                 }
 
                 string[] nextChapter = nextChapterFactory();
 
                 for (int i = 0; i < count - (chapter.Length - firstReaderStart); i++)
                 {
-                    yield return nextChapter[i];
+                    yield return Clean(nextChapter[i]);
                 }
+            }
+
+            string Clean(string s)
+            {
+                return s.Trim();
             }
         }
 
