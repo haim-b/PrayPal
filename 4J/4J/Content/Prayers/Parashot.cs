@@ -17,6 +17,8 @@ namespace PrayPal.Content
 
         private static readonly List<ParashaMarks> _cholHamoeldPesach;
 
+        private static readonly string _torahReadingFont = null;
+
         static Parashot()
         {
             _parashotToReadingMarks = new List<ParashaMarks>
@@ -151,7 +153,19 @@ namespace PrayPal.Content
                 return GetHanukkah(jc);
             }
 
+            if (jc.Taanis && jc.YomTovIndex != JewishCalendar.TISHA_BEAV)
+            {
+                return GetTeanit();
+            }
+
             return GetMondayAndThursday(jc);
+        }
+
+        private static IEnumerable<ParagraphModel> GetTeanit()
+        {
+            yield return new ParagraphModel(AppResources.CohenTitle, new RunModel(AppResources.TeanitReadingCohen) { Font = _torahReadingFont });
+            yield return new ParagraphModel(AppResources.LeviTitle, new RunModel(AppResources.TeanitReadingLevi) { Font = _torahReadingFont });
+            yield return new ParagraphModel(AppResources.IsraelTitle, new RunModel(AppResources.TeanitReadingIsrael) { Font = _torahReadingFont });
         }
 
         private static IEnumerable<ParagraphModel> GetMincha(JewishCalendar jc, ILogger logger)
@@ -161,15 +175,14 @@ namespace PrayPal.Content
                 yield break;
             }
 
-            string torahReadingFont = null;
-
-            yield return new ParagraphModel(AppResources.CohenTitle, new RunModel(AppResources.TeanitReadingCohen) { Font = torahReadingFont });
-            yield return new ParagraphModel(AppResources.LeviTitle, new RunModel(AppResources.TeanitReadingLevi) { Font = torahReadingFont });
-            yield return new ParagraphModel(AppResources.IsraelTitle, new RunModel(AppResources.TeanitReadingIsrael) { Font = torahReadingFont });
+            foreach (var p in GetTeanit())
+            {
+                yield return p;
+            }
 
             yield return new ParagraphModel(AppResources.HaftarahBlessingTitle, CommonPrayerTextProvider.Current.BeforeHaftarahBlessing);
 
-            yield return new ParagraphModel(AppResources.HaftarahTitle, new RunModel(AppResources.TeanitHaftarah) { Font = torahReadingFont });
+            yield return new ParagraphModel(AppResources.HaftarahTitle, new RunModel(AppResources.TeanitHaftarah) { Font = _torahReadingFont });
 
             yield return new ParagraphModel(AppResources.AfterHaftarahTitle, CommonPrayerTextProvider.Current.AfterHaftarahBlessing);
         }
