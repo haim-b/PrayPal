@@ -154,7 +154,7 @@ namespace PrayPal.SummaryView
         {
             List<ItemViewModel> items = new List<ItemViewModel>();
 
-            var nextPrayer = await _timeService.GetNextPrayerAsync(position);
+            var nextPrayer = await _timeService.GetCurrentPrayerAsync(position);
 
             if (nextPrayer != null && nextPrayer.Prayer != Prayer.Mussaf)
             {

@@ -85,37 +85,37 @@ namespace PrayPal
         }
 
 
-        public static async Task<PrayerInfo> GetNextPrayerAsync(this ITimeService timeService, Geoposition position = null, DateTime? relativeToDate = null)
+        public static async Task<PrayerInfo> GetCurrentPrayerAsync(this ITimeService timeService, Geoposition position = null, DateTime? relativeToDate = null)
         {
             if (timeService is null)
             {
                 throw new ArgumentNullException(nameof(timeService));
             }
 
-            return HebDateHelper.GetNextPrayer(position);
+            //return HebDateHelper.GetNextPrayer(position);
 
-            //DateTime now = relativeToDate ?? DateTime.Now;
+            DateTime now = relativeToDate ?? DateTime.Now;
 
-            //IEnumerable<Task<PrayerInfo>> prayers = IteratePrayers();
+            IEnumerable<Task<PrayerInfo>> prayers = IteratePrayers();
 
-            //foreach (var prayerTask in prayers)
-            //{
-            //    var prayer = await prayerTask;
+            foreach (var prayerTask in prayers)
+            {
+                var prayer = await prayerTask;
 
-            //    if (prayer.Start <= now && now <= prayer.End)
-            //    {
-            //        return prayer;
-            //    }
-            //}
+                if (prayer.Start <= now && now <= prayer.End)
+                {
+                    return prayer;
+                }
+            }
 
-            //return null;
+            return null;
 
-            //IEnumerable<Task<PrayerInfo>> IteratePrayers()
-            //{
-            //    yield return timeService.GetShacharitInfoAsync(position, relativeToDate);
-            //    yield return timeService.GetMinchaInfoAsync();
-            //    yield return timeService.GetArvitInfoAsync();
-            //}
+            IEnumerable<Task<PrayerInfo>> IteratePrayers()
+            {
+                yield return timeService.GetShacharitInfoAsync(position, relativeToDate);
+                yield return timeService.GetMinchaInfoAsync(position, relativeToDate);
+                yield return timeService.GetArvitInfoAsync(position, relativeToDate);
+            }
         }
     }
 }
