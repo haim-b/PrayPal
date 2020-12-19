@@ -18,7 +18,7 @@ namespace PrayPal.Content
 
         protected override void AddPart2()
         {
-            Add(CommonPrayerTextProvider.Current.BirkatHamazon_P8, AppResources.BirkatHaoreach);
+            Add(CommonPrayerTextProvider.Current.BirkatHamazon_P8, AppResources.BirkatHaoreach, true);
         }
 
         protected override void AddEnding()
