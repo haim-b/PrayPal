@@ -137,15 +137,22 @@ namespace PrayPal.Content
                 return r;
             }
 
-            if (jc.YomTovIndex == JewishCalendar.CHOL_HAMOED_PESACH)
+            int yomTovIndex = jc.YomTovIndex;
+
+            if (yomTovIndex == JewishCalendar.CHOL_HAMOED_PESACH)
             {
                 return GetCholHaMoedPesach(jc, logger);
             }
 
 
-            if (jc.YomTovIndex == JewishCalendar.CHOL_HAMOED_SUCCOS || jc.YomTovIndex == JewishCalendar.HOSHANA_RABBA)
+            if (yomTovIndex == JewishCalendar.CHOL_HAMOED_SUCCOS || yomTovIndex == JewishCalendar.HOSHANA_RABBA)
             {
                 return GetCholHaMoedSukkot(jc);
+            }
+
+            if (yomTovIndex == JewishCalendar.PURIM)
+            {
+                return GetPurim();
             }
 
             if (jc.Chanukah)
@@ -153,12 +160,41 @@ namespace PrayPal.Content
                 return GetHanukkah(jc);
             }
 
-            if (jc.Taanis && jc.YomTovIndex != JewishCalendar.TISHA_BEAV)
+            if (yomTovIndex == JewishCalendar.TISHA_BEAV)
+            {
+                return GetAv9th();
+            }
+            else if (jc.Taanis)
             {
                 return GetTeanit();
             }
 
             return GetMondayAndThursday(jc);
+        }
+
+        private static IEnumerable<ParagraphModel> GetAv9th()
+        {
+            ResourceManager book = GetBook(5);
+            string[] chapter = GetChapter(book, 4);
+
+            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByRange(25, 29, chapter, null)));
+            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByRange(30, 35, chapter, null)));
+            yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByRange(36, 40, chapter, null)));
+
+            foreach (var p in CreateHaftarah(AppResources.Av9thHaftarah))
+            {
+                yield return p;
+            }
+        }
+
+        private static IEnumerable<ParagraphModel> GetPurim()
+        {
+            ResourceManager book = GetBook(2);
+            string[] chapter = GetChapter(book, 17);
+
+            yield return new ParagraphModel(AppResources.CohenTitle, Flatten(GetPsukimByFirstAndLength(8, 3, chapter, null)));
+            yield return new ParagraphModel(AppResources.LeviTitle, Flatten(GetPsukimByFirstAndLength(11, 3, chapter, null)));
+            yield return new ParagraphModel(AppResources.IsraelTitle, Flatten(GetPsukimByFirstAndLength(14, 3, chapter, null)));
         }
 
         private static IEnumerable<ParagraphModel> GetTeanit()
@@ -172,17 +208,18 @@ namespace PrayPal.Content
         {
             if (!jc.Taanis)
             {
-                yield break;
+                return Enumerable.Empty<ParagraphModel>();
             }
 
-            foreach (var p in GetTeanit())
-            {
-                yield return p;
-            }
+            return GetTeanit()
+            .Concat(CreateHaftarah(AppResources.TeanitHaftarah));
+        }
 
+        private static IEnumerable<ParagraphModel> CreateHaftarah(string haftarah)
+        {
             yield return new ParagraphModel(AppResources.HaftarahBlessingTitle, CommonPrayerTextProvider.Current.BeforeHaftarahBlessing);
 
-            yield return new ParagraphModel(AppResources.HaftarahTitle, new RunModel(AppResources.TeanitHaftarah) { Font = _torahReadingFont });
+            yield return new ParagraphModel(AppResources.HaftarahTitle, new RunModel(haftarah) { Font = _torahReadingFont });
 
             yield return new ParagraphModel(AppResources.AfterHaftarahTitle, CommonPrayerTextProvider.Current.AfterHaftarahBlessing);
         }

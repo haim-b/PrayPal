@@ -206,6 +206,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to אָסֹ֥ף אֲסִיפֵ֖ם נְאֻם־יְהוָ֑ה אֵין֩ עֲנָבִ֨ים בַּגֶּ֜פֶן וְאֵ֧ין תְּאֵנִ֣ים בַּתְּאֵנָ֗ה וְהֶֽעָלֶה֙ נָבֵ֔ל וָֽאֶתֵּ֥ן לָהֶ֖ם יַֽעַבְרֽוּם׃ עַל־מָה֙ אֲנַ֣חְנוּ יֹֽשְׁבִ֔ים הֵאָֽסְפ֗וּ וְנָב֛וֹא אֶל־עָרֵ֥י הַמִּבְצָ֖ר וְנִדְּמָה־שָּׁ֑ם כִּי֩ יְהוָ֨ה אֱלֹהֵ֤ינוּ הֲדִמָּ֨נוּ֙ וַיַּשְׁקֵ֣נוּ מֵי־רֹ֔אשׁ כִּ֥י חָטָ֖אנוּ לַֽיהוָֽה׃ קַוֵּ֥ה לְשָׁל֖וֹם וְאֵ֣ין ט֑וֹב לְעֵ֥ת מַרְפֵּ֖ה וְהִנֵּ֥ה בְעָתָֽה׃ מִדָּ֤ן נִשְׁמַע֙ נַחְרַ֣ת סוּסָ֔יו מִקּוֹל֙ מִצְהֲל֣וֹת אַבִּירָ֔יו רָֽעֲשָׁ֖ה כָּל־הָאָ֑רֶץ וַיָּב֗וֹאוּ וַיֹּֽא [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Av9thHaftarah {
+            get {
+                return ResourceManager.GetString("Av9thHaftarah", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to אבינו מלכנו.
         /// </summary>
         public static string AvinuMalkenuTitle {
