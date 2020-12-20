@@ -210,7 +210,7 @@ namespace PrayPal.Content
             {
                 throw new NotificationException(AppResources.TishaBeavMessage);
             }
-            else if (DayInfo.YomTov != -1 && !DayInfo.JewishCalendar.CholHamoed && DayInfo.YomTov != JewishCalendar.YOM_HAZIKARON)
+            else if (!IsPrayerFullyHandled())
             {
                 string moedTitle = HebDateHelper.GetMoedTitle(DayInfo.JewishCalendar, true);
                 throw new NotificationException("שים לב שהיום " + moedTitle + ", וייתכן שיש שינויים בתפילה שלא יוצגו.");
@@ -224,6 +224,14 @@ namespace PrayPal.Content
             //shmoneEsreSpan.AddRange(shmoneEsre.Items);
 
             //_items.Add(shmoneEsreSpan);
+        }
+
+        protected bool IsPrayerFullyHandled()
+        {
+            return DayInfo.YomTov == -1
+                   || DayInfo.JewishCalendar.CholHamoed
+                   || DayInfo.YomTov == JewishCalendar.YOM_HAZIKARON
+                   || DayInfo.JewishCalendar.Chanukah;
         }
 
         protected async Task AddTfillinMirrorAsync(SpanModel talitTfillin)

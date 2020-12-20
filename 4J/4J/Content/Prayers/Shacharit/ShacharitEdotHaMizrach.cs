@@ -229,6 +229,16 @@ namespace PrayPal.Content
 
             aleinu.Add(CommonPrayerTextProvider.Current.AleinuLeshabeach);
             _items.Add(aleinu);
+
+            if (DayInfo.YomTov == JewishCalendar.TISHA_BEAV)
+            {
+                throw new NotificationException(AppResources.TishaBeavMessage);
+            }
+            else if (!IsPrayerFullyHandled())
+            {
+                string moedTitle = HebDateHelper.GetMoedTitle(DayInfo.JewishCalendar, true);
+                throw new NotificationException("שים לב שהיום " + moedTitle + ", וייתכן שיש שינויים בתפילה שלא יוצגו.");
+            }
         }
 
         protected override ShmoneEsreBase GetShmoneEsre(Prayer prayer)
