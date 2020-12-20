@@ -171,7 +171,7 @@ namespace PrayPal.SummaryView
                 }
             }
 
-            items.Add(new PrayerItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle, AppResources.BirkatHaMazonEndTimeInstruction));
+            items.Add(new PrayerItemViewModel(PrayerNames.BirkatHamazon, AppResources.BirkatHamazonTitle));
 
             return items;
         }
