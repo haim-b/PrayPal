@@ -44,7 +44,7 @@ namespace PrayPal.Common.Services
 
                         if (dayCritical)
                         {
-                            sunsetTimeOfDay -= TimeSpan.FromMinutes(10);
+                            sunsetTimeOfDay -= TimeSpan.FromMinutes(30);
                         }
 
                         if (sunsetTimeOfDay < date.TimeOfDay)
