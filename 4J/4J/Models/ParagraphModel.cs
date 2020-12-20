@@ -109,5 +109,34 @@ namespace PrayPal.Models
 
             this.Add(new RunModel(text));
         }
+
+        public static IEnumerable<RunModel> Combine(IEnumerable<ParagraphModel> paragraphs)
+        {
+            RunModel space = new RunModel(" ");
+
+            bool isFirstTime = true;
+
+            foreach (ParagraphModel p in paragraphs)
+            {
+                if (isFirstTime)
+                {
+                    isFirstTime = false;
+                }
+                else
+                {
+                    yield return space;
+                }
+
+                foreach (RunModel r in p.Content)
+                {
+                    yield return r;
+                }
+            }
+        }
+
+        public static IEnumerable<RunModel> Combine(params ParagraphModel[] paragraphs)
+        {
+            return Combine((IEnumerable<ParagraphModel>)paragraphs);
+        }
     }
 }

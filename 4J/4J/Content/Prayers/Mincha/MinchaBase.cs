@@ -97,7 +97,7 @@ namespace PrayPal.Content
             span.Add(CommonPrayerTextProvider.Current.BrachaBeforeTorah);
             span.Add(CommonPrayerTextProvider.Current.BrachaAfterTorah);
 
-            span.AddRange(Parashot.GetParashaReadingForShacharit(DayInfo.JewishCalendar, Prayer.Mincha, Logger));
+            span.AddRange(Parashot.GetParashaReadingForMincha(DayInfo.JewishCalendar, Logger));
         }
 
         protected virtual void AddAfterTorahReading(SpanModel span)

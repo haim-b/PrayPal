@@ -18,6 +18,7 @@ using Tests.PrayPal.Content.Prayers;
 using Zmanim;
 using Zmanim.HebrewCalendar;
 using RunModel = PrayPal.Models.RunModel;
+using NewParagraph = PrayPal.Models.ParagraphModel;
 
 namespace Tests.PrayPal.Content
 {
@@ -62,7 +63,7 @@ namespace Tests.PrayPal.Content
                     // This exception is OK.
                 }
 
-                // We need space between paragraphs, but not between runs.
+                // We need space between paragraphs (legacy), but not between runs (new).
                 RunModel[] space = new[] { new RunModel(" ") };
                 IEnumerable<string> newText = Enumerable.Range(0, t.GetItemsCount()).Select(i => t.GetItemAtIndex(i)).Select(p => p.Content.Concat(space)).SelectMany(c => c).Select(r => r.Text);
 
@@ -813,7 +814,12 @@ namespace Tests.PrayPal.Content
             t.Add(PrayTexts.BrachaBeforeTorah);
             t.Add(PrayTexts.BrachaAfterTorah);
 
-            if (prayer == Prayer.Mincha)
+            if (prayer == Prayer.Shacharit)
+            {
+                // Dangerous: The test is taking the text from the actual code, so it's not very useful. It's only here to make the entire legacy prayer match the new one in the comparison:
+                t.AddRange(Parashot.GetParashaReadingForShacharit(jc, new DummyLogger()).Select(ToLegacy).ToArray());
+            }
+            else if (prayer == Prayer.Mincha)
             {
                 t.Add(new ParagraphModel(AppResources.TeanitReadingCohen) { Title2 = AppResources.CohenTitle });
                 t.Add(new ParagraphModel(AppResources.TeanitReadingLevi) { Title2 = AppResources.LeviTitle });
@@ -854,7 +860,10 @@ namespace Tests.PrayPal.Content
             texts.Add(t);
         }
 
-
+        private static ParagraphModel ToLegacy(NewParagraph p)
+        {
+            return new ParagraphModel(string.Join(" ", p.Content.Select(r => r.Text)));
+        }
 
 
 

@@ -28,7 +28,7 @@ namespace PrayPal.Content
                 new ParashaMarks(1,12,1,4,7,13), // Lech Lecha
                 new ParashaMarks(1,18,1,6,9,14), // Vayera
                 new ParashaMarks(1,23,1,6,11,16), // Chayey Sarah
-                new ParashaMarks(1,25,19,23,27,5), // Toldot
+                ParashaMarks.WithThirdAsLength(1,25,19,23,27,13), // Toldot
                 new ParashaMarks(1,28,10,13,18,22), // Vayetze
                 new ParashaMarks(1,32,4,7,10,13), // Vayshlach
                 new ParashaMarks(1,37,1,4,8,11), // Vayeshev
@@ -46,7 +46,7 @@ namespace PrayPal.Content
                 new ParashaMarks(2,27,20,6,10,12), // Tetzaveh
                 new ParashaMarks(2,30,11,14,17,21), // Ki Tisa
                 new ParashaMarks(2,35,1,4,11,20), // Vayak'hel
-                new ParashaMarks(2,38,21,24,28,1), // Pkudey
+                ParashaMarks.WithThirdAsLength(2,38,21,24,28,5), // Pkudey
 
                 new ParashaMarks(3,1,1,5,10,13), // Vaykra
                 new ParashaMarks(3,6,1,4,7,11), // Tzav
@@ -66,7 +66,7 @@ namespace PrayPal.Content
                 new ParashaMarks(4,16,1,4,8,13), // Korach
                 new ParashaMarks(4,19,1,7,10,17), // Chukat
                 new ParashaMarks(4,22,2,5,8,12), // Balak
-                new ParashaMarks(4,25,10,13,16,4), // Pinchas
+                ParashaMarks.WithThirdAsLength(4,25,10,13,16,7), // Pinchas
                 new ParashaMarks(4,30,2,10,14,17), // Matot
                 new ParashaMarks(4,33,1,4,7,10), // Masey
                 
@@ -75,7 +75,7 @@ namespace PrayPal.Content
                 new ParashaMarks(5,7,12,22,4,10), // Ekev
                 new ParashaMarks(5,11,26,32,6,10), // Re'e
                 new ParashaMarks(5,16,18,21,11,20), // Shoftim
-                new ParashaMarks(5,21,10,15,18,7), // Ki Tetze
+                ParashaMarks.WithThirdAsLength(5,21,10,15,18,4), // Ki Tetze
                 new ParashaMarks(5,26,1,4,9,11), // Ki Tavo
                 new ParashaMarks(5,29,9,12,15,28), // Nitzavim
                 new ParashaMarks(5,31,1,4,7,13), // Vayelech
@@ -101,7 +101,7 @@ namespace PrayPal.Content
             };
         }
 
-        public static IEnumerable<ParagraphModel> GetParashaReadingForShacharit(JewishCalendar jc, Prayer prayer, ILogger logger)
+        public static IEnumerable<ParagraphModel> GetParashaReadingForShacharit(JewishCalendar jc, ILogger logger)
         {
             if (jc is null)
             {
@@ -113,16 +113,6 @@ namespace PrayPal.Content
                 throw new ArgumentNullException(nameof(logger));
             }
 
-            if (prayer == Prayer.Mincha)
-            {
-                return GetMincha(jc, logger);
-            }
-
-            if (prayer != Prayer.Shacharit)
-            {
-                return Enumerable.Empty<ParagraphModel>();
-            }
-
             if (jc.RoshChodesh)
             {
                 var r = GetRoshChodesh();
@@ -130,7 +120,7 @@ namespace PrayPal.Content
                 if (jc.Chanukah)
                 {
                     var l = r.ToList();
-                    l.Add(new ParagraphModel(string.Format(AppResources.InSecondBookAliyaTitle_F0, AppResources.FourthTorahReaderTitle), GetHanukkah(jc).SelectMany(p => p.Content)));
+                    l.Add(new ParagraphModel(string.Format(AppResources.InSecondBookAliyaTitle_F0, AppResources.FourthTorahReaderTitle), ParagraphModel.Combine(GetHanukkah(jc))));
                     return l;
                 }
 
@@ -172,6 +162,28 @@ namespace PrayPal.Content
             return GetMondayAndThursday(jc);
         }
 
+
+        public static IEnumerable<ParagraphModel> GetParashaReadingForMincha(JewishCalendar jc, ILogger logger)
+        {
+            if (jc is null)
+            {
+                throw new ArgumentNullException(nameof(jc));
+            }
+
+            if (logger is null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
+            if (!jc.Taanis)
+            {
+                return Enumerable.Empty<ParagraphModel>();
+            }
+
+            return GetTeanit()
+            .Concat(CreateHaftarah(AppResources.TeanitHaftarah));
+        }
+
         private static IEnumerable<ParagraphModel> GetAv9th()
         {
             ResourceManager book = GetBook(5);
@@ -204,17 +216,6 @@ namespace PrayPal.Content
             yield return new ParagraphModel(AppResources.IsraelTitle, new RunModel(AppResources.TeanitReadingIsrael) { Font = _torahReadingFont });
         }
 
-        private static IEnumerable<ParagraphModel> GetMincha(JewishCalendar jc, ILogger logger)
-        {
-            if (!jc.Taanis)
-            {
-                return Enumerable.Empty<ParagraphModel>();
-            }
-
-            return GetTeanit()
-            .Concat(CreateHaftarah(AppResources.TeanitHaftarah));
-        }
-
         private static IEnumerable<ParagraphModel> CreateHaftarah(string haftarah)
         {
             yield return new ParagraphModel(AppResources.HaftarahBlessingTitle, CommonPrayerTextProvider.Current.BeforeHaftarahBlessing);
@@ -240,8 +241,9 @@ namespace PrayPal.Content
 
             book = GetBook(marks.BookNumber);
             string[] chapter = GetChapter(book, marks.Chapter);
+            Func<string[]> nextChapterFactory = () => GetChapter(book, marks.Chapter + 1);
 
-            foreach (var p in MarksToParagraphs(marks, chapter, null))
+            foreach (var p in MarksToParagraphs(marks, chapter, nextChapterFactory))
             {
                 yield return p;
             }
@@ -394,7 +396,7 @@ namespace PrayPal.Content
                 do
                 {
                     jc.forward();
-                } while (jc.DayOfWeek < 7);
+                } while (jc.DayOfWeek < 7 || jc.ParshaIndex == -1); // Keep moving forward while it's neither Shabbat, not has a concrete parasha (like before holidays)
             }
 
             int parashaIndex = jc.ParshaIndex;
@@ -479,7 +481,9 @@ namespace PrayPal.Content
 
                 string[] nextChapter = nextChapterFactory();
 
-                for (int i = 0; i < count - (chapter.Length - firstReaderStart); i++)
+                count = count - (chapter.Length - firstReaderStart) - 1; // Remove from the total count the amount of items we already added (first chapter total minus all the Psukim before the first one) and then make zero-based.
+
+                for (int i = 0; i < count; i++)
                 {
                     yield return Clean(nextChapter[i]);
                 }
@@ -517,7 +521,7 @@ namespace PrayPal.Content
             public readonly int FirstReaderStart;
             public readonly int SecondReaderStart;
             public readonly int ThirdReaderStart;
-            public readonly int ThirdReaderLength;
+            public int ThirdReaderLength { get; private set; }
 
             public ParashaMarks(int bookNumber, int chapter, int firstReaderStart, int secondReaderStart, int thirdReaderStart, int thirdReaderLast)
             {
@@ -527,6 +531,16 @@ namespace PrayPal.Content
                 SecondReaderStart = secondReaderStart;
                 ThirdReaderStart = thirdReaderStart;
                 ThirdReaderLength = thirdReaderLast - thirdReaderStart + 1;
+
+                if (ThirdReaderLength <= 0)
+                {
+                    throw new ArgumentException("Third reader's last pasuk is invalid.");
+                }
+            }
+
+            public static ParashaMarks WithThirdAsLength(int bookNumber, int chapter, int firstReaderStart, int secondReaderStart, int thirdReaderStart, int thirdReaderLength)
+            {
+                return new ParashaMarks(bookNumber, chapter, firstReaderStart, secondReaderStart, thirdReaderStart, 1000) { ThirdReaderLength = thirdReaderLength };
             }
         }
 

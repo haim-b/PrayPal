@@ -552,7 +552,7 @@ namespace PrayPal.Content
         {
             try
             {
-                var ps = Parashot.GetParashaReadingForShacharit(DayInfo.JewishCalendar, Prayer.Shacharit, Logger);
+                var ps = Parashot.GetParashaReadingForShacharit(DayInfo.JewishCalendar, Logger);
 
                 span.AddRange(ps);
             }
