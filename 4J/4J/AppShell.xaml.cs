@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace PrayPal
 {
@@ -25,7 +26,7 @@ namespace PrayPal
 
             if (vm.CurrentView == vm.Settings)
             {
-                tab.CurrentItem = settingsTabItem;
+                //tab.CurrentPage = settingsTabItem;
             }
         }
     }

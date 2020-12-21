@@ -29,22 +29,33 @@
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-           
+
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
-        <Tab x:Name="tab">
-            <ShellContent BindingContext="{Binding Summary, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate sv:SummaryPageView}" Route="SummaryPage"/>
-            <ShellContent BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate p:PrayersView}" Route="PrayersPage"/>
-            <ShellContent BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate b:BooksView}" Route="BooksPage"/>
-            <ShellContent BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate t:ToolsView}" Route="ToolsPage"/>
-            <ShellContent x:Name="settingsTabItem" BindingContext="{Binding Settings, Mode=OneTime}" Title="{Binding Title}" Icon="tab_about.png" ContentTemplate="{DataTemplate s:SettingsView}" Route="SettingsPage"/>
-        </Tab>
-    </TabBar>
+    <Tab Title="{app:CustomResource ApplicationTitle}">
+        <ShellContent Title="">
+            <ShellContent.ContentTemplate>
+                <DataTemplate>
+                    <TabbedPage x:Name="tab" Title="{app:CustomResource ApplicationTitle}">
+                        <TabbedPage.ToolbarItems>
+                            <ToolbarItem Text="{app:CustomResource AboutCommandTitle}" Command="{Binding ShowAboutCommand}" Order="Secondary"/>
+                        </TabbedPage.ToolbarItems>
+                        <sv:SummaryPageView BindingContext="{Binding Summary, Mode=OneTime}" Title="{Binding Title}"/>
+
+                        <p:PrayersView BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}"/>
+                        <b:BooksView BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}"/>
+                        <t:ToolsView BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}"/>
+                        <s:SettingsView x:Name="settingsTabItem" BindingContext="{Binding Settings, Mode=OneTime}" Title="{Binding Title}"/>
+                    </TabbedPage>
+                </DataTemplate>
+            </ShellContent.ContentTemplate>
+        </ShellContent>
+    </Tab>
 
     <!--
         If you would like to navigate to this content you can do so by calling

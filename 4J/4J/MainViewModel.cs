@@ -11,23 +11,28 @@ using PrayPal.Tools;
 using PrayPal.Books;
 using Xamarin.Essentials;
 using PrayPal.SummaryView;
+using Xamarin.Forms;
+using PrayPal.About;
 
 namespace PrayPal
 {
     public class MainViewModel : BindableBase, IContentPage
     {
         private const string AppAlreadyRanKey = "AppAlreadyRan";
-
+        private readonly INavigationService _navigationService;
         private readonly ILogger _logger;
 
-        public MainViewModel(SummaryPageViewModel summary, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, ILogger<MainViewModel> logger)
+        public MainViewModel(SummaryPageViewModel summary, PrayersViewModel prayers, BooksViewModel books, ToolsPageViewModel toolsPageViewModel, SettingsViewModel settings, INavigationService navigationService, ILogger<MainViewModel> logger)
         {
             Summary = summary ?? throw new ArgumentNullException(nameof(summary));
             Prayers = prayers ?? throw new ArgumentNullException(nameof(prayers));
             Books = books ?? throw new ArgumentNullException(nameof(books));
             Tools = toolsPageViewModel ?? throw new ArgumentNullException(nameof(toolsPageViewModel));
             Settings = settings;
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+            ShowAboutCommand = new Command(ShowAboutView);
 
             if (IsFirstTime)
             {
@@ -48,6 +53,8 @@ namespace PrayPal
 
         public object CurrentView { get; set; }
 
+        public Command ShowAboutCommand { get; }
+
         private bool IsFirstTime
         {
             get { return !Preferences.Get(AppAlreadyRanKey, false); }
@@ -60,6 +67,18 @@ namespace PrayPal
             await SafeInitializeViewModelAsync(Prayers);
             await SafeInitializeViewModelAsync(Books);
             await SafeInitializeViewModelAsync(Tools);
+        }
+
+        private async void ShowAboutView()
+        {
+            try
+            {
+                await _navigationService.NavigateToAsync(nameof(AboutViewModel));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to show the About view.");
+            }
         }
 
         private async Task SafeInitializeViewModelAsync(IContentPage contentPage)

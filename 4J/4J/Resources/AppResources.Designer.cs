@@ -71,11 +71,26 @@ namespace PrayPal.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to פותח על-ידי חיים בורלא.
-        ///נעשה שימוש בספריית הזמנים Zmanim..
+        ///תודה לאוגו בוקובזה על הבדיקה והמשוב..
         /// </summary>
         public static string AboutText1 {
             get {
                 return ResourceManager.GetString("AboutText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to נעשה שימוש ב:
+        ///- ספריית הזמנים Zmanim
+        ///- Xamarin
+        ///- Autofac
+        ///- Prism
+        ///- Rg.Plugins.Popup
+        ///- Serilog.
+        /// </summary>
+        public static string AboutText2 {
+            get {
+                return ResourceManager.GetString("AboutText2", resourceCulture);
             }
         }
         

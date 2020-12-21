@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:PrayPal"
-             x:Class="PrayPal.SummaryView.SummaryPageView" Title="{app:CustomResource ApplicationTitle}">
+             x:Class="PrayPal.SummaryView.SummaryPageView" Title="{Binding Title}">
     <ContentPage.Resources>
         <Style TargetType="StackLayout" x:Key="DayTimeStackLayoutStyle">
             <Setter Property="Margin" Value="10,2"/>
