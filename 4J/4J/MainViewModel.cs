@@ -34,6 +34,8 @@ namespace PrayPal
 
             ShowAboutCommand = new Command(ShowAboutView);
 
+            CurrentView = Summary;
+
             if (IsFirstTime)
             {
                 CurrentView = Settings;

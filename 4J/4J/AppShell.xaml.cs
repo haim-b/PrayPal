@@ -23,10 +23,7 @@ namespace PrayPal
                 return;
             }
 
-            if (vm.CurrentView == vm.Settings)
-            {
-                tab.CurrentPage = tab.Children.First(p => p.BindingContext == vm.Settings);
-            }
+            tab.CurrentPage = tab.Children.First(p => p.BindingContext == vm.CurrentView);
         }
     }
 }
