@@ -41,16 +41,15 @@
         <ShellContent Title="">
             <ShellContent.ContentTemplate>
                 <DataTemplate>
-                    <TabbedPage x:Name="tab" Title="{app:CustomResource ApplicationTitle}">
+                    <TabbedPage x:Name="tab" Title="{app:CustomResource ApplicationTitle}" BindingContextChanged="tab_BindingContextChanged">
                         <TabbedPage.ToolbarItems>
                             <ToolbarItem Text="{app:CustomResource AboutCommandTitle}" Command="{Binding ShowAboutCommand}" Order="Secondary"/>
                         </TabbedPage.ToolbarItems>
-                        <sv:SummaryPageView BindingContext="{Binding Summary, Mode=OneTime}" Title="{Binding Title}"/>
-
-                        <p:PrayersView BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}"/>
-                        <b:BooksView BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}"/>
-                        <t:ToolsView BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}"/>
                         <s:SettingsView x:Name="settingsTabItem" BindingContext="{Binding Settings, Mode=OneTime}" Title="{Binding Title}"/>
+                        <t:ToolsView BindingContext="{Binding Tools, Mode=OneTime}" Title="{Binding Title}"/>
+                        <b:BooksView BindingContext="{Binding Books, Mode=OneTime}" Title="{Binding Title}"/>
+                        <p:PrayersView BindingContext="{Binding Prayers, Mode=OneTime}" Title="{Binding Title}"/>
+                        <sv:SummaryPageView BindingContext="{Binding Summary, Mode=OneTime}" Title="{Binding Title}"/>
                     </TabbedPage>
                 </DataTemplate>
             </ShellContent.ContentTemplate>

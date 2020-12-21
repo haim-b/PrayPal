@@ -13,10 +13,9 @@ namespace PrayPal
             InitializeComponent();
         }
 
-        protected override void OnBindingContextChanged()
+        private void tab_BindingContextChanged(object sender, EventArgs e)
         {
-            base.OnBindingContextChanged();
-
+            TabbedPage tab = (TabbedPage)sender;
             var vm = BindingContext as MainViewModel;
 
             if (vm == null)
@@ -26,7 +25,7 @@ namespace PrayPal
 
             if (vm.CurrentView == vm.Settings)
             {
-                //tab.CurrentPage = settingsTabItem;
+                tab.CurrentPage = tab.Children.First(p => p.BindingContext == vm.Settings);
             }
         }
     }
