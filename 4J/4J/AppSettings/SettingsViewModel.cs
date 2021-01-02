@@ -152,19 +152,19 @@ namespace PrayPal.AppSettings
             }
         }
 
-        public int Nusach
+        public ValueTitlePair<Nusach> Nusach
         {
-            get { return (int)Settings.Nusach; }
+            get { return Nusachim.FirstOrDefault(vtp => vtp.Value == Settings.Nusach); }
             set
             {
-                Nusach newValue = (Nusach)value;
+                Nusach newValue = value.Value;
 
                 if (Settings.Nusach != newValue)
                 {
                     Settings.Nusach = newValue;
                     RaisePropertyChanged();
 
-                    PrayersHelper.SetPrayerTextProvider((Nusach)value);
+                    PrayersHelper.SetPrayerTextProvider(newValue);
                 }
             }
         }
@@ -190,7 +190,13 @@ namespace PrayPal.AppSettings
 
         public List<string> FontSizes { get; } = new List<string>(2) { AppResources.FontSizeSettingLabelRegular, AppResources.FontSizeSettingLabelLarge };
 
-        public List<string> Nusachim { get; } = new List<string>() { AppResources.NusachAshkenazTitle, AppResources.NusachSfardTitle, AppResources.NusachEdotMizrachTitle };
+        public List<ValueTitlePair<Nusach>> Nusachim { get; } = new List<ValueTitlePair<Nusach>>()
+        {
+           new ValueTitlePair<Nusach>(Common.Nusach.Ashkenaz, AppResources.NusachAshkenazTitle),
+           new ValueTitlePair<Nusach>(Common.Nusach.Baladi, AppResources.NusachBaladiTitle),
+           new ValueTitlePair<Nusach>(Common.Nusach.Sfard, AppResources.NusachSfardTitle),
+           new ValueTitlePair<Nusach>(Common.Nusach.EdotMizrach, AppResources.NusachEdotMizrachTitle)
+        };
 
         public List<string> Themes { get; } = new List<string>() { AppResources.ThemeNameFromOS, AppResources.ThemeNameLight, AppResources.ThemeNameDark };
 
@@ -301,5 +307,17 @@ namespace PrayPal.AppSettings
             set { SetProperty(ref _isAllowed, value); }
         }
 
+    }
+
+    public class ValueTitlePair<T>
+    {
+        public ValueTitlePair(T value, string title)
+        {
+            Value = value;
+            Title = title;
+        }
+
+        public T Value { get; }
+        public string Title { get; }
     }
 }

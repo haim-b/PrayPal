@@ -53,6 +53,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Content\Prayers\Shacharit\PrayersBaladi.Designer.cs">
+      <DependentUpon>PrayersBaladi.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="DayTimes\DayTimesView.xaml.cs">
       <DependentUpon>DayTimesView.xaml</DependentUpon>
     </Compile>
@@ -133,6 +138,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Books\Psalms\PsalmSelectionPageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Content\Prayers\Shacharit\PrayersBaladi.resx">
+      <LastGenOutput>PrayersBaladi.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="DayTimes\DayTimesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

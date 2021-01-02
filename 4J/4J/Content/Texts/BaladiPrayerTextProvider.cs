@@ -10,8 +10,33 @@ namespace PrayPal.Content
 {
     public class BaladiPrayerTextProvider : EdotHaMizrachPrayerTextProvider
     {
+        private static BaladiPrayerTextProvider _instance;
+
         public BaladiPrayerTextProvider()
             : base(typeof(PrayersBaladi))
         { }
+
+        public static new BaladiPrayerTextProvider Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new BaladiPrayerTextProvider();
+                }
+
+                return _instance;
+            }
+        }
+
+        public string AdonHaOlaminMorning
+        {
+            get { return _texts["AdonHaOlaminMorning"]; }
+        }
+
+        public string BirkotHashachar2NotAv9th
+        {
+            get { return _texts["BirkotHashachar2NotAv9th"]; }
+        }
     }
 }
