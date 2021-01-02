@@ -57,60 +57,27 @@ namespace PrayPal.Content
                 talitTfillin.Add(new ParagraphModel(AppResources.AtifatTalitTitle, CommonPrayerTextProvider.Current.AtifatTalit));
 
                 talitTfillin.Add(new ParagraphModel(AppResources.HanachatTfillinTitle, CommonPrayerTextProvider.Current.HanachatTfillin));
-                talitTfillin.Add(EdotHaMizrachPrayerTextProvider.Instance.HanachatTfillin2);
                 await AddTfillinMirrorAsync(talitTfillin);
-                talitTfillin.Add(CommonPrayerTextProvider.Current.ParashahAfterTfillin1, CommonPrayerTextProvider.Current.ParashahAfterTfillin2);
             }
             else
             {
                 talitTfillin = new SpanModel(AppResources.AtifatTalitTitle, CommonPrayerTextProvider.Current.AtifatTalit);
             }
 
-            _items.Add(talitTfillin);
+            SpanModel haMehulal = new SpanModel(AppResources.PsukeyDezimraTitle);
 
-            // Vatitpallel Channah
-            Add(AppResources.VatitpallelChannahTitle, EdotHaMizrachPrayerTextProvider.Instance.VatitpalelChannah, EdotHaMizrachPrayerTextProvider.Instance.PreShacharit1);
-            Add(AppResources.LeshemYichudTitle, EdotHaMizrachPrayerTextProvider.Instance.PreShacharit2);
-
-            // Parashat HaAkedah
-            Add(AppResources.ParashatHaakedahTitle, EdotHaMizrachPrayerTextProvider.Instance.PreShacharit3,
-            EdotHaMizrachPrayerTextProvider.Instance.ParashatHaakedah,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit4,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit5,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit6,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit7,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit8,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit9,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit10,
-            EdotHaMizrachPrayerTextProvider.Instance.AnnaBechoach,
-            EdotHaMizrachPrayerTextProvider.Instance.PreShacharit11);
-
-            //UNDONE: Add לכן יהי רצון מלפניך ה אלוקינו...
-            //UNDONE: Add פרק איזהו מקומן
-
-            Add(AppResources.KtoretHasamimTitle, EdotHaMizrachPrayerTextProvider.Instance.KtoretHasamim1, EdotHaMizrachPrayerTextProvider.Instance.KtoretHasamim2,
-                CommonPrayerTextProvider.Current.PitumHaktoret1, CommonPrayerTextProvider.Current.PitumHaktoret2);
-
-            // Braita DeRabbi Ishmael
-            SpanModel bdi = new SpanModel(AppResources.BrayitaDerabiYishmaelTitle, CommonPrayerTextProvider.Current.BrayitaDerabiYishmael);
-            bdi.AddRange(PrayersHelper.GetKadishDerabanan(DayInfo));
-
-            _items.Add(bdi);
-
-            // Tfilot HaShachar
-            SpanModel shachar = new SpanModel(AppResources.TfilotHashacharTitle);
-            shachar.Add(CommonPrayerTextProvider.Current.MizmorLifneyHaAron1, CommonPrayerTextProvider.Current.MizmorLifneyHaAron2, CommonPrayerTextProvider.Current.MizmorLifneyHaAron3, EdotHaMizrachPrayerTextProvider.Instance.Psalm30Shacharit);
-
-            shachar.Add(string.Format(CommonPrayerTextProvider.Current.ShacharitVerse1, DayInfo.AseretYameyTshuva ? EdotHaMizrachPrayerTextProvider.Instance.ShacharitVerse1AYT : ""), Psalms.Psalm67);
-
-            _items.Add(shachar);
+            if (DayInfo.AseretYameyTshuva)
+            {
+                haMehulal.Add(new ParagraphModel(AppResources.InAseretYameyTshuvaTitle, BaladiPrayerTextProvider.Instance.ShofetKolHaAretz));
+            }
 
 
             // Psukey DeZimra
-            Add(AppResources.PsukeyDezimraTitle, CommonPrayerTextProvider.Current.BaruchSheamar, Psalms.Psalm100,
+            haMehulal.Add(CommonPrayerTextProvider.Current.BaruchSheamar, Psalms.Psalm100,
             CommonPrayerTextProvider.Current.ShacharitVerse2, CommonPrayerTextProvider.Current.Ashrey, Psalms.Psalm146, Psalms.Psalm147, Psalms.Psalm148, Psalms.Psalm149, Psalms.Psalm150,
                 Psalms.PsalmEnding, CommonPrayerTextProvider.Current.ShacharitVerse3, CommonPrayerTextProvider.Current.ShacharitVerse4, CommonPrayerTextProvider.Current.ShacharitVerse5);
 
+            _items.Add(haMehulal);
 
             // Shirat Hayam and Yishtabach
             Add(AppResources.ShiratHayamTitle, CommonPrayerTextProvider.Current.ShiratHayam);

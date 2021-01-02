@@ -843,4 +843,7 @@
 - Rg.Plugins.Popup
 - Serilog</value>
   </data>
+  <data name="InAseretYameyTshuvaTitle" xml:space="preserve">
+    <value>בעשרת ימי תשובה</value>
+  </data>
 </root>

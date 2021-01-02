@@ -157,6 +157,11 @@ namespace PrayPal.AppSettings
             get { return Nusachim.FirstOrDefault(vtp => vtp.Value == Settings.Nusach); }
             set
             {
+                if (value == null)
+                {
+                    return;
+                }
+
                 Nusach newValue = value.Value;
 
                 if (Settings.Nusach != newValue)

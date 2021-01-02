@@ -38,5 +38,10 @@ namespace PrayPal.Content
         {
             get { return _texts["BirkotHashachar2NotAv9th"]; }
         }
+
+        public string ShofetKolHaAretz
+        {
+            get { return _texts["ShofetKolHaAretz"]; }
+        }
     }
 }

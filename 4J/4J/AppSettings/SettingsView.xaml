@@ -23,14 +23,13 @@
 					</Label.FormattedText>
 				</Label>-->
 
-				<StackLayout Orientation="Horizontal">
-					<Label Text="{app:CustomResource NusachSettingLabel}" VerticalTextAlignment="Center"/>
-					<app:PickerEx Title="{app:CustomResource NusachSettingLabel}"
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{app:CustomResource NusachSettingLabel}" VerticalTextAlignment="Center"/>
+                    <app:PickerEx Title="{app:CustomResource NusachSettingLabel}"
 							ItemsSource="{Binding Nusachim, Mode=OneTime}"
                             ItemDisplayBinding="{Binding Title, Mode=OneTime}"
-							SelectedIndex="{Binding Nusach, Mode=TwoWay}"/>
-				</StackLayout>
-                <Label Text="בקרוב: נוסח בלדי" FontSize="12"/>
+							SelectedItem="{Binding Nusach, Mode=TwoWay}"/>
+                </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
 					<Label Text="{app:CustomResource TimeCalcMethodLabel}" VerticalTextAlignment="Center"/>

@@ -950,6 +950,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to בעשרת ימי תשובה.
+        /// </summary>
+        public static string InAseretYameyTshuvaTitle {
+            get {
+                return ResourceManager.GetString("InAseretYameyTshuvaTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to בחזרת הש&quot;ץ.
         /// </summary>
         public static string InHazarahTitle {

@@ -248,15 +248,19 @@ namespace PrayPal.Content
             yield return GetOseShalom(dayInfo);
         }
 
-        public static string GetNefilatApayim(Nusach nushach)
+        public static string GetNefilatApayim(Nusach nusach)
         {
-            if (nushach == Nusach.Sfard || nushach == Nusach.Ashkenaz)
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
             {
                 return CommonPrayerTextProvider.Current.NefilatApaim;
             }
-            else if (nushach == Nusach.EdotMizrach)
+            else if (nusach == Nusach.EdotMizrach)
             {
                 return Psalms.Psalm25 + EdotHaMizrachPrayerTextProvider.Instance.NefilatApayimEnding;
+            }
+            else if (nusach == Nusach.Baladi)
+            {
+                return "dd";
             }
 
             return string.Empty;
