@@ -75,30 +75,25 @@ namespace PrayPal.Content
             // Psukey DeZimra
             haMehulal.Add(CommonPrayerTextProvider.Current.BaruchSheamar, Psalms.Psalm100,
             CommonPrayerTextProvider.Current.ShacharitVerse2, CommonPrayerTextProvider.Current.Ashrey, Psalms.Psalm146, Psalms.Psalm147, Psalms.Psalm148, Psalms.Psalm149, Psalms.Psalm150,
-                Psalms.PsalmEnding, CommonPrayerTextProvider.Current.ShacharitVerse3, CommonPrayerTextProvider.Current.ShacharitVerse4, CommonPrayerTextProvider.Current.ShacharitVerse5);
+                BaladiPrayerTextProvider.Instance.PsalmsEnding, CommonPrayerTextProvider.Current.ShacharitVerse3, CommonPrayerTextProvider.Current.ShacharitVerse5);
 
             _items.Add(haMehulal);
 
             // Shirat Hayam and Yishtabach
-            Add(AppResources.ShiratHayamTitle, CommonPrayerTextProvider.Current.ShiratHayam);
+            Add(AppResources.ShiratHayamTitle, new ParagraphModel(BaladiPrayerTextProvider.Instance.ShiratHayamHtml) { IsTextStretched = true }, new ParagraphModel(BaladiPrayerTextProvider.Instance.VatikachMiryam));
 
-            SpanModel yishtabach = new SpanModel(AppResources.YishtabachTitle, CommonPrayerTextProvider.Current.Yishtabach);
-
-            if (DayInfo.AseretYameyTshuva)
-            {
-                yishtabach.Add(Psalms.Psalm130);
-            }
+            SpanModel yishtabach = new SpanModel(AppResources.YishtabachTitle, BaladiPrayerTextProvider.Instance.Refaeni, CommonPrayerTextProvider.Current.Yishtabach);
 
             yishtabach.Add(PrayersHelper.GetHalfKadish(DayInfo));
 
             _items.Add(yishtabach);
 
             // Brachot Shma
-            Add(AppResources.BrachotKriatShmaTitle, CommonPrayerTextProvider.Current.Barchu, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit1, CommonPrayerTextProvider.Current.KadoshKadosh, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit2, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit3);
+            Add(AppResources.BrachotKriatShmaTitle, BaladiPrayerTextProvider.Instance.BarchuShacharit, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit1, CommonPrayerTextProvider.Current.KadoshKadosh, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit2, CommonPrayerTextProvider.Current.BrachotBeforeShmaShacharit3);
 
             // Kriat Shma
             Add(AppResources.KriatShmaTitle, CommonPrayerTextProvider.Current.KriatShma1, CommonPrayerTextProvider.Current.KriatShma2, CommonPrayerTextProvider.Current.KriatShma3,
-                CommonPrayerTextProvider.Current.BrachotAfterShmaShacharit1, CommonPrayerTextProvider.Current.BrachotAfterShmaShacharit2, CommonPrayerTextProvider.Current.BrachotAfterShmaShacharit3);
+                CommonPrayerTextProvider.Current.BrachotAfterShmaShacharit1, CommonPrayerTextProvider.Current.BrachotAfterShmaShacharit2);
 
             // Shmone Esre
             SpanModel lastSpan = await AddShmoneEsre(Prayer.Shacharit);

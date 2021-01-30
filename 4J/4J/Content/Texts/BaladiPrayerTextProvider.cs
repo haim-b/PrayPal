@@ -43,5 +43,30 @@ namespace PrayPal.Content
         {
             get { return _texts["ShofetKolHaAretz"]; }
         }
+
+        public string PsalmsEnding
+        {
+            get { return _texts["PsalmsEnding"]; }
+        }
+
+        public string ShiratHayamHtml
+        {
+            get { return _texts["ShiratHayamHtml"]; }
+        }
+
+        public string VatikachMiryam
+        {
+            get { return _texts["VatikachMiryam"]; }
+        }
+
+        public string Refaeni
+        {
+            get { return _texts["Refaeni"]; }
+        }
+
+        public string BarchuShacharit
+        {
+            get { return _texts["BarchuShacharit"]; }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using System;
@@ -26,6 +27,14 @@ namespace PrayPal.Droid
 
             // Android labels have unnecessary extra padding, which we don't want"
             Control?.SetIncludeFontPadding(false);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O && Element != null && Control != null)
+            {
+                if (Properties.GetIsTextStretched(Element))
+                {
+                    Control.JustificationMode = JustificationMode.InterWord;
+                }
+            }
         }
     }
 }

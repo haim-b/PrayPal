@@ -20,9 +20,16 @@
                 <DataTemplate>
                     <Label FormattedText="{Binding Content, Converter={StaticResource FormattedStringConverter}}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
                            Style="{DynamicResource ListItemTextStyle}" IsVisible="{Binding Source={RelativeSource Self}, Path=FormattedText, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
-                           FontFamily="SegoeUI"/>
+                           app:Properties.IsTextStretched="{Binding IsTextStretched}" FontFamily="SegoeUI"/>
                 </DataTemplate>
             </local:SpanContentTemplateSelector.ParagraphTemplate>
+            <local:SpanContentTemplateSelector.JustifiedParagraphTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Content[0].Text}" FlowDirection="{Binding IsLtr, Converter={StaticResource LtrConverter}}"
+                           Style="{DynamicResource ListItemTextStyle}" TextType="Html" IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"
+                           app:Properties.IsTextStretched="True" FontFamily="SegoeUI"/>
+                </DataTemplate>
+            </local:SpanContentTemplateSelector.JustifiedParagraphTemplate>
             <local:SpanContentTemplateSelector.SpecialContentTemplate>
                 <DataTemplate>
                     <app:ContentControl BindingContext="{Binding ViewModel}" ContentTemplate="{StaticResource viewModelSelector}"/>

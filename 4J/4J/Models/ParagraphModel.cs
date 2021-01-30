@@ -100,6 +100,8 @@ namespace PrayPal.Models
 
         public bool IsLtr { get; set; }
 
+        public bool IsTextStretched { get; set; }
+
         public virtual void Add(string text)
         {
             if (text == null)

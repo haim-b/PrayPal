@@ -10,6 +10,8 @@ namespace PrayPal.TextPresenter
     {
         public DataTemplate ParagraphTemplate { get; set; }
 
+        public DataTemplate JustifiedParagraphTemplate { get; set; }
+
         public DataTemplate SpecialContentTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
@@ -18,8 +20,13 @@ namespace PrayPal.TextPresenter
             {
                 return SpecialContentTemplate;
             }
-            else if (item is ParagraphModel)
+            else if (item is ParagraphModel p)
             {
+                if (p.IsTextStretched)
+                {
+                    return JustifiedParagraphTemplate;
+                }
+
                 return ParagraphTemplate;
             }
 
