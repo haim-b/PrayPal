@@ -1725,6 +1725,15 @@ namespace PrayPal.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to יחיד אומר: {0}.
+        /// </summary>
+        public static string SingleSaysInstruction_F0 {
+            get {
+                return ResourceManager.GetString("SingleSaysInstruction_F0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to עכשיו.
         /// </summary>
         public static string SummaryNowTitle {

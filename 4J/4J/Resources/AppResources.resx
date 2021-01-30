@@ -846,4 +846,7 @@
   <data name="InAseretYameyTshuvaTitle" xml:space="preserve">
     <value>בעשרת ימי תשובה</value>
   </data>
+  <data name="SingleSaysInstruction_F0" xml:space="preserve">
+    <value>יחיד אומר: {0}</value>
+  </data>
 </root>

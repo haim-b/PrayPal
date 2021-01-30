@@ -68,5 +68,10 @@ namespace PrayPal.Content
         {
             get { return _texts["BarchuShacharit"]; }
         }
+
+        public string KdushaAYT
+        {
+            get { return _texts["KdushaAYT"]; }
+        }
     }
 }
