@@ -42,7 +42,7 @@ namespace PrayPal.Content
                 new ParashaMarks(2,13,17,1,5,8), // Beshalach
                 new ParashaMarks(2,18,1,5,9,12), // Itro
                 new ParashaMarks(2,21,1,4,7,19), // Mishpatim
-                new ParashaMarks(2,25,1,6,10,15), // Truma
+                new ParashaMarks(2,25,1,6,10,16), // Truma
                 new ParashaMarks(2,27,20,6,10,12), // Tetzaveh
                 new ParashaMarks(2,30,11,14,17,21), // Ki Tisa
                 new ParashaMarks(2,35,1,4,11,20), // Vayak'hel
