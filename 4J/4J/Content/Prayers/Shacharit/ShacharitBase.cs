@@ -510,7 +510,7 @@ namespace PrayPal.Content
 
             AddAronKodeshOpeningText(span);
 
-            span.Add(CommonPrayerTextProvider.Current.Gadlu);
+            AddTorahBookGadlu(span);
 
             span.Add(CommonPrayerTextProvider.Current.TorahBookWalking);
 
@@ -534,6 +534,11 @@ namespace PrayPal.Content
             AddTextAfterTorahReading(span);
 
             return true;
+        }
+
+        protected virtual void AddTorahBookGadlu(SpanModel span)
+        {
+            span.Add(CommonPrayerTextProvider.Current.Gadlu);
         }
 
         protected virtual void AddPreTorahBookHotzaa(SpanModel span)

@@ -250,17 +250,13 @@ namespace PrayPal.Content
 
         public static string GetNefilatApayim(Nusach nusach)
         {
-            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz)
+            if (nusach == Nusach.Sfard || nusach == Nusach.Ashkenaz || nusach == Nusach.Baladi)
             {
                 return CommonPrayerTextProvider.Current.NefilatApaim;
             }
             else if (nusach == Nusach.EdotMizrach)
             {
                 return Psalms.Psalm25 + EdotHaMizrachPrayerTextProvider.Instance.NefilatApayimEnding;
-            }
-            else if (nusach == Nusach.Baladi)
-            {
-                return "dd";
             }
 
             return string.Empty;

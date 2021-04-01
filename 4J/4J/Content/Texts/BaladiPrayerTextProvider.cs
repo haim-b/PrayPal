@@ -73,5 +73,25 @@ namespace PrayPal.Content
         {
             get { return _texts["KdushaAYT"]; }
         }
+
+        public string TachanunBHMon
+        {
+            get { return _texts["TachanunBHMon"]; }
+        }
+
+        public string TachanunBHThu
+        {
+            get { return _texts["TachanunBHThu"]; }
+        }
+
+        public string PreSTNoTachanunWithMussaf
+        {
+            get { return _texts["PreSTNoTachanunWithMussaf"]; }
+        }
+
+        public string BeforeTorahReading
+        {
+            get { return _texts["BeforeTorahReading"]; }
+        }
     }
 }

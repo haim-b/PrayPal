@@ -211,22 +211,19 @@ namespace PrayPal.Content
             }
         }
 
+        protected override void AddTorahBookGadlu(SpanModel span)
+        {
+
+        }
+
         protected override ShmoneEsreBase GetShmoneEsre(Prayer prayer)
         {
-            return new ShmoneEsreEdotHamizrach(prayer);
+            return new ShmoneEsreBaladi(prayer);
         }
 
         protected override SpanModel AddTachanun()
         {
-            bool showTachanun = false;
-
-            if (DayInfo.AseretYameyTshuva)
-            {
-                AddAvinuMalkenu();
-                showTachanun = true;
-            }
-
-            showTachanun |= DayInfo.IsTachanunDay(GetNusach());
+            bool showTachanun = DayInfo.IsTachanunDay(GetNusach());
 
             if (showTachanun)
             {
@@ -234,21 +231,20 @@ namespace PrayPal.Content
 
                 bool isBH = DayInfo.DayOfWeek == DayOfWeek.Monday || DayInfo.DayOfWeek == DayOfWeek.Thursday;
 
-                AddViduyAnd13Midot(tachanun);
-
                 tachanun.Add(new ParagraphModel(GetNefilatApayimTitle(), PrayersHelper.GetNefilatApayim(GetNusach())));
 
-                tachanun.Add(CommonPrayerTextProvider.Current.TachanunEnding);
+                if (DayInfo.AseretYameyTshuva)
+                {
+                    AddAvinuMalkenu();
+                }
 
                 if (isBH)
                 {
-                    tachanun.Add(EdotHaMizrachPrayerTextProvider.Instance.TachanunBHsYg, EdotHaMizrachPrayerTextProvider.Instance.TachanunBHS1);
-                    tachanun.Add(EdotHaMizrachPrayerTextProvider.Instance.TachanunBHsYg, EdotHaMizrachPrayerTextProvider.Instance.TachanunBHS2);
-                    tachanun.Add(EdotHaMizrachPrayerTextProvider.Instance.TachanunBHsYg, EdotHaMizrachPrayerTextProvider.Instance.TachanunBHS3);
-                    tachanun.Add(EdotHaMizrachPrayerTextProvider.Instance.TachanunBHS4);
                     tachanun.Add(CommonPrayerTextProvider.Current.TachanunBH1, CommonPrayerTextProvider.Current.TachanunBH2, CommonPrayerTextProvider.Current.TachanunBH3,
-                        CommonPrayerTextProvider.Current.TachanunBH4, CommonPrayerTextProvider.Current.TachanunBH5, CommonPrayerTextProvider.Current.TachanunBH6);
+                        DayInfo.DayOfWeek == DayOfWeek.Monday ? BaladiPrayerTextProvider.Instance.TachanunBHMon : BaladiPrayerTextProvider.Instance.TachanunBHThu, CommonPrayerTextProvider.Current.TachanunBH4);
                 }
+
+                tachanun.Add(CommonPrayerTextProvider.Current.TachanunEnding);
 
                 _items.Add(tachanun);
 
@@ -267,9 +263,7 @@ namespace PrayPal.Content
         protected override void AddAvinuMalkenu()
         {
             Add(AppResources.AvinuMalkenuTitle,
-                CommonPrayerTextProvider.Current.AvinuMalkenu1,
-                CommonPrayerTextProvider.Current.AvinuMalkenu3,
-                CommonPrayerTextProvider.Current.AvinuMalkenu4);
+                CommonPrayerTextProvider.Current.AvinuMalkenu1);
         }
 
         protected override bool ShouldAddHallelBlessing(ShacharitBase.HallelMode hallelMode)
@@ -293,11 +287,13 @@ namespace PrayPal.Content
 
         protected override void AddPreTorahBookHotzaaNoTachanun(SpanModel span)
         {
-            span.Add(EdotHaMizrachPrayerTextProvider.Instance.PreSTNoTachanun);
+            bool isRochChodeshOrCholHaMoed = DayInfo.YomTov == JewishCalendar.ROSH_CHODESH || DayInfo.IsCholHamoed;
+            span.Add(string.Format(EdotHaMizrachPrayerTextProvider.Instance.PreSTNoTachanun, isRochChodeshOrCholHaMoed ? Environment.NewLine + BaladiPrayerTextProvider.Instance.PreSTNoTachanunWithMussaf : ""));
         }
 
         protected override void AddTextBeforeTorahReading(SpanModel span)
         {
+            span.Add(BaladiPrayerTextProvider.Instance.BeforeTorahReading);
             span.Add(new ParagraphModel(AppResources.HagbahaTitle, CommonPrayerTextProvider.Current.VezotHatorah));
         }
 
