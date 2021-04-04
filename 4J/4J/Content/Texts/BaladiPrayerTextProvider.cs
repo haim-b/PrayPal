@@ -93,5 +93,30 @@ namespace PrayPal.Content
         {
             get { return _texts["BeforeTorahReading"]; }
         }
+
+        public string PreMincha1
+        {
+            get { return _texts["PreMincha1"]; }
+        }
+
+        public string PreMincha2
+        {
+            get { return _texts["PreMincha2"]; }
+        }
+
+        public string PreMincha2Reg
+        {
+            get { return _texts["PreMincha2Reg"]; }
+        }
+
+        public string PreMincha3
+        {
+            get { return _texts["PreMincha3"]; }
+        }
+
+        public string PreMincha4
+        {
+            get { return _texts["PreMincha4"]; }
+        }
     }
 }
