@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PrayPal.Common;
 using PrayPal.Models;
 using PrayPal.Resources;
+using Zmanim.HebrewCalendar;
 
 namespace PrayPal.Content
 {
@@ -46,42 +47,27 @@ namespace PrayPal.Content
 
         protected override ShmoneEsreBase GetShmoneEsre()
         {
-            return new ShmoneEsreEdotHamizrach(Prayer.Mincha);
+            return new ShmoneEsreBaladi(Prayer.Mincha);
         }
 
         protected override void AddAvinuMalkenu()
         {
             Add(AppResources.AvinuMalkenuTitle,
-                CommonPrayerTextProvider.Current.AvinuMalkenu1,
-                CommonPrayerTextProvider.Current.AvinuMalkenu3,
-                CommonPrayerTextProvider.Current.AvinuMalkenu4);
+                CommonPrayerTextProvider.Current.AvinuMalkenu1);
         }
 
-        protected override bool AddTachanun()
+        protected override void AddViduyAnd13Midot(SpanModel tachanun)
         {
-            bool tachanunAdded = base.AddTachanun();
-
-            if (!tachanunAdded)
-            {
-                Add(AppResources.AfterHazarahTitle, EdotHaMizrachPrayerTextProvider.Instance.NoTachanunText);
-            }
-
-            return tachanunAdded;
+            // Baladi doesn't say this
         }
 
         protected override void AddAleinuLeshabeach()
         {
-            ///למנצח
-            SpanModel psalm67 = PrayersHelper.GetPsalm(67);
-            _items.Add(psalm67);
+            /////למנצח
+            //SpanModel psalm67 = PrayersHelper.GetPsalm(67);
+            //_items.Add(psalm67);
 
-            AddKadishYatom();
-
-            if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
-            {
-                SpanModel psalm93 = PrayersHelper.GetPsalm(93);
-                _items.Add(psalm93);
-            }
+            //AddKadishYatom();
 
             if (DayInfo.Teanit)
             {
@@ -89,7 +75,20 @@ namespace PrayPal.Content
                 _items.Add(psalm102);
             }
 
-            base.AddAleinuLeshabeach();
+            //_items.Add(new ParagraphModel(AppResources.InMourningHouseTitle, Psalms.Psalm49) { IsCollapsible = true }));
+
+            if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_PESACH)
+            {
+                SpanModel psalm107 = PrayersHelper.GetPsalm(107);
+                _items.Add(psalm107);
+            }
+            else if (DayInfo.YomTov == JewishCalendar.CHOL_HAMOED_SUCCOS)
+            {
+                SpanModel psalm42 = PrayersHelper.GetPsalm(42);
+                _items.Add(psalm42);
+                SpanModel psalm43 = PrayersHelper.GetPsalm(43);
+                _items.Add(psalm43);
+            }
         }
     }
 }
